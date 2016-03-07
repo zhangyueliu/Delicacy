@@ -8,5 +8,6 @@ namespace Manager
 {
    public class CookProcessManager
     {
+
     }
 }

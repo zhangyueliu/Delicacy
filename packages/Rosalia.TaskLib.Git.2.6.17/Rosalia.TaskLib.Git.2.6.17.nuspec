@@ -1,0 +1,16 @@
+<?xml version="1.0"?>
+<package xmlns="http://schemas.microsoft.com/packaging/2010/07/nuspec.xsd">
+  <metadata>
+    <id>Rosalia.TaskLib.Git</id>
+    <version>2.6.17</version>
+    <authors>Eugene Guryanov</authors>
+    <owners>Eugene Guryanov</owners>
+    <projectUrl>https://github.com/rosaliafx/Rosalia</projectUrl>
+    <requireLicenseAcceptance>false</requireLicenseAcceptance>
+    <description>Git tasks bundle for Rosalia.</description>
+    <tags>rosalia tasklib git</tags>
+    <dependencies>
+      <dependency id="Rosalia.Core" version="2.6.17" />
+    </dependencies>
+  </metadata>
+</package>
