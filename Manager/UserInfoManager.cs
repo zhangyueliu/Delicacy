@@ -19,6 +19,7 @@ namespace Manager
                 //if (!Regex.IsMatch(m.Mobile, "^[0-9]{11}$")) return "手机格式不正确";
                 //if (!Regex.IsMatch(m.Email, @"^[0-9a-zA-Z_\-\.]+@[0-9a-zA-z_\-]+\.[0-9a-zA-Z_\-]+$")) return "邮箱格式不正确";
             }
+
             return true;
         }
     }
