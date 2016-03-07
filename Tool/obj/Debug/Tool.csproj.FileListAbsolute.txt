@@ -1,0 +1,10 @@
+D:\GraduationProject\Project\Delicacy\Tool\bin\Debug\Tool.dll
+D:\GraduationProject\Project\Delicacy\Tool\bin\Debug\Tool.pdb
+D:\GraduationProject\Project\Delicacy\Tool\obj\Debug\Tool.csprojResolveAssemblyReference.cache
+D:\GraduationProject\Project\Delicacy\Tool\obj\Debug\Tool.dll
+D:\GraduationProject\Project\Delicacy\Tool\obj\Debug\Tool.pdb
+F:\MYZL\GraduationProject\Project\Delicacy\Tool\bin\Debug\Tool.dll
+F:\MYZL\GraduationProject\Project\Delicacy\Tool\bin\Debug\Tool.pdb
+F:\MYZL\GraduationProject\Project\Delicacy\Tool\obj\Debug\Tool.csprojResolveAssemblyReference.cache
+F:\MYZL\GraduationProject\Project\Delicacy\Tool\obj\Debug\Tool.dll
+F:\MYZL\GraduationProject\Project\Delicacy\Tool\obj\Debug\Tool.pdb
