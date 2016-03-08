@@ -4,7 +4,7 @@
   <edmx:Runtime>
     <!-- SSDL content -->
     <edmx:StorageModels>
-      <Schema Namespace="DelicacyModel.Store" Provider="System.Data.SqlClient" ProviderManifestToken="2008" Alias="Self" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns="http://schemas.microsoft.com/ado/2009/11/edm/ssdl">
+    <Schema Namespace="DelicacyModel.Store" Provider="System.Data.SqlClient" ProviderManifestToken="2008" Alias="Self" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns="http://schemas.microsoft.com/ado/2009/11/edm/ssdl">
         <EntityType Name="CommentRecord">
           <Key>
             <PropertyRef Name="CommentId" />
@@ -118,6 +118,7 @@
           <Property Name="LoginId" Type="varchar" MaxLength="100" Nullable="false" />
           <Property Name="Password" Type="varchar" MaxLength="100" Nullable="false" />
           <Property Name="Name" Type="nvarchar" MaxLength="50" Nullable="false" />
+          <Property Name="Status" Type="int" Nullable="false" />
           <Property Name="RegisterDate" Type="datetime" Nullable="false" />
         </EntityType>
         <Association Name="FK_COMMENTR_REFERENCE_COOKBOOK">
@@ -358,8 +359,7 @@
             <End Role="SupportScanRecord" EntitySet="SupportScanRecord" />
           </AssociationSet>
         </EntityContainer>
-      </Schema>
-    </edmx:StorageModels>
+      </Schema></edmx:StorageModels>
     <!-- CSDL content -->
     <edmx:ConceptualModels>
       <Schema Namespace="DelicacyModel" Alias="Self" annotation:UseStrongSpatialTypes="false" xmlns:annotation="http://schemas.microsoft.com/ado/2009/02/edm/annotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm">
@@ -495,6 +495,7 @@
           <NavigationProperty Name="LikeCookBook" Relationship="Self.FK_LIKECOOK_REFERENCE_USERINFO" FromRole="UserInfo" ToRole="LikeCookBook" />
           <NavigationProperty Name="SubjectArticle" Relationship="Self.FK_SUBJECTA_REFERENCE_USERINFO" FromRole="UserInfo" ToRole="SubjectArticle" />
           <NavigationProperty Name="SupportScanRecord" Relationship="Self.FK_SUPPORTS_REFERENCE_USERINFO" FromRole="UserInfo" ToRole="SupportScanRecord" />
+          <Property Name="Status" Type="Int32" Nullable="false" />
         </EntityType>
         <Association Name="FK_COMMENTR_REFERENCE_COOKBOOK">
           <End Role="CookBook" Type="Self.CookBook" Multiplicity="0..1" />
@@ -821,6 +822,7 @@
           <EntitySetMapping Name="UserInfo">
             <EntityTypeMapping TypeName="DelicacyModel.UserInfo">
               <MappingFragment StoreEntitySet="UserInfo">
+                <ScalarProperty Name="Status" ColumnName="Status" />
                 <ScalarProperty Name="UserId" ColumnName="UserId" />
                 <ScalarProperty Name="LoginId" ColumnName="LoginId" />
                 <ScalarProperty Name="Password" ColumnName="Password" />
