@@ -24,7 +24,7 @@ namespace Manager
                 msg = "邮箱或密码不能为空";
                 return false;
             }
-            bll.Select()
+            //bll.Select()
 
             return true;
         }
