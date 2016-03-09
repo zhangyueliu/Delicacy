@@ -25,6 +25,12 @@ namespace Service
             base.Delete(id);
             return Save() > 0;
         }
+
+        /// <summary>
+        /// 根据邮箱获取用户对象
+        /// </summary>
+        /// <param name="loginId"></param>
+        /// <returns></returns>
         public UserInfoTsfer SelectByLoginId(string loginId)
         {
            return  TransferObject.ConvertObjectByEntity<UserInfo, UserInfoTsfer>(base.Select(o=>o.LoginId==loginId).FirstOrDefault());

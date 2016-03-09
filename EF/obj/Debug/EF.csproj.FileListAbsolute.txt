@@ -10,3 +10,15 @@ D:\GraduationProject\Project\Delicacy\EF\bin\Debug\zh-Hans\EntityFramework.SqlSe
 D:\GraduationProject\Project\Delicacy\EF\obj\Debug\EF.csprojResolveAssemblyReference.cache
 D:\GraduationProject\Project\Delicacy\EF\obj\Debug\EF.dll
 D:\GraduationProject\Project\Delicacy\EF\obj\Debug\EF.pdb
+G:\Delicacy\EF\bin\Debug\EF.dll.config
+G:\Delicacy\EF\bin\Debug\EF.dll
+G:\Delicacy\EF\bin\Debug\EF.pdb
+G:\Delicacy\EF\bin\Debug\EntityFramework.dll
+G:\Delicacy\EF\bin\Debug\EntityFramework.SqlServer.dll
+G:\Delicacy\EF\bin\Debug\EntityFramework.xml
+G:\Delicacy\EF\bin\Debug\EntityFramework.SqlServer.xml
+G:\Delicacy\EF\bin\Debug\zh-Hans\EntityFramework.resources.dll
+G:\Delicacy\EF\bin\Debug\zh-Hans\EntityFramework.SqlServer.resources.dll
+G:\Delicacy\EF\obj\Debug\EF.csprojResolveAssemblyReference.cache
+G:\Delicacy\EF\obj\Debug\EF.dll
+G:\Delicacy\EF\obj\Debug\EF.pdb
