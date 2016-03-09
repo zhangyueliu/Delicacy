@@ -38,6 +38,7 @@ namespace Manager
             Password=MD5Helper.GeneratePwd(password),
             RegisterDate=DateTime.Now
             };
+
             if (userService.Add(newUser))
                 return OutputHelper.GetOutputResponse(ResultCode.OK);
             else

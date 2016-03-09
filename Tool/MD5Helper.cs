@@ -9,6 +9,9 @@ namespace Tool
 {
     public static class MD5Helper
     {
+        private static int Start = 5;
+        private static int Length = 5;
+
         /// <summary>
         /// 将字符串转换为MD5加密格式
         /// </summary>
@@ -21,5 +24,12 @@ namespace Tool
             rs = rs.Replace("-", "");
             return rs;
         }
+
+        public static string GeneratePwd(string password)
+        {
+            string newPwd = convertToMD5(password);
+            return convertToMD5(newPwd + newPwd.Substring(Start, Length));
+        }
+
     }
 }

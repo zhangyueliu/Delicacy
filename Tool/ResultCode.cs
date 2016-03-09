@@ -24,7 +24,11 @@ namespace Tool
        NoData = 4,
        [Description("没有登录")]
        NoLogin = 5,
-
+       /// <summary>
+       /// 条件不符合
+       /// </summary>
+       [Description("条件不符合")]
+       ConditionNotSatisfied = 6,
 
     }
 }
