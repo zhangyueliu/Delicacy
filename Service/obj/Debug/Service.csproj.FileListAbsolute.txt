@@ -23,6 +23,7 @@ F:\MYZL\GraduationProject\Project\Delicacy\Service\bin\Debug\zh-Hans\EntityFrame
 F:\MYZL\GraduationProject\Project\Delicacy\Service\obj\Debug\Service.csprojResolveAssemblyReference.cache
 F:\MYZL\GraduationProject\Project\Delicacy\Service\obj\Debug\Service.dll
 F:\MYZL\GraduationProject\Project\Delicacy\Service\obj\Debug\Service.pdb
+<<<<<<< HEAD
 F:\GraduationProject\Yueyue\Delicacy\Service\bin\Debug\Service.dll
 F:\GraduationProject\Yueyue\Delicacy\Service\bin\Debug\Service.pdb
 F:\GraduationProject\Yueyue\Delicacy\Service\bin\Debug\DataTransfer.dll
@@ -38,3 +39,20 @@ F:\GraduationProject\Yueyue\Delicacy\Service\bin\Debug\zh-Hans\EntityFramework.r
 F:\GraduationProject\Yueyue\Delicacy\Service\obj\Debug\Service.csprojResolveAssemblyReference.cache
 F:\GraduationProject\Yueyue\Delicacy\Service\obj\Debug\Service.dll
 F:\GraduationProject\Yueyue\Delicacy\Service\obj\Debug\Service.pdb
+=======
+G:\Delicacy\Service\bin\Debug\Service.dll
+G:\Delicacy\Service\bin\Debug\Service.pdb
+G:\Delicacy\Service\bin\Debug\DataTransfer.dll
+G:\Delicacy\Service\bin\Debug\EF.dll
+G:\Delicacy\Service\bin\Debug\EntityFramework.dll
+G:\Delicacy\Service\bin\Debug\Tool.dll
+G:\Delicacy\Service\bin\Debug\Newtonsoft.Json.dll
+G:\Delicacy\Service\bin\Debug\DataTransfer.pdb
+G:\Delicacy\Service\bin\Debug\EF.pdb
+G:\Delicacy\Service\bin\Debug\Tool.pdb
+G:\Delicacy\Service\bin\Debug\EntityFramework.xml
+G:\Delicacy\Service\bin\Debug\zh-Hans\EntityFramework.resources.dll
+G:\Delicacy\Service\obj\Debug\Service.csprojResolveAssemblyReference.cache
+G:\Delicacy\Service\obj\Debug\Service.dll
+G:\Delicacy\Service\obj\Debug\Service.pdb
+>>>>>>> 122850b234b45a9e99253182dd6e4e6e6d7c1e6d
