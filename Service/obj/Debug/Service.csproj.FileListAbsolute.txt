@@ -23,26 +23,6 @@ F:\MYZL\GraduationProject\Project\Delicacy\Service\bin\Debug\zh-Hans\EntityFrame
 F:\MYZL\GraduationProject\Project\Delicacy\Service\obj\Debug\Service.csprojResolveAssemblyReference.cache
 F:\MYZL\GraduationProject\Project\Delicacy\Service\obj\Debug\Service.dll
 F:\MYZL\GraduationProject\Project\Delicacy\Service\obj\Debug\Service.pdb
-<<<<<<< HEAD
-=======
-<<<<<<< HEAD
-F:\GraduationProject\Yueyue\Delicacy\Service\bin\Debug\Service.dll
-F:\GraduationProject\Yueyue\Delicacy\Service\bin\Debug\Service.pdb
-F:\GraduationProject\Yueyue\Delicacy\Service\bin\Debug\DataTransfer.dll
-F:\GraduationProject\Yueyue\Delicacy\Service\bin\Debug\EF.dll
-F:\GraduationProject\Yueyue\Delicacy\Service\bin\Debug\EntityFramework.dll
-F:\GraduationProject\Yueyue\Delicacy\Service\bin\Debug\Tool.dll
-F:\GraduationProject\Yueyue\Delicacy\Service\bin\Debug\Newtonsoft.Json.dll
-F:\GraduationProject\Yueyue\Delicacy\Service\bin\Debug\DataTransfer.pdb
-F:\GraduationProject\Yueyue\Delicacy\Service\bin\Debug\EF.pdb
-F:\GraduationProject\Yueyue\Delicacy\Service\bin\Debug\Tool.pdb
-F:\GraduationProject\Yueyue\Delicacy\Service\bin\Debug\EntityFramework.xml
-F:\GraduationProject\Yueyue\Delicacy\Service\bin\Debug\zh-Hans\EntityFramework.resources.dll
-F:\GraduationProject\Yueyue\Delicacy\Service\obj\Debug\Service.csprojResolveAssemblyReference.cache
-F:\GraduationProject\Yueyue\Delicacy\Service\obj\Debug\Service.dll
-F:\GraduationProject\Yueyue\Delicacy\Service\obj\Debug\Service.pdb
-=======
->>>>>>> 54dd0a83f93b9e673305733ec291e87730a3eb9b
 G:\Delicacy\Service\bin\Debug\Service.dll
 G:\Delicacy\Service\bin\Debug\Service.pdb
 G:\Delicacy\Service\bin\Debug\DataTransfer.dll
@@ -58,7 +38,3 @@ G:\Delicacy\Service\bin\Debug\zh-Hans\EntityFramework.resources.dll
 G:\Delicacy\Service\obj\Debug\Service.csprojResolveAssemblyReference.cache
 G:\Delicacy\Service\obj\Debug\Service.dll
 G:\Delicacy\Service\obj\Debug\Service.pdb
-<<<<<<< HEAD
-=======
->>>>>>> 122850b234b45a9e99253182dd6e4e6e6d7c1e6d
->>>>>>> 54dd0a83f93b9e673305733ec291e87730a3eb9b
