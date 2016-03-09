@@ -42,6 +42,7 @@ namespace Manager
             else
                 return OutputHelper.GetOutputResponse(ResultCode.Error);
         }
+
         /// <summary>
         /// 登录
         /// </summary>
