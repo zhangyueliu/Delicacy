@@ -235,6 +235,12 @@ G:\Delicacy\Delicacy\obj\Debug\Delicacy.csprojResolveAssemblyReference.cache
 G:\Delicacy\Delicacy\obj\Debug\Delicacy.dll
 G:\Delicacy\Delicacy\obj\Debug\Delicacy.pdb
 <<<<<<< HEAD
+<<<<<<< HEAD
+=======
+<<<<<<< HEAD
+=======
+<<<<<<< HEAD
+>>>>>>> 17e065ce51fe8469a1ab826e502b0e24beffa589
 F:\GraduationProject\Yueyue\Delicacy\Delicacy\bin\Delicacy.dll.config
 F:\GraduationProject\Yueyue\Delicacy\Delicacy\bin\Delicacy.dll
 F:\GraduationProject\Yueyue\Delicacy\Delicacy\bin\Delicacy.pdb
@@ -319,9 +325,21 @@ F:\GraduationProject\Yueyue\Delicacy\Delicacy\bin\zh-Hans\Microsoft.Owin.Securit
 F:\GraduationProject\Yueyue\Delicacy\Delicacy\obj\Debug\Delicacy.csprojResolveAssemblyReference.cache
 F:\GraduationProject\Yueyue\Delicacy\Delicacy\obj\Debug\Delicacy.dll
 F:\GraduationProject\Yueyue\Delicacy\Delicacy\obj\Debug\Delicacy.pdb
+<<<<<<< HEAD
 =======
+=======
+=======
+>>>>>>> 54dd0a83f93b9e673305733ec291e87730a3eb9b
+>>>>>>> 17e065ce51fe8469a1ab826e502b0e24beffa589
 G:\Delicacy\Delicacy\bin\Service.dll
 G:\Delicacy\Delicacy\bin\EF.dll
 G:\Delicacy\Delicacy\bin\Service.pdb
 G:\Delicacy\Delicacy\bin\EF.pdb
+<<<<<<< HEAD
 >>>>>>> 122850b234b45a9e99253182dd6e4e6e6d7c1e6d
+=======
+<<<<<<< HEAD
+=======
+>>>>>>> 122850b234b45a9e99253182dd6e4e6e6d7c1e6d
+>>>>>>> 54dd0a83f93b9e673305733ec291e87730a3eb9b
+>>>>>>> 17e065ce51fe8469a1ab826e502b0e24beffa589

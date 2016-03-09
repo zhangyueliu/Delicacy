@@ -11,6 +11,8 @@ D:\GraduationProject\Project\Delicacy\EF\obj\Debug\EF.csprojResolveAssemblyRefer
 D:\GraduationProject\Project\Delicacy\EF\obj\Debug\EF.dll
 D:\GraduationProject\Project\Delicacy\EF\obj\Debug\EF.pdb
 <<<<<<< HEAD
+=======
+<<<<<<< HEAD
 F:\GraduationProject\Yueyue\Delicacy\EF\bin\Debug\EF.dll.config
 F:\GraduationProject\Yueyue\Delicacy\EF\bin\Debug\EF.dll
 F:\GraduationProject\Yueyue\Delicacy\EF\bin\Debug\EF.pdb
@@ -24,6 +26,7 @@ F:\GraduationProject\Yueyue\Delicacy\EF\obj\Debug\EF.csprojResolveAssemblyRefere
 F:\GraduationProject\Yueyue\Delicacy\EF\obj\Debug\EF.dll
 F:\GraduationProject\Yueyue\Delicacy\EF\obj\Debug\EF.pdb
 =======
+>>>>>>> 54dd0a83f93b9e673305733ec291e87730a3eb9b
 G:\Delicacy\EF\bin\Debug\EF.dll.config
 G:\Delicacy\EF\bin\Debug\EF.dll
 G:\Delicacy\EF\bin\Debug\EF.pdb
@@ -36,4 +39,7 @@ G:\Delicacy\EF\bin\Debug\zh-Hans\EntityFramework.SqlServer.resources.dll
 G:\Delicacy\EF\obj\Debug\EF.csprojResolveAssemblyReference.cache
 G:\Delicacy\EF\obj\Debug\EF.dll
 G:\Delicacy\EF\obj\Debug\EF.pdb
+<<<<<<< HEAD
+=======
 >>>>>>> 122850b234b45a9e99253182dd6e4e6e6d7c1e6d
+>>>>>>> 54dd0a83f93b9e673305733ec291e87730a3eb9b
