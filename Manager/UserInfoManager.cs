@@ -5,12 +5,13 @@ using System.Text;
 using System.Threading.Tasks;
 using Service;
 using DataTransfer;
+using Tool;
 
 namespace Manager
 {
     public class UserInfoManager
     {
-        UserInfoService bll = new UserInfoService();
+        UserInfoService userService = new UserInfoService();
         /// <summary>
         /// 注册
         /// </summary>
@@ -18,22 +19,28 @@ namespace Manager
         /// <param name="password">密码</param>
         /// <param name="msg"></param>
         /// <returns></returns>
-        public bool Register(string loginId, string password, out string msg)
+        public OutputModel Register(string loginId, string password)
         {
-            msg = "";
+            
             if (string.IsNullOrEmpty(loginId) || string.IsNullOrEmpty(password))
             {
-                //怎么个所谓的邮箱注册
-                //if (!Regex.IsMatch(m.Username, "^[a-zA-Z0-9_]{2,20}$")) return "用户名格式不正确";
-                //if (!Regex.IsMatch(m.Password, "^[a-zA-Z0-9_]{6,20}$")) return "密码格式不正确";
-                //if (!Regex.IsMatch(m.Mobile, "^[0-9]{11}$")) return "手机格式不正确";
-                //if (!Regex.IsMatch(m.Email, @"^[0-9a-zA-Z_\-\.]+@[0-9a-zA-z_\-]+\.[0-9a-zA-Z_\-]+$")) return "邮箱格式不正确";
-                msg = "邮箱或密码不能为空";
-                return false;
+                return OutputHelper.GetOutputResponse(ResultCode.NoParameter, "邮箱或密码为空");
             }
-            //bll.Select()
-
-            return true;
+            //判断邮箱是否被注册
+            UserInfoTsfer uTsfer = userService.SelectByLoginId(loginId);
+            if (uTsfer != null)
+                return OutputHelper.GetOutputResponse(ResultCode.ConditionNotSatisfied, "此邮箱已被注册，可以直接登录");
+            //进行注册
+            UserInfoTsfer newUser = new UserInfoTsfer { 
+            LoginId=loginId,
+            Name=loginId,
+            Password=MD5Helper.GeneratePwd(password),
+            RegisterDate=DateTime.Now
+            };
+            if (userService.Add(newUser))
+                return OutputHelper.GetOutputResponse(ResultCode.OK);
+            else
+                return OutputHelper.GetOutputResponse(ResultCode.Error);
         }
         /// <summary>
         /// 登录
@@ -54,11 +61,11 @@ namespace Manager
         /// <returns></returns>
         public bool Update(UserInfoTsfer userInfo)
         {
-            return bll.Update(userInfo);
+            return userService.Update(userInfo);
         }
         public bool Delete(UserInfoTsfer userInfo)
         {
-            return bll.Delete(userInfo.UserId);
+            return userService.Delete(userInfo.UserId);
         }
     }
 }

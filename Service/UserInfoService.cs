@@ -25,10 +25,9 @@ namespace Service
             base.Delete(id);
             return Save() > 0;
         }
-        public UserInfoTsfer Select(int id)
+        public UserInfoTsfer SelectByLoginId(string loginId)
         {
-            UserInfoTsfer u = TransferObject.ConvertObjectByEntity<UserInfo, UserInfoTsfer>(base.Select(id));
-            return u;
+           return  TransferObject.ConvertObjectByEntity<UserInfo, UserInfoTsfer>(base.Select(o=>o.LoginId==loginId).FirstOrDefault());
         }
         
     }

@@ -7,7 +7,7 @@ using DataTransfer;
 
 namespace Tool
 {
-   public class OutputHelper
+   public static  class OutputHelper
     {
        public static OutputModel GetOutputResponse(ResultCode code, string message, object data)
        {
