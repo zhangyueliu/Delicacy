@@ -107,6 +107,7 @@
     <EntitySetMapping Name="UserInfo">
       <EntityTypeMapping TypeName="DelicacyModel.UserInfo">
         <MappingFragment StoreEntitySet="UserInfo">
+          <ScalarProperty Name="Status" ColumnName="Status" />
           <ScalarProperty Name="UserId" ColumnName="UserId" />
           <ScalarProperty Name="LoginId" ColumnName="LoginId" />
           <ScalarProperty Name="Password" ColumnName="Password" />

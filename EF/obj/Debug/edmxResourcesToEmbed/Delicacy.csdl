@@ -132,6 +132,7 @@
     <NavigationProperty Name="LikeCookBook" Relationship="Self.FK_LIKECOOK_REFERENCE_USERINFO" FromRole="UserInfo" ToRole="LikeCookBook" />
     <NavigationProperty Name="SubjectArticle" Relationship="Self.FK_SUBJECTA_REFERENCE_USERINFO" FromRole="UserInfo" ToRole="SubjectArticle" />
     <NavigationProperty Name="SupportScanRecord" Relationship="Self.FK_SUPPORTS_REFERENCE_USERINFO" FromRole="UserInfo" ToRole="SupportScanRecord" />
+    <Property Name="Status" Type="Int32" Nullable="false" />
   </EntityType>
   <Association Name="FK_COMMENTR_REFERENCE_COOKBOOK">
     <End Role="CookBook" Type="Self.CookBook" Multiplicity="0..1" />

@@ -10,3 +10,9 @@ F:\MYZL\GraduationProject\Project\Delicacy\DataTransfer\bin\Debug\Newtonsoft.Jso
 F:\MYZL\GraduationProject\Project\Delicacy\DataTransfer\obj\Debug\DataTransfer.csprojResolveAssemblyReference.cache
 F:\MYZL\GraduationProject\Project\Delicacy\DataTransfer\obj\Debug\DataTransfer.dll
 F:\MYZL\GraduationProject\Project\Delicacy\DataTransfer\obj\Debug\DataTransfer.pdb
+G:\Delicacy\DataTransfer\bin\Debug\DataTransfer.dll
+G:\Delicacy\DataTransfer\bin\Debug\DataTransfer.pdb
+G:\Delicacy\DataTransfer\bin\Debug\Newtonsoft.Json.dll
+G:\Delicacy\DataTransfer\obj\Debug\DataTransfer.csprojResolveAssemblyReference.cache
+G:\Delicacy\DataTransfer\obj\Debug\DataTransfer.dll
+G:\Delicacy\DataTransfer\obj\Debug\DataTransfer.pdb

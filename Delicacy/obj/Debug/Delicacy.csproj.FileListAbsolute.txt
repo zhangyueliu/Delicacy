@@ -234,3 +234,7 @@ G:\Delicacy\Delicacy\bin\zh-Hans\Microsoft.Owin.Security.MicrosoftAccount.resour
 G:\Delicacy\Delicacy\obj\Debug\Delicacy.csprojResolveAssemblyReference.cache
 G:\Delicacy\Delicacy\obj\Debug\Delicacy.dll
 G:\Delicacy\Delicacy\obj\Debug\Delicacy.pdb
+G:\Delicacy\Delicacy\bin\Service.dll
+G:\Delicacy\Delicacy\bin\EF.dll
+G:\Delicacy\Delicacy\bin\Service.pdb
+G:\Delicacy\Delicacy\bin\EF.pdb

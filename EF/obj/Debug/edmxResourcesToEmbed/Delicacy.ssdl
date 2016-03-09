@@ -113,6 +113,7 @@
     <Property Name="LoginId" Type="varchar" MaxLength="100" Nullable="false" />
     <Property Name="Password" Type="varchar" MaxLength="100" Nullable="false" />
     <Property Name="Name" Type="nvarchar" MaxLength="50" Nullable="false" />
+    <Property Name="Status" Type="int" Nullable="false" />
     <Property Name="RegisterDate" Type="datetime" Nullable="false" />
   </EntityType>
   <Association Name="FK_COMMENTR_REFERENCE_COOKBOOK">
