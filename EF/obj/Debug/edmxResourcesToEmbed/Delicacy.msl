@@ -1,0 +1,128 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Mapping Space="C-S" xmlns="http://schemas.microsoft.com/ado/2009/11/mapping/cs">
+  <EntityContainerMapping StorageEntityContainer="DelicacyModelStoreContainer" CdmEntityContainer="DelicacyEntities">
+    <EntitySetMapping Name="CommentRecord">
+      <EntityTypeMapping TypeName="DelicacyModel.CommentRecord">
+        <MappingFragment StoreEntitySet="CommentRecord">
+          <ScalarProperty Name="CommentId" ColumnName="CommentId" />
+          <ScalarProperty Name="CookBookId" ColumnName="CookBookId" />
+          <ScalarProperty Name="UserId" ColumnName="UserId" />
+          <ScalarProperty Name="PId" ColumnName="PId" />
+          <ScalarProperty Name="Content" ColumnName="Content" />
+          <ScalarProperty Name="DateTime" ColumnName="DateTime" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="CookBook">
+      <EntityTypeMapping TypeName="DelicacyModel.CookBook">
+        <MappingFragment StoreEntitySet="CookBook">
+          <ScalarProperty Name="CookBookId" ColumnName="CookBookId" />
+          <ScalarProperty Name="TasteId" ColumnName="TasteId" />
+          <ScalarProperty Name="FoodSortId" ColumnName="FoodSortId" />
+          <ScalarProperty Name="UserId" ColumnName="UserId" />
+          <ScalarProperty Name="Name" ColumnName="Name" />
+          <ScalarProperty Name="ImgUrl" ColumnName="ImgUrl" />
+          <ScalarProperty Name="Description" ColumnName="Description" />
+          <ScalarProperty Name="Tips" ColumnName="Tips" />
+          <ScalarProperty Name="Status" ColumnName="Status" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="CookProcess">
+      <EntityTypeMapping TypeName="DelicacyModel.CookProcess">
+        <MappingFragment StoreEntitySet="CookProcess">
+          <ScalarProperty Name="CookProcessId" ColumnName="CookProcessId" />
+          <ScalarProperty Name="CookBookId" ColumnName="CookBookId" />
+          <ScalarProperty Name="ImgUrl" ColumnName="ImgUrl" />
+          <ScalarProperty Name="Description" ColumnName="Description" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="FoodMaterial">
+      <EntityTypeMapping TypeName="DelicacyModel.FoodMaterial">
+        <MappingFragment StoreEntitySet="FoodMaterial">
+          <ScalarProperty Name="FoodMaterialId" ColumnName="FoodMaterialId" />
+          <ScalarProperty Name="Name" ColumnName="Name" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="FoodSort">
+      <EntityTypeMapping TypeName="DelicacyModel.FoodSort">
+        <MappingFragment StoreEntitySet="FoodSort">
+          <ScalarProperty Name="FoodSortId" ColumnName="FoodSortId" />
+          <ScalarProperty Name="Name" ColumnName="Name" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="LikeCookBook">
+      <EntityTypeMapping TypeName="DelicacyModel.LikeCookBook">
+        <MappingFragment StoreEntitySet="LikeCookBook">
+          <ScalarProperty Name="Id" ColumnName="Id" />
+          <ScalarProperty Name="UserId" ColumnName="UserId" />
+          <ScalarProperty Name="CookBookId" ColumnName="CookBookId" />
+          <ScalarProperty Name="Use_UserId" ColumnName="Use_UserId" />
+          <ScalarProperty Name="DateTime" ColumnName="DateTime" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="SubjectArticle">
+      <EntityTypeMapping TypeName="DelicacyModel.SubjectArticle">
+        <MappingFragment StoreEntitySet="SubjectArticle">
+          <ScalarProperty Name="SubjectArticleId" ColumnName="SubjectArticleId" />
+          <ScalarProperty Name="SubjectSortId" ColumnName="SubjectSortId" />
+          <ScalarProperty Name="UserId" ColumnName="UserId" />
+          <ScalarProperty Name="content" ColumnName="content" />
+          <ScalarProperty Name="Datetime" ColumnName="Datetime" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="SubjectSort">
+      <EntityTypeMapping TypeName="DelicacyModel.SubjectSort">
+        <MappingFragment StoreEntitySet="SubjectSort">
+          <ScalarProperty Name="SubjectSortId" ColumnName="SubjectSortId" />
+          <ScalarProperty Name="Name" ColumnName="Name" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="SupportScanRecord">
+      <EntityTypeMapping TypeName="DelicacyModel.SupportScanRecord">
+        <MappingFragment StoreEntitySet="SupportScanRecord">
+          <ScalarProperty Name="Id" ColumnName="Id" />
+          <ScalarProperty Name="UserId" ColumnName="UserId" />
+          <ScalarProperty Name="CookBookId" ColumnName="CookBookId" />
+          <ScalarProperty Name="Use_UserId" ColumnName="Use_UserId" />
+          <ScalarProperty Name="DateTime" ColumnName="DateTime" />
+          <ScalarProperty Name="Type" ColumnName="Type" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="Taste">
+      <EntityTypeMapping TypeName="DelicacyModel.Taste">
+        <MappingFragment StoreEntitySet="Taste">
+          <ScalarProperty Name="TasteId" ColumnName="TasteId" />
+          <ScalarProperty Name="Name" ColumnName="Name" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="UserInfo">
+      <EntityTypeMapping TypeName="DelicacyModel.UserInfo">
+        <MappingFragment StoreEntitySet="UserInfo">
+          <ScalarProperty Name="Status" ColumnName="Status" />
+          <ScalarProperty Name="UserId" ColumnName="UserId" />
+          <ScalarProperty Name="LoginId" ColumnName="LoginId" />
+          <ScalarProperty Name="Password" ColumnName="Password" />
+          <ScalarProperty Name="Name" ColumnName="Name" />
+          <ScalarProperty Name="RegisterDate" ColumnName="RegisterDate" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <AssociationSetMapping Name="CookMaterial" TypeName="DelicacyModel.CookMaterial" StoreEntitySet="CookMaterial">
+      <EndProperty Name="CookBook">
+        <ScalarProperty Name="CookBookId" ColumnName="CookBookId" />
+      </EndProperty>
+      <EndProperty Name="FoodMaterial">
+        <ScalarProperty Name="FoodMaterialId" ColumnName="FoodMaterialId" />
+      </EndProperty>
+    </AssociationSetMapping>
+  </EntityContainerMapping>
+</Mapping>

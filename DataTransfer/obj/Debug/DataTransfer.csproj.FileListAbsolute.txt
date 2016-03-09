@@ -10,9 +10,24 @@ F:\MYZL\GraduationProject\Project\Delicacy\DataTransfer\bin\Debug\Newtonsoft.Jso
 F:\MYZL\GraduationProject\Project\Delicacy\DataTransfer\obj\Debug\DataTransfer.csprojResolveAssemblyReference.cache
 F:\MYZL\GraduationProject\Project\Delicacy\DataTransfer\obj\Debug\DataTransfer.dll
 F:\MYZL\GraduationProject\Project\Delicacy\DataTransfer\obj\Debug\DataTransfer.pdb
+<<<<<<< HEAD
+=======
+<<<<<<< HEAD
+F:\GraduationProject\Yueyue\Delicacy\DataTransfer\bin\Debug\DataTransfer.dll
+F:\GraduationProject\Yueyue\Delicacy\DataTransfer\bin\Debug\DataTransfer.pdb
+F:\GraduationProject\Yueyue\Delicacy\DataTransfer\bin\Debug\Newtonsoft.Json.dll
+F:\GraduationProject\Yueyue\Delicacy\DataTransfer\obj\Debug\DataTransfer.csprojResolveAssemblyReference.cache
+F:\GraduationProject\Yueyue\Delicacy\DataTransfer\obj\Debug\DataTransfer.dll
+F:\GraduationProject\Yueyue\Delicacy\DataTransfer\obj\Debug\DataTransfer.pdb
+=======
+>>>>>>> 54dd0a83f93b9e673305733ec291e87730a3eb9b
 G:\Delicacy\DataTransfer\bin\Debug\DataTransfer.dll
 G:\Delicacy\DataTransfer\bin\Debug\DataTransfer.pdb
 G:\Delicacy\DataTransfer\bin\Debug\Newtonsoft.Json.dll
 G:\Delicacy\DataTransfer\obj\Debug\DataTransfer.csprojResolveAssemblyReference.cache
 G:\Delicacy\DataTransfer\obj\Debug\DataTransfer.dll
 G:\Delicacy\DataTransfer\obj\Debug\DataTransfer.pdb
+<<<<<<< HEAD
+=======
+>>>>>>> 122850b234b45a9e99253182dd6e4e6e6d7c1e6d
+>>>>>>> 54dd0a83f93b9e673305733ec291e87730a3eb9b
