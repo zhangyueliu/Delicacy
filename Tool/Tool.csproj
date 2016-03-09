@@ -41,10 +41,19 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="EmailHelper.cs" />
+    <Compile Include="EnumHelper.cs" />
     <Compile Include="MD5Helper.cs" />
+    <Compile Include="OutputHelper.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="RegExVerify.cs" />
     <Compile Include="ResultCode.cs" />
     <Compile Include="TransferObject.cs" />
+  </ItemGroup>
+  <ItemGroup>
+    <ProjectReference Include="..\DataTransfer\DataTransfer.csproj">
+      <Project>{0d3e6079-0e52-4e5e-954b-1cea10e130f9}</Project>
+      <Name>DataTransfer</Name>
+    </ProjectReference>
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
