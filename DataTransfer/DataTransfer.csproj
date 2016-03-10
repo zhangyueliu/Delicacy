@@ -49,13 +49,18 @@
     <Compile Include="FoodMaterialTsfer.cs" />
     <Compile Include="FoodSortTsfer.cs" />
     <Compile Include="LikeCookBookTsfer.cs" />
-    <Compile Include="OutputModel.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="SubjectArticleTsfer.cs" />
     <Compile Include="SubjectSortTsfer.cs" />
     <Compile Include="SupportScanRecordTsfer.cs" />
     <Compile Include="TasteTsfer.cs" />
     <Compile Include="UserInfoTsfer.cs" />
+  </ItemGroup>
+  <ItemGroup>
+    <ProjectReference Include="..\Tool\Tool.csproj">
+      <Project>{b8da91e2-2fa2-49ed-abbf-b6332dccbba1}</Project>
+      <Name>Tool</Name>
+    </ProjectReference>
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
