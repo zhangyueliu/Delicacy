@@ -52,6 +52,7 @@
     <Compile Include="LinkType.cs" />
     <Compile Include="MD5Helper.cs" />
     <Compile Include="ModelBase.cs" />
+    <Compile Include="ObjectContainer.cs" />
     <Compile Include="OutputHelper.cs" />
     <Compile Include="OutputModel.cs" />
     <Compile Include="PageInfo.cs" />
