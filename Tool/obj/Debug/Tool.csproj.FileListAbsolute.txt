@@ -12,7 +12,5 @@ G:\Delicacy\Tool\obj\Debug\Tool.csprojResolveAssemblyReference.cache
 G:\Delicacy\Tool\obj\Debug\Tool.dll
 G:\Delicacy\Tool\bin\Debug\Tool.dll
 G:\Delicacy\Tool\bin\Debug\Tool.pdb
-G:\Delicacy\Tool\bin\Debug\DataTransfer.dll
-G:\Delicacy\Tool\bin\Debug\Newtonsoft.Json.dll
-G:\Delicacy\Tool\bin\Debug\DataTransfer.pdb
 G:\Delicacy\Tool\obj\Debug\Tool.pdb
+G:\Delicacy\Tool\bin\Debug\Newtonsoft.Json.dll

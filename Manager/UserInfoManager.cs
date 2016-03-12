@@ -11,7 +11,7 @@ namespace Manager
 {
     public class UserInfoManager
     {
-        UserInfoService userService = new UserInfoService();
+        private UserInfoService userService = ObjectContainer.GetInstance<UserInfoService>();
         /// <summary>
         /// 注册
         /// </summary>
@@ -27,6 +27,8 @@ namespace Manager
                 return OutputHelper.GetOutputResponse(ResultCode.NoParameter, "邮箱或密码为空");
             }
             //判断邮箱格式是否正确
+            if (!RegExVerify.VerifyEmail(loginId))
+                return OutputHelper.GetOutputResponse(ResultCode.ErrorParameter, "邮箱格式不正确");
             //判断邮箱是否被注册
             UserInfoTsfer uTsfer = userService.SelectByLoginId(loginId);
             if (uTsfer != null)
@@ -36,7 +38,8 @@ namespace Manager
             LoginId=loginId,
             Name=loginId,
             Password=MD5Helper.GeneratePwd(password),
-            RegisterDate=DateTime.Now
+            RegisterDate=DateTime.Now,
+            Status=0
             };
 
             if (userService.Add(newUser))

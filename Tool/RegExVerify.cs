@@ -25,6 +25,17 @@ namespace Tool
         /// 固定电话的正则表达式
         /// </summary>
         private static readonly string RegexTelephone = @"(^((\d{7,8})|(\d{4}|\d{3})-(\d{7,8})|(\d{4}|\d{3})-(\d{7,8})-(\d{4}|\d{3}|\d{2}|\d{1})|(\d{7,8})-(\d{4}|\d{3}|\d{2}|\d{1}))$)";
+
+        /// <summary>
+        /// 邮箱的正则表达式
+        /// </summary>
+        private static readonly string RegexEmail = @"^([\w-\.]+)@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.)|(([\w-]+\.)+))([a-zA-Z]{2,4}|[0-9]{1,3})(\]?)$";
+        
+        public static bool VerifyEmail(string email)
+        {
+            return Regex.IsMatch(email, RegexEmail);
+        }
+        
         /// <summary>
         /// 验证手机号码格式是否正确
         /// </summary>

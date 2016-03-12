@@ -16,5 +16,6 @@ namespace DataTransfer
         public string Password { get; set; }
         public string Name { get; set; }
         public System.DateTime RegisterDate { get; set; }
+        public int Status { get; set; }
     }
 }

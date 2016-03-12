@@ -36,5 +36,6 @@ namespace EF
         public virtual DbSet<SupportScanRecord> SupportScanRecord { get; set; }
         public virtual DbSet<Taste> Taste { get; set; }
         public virtual DbSet<UserInfo> UserInfo { get; set; }
+        public virtual DbSet<sysdiagrams> sysdiagrams { get; set; }
     }
 }

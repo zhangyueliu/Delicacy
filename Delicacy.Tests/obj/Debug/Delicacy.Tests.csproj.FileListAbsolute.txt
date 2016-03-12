@@ -172,3 +172,16 @@ G:\Delicacy\Delicacy.Tests\bin\Debug\zh-Hans\Microsoft.Owin.Host.SystemWeb.resou
 G:\Delicacy\Delicacy.Tests\obj\Debug\Delicacy.Tests.csprojResolveAssemblyReference.cache
 G:\Delicacy\Delicacy.Tests\obj\Debug\Delicacy.Tests.dll
 G:\Delicacy\Delicacy.Tests\obj\Debug\Delicacy.Tests.pdb
+G:\Delicacy\Delicacy.Tests\bin\Debug\Manager.dll
+G:\Delicacy\Delicacy.Tests\bin\Debug\DataTransfer.dll
+G:\Delicacy\Delicacy.Tests\bin\Debug\Service.dll
+G:\Delicacy\Delicacy.Tests\bin\Debug\Tool.dll
+G:\Delicacy\Delicacy.Tests\bin\Debug\EF.dll
+G:\Delicacy\Delicacy.Tests\bin\Debug\Manager.pdb
+G:\Delicacy\Delicacy.Tests\bin\Debug\DataTransfer.pdb
+G:\Delicacy\Delicacy.Tests\bin\Debug\Service.pdb
+G:\Delicacy\Delicacy.Tests\bin\Debug\Tool.pdb
+G:\Delicacy\Delicacy.Tests\bin\Debug\EF.pdb
+G:\Delicacy\Delicacy.Tests\bin\Debug\EntityFramework.SqlServer.dll
+G:\Delicacy\Delicacy.Tests\bin\Debug\EntityFramework.SqlServer.xml
+G:\Delicacy\Delicacy.Tests\bin\Debug\zh-Hans\EntityFramework.SqlServer.resources.dll

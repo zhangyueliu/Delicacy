@@ -5,7 +5,7 @@ using System.Web;
 using System.Web.Mvc;
 using Manager;
 using DataTransfer;
-
+using Tool;
 namespace Delicacy.Controllers
 {
     public class RegisterAndLoginController : Controller
@@ -17,24 +17,11 @@ namespace Delicacy.Controllers
         //
         // GET: /RegisterAndLogin/
         [HttpPost]
-        public ActionResult Register(string loginId, string password)
+        public ContentResult Register(string loginId, string password)
         {
-            if (string.IsNullOrEmpty(loginId) || string.IsNullOrEmpty(password))
-            {
-                ViewData["msg"] = "邮箱或密码为空";
-                return View();
-            }
             UserInfoManager userManager = new UserInfoManager();
             OutputModel outmodel = userManager.Register(loginId, password);
-            if (outmodel.StatusCode == 1)
-            {
-                ViewData["msg"] = "注册成功，请登录";
-            }
-            else
-            {
-                ViewData["msg"] = "注册失败";
-            }
-            return View();
+            return Content(JsonHelper.SerializeObject(outmodel));
         }
         [HttpPost]
         public ActionResult Login(string loginId, string password)
