@@ -7,7 +7,7 @@ using System.Threading.Tasks;
 using System.Configuration;
 namespace Tool
 {
-    public class EmailHelper
+    public static class EmailHelper
     {
         private static readonly string EmailName = ConfigurationManager.AppSettings["EmailName"];
         private static readonly string Password = ConfigurationManager.AppSettings["Password"];

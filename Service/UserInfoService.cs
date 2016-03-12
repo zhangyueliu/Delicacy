@@ -32,7 +32,7 @@ namespace Service
         /// </summary>
         /// <param name="loginId"></param>
         /// <returns></returns>
-        public UserInfoTsfer SelectByLoginId(string loginId)
+        public UserInfoTsfer GetUserInfo(string loginId)
         {
             return TransferObject.ConvertObjectByEntity<UserInfo, UserInfoTsfer>(base.Select(o => o.LoginId == loginId).FirstOrDefault());
         }

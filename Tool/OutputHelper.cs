@@ -18,6 +18,11 @@ namespace Tool
            return new OutputModel() { StatusCode = (int)code, Message =EnumHelper.GetEnumDescription<ResultCode>(code), Data = data };
        }
 
+       public static OutputModel GetOutputResponse(ResultCode code, string message)
+       {
+           return new OutputModel() { StatusCode = (int)code, Message = message, Data = null };
+       }
+
        public static OutputModel GetOutputResponse(ResultCode code)
        {
            return GetOutputResponse(code, null);
