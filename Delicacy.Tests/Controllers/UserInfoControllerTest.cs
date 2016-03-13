@@ -36,5 +36,6 @@ namespace Delicacy.Tests.Controllers
             OutputModel model = JsonConvert.DeserializeObject<OutputModel>(result);
             Assert.AreEqual(model.StatusCode, 1);
         }
+       
     }
 }

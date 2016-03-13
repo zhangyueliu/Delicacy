@@ -47,6 +47,7 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="ChangedBase.cs" />
+    <Compile Include="CheckParameter.cs" />
     <Compile Include="CompareType.cs" />
     <Compile Include="ConditionToSql.cs" />
     <Compile Include="EmailHelper.cs" />

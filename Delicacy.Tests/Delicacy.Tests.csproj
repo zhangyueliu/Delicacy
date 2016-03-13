@@ -85,6 +85,8 @@
     </Reference>
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="Controllers\CookBookControllerTest.cs" />
+    <Compile Include="Controllers\ToolTest.cs" />
     <Compile Include="Controllers\UserInfoControllerTest.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="Controllers\HomeControllerTest.cs" />

@@ -25,7 +25,7 @@ namespace Tool
             _mailMessage.Body = body;//内容
             _mailMessage.BodyEncoding = System.Text.Encoding.UTF8;//正文编码
             _mailMessage.IsBodyHtml = true;//设置为HTML格式
-            _mailMessage.Priority = MailPriority.High;//优先级
+            _mailMessage.Priority = MailPriority.Normal;//优先级
             _smtpClient.Send(_mailMessage);
             return true;
         }

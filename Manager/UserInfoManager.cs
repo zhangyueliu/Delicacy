@@ -42,7 +42,7 @@ namespace Manager
             if (userService.Add(newUser))
             {
                 //发邮件
-                EmailHelper.SendEmail("食谱网", "请点击以下链接完成注册", "1084727879@qq.com");
+                EmailHelper.SendEmail("食谱网", "欢迎注册食谱网,请点击以下链接完成注册", "1084727879@qq.com");
                 return OutputHelper.GetOutputResponse(ResultCode.OK);
             }
             else

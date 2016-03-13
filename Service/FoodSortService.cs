@@ -26,9 +26,14 @@ namespace Service
             base.Delete(id);
             return Save() > 0;
         }
-        public FoodSortTsfer Select(int id)
+        public FoodSortTsfer GetFoodSort(int foodSortId)
         {
-            return TransferObject.ConvertObjectByEntity<FoodSort, FoodSortTsfer>(base.Select(id));
+            return TransferObject.ConvertObjectByEntity<FoodSort, FoodSortTsfer>(base.Select(o => o.FoodSortId == foodSortId).FirstOrDefault());
+        }
+
+        public bool IsExist(int foodSortId)
+        {
+            return base.Select(o => o.FoodSortId == foodSortId).Any();
         }
     }
 }

@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Web;
 using System.Web.Mvc;
+using Delicacy.Models;
 
 namespace Delicacy.Controllers
 {
@@ -16,8 +17,9 @@ namespace Delicacy.Controllers
         }
 
         [HttpPost]
-        public ContentResult PublishCookBook()
+        public ContentResult PublishCookBook(CookBookModel model)
         {
+
             return Content("");
         }
 	}

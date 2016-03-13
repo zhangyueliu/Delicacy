@@ -27,9 +27,14 @@ namespace Service
             base.Delete(id);
             return Save() > 0;
         }
-        public TasteTsfer Select(int id)
+        public TasteTsfer GetTaste(int tasteId)
         {
-            return TransferObject.ConvertObjectByEntity<Taste, TasteTsfer>(base.Select(id));
+            return TransferObject.ConvertObjectByEntity<Taste, TasteTsfer>(base.Select(o => o.TasteId == tasteId).FirstOrDefault());
+        }
+
+        public bool IsExist(int tasteId)
+        {
+            return base.Select(o => o.TasteId == tasteId).Any();
         }
     }
 }
