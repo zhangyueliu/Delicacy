@@ -15,17 +15,17 @@ namespace Tool
 
        public static OutputModel GetOutputResponse(ResultCode code,  object data)
        {
-           return new OutputModel() { StatusCode = (int)code, Message =EnumHelper.GetEnumDescription<ResultCode>(code), Data = data };
+           return GetOutputResponse( code ,EnumHelper.GetEnumDescription<ResultCode>(code),data);
        }
 
        public static OutputModel GetOutputResponse(ResultCode code, string message)
        {
-           return new OutputModel() { StatusCode = (int)code, Message = message, Data = null };
+           return GetOutputResponse(code, message, null);
        }
 
        public static OutputModel GetOutputResponse(ResultCode code)
        {
-           return GetOutputResponse(code, null);
+           return GetOutputResponse(code, EnumHelper.GetEnumDescription<ResultCode>(code),null);
        }
       
     }

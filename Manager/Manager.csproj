@@ -63,6 +63,7 @@
     <Compile Include="SubjectSortManager.cs" />
     <Compile Include="SupportScanRecordManager.cs" />
     <Compile Include="TasteManager.cs" />
+    <Compile Include="UploadManager.cs" />
     <Compile Include="UserInfoManager.cs" />
   </ItemGroup>
   <ItemGroup>

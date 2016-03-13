@@ -30,6 +30,11 @@ namespace Tool
         /// 邮箱的正则表达式
         /// </summary>
         private static readonly string RegexEmail = @"^([\w-\.]+)@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.)|(([\w-]+\.)+))([a-zA-Z]{2,4}|[0-9]{1,3})(\]?)$";
+
+        /// <summary>
+        /// 允许图片格式
+        /// </summary>
+        private static readonly string[] ImgExtension = { ".jpg", ".png", ".gif", ".jpeg", ".bmp" };
         
         public static bool VerifyEmail(string email)
         {
@@ -64,6 +69,16 @@ namespace Tool
         public static bool VerifyTelephone(string telephone)
         {
             return Regex.IsMatch(telephone, RegexTelephone);
+        }
+
+        /// <summary>
+        /// 检查图片的后缀名
+        /// </summary>
+        /// <param name="imgExtension"></param>
+        /// <returns></returns>
+        public  static bool CheckImgExtension(string imgExtension)
+        {
+            return ImgExtension.Contains(imgExtension.ToLower());
         }
     }
 }

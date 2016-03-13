@@ -69,6 +69,7 @@
     <Compile Include="SortWay.cs" />
     <Compile Include="TransferObject.cs" />
     <Compile Include="TypeConstManager.cs" />
+    <Compile Include="UploadHelper.cs" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
