@@ -34,5 +34,9 @@ namespace Delicacy.Models
         /// 1发布  -1存草稿
         /// </summary>
         public string Status { get; set; }
+        /// <summary>
+        /// 食材ID 格式  1::2::3  
+        /// </summary>
+        public string FoodMaterial { get; set; }
     }
 }
