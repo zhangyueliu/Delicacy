@@ -35,6 +35,7 @@ namespace Manager
           if (!foodService.IsExist(iFoodSort))
               return OutputHelper.GetOutputResponse(ResultCode.ErrorParameter, "类别选择错误");
 
+
          // if(string.IsNullOrEmpty(name)||string.isn)
           return null;
       }
