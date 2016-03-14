@@ -21,6 +21,7 @@ namespace EF
     
         public int TasteId { get; set; }
         public string Name { get; set; }
+        public int Status { get; set; }
     
         public virtual ICollection<CookBook> CookBook { get; set; }
     }

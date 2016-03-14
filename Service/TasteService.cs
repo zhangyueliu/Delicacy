@@ -31,10 +31,23 @@ namespace Service
         {
             return TransferObject.ConvertObjectByEntity<Taste, TasteTsfer>(base.Select(o => o.TasteId == tasteId).FirstOrDefault());
         }
+        public TasteTsfer GetTaste(string name)
+        {
+            return TransferObject.ConvertObjectByEntity<Taste, TasteTsfer>(base.Select(o => o.Name == name).FirstOrDefault());
+        }
 
         public bool IsExist(int tasteId)
         {
             return base.Select(o => o.TasteId == tasteId).Any();
+        }
+
+        public List<TasteTsfer> GetList(int status)
+        {
+            return TransferObject.ConvertObjectByEntity<Taste, TasteTsfer>(base.Select(o => o.Status == status).ToList());
+        }
+        public List<TasteTsfer> GetList()
+        {
+            return TransferObject.ConvertObjectByEntity<Taste, TasteTsfer>(base.Select(o => true).ToList());
         }
     }
 }

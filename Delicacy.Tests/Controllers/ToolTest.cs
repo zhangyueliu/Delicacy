@@ -16,7 +16,7 @@ namespace Delicacy.Tests.Controllers
         [TestMethod]
         public void SendEmail()
         {
-            EmailHelper.SendEmail("title", "http://www.baidu.com", "1084727879@qq.com");
+            EmailHelper.SendEmail("食谱网", "亮亮亮亮,我是悦悦http://www.baidu.com", "1084727879@qq.com");
 
         }
     }
