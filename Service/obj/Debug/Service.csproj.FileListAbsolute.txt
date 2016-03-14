@@ -1,13 +1,3 @@
-D:\GraduationProject\Project\Delicacy\Service\bin\Debug\Service.dll
-D:\GraduationProject\Project\Delicacy\Service\bin\Debug\Service.pdb
-D:\GraduationProject\Project\Delicacy\Service\bin\Debug\EF.dll
-D:\GraduationProject\Project\Delicacy\Service\bin\Debug\EntityFramework.dll
-D:\GraduationProject\Project\Delicacy\Service\bin\Debug\EF.pdb
-D:\GraduationProject\Project\Delicacy\Service\bin\Debug\EntityFramework.xml
-D:\GraduationProject\Project\Delicacy\Service\bin\Debug\zh-Hans\EntityFramework.resources.dll
-D:\GraduationProject\Project\Delicacy\Service\obj\Debug\Service.csprojResolveAssemblyReference.cache
-D:\GraduationProject\Project\Delicacy\Service\obj\Debug\Service.dll
-D:\GraduationProject\Project\Delicacy\Service\obj\Debug\Service.pdb
 F:\MYZL\GraduationProject\Project\Delicacy\Service\bin\Debug\Service.dll
 F:\MYZL\GraduationProject\Project\Delicacy\Service\bin\Debug\Service.pdb
 F:\MYZL\GraduationProject\Project\Delicacy\Service\bin\Debug\DataTransfer.dll
