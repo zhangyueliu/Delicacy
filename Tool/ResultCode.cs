@@ -44,6 +44,10 @@ namespace Tool
        /// </summary>
        [Description("条件不符合")]
        ConditionNotSatisfied = 6,
-
+       /// <summary>
+       /// 已存在
+       /// </summary>
+       [Description("已存在")]
+       DataExisted=7
     }
 }

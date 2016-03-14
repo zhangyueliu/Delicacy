@@ -162,6 +162,7 @@
     <Compile Include="Controllers\BaseController.cs" />
     <Compile Include="Controllers\CookBookController.cs" />
     <Compile Include="Controllers\HomeController.cs" />
+    <Compile Include="Controllers\TasteController.cs" />
     <Compile Include="Controllers\UploadController.cs" />
     <Compile Include="Controllers\UserInfoController.cs" />
     <Compile Include="Global.asax.cs">
@@ -227,6 +228,7 @@
     <Folder Include="Upload\Images\" />
     <Folder Include="Views\Base\" />
     <Folder Include="Views\CookBook\" />
+    <Folder Include="Views\Taste\" />
     <Folder Include="Views\Upload\" />
   </ItemGroup>
   <ItemGroup>

@@ -15,11 +15,11 @@ namespace Delicacy.Controllers
             try
             {
                 HttpFileCollectionBase files = Request.Files;
-                return GetContentResult(UploadManager.UploadImg(files.Get("img")));
+                return Content(UploadManager.UploadImg(files.Get("img")));
             }
             catch 
             {
-                return GetContentResult(OutputHelper.GetOutputResponse(ResultCode.Error));
+                return Content(OutputHelper.GetOutputResponse(ResultCode.Error));
             }
         }
 	}

@@ -8,7 +8,7 @@ using DataTransfer;
 using Tool;
 namespace Delicacy.Controllers
 {
-    public class UserInfoController : Controller
+    public class UserInfoController : BaseController
     {
         public ActionResult Index()
         {
@@ -25,8 +25,7 @@ namespace Delicacy.Controllers
         public ContentResult Register(string loginId, string password)
         {
             UserInfoManager userManager = new UserInfoManager();
-            OutputModel outmodel = userManager.Register(loginId, password);
-            return Content(JsonHelper.SerializeObject(outmodel));
+            return Content(userManager.Register(loginId, password));
         }
 
         /// <summary>
@@ -39,8 +38,7 @@ namespace Delicacy.Controllers
         public ContentResult Login(string loginId, string password)
         {
             UserInfoManager userManager = new UserInfoManager();
-            OutputModel outmodel = userManager.Login(loginId, password);
-            return Content(JsonHelper.SerializeObject(outmodel));
+            return Content(userManager.Login(loginId, password));
         }
     }
 }

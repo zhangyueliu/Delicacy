@@ -8,7 +8,7 @@ namespace Delicacy.Controllers
 {
     public class BaseController : Controller
     {
-        protected ContentResult GetContentResult(OutputModel model)
+        protected ContentResult Content(OutputModel model)
         {
             return Content(JsonHelper.SerializeObject(model), "application/json", System.Text.Encoding.UTF8);
         }

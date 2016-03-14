@@ -119,6 +119,7 @@
           </Key>
           <Property Name="TasteId" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
           <Property Name="Name" Type="nvarchar" MaxLength="10" Nullable="false" />
+          <Property Name="Status" Type="int" Nullable="false" />
         </EntityType>
         <EntityType Name="UserInfo">
           <Key>
@@ -491,6 +492,7 @@
           <Property Name="TasteId" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
           <Property Name="Name" Type="String" MaxLength="10" FixedLength="false" Unicode="true" Nullable="false" />
           <NavigationProperty Name="CookBook" Relationship="Self.FK_COOKBOOK_REFERENCE_TASTE" FromRole="Taste" ToRole="CookBook" />
+          <Property Name="Status" Type="Int32" Nullable="false" />
         </EntityType>
         <EntityType Name="UserInfo">
           <Key>
@@ -836,6 +838,7 @@
           <EntitySetMapping Name="Taste">
             <EntityTypeMapping TypeName="DelicacyModel.Taste">
               <MappingFragment StoreEntitySet="Taste">
+                <ScalarProperty Name="Status" ColumnName="Status" />
                 <ScalarProperty Name="TasteId" ColumnName="TasteId" />
                 <ScalarProperty Name="Name" ColumnName="Name" />
               </MappingFragment>

@@ -7,7 +7,7 @@ using Delicacy.Models;
 
 namespace Delicacy.Controllers
 {
-    public class CookBookController : Controller
+    public class CookBookController : BaseController
     {
         //
         // GET: /CookBook/
