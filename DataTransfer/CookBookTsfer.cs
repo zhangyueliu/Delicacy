@@ -16,6 +16,9 @@ namespace DataTransfer
         public string ImgUrl { get; set; }
         public string Description { get; set; }
         public string Tips { get; set; }
+        /// <summary>
+        /// -1未通过 0待审核  1已通过 2存草稿   
+        /// </summary>
         public int Status { get; set; }
     }
 }

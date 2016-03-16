@@ -4,6 +4,9 @@ using System.Linq;
 using System.Web;
 using System.Web.Mvc;
 using Delicacy.Models;
+using Manager;
+using DataTransfer;
+using Tool;
 
 namespace Delicacy.Controllers
 {
@@ -13,14 +16,20 @@ namespace Delicacy.Controllers
         // GET: /CookBook/
         public ActionResult Index()
         {
+
             return View();
         }
 
         [HttpPost]
-        public ContentResult PublishCookBook(CookBookModel model)
+        public ActionResult PublishCookBook(CookBookModel model)
         {
+            UserInfoTsfer user;
+            if(!IsLogin(out user))
+                return RedirectToAction("Index","Home");
+            CookBookManager manager = new CookBookManager();
+        OutputModel outModel=manager.AddCookBook(user.UserId,model.Taste, model.FoodSort, model.Name, model.Description, model.Tips, model.FinalImg, model.ProcessImgDes, model.FoodMaterial, model.Status);
 
-            return Content("");
+        return GetContentResult(outModel);
         }
 	}
 }

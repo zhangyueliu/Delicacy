@@ -1,17 +1,3 @@
-D:\GraduationProject\Project\Delicacy\Manager\bin\Debug\Manager.dll
-D:\GraduationProject\Project\Delicacy\Manager\bin\Debug\Manager.pdb
-D:\GraduationProject\Project\Delicacy\Manager\bin\Debug\Service.dll
-D:\GraduationProject\Project\Delicacy\Manager\bin\Debug\Tool.dll
-D:\GraduationProject\Project\Delicacy\Manager\bin\Debug\EntityFramework.dll
-D:\GraduationProject\Project\Delicacy\Manager\bin\Debug\EF.dll
-D:\GraduationProject\Project\Delicacy\Manager\bin\Debug\Service.pdb
-D:\GraduationProject\Project\Delicacy\Manager\bin\Debug\Tool.pdb
-D:\GraduationProject\Project\Delicacy\Manager\bin\Debug\EntityFramework.xml
-D:\GraduationProject\Project\Delicacy\Manager\bin\Debug\EF.pdb
-D:\GraduationProject\Project\Delicacy\Manager\bin\Debug\zh-Hans\EntityFramework.resources.dll
-D:\GraduationProject\Project\Delicacy\Manager\obj\Debug\Manager.csprojResolveAssemblyReference.cache
-D:\GraduationProject\Project\Delicacy\Manager\obj\Debug\Manager.dll
-D:\GraduationProject\Project\Delicacy\Manager\obj\Debug\Manager.pdb
 F:\MYZL\GraduationProject\Project\Delicacy\Manager\obj\Debug\Manager.csprojResolveAssemblyReference.cache
 F:\MYZL\GraduationProject\Project\Delicacy\Manager\obj\Debug\Manager.dll
 F:\MYZL\GraduationProject\Project\Delicacy\Manager\bin\Debug\Manager.dll
