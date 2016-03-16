@@ -161,7 +161,10 @@
     <Compile Include="Controllers\AccountController.cs" />
     <Compile Include="Controllers\BaseController.cs" />
     <Compile Include="Controllers\CookBookController.cs" />
+    <Compile Include="Controllers\FoodMaterialController.cs" />
+    <Compile Include="Controllers\FoodSortController.cs" />
     <Compile Include="Controllers\HomeController.cs" />
+    <Compile Include="Controllers\LikeCookBookController.cs" />
     <Compile Include="Controllers\TasteController.cs" />
     <Compile Include="Controllers\UploadController.cs" />
     <Compile Include="Controllers\UserInfoController.cs" />
@@ -228,6 +231,9 @@
     <Folder Include="Upload\Images\" />
     <Folder Include="Views\Base\" />
     <Folder Include="Views\CookBook\" />
+    <Folder Include="Views\FoodMaterial\" />
+    <Folder Include="Views\FoodSort\" />
+    <Folder Include="Views\LikeCookBook\" />
     <Folder Include="Views\Taste\" />
     <Folder Include="Views\Upload\" />
   </ItemGroup>

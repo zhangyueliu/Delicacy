@@ -17,7 +17,7 @@ namespace Manager
         {
             if (taste != null)
             {
-                if (Service.GetTaste(taste.Name) != null)
+                if (Service.Get(taste.Name) != null)
                 {
                     return OutputHelper.GetOutputResponse(ResultCode.DataExisted, "口味已存在,请直接选择");
                 }

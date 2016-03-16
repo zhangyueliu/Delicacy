@@ -29,7 +29,7 @@ namespace Delicacy.Controllers
             CookBookManager manager = new CookBookManager();
         OutputModel outModel=manager.AddCookBook(user.UserId,model.Taste, model.FoodSort, model.Name, model.Description, model.Tips, model.FinalImg, model.ProcessImgDes, model.FoodMaterial, model.Status);
 
-        return GetContentResult(outModel);
+        return Content(outModel);
         }
 	}
 }
