@@ -27,7 +27,7 @@ namespace Manager
           List<CookProcessTsfer> listProcess = GetListProcess(processImgDes);
           if (listProcess.Count == 0)
               return OutputHelper.GetOutputResponse(ResultCode.ConditionNotSatisfied, "请插入菜谱过程");
-          //跟食材
+          //食材  
           
           //判断口味 类别
           TasteService tService = ObjectContainer.GetInstance<TasteService>();
