@@ -38,5 +38,10 @@ namespace Service
         {
             return TransferObject.ConvertObjectByEntity<FoodMaterial, FoodMaterialTsfer>(base.Select(o => true).ToList());
         }
+
+        public bool IsExist(List<int> ids)
+        {
+           return   Select(o => ids.Contains(o.FoodMaterialId)).Count() == ids.Count;
+        }
     }
 }

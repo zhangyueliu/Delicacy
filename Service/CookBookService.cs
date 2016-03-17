@@ -13,6 +13,7 @@ namespace Service
     {
         public bool Add(CookBookTsfer cookBook)
         {
+            //这里增加菜过程的插入
             base.Add(TransferObject.ConvertObjectByEntity<CookBookTsfer, CookBook>(cookBook));
             return Save() > 0;
         }
