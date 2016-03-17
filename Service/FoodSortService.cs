@@ -26,9 +26,17 @@ namespace Service
             base.Delete(id);
             return Save() > 0;
         }
-        public FoodSortTsfer GetFoodSort(int foodSortId)
+        public FoodSortTsfer Get(int foodSortId)
         {
             return TransferObject.ConvertObjectByEntity<FoodSort, FoodSortTsfer>(base.Select(o => o.FoodSortId == foodSortId).FirstOrDefault());
+        }
+        public FoodSortTsfer Get(string name)
+        {
+            return TransferObject.ConvertObjectByEntity<FoodSort, FoodSortTsfer>(base.Select(o => o.Name == name).FirstOrDefault());
+        }
+        public List<FoodSortTsfer> GetList()
+        {
+            return TransferObject.ConvertObjectByEntity<FoodSort, FoodSortTsfer>(base.Select(o => true).ToList());
         }
 
         public bool IsExist(int foodSortId)

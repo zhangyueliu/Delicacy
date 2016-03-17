@@ -11,14 +11,14 @@ namespace Service
 {
     public class FoodMaterialService : BaseService<FoodMaterial>
     {
-        public bool Add(FoodMaterialTsfer fMaterail)
+        public bool Add(FoodMaterialTsfer fMaterial)
         {
-            base.Add(TransferObject.ConvertObjectByEntity<FoodMaterialTsfer, FoodMaterial>(fMaterail));
+            base.Add(TransferObject.ConvertObjectByEntity<FoodMaterialTsfer, FoodMaterial>(fMaterial));
             return Save() > 0;
         }
-        public bool Update(FoodMaterialTsfer fMaterail)
+        public bool Update(FoodMaterialTsfer fMaterial)
         {
-            base.Update(TransferObject.ConvertObjectByEntity<FoodMaterialTsfer, FoodMaterial>(fMaterail));
+            base.Update(TransferObject.ConvertObjectByEntity<FoodMaterialTsfer, FoodMaterial>(fMaterial));
             return Save() > 0;
         }
         public bool Delete(int id)
@@ -26,9 +26,17 @@ namespace Service
             base.Delete(id);
             return Save() > 0;
         }
-        public FoodMaterialTsfer Select(int id)
+        public FoodMaterialTsfer Get(string name)
+        {
+            return TransferObject.ConvertObjectByEntity<FoodMaterial, FoodMaterialTsfer>(base.Select(o => o.Name == name).FirstOrDefault());
+        }
+        public FoodMaterialTsfer Get(int id)
         {
             return TransferObject.ConvertObjectByEntity<FoodMaterial, FoodMaterialTsfer>(base.Select(id));
+        }
+        public List<FoodMaterialTsfer> GetList()
+        {
+            return TransferObject.ConvertObjectByEntity<FoodMaterial, FoodMaterialTsfer>(base.Select(o => true).ToList());
         }
     }
 }

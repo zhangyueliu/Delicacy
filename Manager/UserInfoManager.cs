@@ -28,7 +28,7 @@ namespace Manager
             if (!RegExVerify.VerifyEmail(loginId))
                 return OutputHelper.GetOutputResponse(ResultCode.ErrorParameter, "邮箱格式不正确");
             //判断邮箱是否被注册
-            UserInfoTsfer uTsfer = userService.GetUserInfo(loginId);
+            UserInfoTsfer uTsfer = userService.Get(loginId);
             if (uTsfer != null)
                 return OutputHelper.GetOutputResponse(ResultCode.ConditionNotSatisfied, "此邮箱已被注册，可以直接登录");
             //进行注册
@@ -65,7 +65,7 @@ namespace Manager
             if (!RegExVerify.VerifyEmail(loginId))
                 return OutputHelper.GetOutputResponse(ResultCode.ErrorParameter, "邮箱格式不正确");
             //获取邮箱对应的用户
-            UserInfoTsfer uTsfer = userService.GetUserInfo(loginId);
+            UserInfoTsfer uTsfer = userService.Get(loginId);
             if (uTsfer == null)
                 return OutputHelper.GetOutputResponse(ResultCode.NoData, "该邮箱未注册过，请先注册");
             if (MD5Helper.GeneratePwd(password) != uTsfer.Password)

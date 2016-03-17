@@ -27,11 +27,11 @@ namespace Service
             base.Delete(id);
             return Save() > 0;
         }
-        public TasteTsfer GetTaste(int tasteId)
+        public TasteTsfer Get(int tasteId)
         {
             return TransferObject.ConvertObjectByEntity<Taste, TasteTsfer>(base.Select(o => o.TasteId == tasteId).FirstOrDefault());
         }
-        public TasteTsfer GetTaste(string name)
+        public TasteTsfer Get(string name)
         {
             return TransferObject.ConvertObjectByEntity<Taste, TasteTsfer>(base.Select(o => o.Name == name).FirstOrDefault());
         }
