@@ -46,30 +46,18 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="ChangedBase.cs" />
     <Compile Include="CheckParameter.cs" />
-    <Compile Include="CompareType.cs" />
-    <Compile Include="ConditionToSql.cs" />
     <Compile Include="EmailHelper.cs" />
     <Compile Include="EnumHelper.cs" />
-    <Compile Include="Json.cs" />
     <Compile Include="JsonHelper.cs" />
-    <Compile Include="KeyValue.cs" />
-    <Compile Include="LinkType.cs" />
     <Compile Include="MD5Helper.cs" />
-    <Compile Include="ModelBase.cs" />
     <Compile Include="ObjectContainer.cs" />
     <Compile Include="OutputHelper.cs" />
     <Compile Include="OutputModel.cs" />
-    <Compile Include="PageInfo.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
-    <Compile Include="QueryBase.cs" />
-    <Compile Include="QueryCondition.cs" />
     <Compile Include="RegExVerify.cs" />
     <Compile Include="ResultCode.cs" />
-    <Compile Include="SortWay.cs" />
     <Compile Include="TransferObject.cs" />
-    <Compile Include="TypeConstManager.cs" />
     <Compile Include="UploadHelper.cs" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />

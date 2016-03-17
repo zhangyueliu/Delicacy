@@ -10,6 +10,7 @@ namespace DataTransfer
     {
         public int TasteId { get; set; }
         public string Name { get; set; }
+
         /// <summary>
         /// 1系统添加 0用户添加
         /// </summary>

@@ -31,7 +31,7 @@ namespace Service
        /// <param name="userid">用户id</param>
        /// <param name="cookbookid">菜谱id</param>
        /// <returns></returns>
-       public LikeCookBookTsfer Get(string userid,int cookbookid)
+       public LikeCookBookTsfer Get(int userid,int cookbookid)
         {
             return TransferObject.ConvertObjectByEntity<LikeCookBook, LikeCookBookTsfer>(base.Select(o => o.UserId == userid&&o.CookBookId==cookbookid).FirstOrDefault());
         }
@@ -40,7 +40,7 @@ namespace Service
        /// </summary>
        /// <param name="userid">用户id</param>
        /// <returns></returns>
-       public List<LikeCookBookTsfer> Gets(string userid)
+       public List<LikeCookBookTsfer> Gets(int userid)
        {
            return TransferObject.ConvertObjectByEntity<LikeCookBook, LikeCookBookTsfer>(base.Select(o => o.UserId == userid).ToList());
        }

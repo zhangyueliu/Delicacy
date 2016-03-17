@@ -27,8 +27,8 @@ namespace EF
         public string LoginId { get; set; }
         public string Password { get; set; }
         public string Name { get; set; }
+        public short Status { get; set; }
         public System.DateTime RegisterDate { get; set; }
-        public int Status { get; set; }
     
         public virtual ICollection<CommentRecord> CommentRecord { get; set; }
         public virtual ICollection<CookBook> CookBook { get; set; }

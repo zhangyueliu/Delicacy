@@ -43,28 +43,17 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="CommentRecordQuery.cs" />
     <Compile Include="CommentRecordTsfer.cs" />
-    <Compile Include="CookBookQuery.cs" />
     <Compile Include="CookBookTsfer.cs" />
-    <Compile Include="CookProcessQuery.cs" />
     <Compile Include="CookProcessTsfer.cs" />
-    <Compile Include="FoodMaterialQuery.cs" />
     <Compile Include="FoodMaterialTsfer.cs" />
-    <Compile Include="FoodSortQuery.cs" />
     <Compile Include="FoodSortTsfer.cs" />
-    <Compile Include="LikeCookBookQuery.cs" />
     <Compile Include="LikeCookBookTsfer.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
-    <Compile Include="SubjectArticleQuery.cs" />
     <Compile Include="SubjectArticleTsfer.cs" />
-    <Compile Include="SubjectSortQuery.cs" />
     <Compile Include="SubjectSortTsfer.cs" />
-    <Compile Include="SupportScanRecordQuery.cs" />
     <Compile Include="SupportScanRecordTsfer.cs" />
-    <Compile Include="TasteQuery.cs" />
     <Compile Include="TasteTsfer.cs" />
-    <Compile Include="UserInfoQuery.cs" />
     <Compile Include="UserInfoTsfer.cs" />
   </ItemGroup>
   <ItemGroup>

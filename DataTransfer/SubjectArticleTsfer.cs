@@ -9,9 +9,9 @@ namespace DataTransfer
     public class SubjectArticleTsfer
     {
         public int SubjectArticleId { get; set; }
-        public Nullable<int> SubjectSortId { get; set; }
-        public Nullable<int> UserId { get; set; }
+        public int SubjectSortId { get; set; }
+        public int UserId { get; set; }
         public string content { get; set; }
-        public string Datetime { get; set; }
+        public System.DateTime Datetime { get; set; }
     }
 }

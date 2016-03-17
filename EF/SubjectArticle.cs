@@ -15,10 +15,10 @@ namespace EF
     public partial class SubjectArticle
     {
         public int SubjectArticleId { get; set; }
-        public Nullable<int> SubjectSortId { get; set; }
-        public Nullable<int> UserId { get; set; }
+        public int SubjectSortId { get; set; }
+        public int UserId { get; set; }
         public string content { get; set; }
-        public string Datetime { get; set; }
+        public System.DateTime Datetime { get; set; }
     
         public virtual SubjectSort SubjectSort { get; set; }
         public virtual UserInfo UserInfo { get; set; }

@@ -12,10 +12,10 @@ namespace DataTransfer
     {
         public int UserId { get; set; }
         public string LoginId { get; set; }
-        [JsonIgnore]
+      [JsonIgnore]
         public string Password { get; set; }
         public string Name { get; set; }
+        public short Status { get; set; }
         public System.DateTime RegisterDate { get; set; }
-        public int Status { get; set; }
     }
 }
