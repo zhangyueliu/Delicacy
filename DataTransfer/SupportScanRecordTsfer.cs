@@ -8,11 +8,10 @@ namespace DataTransfer
 {
     public class SupportScanRecordTsfer
     {
-        public int Id { get; set; }
-        public string UserId { get; set; }
+        public int SSRId { get; set; }
         public int CookBookId { get; set; }
-        public Nullable<int> Use_UserId { get; set; }
-        public System.DateTime DateTime { get; set; }
+        public Nullable<int> UserId { get; set; }
         public int Type { get; set; }
+        public System.DateTime DateTime { get; set; }
     }
 }

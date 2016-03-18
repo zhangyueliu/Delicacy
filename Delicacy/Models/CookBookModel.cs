@@ -31,7 +31,7 @@ namespace Delicacy.Models
         public string ProcessImgDes { get; set; }
 
         /// <summary>
-        /// 1发布  -1存草稿
+        ///0待审核  2存草稿
         /// </summary>
         public string Status { get; set; }
         /// <summary>

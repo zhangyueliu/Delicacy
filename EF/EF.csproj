@@ -92,9 +92,6 @@
     <Compile Include="SupportScanRecord.cs">
       <DependentUpon>Delicacy.tt</DependentUpon>
     </Compile>
-    <Compile Include="sysdiagrams.cs">
-      <DependentUpon>Delicacy.tt</DependentUpon>
-    </Compile>
     <Compile Include="Taste.cs">
       <DependentUpon>Delicacy.tt</DependentUpon>
     </Compile>
