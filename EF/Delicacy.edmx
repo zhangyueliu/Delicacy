@@ -29,6 +29,7 @@
           <Property Name="Description" Type="nvarchar" MaxLength="200" />
           <Property Name="Tips" Type="nvarchar" MaxLength="100" />
           <Property Name="Status" Type="int" Nullable="false" />
+          <Property Name="DateTime" Type="datetime" />
         </EntityType>
         <EntityType Name="CookMaterial">
           <Key>
@@ -46,6 +47,7 @@
           <Property Name="CookBookId" Type="int" />
           <Property Name="ImgUrl" Type="varchar" MaxLength="400" Nullable="false" />
           <Property Name="Description" Type="nvarchar" MaxLength="100" />
+          <Property Name="Sort" Type="int" Nullable="false" />
         </EntityType>
         <EntityType Name="FoodMaterial">
           <Key>
@@ -457,6 +459,7 @@
           <NavigationProperty Name="LikeCookBook" Relationship="DelicacyModel.FK_LIKECOOK_REFERENCE_COOKBOOK" FromRole="CookBook" ToRole="LikeCookBook" />
           <NavigationProperty Name="SupportScanRecord" Relationship="DelicacyModel.FK_SUPPORTS_REFERENCE_COOKBOOK" FromRole="CookBook" ToRole="SupportScanRecord" />
           <NavigationProperty Name="FoodMaterial" Relationship="DelicacyModel.CookMaterial" FromRole="CookBook" ToRole="FoodMaterial" />
+          <Property Name="DateTime" Type="DateTime" Precision="3" />
         </EntityType>
         <EntityType Name="CookProcess">
           <Key>
@@ -467,6 +470,7 @@
           <Property Name="ImgUrl" Type="String" Nullable="false" MaxLength="400" FixedLength="false" Unicode="false" />
           <Property Name="Description" Type="String" MaxLength="100" FixedLength="false" Unicode="true" />
           <NavigationProperty Name="CookBook" Relationship="DelicacyModel.FK_COOKPROC_REFERENCE_COOKBOOK" FromRole="CookProcess" ToRole="CookBook" />
+          <Property Name="Sort" Type="Int32" Nullable="false" />
         </EntityType>
         <EntityType Name="FoodMaterial">
           <Key>
@@ -721,6 +725,7 @@
           <EntitySetMapping Name="CookBook">
             <EntityTypeMapping TypeName="DelicacyModel.CookBook">
               <MappingFragment StoreEntitySet="CookBook">
+                <ScalarProperty Name="DateTime" ColumnName="DateTime" />
                 <ScalarProperty Name="Status" ColumnName="Status" />
                 <ScalarProperty Name="Tips" ColumnName="Tips" />
                 <ScalarProperty Name="Description" ColumnName="Description" />
@@ -736,6 +741,7 @@
           <EntitySetMapping Name="CookProcess">
             <EntityTypeMapping TypeName="DelicacyModel.CookProcess">
               <MappingFragment StoreEntitySet="CookProcess">
+                <ScalarProperty Name="Sort" ColumnName="Sort" />
                 <ScalarProperty Name="Description" ColumnName="Description" />
                 <ScalarProperty Name="ImgUrl" ColumnName="ImgUrl" />
                 <ScalarProperty Name="CookBookId" ColumnName="CookBookId" />

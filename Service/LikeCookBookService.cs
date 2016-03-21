@@ -21,6 +21,11 @@ namespace Service
             base.Delete(id);
             return Save() > 0;
         }
+       /// <summary>
+       /// 获取某收藏数据
+       /// </summary>
+       /// <param name="id">主键</param>
+       /// <returns></returns>
         public LikeCookBookTsfer Get(int id)
         {
             return TransferObject.ConvertObjectByEntity<LikeCookBook, LikeCookBookTsfer>(base.Select(id));
@@ -40,11 +45,20 @@ namespace Service
        /// </summary>
        /// <param name="userid">用户id</param>
        /// <returns></returns>
-       public List<LikeCookBookTsfer> Gets(int userid)
+       public List<LikeCookBookTsfer> GetsUser(int userid)
        {
            return TransferObject.ConvertObjectByEntity<LikeCookBook, LikeCookBookTsfer>(base.Select(o => o.UserId == userid).ToList());
        }
 
+       /// <summary>
+       /// 获取某菜谱的收藏列表
+       /// </summary>
+       /// <param name="userid">菜谱id</param>
+       /// <returns></returns>
+       public List<LikeCookBookTsfer> GetsCookbook(int cookbookid)
+       {
+           return TransferObject.ConvertObjectByEntity<LikeCookBook, LikeCookBookTsfer>(base.Select(o => o.CookBookId == cookbookid).ToList());
+       }
        public List<LikeCookBookTsfer> GetList()
        {
            return TransferObject.ConvertObjectByEntity<LikeCookBook, LikeCookBookTsfer>(base.Select(o => true).ToList());
