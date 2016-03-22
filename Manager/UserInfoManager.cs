@@ -88,5 +88,18 @@ namespace Manager
         {
             return userService.Delete(userInfo.UserId);
         }
+
+        /// <summary>
+        /// 根据邮箱获取用户对象
+        /// </summary>
+        /// <param name="loginId"></param>
+        /// <returns></returns>
+        public OutputModel Get(string loginId)
+        {
+            UserInfoTsfer u = userService.Get(loginId);
+            if (u == null)
+                return OutputHelper.GetOutputResponse(ResultCode.NoData);
+            return OutputHelper.GetOutputResponse(ResultCode.OK, u);
+        }
     }
 }

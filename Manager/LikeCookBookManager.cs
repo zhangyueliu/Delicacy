@@ -16,8 +16,9 @@ namespace Manager
         {
             if (like == null)
                 return OutputHelper.GetOutputResponse(ResultCode.NoParameter);
-            if (Service.Get(like.UserId, like.CookBookId) != null)
-                Delete(like.LikeId);
+            LikeCookBookTsfer l = Service.Get(like.UserId, like.CookBookId);
+            if (l != null)
+                return Delete(l);
             if (Service.Add(like))
                 return OutputHelper.GetOutputResponse(ResultCode.OK);
             return OutputHelper.GetOutputResponse(ResultCode.Error);
@@ -29,30 +30,36 @@ namespace Manager
                 return OutputHelper.GetOutputResponse(ResultCode.OK);
             return OutputHelper.GetOutputResponse(ResultCode.Error);
         }
+        public OutputModel Delete(LikeCookBookTsfer like)
+        {
+            if (Service.Delete(like))
+                return OutputHelper.GetOutputResponse(ResultCode.OK);
+            return OutputHelper.GetOutputResponse(ResultCode.Error);
+        }
         /// <summary>
-       /// 获取某收藏数据
-       /// </summary>
-       /// <param name="id">主键</param>
-       /// <returns></returns>
+        /// 获取某收藏数据
+        /// </summary>
+        /// <param name="id">主键</param>
+        /// <returns></returns>
         public OutputModel Get(int id)
         {
-           LikeCookBookTsfer like= Service.Get(id);
-           if (like == null)
-               return OutputHelper.GetOutputResponse(ResultCode.NoData);
-           return OutputHelper.GetOutputResponse(ResultCode.OK, like);
+            LikeCookBookTsfer like = Service.Get(id);
+            if (like == null)
+                return OutputHelper.GetOutputResponse(ResultCode.NoData);
+            return OutputHelper.GetOutputResponse(ResultCode.OK, like);
         }
-         /// <summary>
-       /// 获取某用户某菜谱的收藏
-       /// </summary>
-       /// <param name="userid">用户id</param>
-       /// <param name="cookbookid">菜谱id</param>
-       /// <returns></returns>
+        /// <summary>
+        /// 获取某用户某菜谱的收藏
+        /// </summary>
+        /// <param name="userid">用户id</param>
+        /// <param name="cookbookid">菜谱id</param>
+        /// <returns></returns>
         public OutputModel Get(int userid, int cookbookid)
         {
-           LikeCookBookTsfer like= Service.Get(userid, cookbookid);
-           if (like == null)
-               return OutputHelper.GetOutputResponse(ResultCode.NoData);
-           return OutputHelper.GetOutputResponse(ResultCode.OK, like);
+            LikeCookBookTsfer like = Service.Get(userid, cookbookid);
+            if (like == null)
+                return OutputHelper.GetOutputResponse(ResultCode.NoData);
+            return OutputHelper.GetOutputResponse(ResultCode.OK, like);
         }
         public OutputModel GetList()
         {

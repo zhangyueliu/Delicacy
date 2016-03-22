@@ -12,7 +12,7 @@ namespace Delicacy.Controllers
         public ContentResult GetAll()
         {
             TasteManager manager = new TasteManager();
-            return Content(manager.GetAll());
+            return Content(manager.GetList());
         }
 	}
 }

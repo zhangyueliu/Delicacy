@@ -51,6 +51,14 @@ namespace Manager
             }
             return outputmodel;
         }
+        public OutputModel Get(int id)
+        {
+            SubjectArticleTsfer s = Service.Get(id);
+            if (s == null)
+                return OutputHelper.GetOutputResponse(ResultCode.NoData);
+            return OutputHelper.GetOutputResponse(ResultCode.OK, s);
+        }
+
         /// <summary>
         /// 获取某用户下的专题
         /// </summary>

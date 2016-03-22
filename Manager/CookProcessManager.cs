@@ -51,6 +51,13 @@ namespace Manager
             }
             return outputmodel;
         }
+         public OutputModel Get(int id)
+        {
+            CookProcessTsfer c = Service.Get(id);
+            if (c == null)
+                return OutputHelper.GetOutputResponse(ResultCode.NoData);
+            return OutputHelper.GetOutputResponse(ResultCode.OK, c);
+        }
         /// <summary>
         /// 获取某菜谱下的做菜步骤列表
         /// </summary>
