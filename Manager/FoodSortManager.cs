@@ -56,6 +56,14 @@ namespace Manager
                 return OutputHelper.GetOutputResponse(ResultCode.NoData);
             return OutputHelper.GetOutputResponse(ResultCode.OK, f);
         }
+         public OutputModel Get(string name)
+        {
+            FoodSortTsfer f = Service.Get(name);
+            if (f == null)
+                return OutputHelper.GetOutputResponse(ResultCode.NoData);
+            return OutputHelper.GetOutputResponse(ResultCode.OK);
+        }
+
         public OutputModel GetList()
         {
           List<FoodSortTsfer>list=  Service.GetList();

@@ -32,6 +32,7 @@ namespace EF
         public string Description { get; set; }
         public string Tips { get; set; }
         public int Status { get; set; }
+        public Nullable<System.DateTime> DateTime { get; set; }
     
         public virtual ICollection<CommentRecord> CommentRecord { get; set; }
         public virtual FoodSort FoodSort { get; set; }

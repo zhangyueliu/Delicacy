@@ -18,6 +18,7 @@ namespace EF
         public Nullable<int> CookBookId { get; set; }
         public string ImgUrl { get; set; }
         public string Description { get; set; }
+        public int Sort { get; set; }
     
         public virtual CookBook CookBook { get; set; }
     }

@@ -26,9 +26,17 @@ namespace Service
             base.Delete(id);
             return Save() > 0;
         }
-        public SubjectSortTsfer Select(int id)
+        public SubjectSortTsfer Get(int id)
         {
             return TransferObject.ConvertObjectByEntity<SubjectSort, SubjectSortTsfer>(base.Select(id));
+        }
+        public SubjectSortTsfer Get(string name)
+        {
+            return TransferObject.ConvertObjectByEntity<SubjectSort, SubjectSortTsfer>(base.Select(o => o.Name == name).FirstOrDefault());
+        }
+        public List<SubjectSortTsfer> GetList()
+        {
+            return TransferObject.ConvertObjectByEntity<SubjectSort, SubjectSortTsfer>(base.Select(o => true).ToList());
         }
     }
 }

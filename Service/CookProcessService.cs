@@ -26,9 +26,29 @@ namespace Service
             base.Delete(id);
             return Save() > 0;
         }
-        public CookProcessTsfer Select(int id)
+        /// <summary>
+        /// 删除某菜谱下的做菜步骤
+        /// </summary>
+        /// <param name="cookbookid">菜谱id</param>
+        /// <returns></returns>
+        public bool Delete(List<CookProcessTsfer> list)
+        {
+            base.Delete(TransferObject.ConvertObjectByEntity<CookProcessTsfer,CookProcess>(list));
+            return Save() > 0;
+        }
+
+        public CookProcessTsfer Get(int id)
         {
             return TransferObject.ConvertObjectByEntity<CookProcess, CookProcessTsfer>(base.Select(id));
+        }
+        /// <summary>
+        /// 获取某菜谱下的做菜步骤列表
+        /// </summary>
+        /// <param name="cookbookid"></param>
+        /// <returns></returns>
+        public List<CookProcessTsfer> GetList(int cookbookid)
+        {
+            return TransferObject.ConvertObjectByEntity<CookProcess, CookProcessTsfer>(base.Select(o => o.CookBookId == cookbookid).OrderBy(o => o.Sort).ToList());
         }
     }
 }

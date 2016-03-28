@@ -26,9 +26,40 @@ namespace Service
             base.Delete(id);
             return Save() > 0;
         }
-        public CommentRecordTsfer Select(int id)
+        public CommentRecordTsfer Get(int id)
         {
             return TransferObject.ConvertObjectByEntity<CommentRecord,CommentRecordTsfer>(base.Select(id));
+        }
+        /// <summary>
+        /// 获取子评论
+        /// </summary>
+        /// <param name="id"></param>
+        /// <returns></returns>
+        public List<CommentRecordTsfer> Gets(int id)
+        {
+            return TransferObject.ConvertObjectByEntity<CommentRecord, CommentRecordTsfer>(base.Select(o => o.PId == id).ToList());
+        }
+        /// <summary>
+        /// 获取某菜谱的评论
+        /// </summary>
+        /// <param name="cookbookid"></param>
+        /// <returns></returns>
+        public List<CommentRecordTsfer> GetListCookBook(int cookbookid)
+        {
+            return TransferObject.ConvertObjectByEntity<CommentRecord, CommentRecordTsfer>(base.Select(o => o.CookBookId == cookbookid).ToList());
+        }
+        /// <summary>
+        /// 获取某用户的所有评论
+        /// </summary>
+        /// <param name="userid"></param>
+        /// <returns></returns>
+        public List<CommentRecordTsfer> GetListUser(int userid)
+        {
+            return TransferObject.ConvertObjectByEntity<CommentRecord, CommentRecordTsfer>(base.Select(o => o.UserId == userid).ToList());
+        }
+        public List<CommentRecordTsfer> GetList()
+        {
+            return TransferObject.ConvertObjectByEntity<CommentRecord, CommentRecordTsfer>(base.Select(o => true).ToList());
         }
     }
 }

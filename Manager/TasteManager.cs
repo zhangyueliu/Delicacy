@@ -57,7 +57,20 @@ namespace Manager
             }
             return OutputHelper.GetOutputResponse(ResultCode.Error);
         }
-
+        public OutputModel Get(int tasteId)
+        {
+            TasteTsfer t = Service.Get(tasteId);
+            if (t == null)
+                return OutputHelper.GetOutputResponse(ResultCode.NoData);
+            return OutputHelper.GetOutputResponse(ResultCode.OK, t);
+        }
+        public OutputModel Get(string name)
+        {
+            TasteTsfer t = Service.Get(name);
+            if (t == null)
+                return OutputHelper.GetOutputResponse(ResultCode.NoData);
+            return OutputHelper.GetOutputResponse(ResultCode.OK, t);
+        }
         public OutputModel GetList(int status)
         {
             List<TasteTsfer> list = Service.GetList(status);
@@ -65,7 +78,7 @@ namespace Manager
                 return OutputHelper.GetOutputResponse(ResultCode.NoData);
             return OutputHelper.GetOutputResponse(ResultCode.OK, list);
         }
-        public OutputModel GetAll()
+        public OutputModel GetList()
         {
             List<TasteTsfer> list = Service.GetList();
             if (list.Count == 0)
