@@ -47,7 +47,7 @@ namespace Service
         }
 
         /// <summary>
-        ///  获取某用户赞过的菜谱
+        ///  获取某用户的点赞记录
         /// </summary>
         /// <param name="userid">用户id</param>
         /// <param name="type">1为点赞</param>
