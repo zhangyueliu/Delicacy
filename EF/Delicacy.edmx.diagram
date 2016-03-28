@@ -29,6 +29,9 @@
         <AssociationConnector Association="DelicacyModel.FK_SUBJECTA_REFERENCE_USERINFO" />
         <AssociationConnector Association="DelicacyModel.FK_SUPPORTS_REFERENCE_USERINFO" />
         <AssociationConnector Association="DelicacyModel.CookMaterial" />
+        <EntityTypeShape EntityType="DelicacyModel.VerifyRegister" Width="1.5" PointX="3" PointY="2.125" />
+        <AssociationConnector Association="DelicacyModel.FK_VERIFYRE_REFERENCE_USERINFO" />
+        <EntityTypeShape EntityType="DelicacyModel.sysdiagrams" Width="1.5" PointX="5.375" PointY="0.75" />
       </Diagram>
     </edmx:Diagrams>
   </edmx:Designer>

@@ -39,7 +39,16 @@ namespace Manager
             RegisterDate=DateTime.Now,
             Status=0
             };
-            if (userService.Add(newUser))
+
+            VerifyRegisterTsfer verifyDt = new VerifyRegisterTsfer
+            {
+                GUID = Guid.NewGuid().ToString().Replace("-", ""),
+                IsUsed = false,
+                OutDate = DateTime.Now.AddDays(7.0),
+                UserId = loginId
+            };
+
+            if (userService.Add(newUser, verifyDt))
             {
                 //发邮件
                 EmailHelper.SendEmail("食谱网", "欢迎注册食谱网,请点击以下链接完成注册", "1084727879@qq.com");

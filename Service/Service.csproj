@@ -55,6 +55,7 @@
     <Compile Include="SupportScanRecordService.cs" />
     <Compile Include="TasteService.cs" />
     <Compile Include="UserInfoService.cs" />
+    <Compile Include="VerifyRegisterServer.cs" />
   </ItemGroup>
   <ItemGroup>
     <ProjectReference Include="..\DataTransfer\DataTransfer.csproj">

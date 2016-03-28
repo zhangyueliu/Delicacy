@@ -40,5 +40,14 @@ namespace Delicacy.Controllers
             UserInfoManager userManager = new UserInfoManager();
             return Content(userManager.Login(loginId, password));
         }
+
+       public ActionResult VerifyEmail(string guid)
+       {
+           VerifyRegisterManager verifyManager = new VerifyRegisterManager();
+           if (verifyManager.VerifyEmail(guid))
+               return RedirectToAction("Index", "Home");
+           else
+               return View();
+       }
     }
 }

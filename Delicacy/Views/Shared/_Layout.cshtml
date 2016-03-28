@@ -1,45 +1,94 @@
 ﻿<!DOCTYPE html>
 <html>
 <head>
-<meta http-equiv="Content-Type" content="text/html; charset=utf-8"/>
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>@ViewBag.Title - 我的 ASP.NET 应用程序</title>
-    @Styles.Render("~/Content/css")
-    @Scripts.Render("~/bundles/modernizr")
-
+    <title>@ViewBag.Title</title>
+    @*@Styles.Render("~/Content/css")
+        @Scripts.Render("~/bundles/modernizr")*@
+    <link href="/Content/style.css" rel="stylesheet" type="text/css" media="all" />
+    <link href='http://fonts.useso.com/css?family=Patua+One' rel='stylesheet' type='text/css'>
+    <!--slider-->
+    <link rel="stylesheet" href="/Content/flexslider.css" type="text/css" media="all" />
+    <script src="~/Scripts/modernizr-2.6.2.js"></script>
+    <!-- jQuery -->
+    <script src="http://ajax.useso.com/ajax/libs/jquery/1/jquery.min.js"></script>
+    <script src="~/Scripts/jquery-1.10.2.js"></script>
+    <!-- FlexSlider -->
+    <script src="~/Scripts/jquery.flexslider.js"></script>
+    <script type="text/javascript">
+        $(function () {
+            SyntaxHighlighter.all();
+        });
+        $(window).load(function () {
+            $('.flexslider').flexslider({
+                animation: "slide",
+                start: function (slider) {
+                    $('body').removeClass('loading');
+                }
+            });
+        });
+    </script>
 </head>
 <body>
-    <div class="navbar navbar-inverse navbar-fixed-top">
-        <div class="container">
-            <div class="navbar-header">
-                <button type="button" class="navbar-toggle" data-toggle="collapse" data-target=".navbar-collapse">
-                    <span class="icon-bar"></span>
-                    <span class="icon-bar"></span>
-                    <span class="icon-bar"></span>
-                </button>
-                @Html.ActionLink("应用程序名称", "Index", "Home", null, new { @class = "navbar-brand" })
+    <div class="wrap">
+        <div class="total">
+            <div class="header">
+                <div class="header_top_right">
+                    <ul>
+                        <li><a href="#">Login</a></li> |
+                        <li><a href="#">Sign Up</a></li>
+                    </ul>
+                </div>
+                <div class="clear"></div>
+                <div class="header-bot">
+                    <div class="logo">
+                        <a href="index.html"><img src="/images/logo.png" alt="" /></a>
+                    </div>
+                    <ul class="follow_icon">
+                        <li><a href="#"><img src="/images/fb.png" alt=""></a></li>
+                        <li><a href="#"><img src="/images/googleplus.png" alt=""></a></li>
+                        <li><a href="#"><img src="/images/tw.png" alt=""></a></li>
+                        <li><a href="#"><img src="/images/pinterest.png" alt=""></a></li>
+                    </ul>
+                    <div class="clear"></div>
+                </div>
+                <div class="search-bar">
+                    <input type="text" class="textbox" value=" Search" onfocus="this.value = '';" onblur="if (this.value == '') {this.value = 'Search';}">
+                    <input name="searchsubmit" type="image" src="/images/search-icon.png" value="Go" id="searchsubmit" class="btn">
+                    <div class="clear"></div>
+                </div>
+                <div class="clear"></div>
             </div>
-            <div class="navbar-collapse collapse">
-                <ul class="nav navbar-nav">
-                    <li>@Html.ActionLink("主页", "Index", "Home")</li>
-                    <li>@Html.ActionLink("关于", "About", "Home")</li>
-                    <li>@Html.ActionLink("联系方式", "Contact", "Home")</li>
-                </ul>
-                @Html.Partial("_LoginPartial")
+            <div class="menu">
+                <div class="top-nav">
+                    <ul>
+                        <li class="active"><a href="index.html">Home</a></li>
+                        <li><a href="about.html">About</a></li>
+                        <li><a href="products.html">Products</a></li>
+                        <li><a href="pricing.html">Pricing</a></li>
+                        <li><a href="products.html">Delivery</a></li>
+                        <li><a href="contact.html">Contact</a></li>
+                    </ul>
+                    <div class="clear"></div>
+                </div>
+            </div>
+            <div class="main">
+                @RenderBody()
+                @*<hr />
+            <footer>
+                <p>&copy; @DateTime.Now.Year - 我的 ASP.NET 应用程序</p>
+            </footer>*@
             </div>
         </div>
     </div>
-    <div class="container body-content">
-        @RenderBody()
-        <hr />
-        <footer>
-            <p>&copy; @DateTime.Now.Year - 我的 ASP.NET 应用程序</p>
-        </footer>
+    <div class="footer-bottom">
+        <div class="wrap">
+            <div class="copy">
+                <p>Copyright &copy; 2016.Company name All rights reserved.<a target="_blank" href="http://sc.chinaz.com/moban/">&#x7F51;&#x9875;&#x6A21;&#x677F;</a></p>
+            </div>
+        </div>
     </div>
-
-    @Scripts.Render("~/bundles/jquery")
-    @Scripts.Render("~/bundles/bootstrap")
-    @RenderSection("scripts", required: false)
 </body>
 </html>

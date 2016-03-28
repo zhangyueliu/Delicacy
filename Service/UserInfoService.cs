@@ -6,21 +6,31 @@ using System.Threading.Tasks;
 using EF;
 using DataTransfer;
 using Tool;
+
 namespace Service
 {
     public class UserInfoService : BaseService<UserInfo>
     {
-        public bool Add(UserInfoTsfer userInfo)
+        public bool Add(UserInfoTsfer userInfo, VerifyRegisterTsfer verifyDt)
         {
+            base.Add<VerifyRegister>(TransferObject.ConvertObjectByEntity<VerifyRegisterTsfer, VerifyRegister>(verifyDt));
             base.Add(TransferObject.ConvertObjectByEntity<UserInfoTsfer, UserInfo>(userInfo));
             return Save() > 0;
         }
+        public bool Update(UserInfoTsfer userInfo, VerifyRegisterTsfer verifyDt)
+        {
+            base.Update<VerifyRegister>(TransferObject.ConvertObjectByEntity<VerifyRegisterTsfer, VerifyRegister>(verifyDt));
+            base.Update(TransferObject.ConvertObjectByEntity<UserInfoTsfer, UserInfo>(userInfo));
+            return Save() > 0;
+        }
+
         public bool Update(UserInfoTsfer userInfo)
         {
             base.Update(TransferObject.ConvertObjectByEntity<UserInfoTsfer, UserInfo>(userInfo));
             return Save() > 0;
         }
-        public bool Delete(int id)
+
+        public new  bool  Delete(int id)
         {
             base.Delete(id);
             return Save() > 0;
@@ -36,6 +46,10 @@ namespace Service
         {
             return TransferObject.ConvertObjectByEntity<UserInfo, UserInfoTsfer>(base.Select(o => o.LoginId == loginId).FirstOrDefault());
         }
-        
+
+        public UserInfoTsfer GetUserInfo(string userId)
+        {
+            return TransferObject.ConvertObjectByEntity<UserInfo, UserInfoTsfer>(Select(o => o.LoginId == userId).FirstOrDefault());
+        }
     }
 }
