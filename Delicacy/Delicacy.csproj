@@ -184,7 +184,9 @@
     <Content Include="Content\bootstrap.css" />
     <Content Include="Content\bootstrap.min.css" />
     <Content Include="Content\flexslider.css" />
+    <Content Include="Content\register.css" />
     <Content Include="Content\style.css" />
+    <Content Include="Content\user.css" />
     <Content Include="favicon.ico" />
     <Content Include="fonts\glyphicons-halflings-regular.svg" />
     <Content Include="Global.asax" />
@@ -271,6 +273,8 @@
     <Content Include="Views\Account\Manage.cshtml" />
     <Content Include="Views\Account\Register.cshtml" />
     <Content Include="Views\Shared\_LoginPartial.cshtml" />
+    <Content Include="Views\UserInfo\Login.cshtml" />
+    <Content Include="Views\UserInfo\Register.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
@@ -285,7 +289,6 @@
     <Folder Include="Views\SubjectSort\" />
     <Folder Include="Views\Taste\" />
     <Folder Include="Views\Upload\" />
-    <Folder Include="Views\UserInfo\" />
   </ItemGroup>
   <ItemGroup>
     <Content Include="fonts\glyphicons-halflings-regular.woff" />
