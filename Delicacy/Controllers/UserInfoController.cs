@@ -60,5 +60,16 @@ namespace Delicacy.Controllers
             else
                 return View();
         }
+
+        public ActionResult LogOut()
+        {
+            Session["user"] = null;
+            return RedirectToAction("Index", "Home");
+        }
+
+        public ActionResult UserCenter()
+        {
+            return View();
+        }
     }
 }

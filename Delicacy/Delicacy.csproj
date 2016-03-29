@@ -293,6 +293,7 @@
     <Content Include="Views\UserInfo\Login.cshtml" />
     <Content Include="Views\UserInfo\Register.cshtml" />
     <Content Include="Views\UserInfo\VerifyEmail.cshtml" />
+    <Content Include="Views\UserInfo\UserCenter.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
