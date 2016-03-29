@@ -21,3 +21,4 @@ F:\GraduationProject\Yueyue\Delicacy\EF\bin\Debug\zh-Hans\EntityFramework.resour
 F:\GraduationProject\Yueyue\Delicacy\EF\bin\Debug\zh-Hans\EntityFramework.SqlServer.resources.dll
 F:\GraduationProject\Yueyue\Delicacy\EF\obj\Debug\EF.dll
 F:\GraduationProject\Yueyue\Delicacy\EF\obj\Debug\EF.pdb
+F:\GraduationProject\Yueyue\Delicacy\EF\obj\Debug\EF.csprojResolveAssemblyReference.cache

@@ -183,7 +183,10 @@
   <ItemGroup>
     <Content Include="Content\bootstrap.css" />
     <Content Include="Content\bootstrap.min.css" />
+    <Content Include="Content\fancybox_loading%402x.gif" />
+    <Content Include="Content\fancybox_loading.gif" />
     <Content Include="Content\flexslider.css" />
+    <Content Include="Content\jquery.fancybox.css" />
     <Content Include="Content\register.css" />
     <Content Include="Content\style.css" />
     <Content Include="Content\user.css" />
@@ -238,6 +241,7 @@
     <Content Include="Scripts\jquery-1.10.2.js" />
     <Content Include="Scripts\jquery-1.10.2.min.js" />
     <None Include="Scripts\jquery.validate-vsdoc.js" />
+    <Content Include="Scripts\jquery.fancybox.js" />
     <Content Include="Scripts\jquery.flexslider.js" />
     <Content Include="Scripts\jquery.validate.js" />
     <Content Include="Scripts\jquery.validate.min.js" />
