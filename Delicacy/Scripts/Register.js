@@ -1,4 +1,4 @@
-﻿function submit() {
+﻿function register() {
 
     var email = $('#email').val();
     if (!email)
