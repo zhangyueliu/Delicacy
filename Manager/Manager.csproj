@@ -65,6 +65,7 @@
     <Compile Include="TasteManager.cs" />
     <Compile Include="UploadManager.cs" />
     <Compile Include="UserInfoManager.cs" />
+    <Compile Include="VerifyRegisterManager.cs" />
   </ItemGroup>
   <ItemGroup>
     <ProjectReference Include="..\DataTransfer\DataTransfer.csproj">

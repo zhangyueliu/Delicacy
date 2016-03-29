@@ -14,7 +14,7 @@ namespace Delicacy.Controllers
         {
             return View();
         }
-        
+
         /// <summary>
         /// 
         /// </summary>
@@ -28,17 +28,37 @@ namespace Delicacy.Controllers
             return Content(userManager.Register(loginId, password));
         }
 
+        [HttpGet]
+        public ActionResult Register()
+        {
+            return View();
+        }
+
         /// <summary>
         /// 
         /// </summary>
         /// <param name="loginId"></param>
         /// <param name="password">MD5加密后的密码</param>
         /// <returns></returns>
-       [HttpPost]
+        [HttpPost]
         public ContentResult Login(string loginId, string password)
         {
             UserInfoManager userManager = new UserInfoManager();
             return Content(userManager.Login(loginId, password));
+        }
+        [HttpGet]
+        public ActionResult Login()
+        {
+            return View();
+        }
+
+        public ActionResult VerifyEmail(string guid)
+        {
+            VerifyRegisterManager verifyManager = new VerifyRegisterManager();
+            if (verifyManager.VerifyEmail(guid))
+                return RedirectToAction("Index", "Home");
+            else
+                return View();
         }
     }
 }

@@ -55,6 +55,7 @@
     <Compile Include="SupportScanRecordTsfer.cs" />
     <Compile Include="TasteTsfer.cs" />
     <Compile Include="UserInfoTsfer.cs" />
+    <Compile Include="VerifyRegisterTsfer.cs" />
   </ItemGroup>
   <ItemGroup>
     <ProjectReference Include="..\Tool\Tool.csproj">

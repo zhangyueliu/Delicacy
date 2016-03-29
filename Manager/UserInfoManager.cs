@@ -39,10 +39,19 @@ namespace Manager
             RegisterDate=DateTime.Now,
             Status=0
             };
-            if (userService.Add(newUser))
+
+            VerifyRegisterTsfer verifyDt = new VerifyRegisterTsfer
+            {
+                GUID = Guid.NewGuid().ToString().Replace("-", ""),
+                IsUsed = false,
+                OutDate = DateTime.Now.AddDays(7.0),
+                LoginId = loginId
+            };
+
+            if (userService.Add(newUser, verifyDt))
             {
                 //发邮件
-                EmailHelper.SendEmail("食谱网", "欢迎注册食谱网,请点击以下链接完成注册", "1084727879@qq.com");
+                EmailHelper.SendEmail("[食谱网]感谢注册食谱网,请验证邮箱" + loginId, loginId.Substring(0, loginId.IndexOf('@')) + "：您好，感谢您注册食谱网，请点击下面的链接验证您的邮箱：<a href='http://121.42.58.78:8888/UserInfo/VerifyEmail?guid=" + verifyDt.GUID + "'>http://121.42.58.78:8888/UserInfo/VerifyEmail?guid=" + verifyDt.GUID + "</a>该链接7天后失效。", loginId);
                 return OutputHelper.GetOutputResponse(ResultCode.OK);
             }
             else

@@ -13,7 +13,7 @@ namespace EF
         public static DbContext CreateContext()
         {
             if (CallContext.GetData("context") == null)
-                CallContext.SetData("context", new DbContext("DelicacyEntities"));
+                CallContext.SetData("context", new DbContext("Entities"));
             return CallContext.GetData("context") as DbContext;
         }
     }

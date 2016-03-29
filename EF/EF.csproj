@@ -98,15 +98,16 @@
     <Compile Include="UserInfo.cs">
       <DependentUpon>Delicacy.tt</DependentUpon>
     </Compile>
+    <Compile Include="VerifyRegister.cs">
+      <DependentUpon>Delicacy.tt</DependentUpon>
+    </Compile>
   </ItemGroup>
   <ItemGroup>
+    <None Include="App.Config" />
     <EntityDeploy Include="Delicacy.edmx">
       <Generator>EntityModelCodeGenerator</Generator>
       <LastGenOutput>Delicacy.Designer.cs</LastGenOutput>
     </EntityDeploy>
-  </ItemGroup>
-  <ItemGroup>
-    <None Include="App.Config" />
     <None Include="Delicacy.Context.tt">
       <Generator>TextTemplatingFileGenerator</Generator>
       <DependentUpon>Delicacy.edmx</DependentUpon>
