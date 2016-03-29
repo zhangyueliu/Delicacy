@@ -15,10 +15,8 @@ namespace EF
     public partial class VerifyRegister
     {
         public string GUID { get; set; }
-        public int UserId { get; set; }
+        public string LoginId { get; set; }
         public bool IsUsed { get; set; }
         public System.DateTime OutDate { get; set; }
-    
-        public virtual UserInfo UserInfo { get; set; }
     }
 }

@@ -13,10 +13,10 @@ namespace EF
     using System.Data.Entity;
     using System.Data.Entity.Infrastructure;
     
-    public partial class DelicacyEntities : DbContext
+    public partial class Entities : DbContext
     {
-        public DelicacyEntities()
-            : base("name=DelicacyEntities")
+        public Entities()
+            : base("name=Entities")
         {
         }
     
@@ -37,6 +37,5 @@ namespace EF
         public virtual DbSet<Taste> Taste { get; set; }
         public virtual DbSet<UserInfo> UserInfo { get; set; }
         public virtual DbSet<VerifyRegister> VerifyRegister { get; set; }
-        public virtual DbSet<sysdiagrams> sysdiagrams { get; set; }
     }
 }

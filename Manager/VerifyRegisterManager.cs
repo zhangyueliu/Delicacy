@@ -21,7 +21,7 @@ namespace Manager
                 return false;
             //验证通过
             UserInfoService userServer = ObjectContainer.GetInstance<UserInfoService>();
-            UserInfoTsfer userDt = userServer.GetUserInfo(verifyDt.UserId);
+            UserInfoTsfer userDt = userServer.GetUserInfo(verifyDt.LoginId);
             if (userDt == null)
                 return false;
 

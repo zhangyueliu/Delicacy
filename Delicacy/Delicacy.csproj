@@ -234,6 +234,7 @@
     <Content Include="images\logo.psd" />
     <None Include="Properties\PublishProfiles\Delicacy.pubxml" />
     <None Include="Scripts\jquery-1.10.2.intellisense.js" />
+    <Content Include="Scripts\formatVerify.js" />
     <Content Include="Scripts\jquery-1.10.2.js" />
     <Content Include="Scripts\jquery-1.10.2.min.js" />
     <None Include="Scripts\jquery.validate-vsdoc.js" />
@@ -242,7 +243,19 @@
     <Content Include="Scripts\jquery.validate.min.js" />
     <Content Include="Scripts\jquery.validate.unobtrusive.js" />
     <Content Include="Scripts\jquery.validate.unobtrusive.min.js" />
+    <Content Include="Scripts\layer9.1\extend\layer.ext.js" />
+    <Content Include="Scripts\layer9.1\layer.js" />
+    <Content Include="Scripts\layer9.1\skin\default\icon_ext.png" />
+    <Content Include="Scripts\layer9.1\skin\default\textbg.png" />
+    <Content Include="Scripts\layer9.1\skin\default\xubox_ico0.png" />
+    <Content Include="Scripts\layer9.1\skin\default\xubox_loading0.gif" />
+    <Content Include="Scripts\layer9.1\skin\default\xubox_loading1.gif" />
+    <Content Include="Scripts\layer9.1\skin\default\xubox_loading2.gif" />
+    <Content Include="Scripts\layer9.1\skin\layer.css" />
+    <Content Include="Scripts\layer9.1\skin\layer.ext.css" />
+    <Content Include="Scripts\md5.js" />
     <Content Include="Scripts\modernizr-2.6.2.js" />
+    <Content Include="Scripts\register.js" />
     <Content Include="Scripts\respond.js" />
     <Content Include="Scripts\respond.min.js" />
     <Content Include="Scripts\_references.js" />
@@ -275,6 +288,7 @@
     <Content Include="Views\Shared\_LoginPartial.cshtml" />
     <Content Include="Views\UserInfo\Login.cshtml" />
     <Content Include="Views\UserInfo\Register.cshtml" />
+    <Content Include="Views\UserInfo\VerifyEmail.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />

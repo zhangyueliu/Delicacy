@@ -92,9 +92,6 @@
     <Compile Include="SupportScanRecord.cs">
       <DependentUpon>Delicacy.tt</DependentUpon>
     </Compile>
-    <Compile Include="sysdiagrams.cs">
-      <DependentUpon>Delicacy.tt</DependentUpon>
-    </Compile>
     <Compile Include="Taste.cs">
       <DependentUpon>Delicacy.tt</DependentUpon>
     </Compile>
@@ -106,13 +103,11 @@
     </Compile>
   </ItemGroup>
   <ItemGroup>
+    <None Include="App.Config" />
     <EntityDeploy Include="Delicacy.edmx">
       <Generator>EntityModelCodeGenerator</Generator>
       <LastGenOutput>Delicacy.Designer.cs</LastGenOutput>
     </EntityDeploy>
-  </ItemGroup>
-  <ItemGroup>
-    <None Include="App.Config" />
     <None Include="Delicacy.Context.tt">
       <Generator>TextTemplatingFileGenerator</Generator>
       <DependentUpon>Delicacy.edmx</DependentUpon>
