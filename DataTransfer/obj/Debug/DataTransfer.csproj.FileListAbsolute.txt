@@ -12,3 +12,11 @@ G:\Delicacy\DataTransfer\bin\Debug\Tool.pdb
 G:\Delicacy\DataTransfer\obj\Debug\DataTransfer.csprojResolveAssemblyReference.cache
 G:\Delicacy\DataTransfer\obj\Debug\DataTransfer.dll
 G:\Delicacy\DataTransfer\obj\Debug\DataTransfer.pdb
+F:\GraduationProject\Yueyue\Delicacy\DataTransfer\bin\Debug\DataTransfer.dll
+F:\GraduationProject\Yueyue\Delicacy\DataTransfer\bin\Debug\DataTransfer.pdb
+F:\GraduationProject\Yueyue\Delicacy\DataTransfer\bin\Debug\Newtonsoft.Json.dll
+F:\GraduationProject\Yueyue\Delicacy\DataTransfer\bin\Debug\Tool.dll
+F:\GraduationProject\Yueyue\Delicacy\DataTransfer\bin\Debug\Tool.pdb
+F:\GraduationProject\Yueyue\Delicacy\DataTransfer\obj\Debug\DataTransfer.csprojResolveAssemblyReference.cache
+F:\GraduationProject\Yueyue\Delicacy\DataTransfer\obj\Debug\DataTransfer.dll
+F:\GraduationProject\Yueyue\Delicacy\DataTransfer\obj\Debug\DataTransfer.pdb

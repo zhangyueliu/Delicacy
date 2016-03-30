@@ -16,17 +16,17 @@
     <!-- FlexSlider -->
     <script src="~/Scripts/jquery.flexslider.js"></script>
     <script type="text/javascript">
-        $(function () {
-            SyntaxHighlighter.all();
-        });
-        $(window).load(function () {
-            $('.flexslider').flexslider({
-                animation: "slide",
-                start: function (slider) {
-                    $('body').removeClass('loading');
-                }
-            });
-        });
+        //$(function () {
+        //    SyntaxHighlighter.all();
+        //});
+        //$(window).load(function () {
+        //    $('.flexslider').flexslider({
+        //        animation: "slide",
+        //        start: function (slider) {
+        //            $('body').removeClass('loading');
+        //        }
+        //    });
+        //});
     </script>
 </head>
 <body>
@@ -38,6 +38,8 @@
                         @if (ViewBag.IsLogin)
                         {
                             <li><a href="/UserInfo/UserCenter">@ViewBag.User.Name</a> </li>
+                            <li> |</li>
+                            <li><a href="/CookBook/PublishCookBook">发布</a></li>
                             <li> |</li>
                             <li><a href="/UserInfo/LogOut">退出</a></li>
                         }

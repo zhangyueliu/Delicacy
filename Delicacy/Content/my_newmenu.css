@@ -1,0 +1,101 @@
+blockquote{ margin:0; padding: 0; text-indent:0;}
+.content{ padding-top: 20px; color:#5b5b5b}
+.content h3{ font-size:14px; margin-bottom: 20px;}
+.content dl:after{ clear: both; content:""; display: block; overflow: hidden; visibility: hidden; height:0;}
+.content dl{ margin-bottom:20px; width:795px;}
+.content dl dt,.content dl dd{ float:left;}
+.content dl dt{ width:95px; text-align: right; padding-right:20px;padding-top:4px; font-size:14px;}
+.content dl dd { width:620px; }
+.content dl dd .btn37{ padding:3px 5px; height:22px; line-height:22px}
+.content dl dt .x{color:#ff003b; vertical-align:middle;}
+.content dl dd input,.content dl dd textarea{border:#ccc solid 1px;  }
+.ui-select-tit a,.content dl dd input,.content dl dd textarea{color:#ccc}
+.content dl dd .addicon{ overflow: hidden; position: relative;top:0;left:0; z-index:70;background:url(http://static.meishichina.com/v6/img/mycenter/images/add_25.png) no-repeat center 40px;border:#ccc solid 1px; width:208px; height:156px; background-color:#f7f7f7; text-align: center; margin-right:10px; cursor:pointer;}
+.content dl dd .addicon p{font-size:12px; color:#a1a1a1}
+.content dl dd .addicon p.p1{margin-top:65px; font-size:14px;margin-bottom:3px; color:#5b5b5b}
+.content dl dd .addicon input{ width:60px; height:200px; position: absolute;top:0;left:0; z-index:90; display:none}
+.content dl dd .addicon iframe{ position: absolute;top:0;left:0; z-index:100; width:208px; height:104px; border:none; display:none}
+.content dl dd .addicon .div_file_img{ position: absolute;top:0; left:0; z-index:80}
+
+.content dl dd .addicon .file_img{display:inline-block;max-height:100%;max-width:100%;min-height:100px;min-width:100px;vertical-align:middle}
+.content dl dd .addicon .div_file_img b{display:inline-block;font-size:0;font-weight:100;height:100%;line-height:0;overflow:hidden;vertical-align:middle;width:0}
+.content dl dd .addicon .div_file_img{background:url(http://static.meishichina.com/v6/img/loading-32-32.gif) no-repeat scroll center center #f2f2f2;width:100%;height:100%}
+.content dl dd .addicon .div_file_img span{color:#a1a1a1;display:block;padding:100px 0 0}
+.content dl dd .addicon .f_img{position:absolute;top:0;left:0;background:#fff;text-align:center;height:100%;width:100%;overflow:hidden}
+.content dl dd .addicon .f_img img{display:inline-block;max-height:100%;max-width:100%;min-height:100px;min-width:100px;vertical-align:middle}
+.content dl dd .addicon .f_img b{display:inline-block;font-size:0;font-weight:100;height:100%;line-height:0;overflow:hidden;vertical-align:middle;width:0}
+
+.content dl div.left .textArea{ width:278px; height:116px ;padding:20px 20px 20px 35px; }
+.content dl div.left .textAreaMain{ width:293px; height:116px ;padding:20px; }
+.content dl dd .area543{ width:515px; padding:20px;height:6em;}
+.content dl dd a.delete,
+.content dl dd a.add,.content dl dd a.up,.content dl dd a.down{ width:24px; height:24px; position:absolute;right:24px;border:#ddd solid 1px; background:url(http://static.meishichina.com/v6/img/mycenter/images/icon_08.png) no-repeat center 0; }
+.content dl dd a.add{ top:5px; background-position: center 4px}
+.content dl dd a.up{ top:35px; background-position: center -15px}
+.content dl dd a.down{ top:65px;background-position: center -33px}
+.content dl dd a.delete{ top:95px;background-position: center -51px}
+.content dl dd a.add:hover,
+.content dl dd a.up:hover,
+.content dl dd a.down:hover,
+.content dl dd a.delete:hover{background-color:#fcfce3;border:1px solid #c9c890;}
+
+/* 菜谱名称 */
+.content dl.cp_name .btn37{ width:543px;}
+.content dl.options dd select{ display: none}
+.content dl.options dd{ font-size:0; position: relative; z-index:100}
+.content dl.options dd .multiselect { margin-right:10px}
+.content dl.ingredient dd,			
+.content dl.step dd{ position: relative;top: 0;left: 0}
+.content dl.step dd blockquote.cp_block{ overflow: hidden; clear: both; position: relative;top:0;left:0; padding:5px 10px;}
+.content dl.ingredient dd blockquote.Left,.content dl.ingredient dd blockquote.Right{+display:inline; float: left; width:304px; }
+.content dl.ingredient dd blockquote.Left{  }
+.content dl.ingredient dd blockquote.Right{}
+.content dl.ingredient dd blockquote{ margin-bottom:-20px; }
+.content dl.ingredient dd blockquote div{ margin-bottom:20px; position: relative;top:0;left:0; font-size:0}
+.content dl.ingredient dd blockquote div input{ font-size:12px}
+.content dl.ingredient dd blockquote div .delete{ background-position: center -49px;position: absolute;right:18px; top:0;width:28px;height:28px; display:none; _display:block;}
+.content dl.ingredient dd blockquote div:hover .delete{ display: block;}
+.content dl.ingredient dd div input.zhuliao{ width:134px; border-right:none;}
+.content dl.ingredient dd div input.yongliang{ width:94px;}
+.content dl.ingredient dd{ margin-bottom:-10px; overflow: hidden;}
+.content dl.ingredient dd blockquote{ margin-bottom:10px;position:relative;top:0;left:0}
+.content dl.addElem dd div.addElem_box{ overflow: hidden; height:40px;  width:556px}
+.content dl.addElem dd div.addElem_box span{ float:left; padding:5px 10px; background:#f8f8f8; margin:0 10px 10px 0; cursor: pointer;border:#f8f8f8 solid 1px; }
+.content dl.addElem dd div.addElem_box span.on{ border:#ba2020 solid 1px;}
+.content dl.addElem dd{ position: relative;top:0;left:0;}
+.content dl.addElem dd a.more{position: absolute;top:0; right:24px; color:#6599ff}
+.content dl.addElem dd div.checkBox{ /* height: 30px;  line-height:30px;*/ ; padding: 10px 0 0 0;}
+.content dl.addElem dd div.checkBox p{ display: inline-block; zoom: 1 ;+display: inline;}
+.content dl.addElem dd div.checkBox span.red{ color:#ba2020; border: none; margin-right:10px}
+.content dl.selectcheckBox dd p{ margin-bottom:10px; overflow: hidden;}
+.content dl.selectcheckBox dd p input{ margin-right:10px; vertical-align: middle;}
+.content dl.selectcheckBox dd .submitdiv{ margin-top:30px}
+.content dl.selectcheckBox dd .submitdiv input{ margin-right:40px; width:144px; font-size:16px; height:40px; font-weight:bold; border-radius:3px; border: none; cursor:pointer;}
+.content dl.selectcheckBox dd .submitdiv input.postbtn{ background:#ba2020; border:#ba2020 solid 1px; color:#fff;}
+.content dl.selectcheckBox dd .submitdiv input.savebtn{ background:#f2f2f2; border: #d2d2d2 solid 1px; color:#333}
+
+
+/* 页面控件重定义css */
+div.select_0 ul,div.select_3 ul{ width: 360px;}
+div.select_1 ul li{ width: 55px; *width:60px;}
+div.select_2 ul li{ width:52px;*width:60px;}
+div.select_4 ul li{ width:100px}
+div.select_4 ul{ width:670px}
+
+/*页面内容开始*/
+html body div .color_5b{ color:#5b5b5b}
+.content .color_5b{ color:#5b5b5b}
+
+.J_step_num{position:absolute;top:20px;left:240px;display:block;overflow:hidden;width:30px;height:37px;color:#ccc;text-align:center;font-size:18px}
+.content .uploadImage2{width:100%}
+.content .uploadImage2 dd{width:666px}
+.content .uploadImage2 div.addicon{margin:0 10px 10px 0}
+.content .uploadImage2 div.edit_message{clear:both}
+.content .uploadImage2 div.edit_message textarea{padding:20px;width:515px}
+.content .uploadImage2 div.shadow1{position:absolute;top:0;left:0;z-index:81;display:none;width:100%;height:100%;background:#000}
+.content .uploadImage2 a.shadow2{position:absolute;top:45%;left:0;z-index:82;display:block;display:none;width:100%;color:#fff;text-align:center}
+.content dl dd .collect_edit{height:208px;background:url(http://static.meishichina.com/v6/img/mycenter/images/add_25.png) no-repeat scroll center 70px #f7f7f7}
+.content dl dd .collect_edit p.p1{margin-top:110px}
+.multi_step{float:left;margin:0 0 5px 10px;padding:0 7px;border:1px solid #ccc;border:1px solid #c9c890;border-radius:3px;background:#fcfce3;color:#333;font-size:14px;cursor:pointer;_display:inline}
+#dragsort{clear:both}
+dl.step dt{padding:0 10px 0 0}

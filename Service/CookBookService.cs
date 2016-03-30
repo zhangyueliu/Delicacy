@@ -15,6 +15,7 @@ namespace Service
         {
             //这里增加菜过程的插入
             base.Add(TransferObject.ConvertObjectByEntity<CookBookTsfer, CookBook>(cookBook));
+            base.Add<CookProcess>(TransferObject.ConvertObjectByEntity<CookProcessTsfer, CookProcess>(cookBook.ListProcess));
             return Save() > 0;
         }
         public bool Update(CookBookTsfer cookBook)
