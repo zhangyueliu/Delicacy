@@ -8,14 +8,14 @@
 <html>
 <head>
     <meta name="viewport" content="width=device-width" />
-    <title>用户注册-美食网</title>
+    <title>用户登录-美食网</title>
     <link href="~/Content/register.css" rel="stylesheet" />
     <link href="~/Content/jquery.fancybox.css" rel="stylesheet" />
-    <script src="~/Scripts/jquery-1.10.2.js"></script>
-    <script src="~/Scripts/jquery.fancybox.js"></script>
+    <script src="~/Scripts/jquery-1.10.2.min.js"></script>
+    <script src="~/Scripts/formatVerify.js"></script>
     <script src="~/Scripts/md5.js"></script>
     <script src="~/Scripts/layer9.1/layer.js"></script>
-    <script src="~/Scripts/formatVerify.js"></script>
+    <script src="~/Scripts/jquery.fancybox.js"></script>
     <script src="~/Scripts/register.js"></script>
     <script type="text/javascript">
         //异步加载的提示
@@ -30,17 +30,17 @@
 <body>
     <div class="login">
         <div class="login-top">
-            <h1>注册</h1>
+            <h1>重置密码</h1>
             <form>
-                <input type="text" id="email" placeholder="邮箱" />
-                <input type="password"  id="pwd" placeholder="密码" />
+                <input type="text" id="email" placeholder="邮箱" value="@Session["LostPwdLoginId"]"/>
+                <input type="password" id="pwd" value="" placeholder="重置密码" />
             </form>
             <div class="forgot">
-                <input type="submit" onclick="register()" value="注册">
+                <input type="submit" onclick="reset()" value="重置密码">
             </div>
         </div>
         <div class="login-bottom">
-            <h3>Old User &nbsp;<a href="/UserInfo/Login">Login</a>&nbsp; Here</h3>
+            <h3>New User &nbsp;<a href="/UserInfo/Register">Register</a>&nbsp Here</h3>
         </div>
     </div>
 </body>

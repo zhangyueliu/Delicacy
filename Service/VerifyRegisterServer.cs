@@ -11,6 +11,11 @@ namespace Service
 {
     public class VerifyRegisterServer : BaseService<VerifyRegister>
     {
+        public bool Add(VerifyRegisterTsfer verifyDt)
+        {
+            base.Add(TransferObject.ConvertObjectByEntity<VerifyRegisterTsfer, VerifyRegister>(verifyDt));
+            return Save() > 0;
+        }
         public VerifyRegisterTsfer Get(string guid)
         {
             return TransferObject.ConvertObjectByEntity<VerifyRegister, VerifyRegisterTsfer>(Select(o => o.GUID == guid).FirstOrDefault());
