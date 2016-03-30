@@ -15,7 +15,7 @@ namespace EF
     public partial class SupportScanRecord
     {
         public int SSRId { get; set; }
-        public int CookBookId { get; set; }
+        public string CookBookId { get; set; }
         public Nullable<int> UserId { get; set; }
         public int Type { get; set; }
         public System.DateTime DateTime { get; set; }

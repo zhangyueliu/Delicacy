@@ -54,7 +54,7 @@ namespace Manager
         /// <param name="userid">用户id</param>
         /// <param name="cookbookid">菜谱id</param>
         /// <returns></returns>
-        public OutputModel Get(int userid, int cookbookid)
+        public OutputModel Get(int userid, string  cookbookid)
         {
             LikeCookBookTsfer like = Service.Get(userid, cookbookid);
             if (like == null)
@@ -85,7 +85,7 @@ namespace Manager
         /// </summary>
         /// <param name="userid">菜谱id</param>
         /// <returns></returns>
-        public OutputModel GetsCookbook(int cookbookid)
+        public OutputModel GetsCookbook(string  cookbookid)
         {
             List<LikeCookBookTsfer> list = Service.GetsCookbook(cookbookid);
             if (list.Count == 0)

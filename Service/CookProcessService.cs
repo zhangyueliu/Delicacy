@@ -46,7 +46,7 @@ namespace Service
         /// </summary>
         /// <param name="cookbookid"></param>
         /// <returns></returns>
-        public List<CookProcessTsfer> GetList(int cookbookid)
+        public List<CookProcessTsfer> GetList(string  cookbookid)
         {
             return TransferObject.ConvertObjectByEntity<CookProcess, CookProcessTsfer>(base.Select(o => o.CookBookId == cookbookid).OrderBy(o => o.Sort).ToList());
         }

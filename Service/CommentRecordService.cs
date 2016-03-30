@@ -44,7 +44,7 @@ namespace Service
         /// </summary>
         /// <param name="cookbookid"></param>
         /// <returns></returns>
-        public List<CommentRecordTsfer> GetListCookBook(int cookbookid)
+        public List<CommentRecordTsfer> GetListCookBook(string  cookbookid)
         {
             return TransferObject.ConvertObjectByEntity<CommentRecord, CommentRecordTsfer>(base.Select(o => o.CookBookId == cookbookid).ToList());
         }

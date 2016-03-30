@@ -183,10 +183,13 @@
   <ItemGroup>
     <Content Include="Content\bootstrap.css" />
     <Content Include="Content\bootstrap.min.css" />
+    <Content Include="Content\center.css" />
     <Content Include="Content\fancybox_loading%402x.gif" />
     <Content Include="Content\fancybox_loading.gif" />
     <Content Include="Content\flexslider.css" />
     <Content Include="Content\jquery.fancybox.css" />
+    <Content Include="Content\my_newmenu.css" />
+    <Content Include="Content\PublishCookBook.css" />
     <Content Include="Content\register.css" />
     <Content Include="Content\style.css" />
     <Content Include="Content\user.css" />
@@ -259,6 +262,16 @@
     <Content Include="Scripts\layer9.1\skin\layer.ext.css" />
     <Content Include="Scripts\md5.js" />
     <Content Include="Scripts\modernizr-2.6.2.js" />
+    <Content Include="Scripts\publishCookBook\common.js" />
+    <Content Include="Scripts\publishCookBook\ga.js" />
+    <Content Include="Scripts\publishCookBook\hm.js" />
+    <Content Include="Scripts\publishCookBook\jquery.dragsort.js" />
+    <Content Include="Scripts\publishCookBook\msc-tools-multiselect.js" />
+    <Content Include="Scripts\publishCookBook\msc-ui-select.js" />
+    <Content Include="Scripts\publishCookBook\my_upload_recipe.js" />
+    <Content Include="Scripts\publishCookBook\publishcook.js" />
+    <Content Include="Scripts\publishCookBook\push.js" />
+    <Content Include="Scripts\publishCookBook\swfupload.js" />
     <Content Include="Scripts\register.js" />
     <Content Include="Scripts\respond.js" />
     <Content Include="Scripts\respond.min.js" />
@@ -294,14 +307,12 @@
     <Content Include="Views\UserInfo\Register.cshtml" />
     <Content Include="Views\UserInfo\VerifyEmail.cshtml" />
     <Content Include="Views\UserInfo\UserCenter.cshtml" />
-    <Content Include="Views\UserInfo\LostPwd.cshtml" />
-    <Content Include="Views\UserInfo\ResetPwd.cshtml" />
+    <Content Include="Views\CookBook\PublishCookBook.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
     <Folder Include="Upload\Images\" />
     <Folder Include="Views\Base\" />
-    <Folder Include="Views\CookBook\" />
     <Folder Include="Views\CookProcess\" />
     <Folder Include="Views\FoodMaterial\" />
     <Folder Include="Views\FoodSort\" />

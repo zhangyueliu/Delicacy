@@ -59,7 +59,7 @@ namespace Manager
         /// </summary>
         /// <param name="cookbookid"></param>
         /// <returns></returns>
-        public OutputModel GetListCookBook(int cookbookid)
+        public OutputModel GetListCookBook(string  cookbookid)
         {
             List<CommentRecordTsfer> list = Service.GetListCookBook(cookbookid);
             if (list == null)

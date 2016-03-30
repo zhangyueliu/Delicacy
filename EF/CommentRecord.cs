@@ -15,7 +15,7 @@ namespace EF
     public partial class CommentRecord
     {
         public int CommentId { get; set; }
-        public Nullable<int> CookBookId { get; set; }
+        public string CookBookId { get; set; }
         public Nullable<int> UserId { get; set; }
         public int PId { get; set; }
         public string Content { get; set; }

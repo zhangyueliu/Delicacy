@@ -54,6 +54,9 @@
     <Compile Include="CookBook.cs">
       <DependentUpon>Delicacy.tt</DependentUpon>
     </Compile>
+    <Compile Include="CookMaterial.cs">
+      <DependentUpon>Delicacy.tt</DependentUpon>
+    </Compile>
     <Compile Include="CookProcess.cs">
       <DependentUpon>Delicacy.tt</DependentUpon>
     </Compile>
