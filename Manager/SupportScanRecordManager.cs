@@ -49,7 +49,7 @@ namespace Manager
         /// <param name="cookbookid">菜谱id</param>
         /// <param name="userid">用户id</param>
         /// <returns></returns>
-        public OutputModel Get(int cookbookid,int userid)
+        public OutputModel Get(string  cookbookid,int userid)
         {
             SupportScanRecordTsfer s = Service.Get(cookbookid, userid);
             if (s == null)
@@ -77,7 +77,7 @@ namespace Manager
         /// <param name="cookbookid"></param>
         /// <param name="type">1为点赞</param>
         /// <returns></returns>
-        public OutputModel GetListCookbook(int cookbookid)
+        public OutputModel GetListCookbook(string  cookbookid)
         {
             List<SupportScanRecordTsfer> list = Service.GetListCookbook(cookbookid);
             if (list == null)

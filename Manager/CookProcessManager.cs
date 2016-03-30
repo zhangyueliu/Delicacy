@@ -39,7 +39,7 @@ namespace Manager
         /// </summary>
         /// <param name="cookbookid">菜谱id</param>
         /// <returns></returns>
-        public OutputModel DeleteList(int cookbookid)
+        public OutputModel DeleteList(string  cookbookid)
         {
             OutputModel outputmodel = GetList(cookbookid);
             if(outputmodel.StatusCode==1)
@@ -63,7 +63,7 @@ namespace Manager
         /// </summary>
         /// <param name="cookbookid">菜谱id</param>
         /// <returns></returns>
-        public OutputModel GetList(int cookbookid)
+        public OutputModel GetList(string  cookbookid)
         {
            List<CookProcessTsfer>list= Service.GetList(cookbookid);
            if (list.Count == 0)

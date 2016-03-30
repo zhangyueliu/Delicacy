@@ -9,7 +9,7 @@ namespace DataTransfer
     public class LikeCookBookTsfer
     {
         public int LikeId { get; set; }
-        public int CookBookId { get; set; }
+        public string  CookBookId { get; set; }
         public int UserId { get; set; }
         public System.DateTime DateTime { get; set; }
     }

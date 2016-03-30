@@ -41,7 +41,7 @@ namespace Service
         /// <param name="cookbookid">菜谱id</param>
         /// <param name="userid">用户id</param>
         /// <returns></returns>
-        public SupportScanRecordTsfer Get(int cookbookid,int userid)
+        public SupportScanRecordTsfer Get(string  cookbookid,int userid)
         {
             return TransferObject.ConvertObjectByEntity<SupportScanRecord, SupportScanRecordTsfer>(base.Select(o=>o.CookBookId==cookbookid&&o.UserId==userid).FirstOrDefault());
         }
@@ -62,7 +62,7 @@ namespace Service
         /// <param name="cookbookid"></param>
         /// <param name="type">1为点赞</param>
         /// <returns></returns>
-        public List<SupportScanRecordTsfer> GetListCookbook(int cookbookid)
+        public List<SupportScanRecordTsfer> GetListCookbook(string  cookbookid)
         {
             return TransferObject.ConvertObjectByEntity<SupportScanRecord, SupportScanRecordTsfer>(base.Select(o => o.CookBookId == cookbookid).ToList());
         }

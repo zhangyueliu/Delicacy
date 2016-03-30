@@ -17,13 +17,13 @@ namespace EF
         public CookBook()
         {
             this.CommentRecord = new HashSet<CommentRecord>();
+            this.CookMaterial = new HashSet<CookMaterial>();
             this.CookProcess = new HashSet<CookProcess>();
             this.LikeCookBook = new HashSet<LikeCookBook>();
             this.SupportScanRecord = new HashSet<SupportScanRecord>();
-            this.FoodMaterial = new HashSet<FoodMaterial>();
         }
     
-        public int CookBookId { get; set; }
+        public string CookBookId { get; set; }
         public Nullable<int> TasteId { get; set; }
         public Nullable<int> FoodSortId { get; set; }
         public Nullable<int> UserId { get; set; }
@@ -38,9 +38,9 @@ namespace EF
         public virtual FoodSort FoodSort { get; set; }
         public virtual Taste Taste { get; set; }
         public virtual UserInfo UserInfo { get; set; }
+        public virtual ICollection<CookMaterial> CookMaterial { get; set; }
         public virtual ICollection<CookProcess> CookProcess { get; set; }
         public virtual ICollection<LikeCookBook> LikeCookBook { get; set; }
         public virtual ICollection<SupportScanRecord> SupportScanRecord { get; set; }
-        public virtual ICollection<FoodMaterial> FoodMaterial { get; set; }
     }
 }

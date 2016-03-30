@@ -28,9 +28,9 @@ namespace Delicacy.Controllers
             //    return RedirectToAction("Index","Home");
             CookBookManager manager = new CookBookManager();
             //这里可以用对象传入
-        OutputModel outModel=manager.AddCookBook(1,model.Taste, model.FoodSort, model.Name, model.Description, model.Tips, model.FinalImg, model.ProcessImgDes, model.FoodMaterial, model.Status);
+            OutputModel outModel = manager.AddCookBook(user.UserId, model.Taste, model.FoodSort, model.Name, model.Description, model.Tips, model.FinalImg, model.ProcessImgDes, model.FoodMaterial, model.Status);
 
-        return Content(outModel);
+            return Content(outModel);
         }
-	}
+    }
 }

@@ -12,14 +12,13 @@ namespace EF
     using System;
     using System.Collections.Generic;
     
-    public partial class CookProcess
+    public partial class CookMaterial
     {
-        public int CookProcessId { get; set; }
+        public int CookMaterialId { get; set; }
         public string CookBookId { get; set; }
-        public string ImgUrl { get; set; }
-        public string Description { get; set; }
-        public int Sort { get; set; }
+        public int FoodMaterialId { get; set; }
     
         public virtual CookBook CookBook { get; set; }
+        public virtual FoodMaterial FoodMaterial { get; set; }
     }
 }
