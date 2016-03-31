@@ -85,7 +85,7 @@ namespace Delicacy.Controllers
             {
                 Session["LostPwdLoginId"] = loginId;
             }
-            return Content(userManager.LostPwd(loginId));
+            return Content(o);
         }
         public ActionResult LostPwdVerifyEmail(string guid)
         {
@@ -104,14 +104,15 @@ namespace Delicacy.Controllers
         public ContentResult ResetPwd(string loginId, string password)
         {
             UserInfoManager userManager = new UserInfoManager();
-            UserInfoTsfer u = new UserInfoTsfer() ;
-            if (userManager.Get(loginId).StatusCode == 1)
+            UserInfoTsfer u = new UserInfoTsfer();
+            var outputGet = userManager.Get(loginId);
+            if (outputGet.StatusCode == 1)
             {
-                u = (UserInfoTsfer)userManager.Get(loginId).Data;
+                u = (UserInfoTsfer)outputGet.Data;
                 u.Password = password;
                 return Content(userManager.Update(u));
             }
-            return Content(userManager.Get(loginId));
+            return Content(outputGet);
         }
     }
 }

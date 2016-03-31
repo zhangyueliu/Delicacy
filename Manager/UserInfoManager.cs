@@ -85,10 +85,15 @@ namespace Manager
             System.Web.HttpContext.Current.Session["user"] = uTsfer;
             return OutputHelper.GetOutputResponse(ResultCode.OK, "登录成功");
         }
+        /// <summary>
+        /// 忘记密码,重置密码发邮件
+        /// </summary>
+        /// <param name="loginId"></param>
+        /// <returns></returns>
         public OutputModel LostPwd(string loginId)
         {
             if (string.IsNullOrEmpty(loginId))
-                return OutputHelper.GetOutputResponse(ResultCode.NoParameter, "邮箱或密码为空");
+                return OutputHelper.GetOutputResponse(ResultCode.NoParameter, "邮箱不能为空");
             //判断邮箱格式是否正确
             if (!RegExVerify.VerifyEmail(loginId))
                 return OutputHelper.GetOutputResponse(ResultCode.ErrorParameter, "邮箱格式不正确");
@@ -106,7 +111,7 @@ namespace Manager
             if(verifyService.Add(verifyDt))
             {
                 //发邮件
-                EmailHelper.SendEmail("[食谱网]请点击链接设置密码" + loginId, loginId.Substring(0, loginId.IndexOf('@')) + "：您好，感谢您注册食谱网，请点击下面的链接重置密码：<a href='http://121.42.58.78:8888/UserInfo/LostPwdVerifyEmail?guid=" + verifyDt.GUID +"'>http://121.42.58.78:8888/UserInfo/LostPwdVerifyEmail?guid=" + verifyDt.GUID + "</a>该链接7天后失效。", loginId);
+                EmailHelper.SendEmail("[食谱网]请点击链接重置密码" + loginId, loginId.Substring(0, loginId.IndexOf('@')) + "：您好，欢迎来到食谱网，请点击下面的链接重置密码：<a href='http://121.42.58.78:8888/UserInfo/LostPwdVerifyEmail?guid=" + verifyDt.GUID +"'>http://121.42.58.78:8888/UserInfo/LostPwdVerifyEmail?guid=" + verifyDt.GUID + "</a>该链接7天后失效。", loginId);
                 return OutputHelper.GetOutputResponse(ResultCode.OK);
             }
             return OutputHelper.GetOutputResponse(ResultCode.Error);
