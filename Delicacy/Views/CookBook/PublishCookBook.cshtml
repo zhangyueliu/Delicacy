@@ -1,5 +1,4 @@
-﻿
-@{
+﻿@{
     ViewBag.Title = "上传菜谱-美食网";
     Layout = "~/Views/Shared/_Layout.cshtml";
 }
@@ -9,7 +8,7 @@
 <script src="~/Scripts/publishCookBook/hm.js"></script>
 <div class="content">
     <h3>展示自己的厨艺，与上千万网友共同分享，还能拿积分哦！所有步骤图齐全会有更好的推荐机会！</h3>
-    <form action="http://member.meishichina.com/mycenter/recipe-addnew/" id="formRecipe" method="post">
+    <form action="/CookBook/PublishCookBook" id="formRecipe" method="post">
         <input type="hidden" id="ifedit" value="0">
         <dl class="cp_name">
             <dt>
@@ -48,7 +47,7 @@
             </dt>
             <dd>
                 <div class="multiselect select_1" style="width: 103px;"><a tar="cuisine" href="javascript:;" check="false" class="multi_txt multi_1" title="口味">口味</a><ul class="" style=""><li><a href="javascript:;"><label class="J_radio"><input type="radio" name="cuisine" value="1">微辣</label></a></li><li><a href="javascript:;"><label class="J_radio"><input type="radio" name="cuisine" value="2">中辣</label></a></li><li><a href="javascript:;"><label class="J_radio"><input type="radio" name="cuisine" value="3">超辣</label></a></li><li><a href="javascript:;"><label class="J_radio"><input type="radio" name="cuisine" value="4">麻辣</label></a></li><li><a href="javascript:;"><label class="J_radio"><input type="radio" name="cuisine" value="5">酸辣</label></a></li><li><a href="javascript:;"><label class="J_radio"><input type="radio" name="cuisine" value="6">酸甜</label></a></li><li><a href="javascript:;"><label class="J_radio"><input type="radio" name="cuisine" value="7">酸咸</label></a></li><li><a href="javascript:;"><label class="J_radio"><input type="radio" name="cuisine" value="8">咸鲜</label></a></li><li><a href="javascript:;"><label class="J_radio"><input type="radio" name="cuisine" value="9">咸甜</label></a></li><li><a href="javascript:;"><label class="J_radio"><input type="radio" name="cuisine" value="10">甜味</label></a></li><li><a href="javascript:;"><label class="J_radio"><input type="radio" name="cuisine" value="11">苦味</label></a></li><li><a href="javascript:;"><label class="J_radio"><input type="radio" name="cuisine" value="12">原味</label></a></li><li><a href="javascript:;"><label class="J_radio"><input type="radio" name="cuisine" value="13">清淡</label></a></li><li><a href="javascript:;"><label class="J_radio"><input type="radio" name="cuisine" value="14">五香</label></a></li><li><a href="javascript:;"><label class="J_radio"><input type="radio" name="cuisine" value="15">鱼香</label></a></li><li><a href="javascript:;"><label class="J_radio"><input type="radio" name="cuisine" value="16">葱香</label></a></li><li><a href="javascript:;"><label class="J_radio"><input type="radio" name="cuisine" value="17">蒜香</label></a></li><li><a href="javascript:;"><label class="J_radio"><input type="radio" name="cuisine" value="18">奶香</label></a></li><li><a href="javascript:;"><label class="J_radio"><input type="radio" name="cuisine" value="19">酱香</label></a></li><li><a href="javascript:;"><label class="J_radio"><input type="radio" name="cuisine" value="20">糟香</label></a></li><li><a href="javascript:;"><label class="J_radio"><input type="radio" name="cuisine" value="21">咖喱</label></a></li><li><a href="javascript:;"><label class="J_radio"><input type="radio" name="cuisine" value="22">孜然</label></a></li><li><a href="javascript:;"><label class="J_radio"><input type="radio" name="cuisine" value="23">果味</label></a></li><li><a href="javascript:;"><label class="J_radio"><input type="radio" name="cuisine" value="24">香草</label></a></li><li><a href="javascript:;"><label class="J_radio"><input type="radio" name="cuisine" value="25">怪味</label></a></li><li><a href="javascript:;"><label class="J_radio"><input type="radio" name="cuisine" value="50">其它</label></a></li></ul></div>
-                
+
             </dd>
         </dl>
         <dl class="ingredient">
@@ -176,15 +175,6 @@
 
             </dt>
             <dd>
-
-                <p><label><input type="checkbox" name="copyright" value="1">原创作品  您自己的原创作品</label></p>
-                <p><label><input type="checkbox" name="verycd" value="1">首发于美食天下  第一次发表本作品，图片上没有其他网站水印或网址</label></p>
-
-                <p>
-                    <label><input type="radio" name="eventid" value="" checked="checked">不参加活动</label><br>
-
-
-                </p>
                 <div class="submitdiv">
                     <input class="postbtn" id="postbtn" name="submit" type="button" value="发布菜谱">
                     <input class="savebtn" id="savebtn" name="caogao" type="button" value="存为草稿">
@@ -214,9 +204,6 @@
     /*flashupload*/
     msc.tools.upload(".J_swf");
 
-
-
-
     $("#dragsort").dragsort({
         dragSelector: "blockquote",
         dragBetween: true,
@@ -228,21 +215,6 @@
     };
     msc.ui.select({ id: "#qiushou_id", width: 90, defaultValue: true });
     $("#tougao").click(function () { if (!$("#tougao").is(':checked')) $("#tougao_sub").slideUp('600'); else $("#tougao_sub").slideDown('600'); });
-</script>
-<script>
-    var _hmt = _hmt || [];
-    (function () {
-        var hm = document.createElement("script");
-        hm.src = "//hm.baidu.com/hm.js?fb9cd9dcdda23cee0c7357db9be24acb";
-        var s = document.getElementsByTagName("script")[0];
-        s.parentNode.insertBefore(hm, s);
-    })();
-</script>
-<script>
-    (function () {
-        var bp = document.createElement('script');
-        bp.src = '//push.zhanzhang.baidu.com/push.js';
-        var s = document.getElementsByTagName("script")[0];
-        s.parentNode.insertBefore(bp, s);
-    })();
+
+    $("#postbtn").click(function () { if ($("input[name=subject]").val() === "") { msc.ui.dialog.error("请输入菜谱名称"); $("input[name=subject]").focus() } else { if (!/http/.test($("input[name=allpic]").val()) && $("#ifedit").val() == 0) { msc.ui.dialog.error("请上传至少一张成品图片") } else { if (!($("input[name=level]:checked").val() && $("input[name=cuisine]:checked").val() && $("input[name=technics]:checked").val() && $("input[name=during]:checked").val() && $("input[name=cookers]").val())) { msc.ui.dialog.error("请完善基本参数") } else { if (!/color_5b/.test($('input[name="food1[]"]:first').attr("class")) || $('input[name="food1[]"]:first').val() == "") { msc.ui.dialog.error("请输入食材明细") } else { if (check_step() == 1) { msc.ui.dialog.error("请完善菜谱步骤") } else { if (check_step_img() == 1) { msc.ui.dialog.error("步骤图正在上传中，请耐心等待...") } else { ifbtn = 1; $(this).val("提交中..."); $(this).attr("id", ""); $("#postsub").click() } } } } } } });
 </script>
