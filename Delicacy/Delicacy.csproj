@@ -308,6 +308,8 @@
     <Content Include="Views\UserInfo\VerifyEmail.cshtml" />
     <Content Include="Views\UserInfo\UserCenter.cshtml" />
     <Content Include="Views\CookBook\PublishCookBook.cshtml" />
+    <Content Include="Views\UserInfo\ResetPwd.cshtml" />
+    <Content Include="Views\UserInfo\LostPwd.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />

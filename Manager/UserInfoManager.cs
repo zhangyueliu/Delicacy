@@ -12,6 +12,7 @@ namespace Manager
     public class UserInfoManager
     {
         private UserInfoService userService = ObjectContainer.GetInstance<UserInfoService>();
+        private VerifyRegisterServer verifyService = ObjectContainer.GetInstance<VerifyRegisterServer>();
         /// <summary>
         /// 注册
         /// </summary>
@@ -85,13 +86,49 @@ namespace Manager
             return OutputHelper.GetOutputResponse(ResultCode.OK, "登录成功");
         }
         /// <summary>
+        /// 忘记密码,重置密码发邮件
+        /// </summary>
+        /// <param name="loginId"></param>
+        /// <returns></returns>
+        public OutputModel LostPwd(string loginId)
+        {
+            if (string.IsNullOrEmpty(loginId))
+                return OutputHelper.GetOutputResponse(ResultCode.NoParameter, "邮箱不能为空");
+            //判断邮箱格式是否正确
+            if (!RegExVerify.VerifyEmail(loginId))
+                return OutputHelper.GetOutputResponse(ResultCode.ErrorParameter, "邮箱格式不正确");
+            //获取邮箱对应的用户
+            UserInfoTsfer uTsfer = userService.Get(loginId);
+            if (uTsfer == null)
+                return OutputHelper.GetOutputResponse(ResultCode.NoData, "该邮箱未注册过，请先注册");
+            VerifyRegisterTsfer verifyDt = new VerifyRegisterTsfer
+            {
+                GUID = Guid.NewGuid().ToString().Replace("-", ""),
+                IsUsed = false,
+                OutDate = DateTime.Now.AddDays(7.0),
+                LoginId = loginId
+            };
+            if(verifyService.Add(verifyDt))
+            {
+                //发邮件
+                EmailHelper.SendEmail("[食谱网]请点击链接重置密码" + loginId, loginId.Substring(0, loginId.IndexOf('@')) + "：您好，欢迎来到食谱网，请点击下面的链接重置密码：<a href='http://121.42.58.78:8888/UserInfo/LostPwdVerifyEmail?guid=" + verifyDt.GUID +"'>http://121.42.58.78:8888/UserInfo/LostPwdVerifyEmail?guid=" + verifyDt.GUID + "</a>该链接7天后失效。", loginId);
+                return OutputHelper.GetOutputResponse(ResultCode.OK);
+            }
+            return OutputHelper.GetOutputResponse(ResultCode.Error);
+        }
+        /// <summary>
         /// 修改个人信息
         /// </summary>
         /// <param name="userInfo"></param>
         /// <returns></returns>
-        public bool Update(UserInfoTsfer userInfo)
+        public OutputModel Update(UserInfoTsfer userInfo)
         {
-            return userService.Update(userInfo);
+            if (userInfo == null)
+                return OutputHelper.GetOutputResponse(ResultCode.NoParameter);
+            userInfo.Password = MD5Helper.GeneratePwd(userInfo.Password);
+            if(userService.Update(userInfo))
+                return OutputHelper.GetOutputResponse(ResultCode.OK);
+            return OutputHelper.GetOutputResponse(ResultCode.Error);
         }
         public bool Delete(UserInfoTsfer userInfo)
         {

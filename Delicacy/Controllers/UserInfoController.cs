@@ -71,5 +71,48 @@ namespace Delicacy.Controllers
         {
             return View();
         }
+        [HttpGet]
+        public ActionResult LostPwd()
+        {
+            return View();
+        }
+        [HttpPost]
+        public ContentResult LostPwd(string loginId)
+        {
+            UserInfoManager userManager = new UserInfoManager();
+            OutputModel o = userManager.LostPwd(loginId);
+            if (o.StatusCode == 1)
+            {
+                Session["LostPwdLoginId"] = loginId;
+            }
+            return Content(o);
+        }
+        public ActionResult LostPwdVerifyEmail(string guid)
+        {
+            VerifyRegisterManager verifyManager = new VerifyRegisterManager();
+            if (verifyManager.VerifyEmail(guid))
+                return RedirectToAction("ResetPwd", "UserInfo");
+            else
+                return View("VerifyEmail");
+        }
+        [HttpGet]
+        public ActionResult ResetPwd()
+        {
+            return View();
+        }
+        [HttpPost]
+        public ContentResult ResetPwd(string loginId, string password)
+        {
+            UserInfoManager userManager = new UserInfoManager();
+            UserInfoTsfer u = new UserInfoTsfer();
+            var outputGet = userManager.Get(loginId);
+            if (outputGet.StatusCode == 1)
+            {
+                u = (UserInfoTsfer)outputGet.Data;
+                u.Password = password;
+                return Content(userManager.Update(u));
+            }
+            return Content(outputGet);
+        }
     }
 }
