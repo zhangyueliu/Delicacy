@@ -90,8 +90,12 @@ namespace Delicacy.Controllers
         public ActionResult LostPwdVerifyEmail(string guid)
         {
             VerifyRegisterManager verifyManager = new VerifyRegisterManager();
-            if (verifyManager.VerifyEmail(guid))
-                return RedirectToAction("ResetPwd", "UserInfo");
+            string email;
+            if (verifyManager.VerifyEmailResetPwd(guid, out email))
+            {
+                ViewBag.Email = email;
+                return View("ResetPwd");
+            }
             else
                 return View("VerifyEmail");
         }
@@ -110,6 +114,7 @@ namespace Delicacy.Controllers
             {
                 u = (UserInfoTsfer)outputGet.Data;
                 u.Password = password;
+                Session["user"] = u;
                 return Content(userManager.Update(u));
             }
             return Content(outputGet);

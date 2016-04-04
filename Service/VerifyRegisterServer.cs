@@ -26,5 +26,15 @@ namespace Service
             base.Update(TransferObject.ConvertObjectByEntity<VerifyRegisterTsfer, VerifyRegister>(verifyDt));
             return Save() > 0;
         }
+
+        /// <summary>
+        /// 判断发给此人的链接是否已经使用
+        /// </summary>
+        /// <param name="email"></param>
+        /// <returns></returns>
+        public bool IsSend(string email)
+        {
+            return Select(o => o.LoginId == email && (!o.IsUsed || o.OutDate < DateTime.Now)).Any();
+        }
     }
 }
