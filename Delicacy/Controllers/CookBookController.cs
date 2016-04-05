@@ -39,5 +39,9 @@ namespace Delicacy.Controllers
             //    return Redirect("/Home/Index");
             return View();
         }
+        public ActionResult List()
+        {
+            return View();
+        }
     }
 }

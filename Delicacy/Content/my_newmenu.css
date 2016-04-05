@@ -1,5 +1,5 @@
 blockquote{ margin:0; padding: 0; text-indent:0;}
-.content{ padding-top: 20px; color:#5b5b5b}
+.content{ padding-top: 20px; color:#5b5b5b;padding-bottom:20px;margin-left:30px;}
 .content h3{ font-size:14px; margin-bottom: 20px;}
 .content dl:after{ clear: both; content:""; display: block; overflow: hidden; visibility: hidden; height:0;}
 .content dl{ margin-bottom:20px; width:795px;}

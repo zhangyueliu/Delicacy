@@ -238,6 +238,7 @@
     <Content Include="Scripts\bootstrap.js" />
     <Content Include="Scripts\bootstrap.min.js" />
     <Content Include="images\logo.psd" />
+    <Content Include="fonts\Amble-Light-webfont.ttf" />
     <None Include="Properties\PublishProfiles\Delicacy.pubxml" />
     <None Include="Scripts\jquery-1.10.2.intellisense.js" />
     <Content Include="Scripts\formatVerify.js" />
@@ -310,16 +311,17 @@
     <Content Include="Views\CookBook\PublishCookBook.cshtml" />
     <Content Include="Views\UserInfo\ResetPwd.cshtml" />
     <Content Include="Views\UserInfo\LostPwd.cshtml" />
+    <Content Include="Views\FoodSort\Index.cshtml" />
+    <Content Include="Views\FoodMaterial\Index.cshtml" />
+    <Content Include="Views\SubjectArticle\Index.cshtml" />
+    <Content Include="Views\CookBook\List.cshtml" />
+    <Content Include="Views\LikeCookBook\Index.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
     <Folder Include="Upload\Images\" />
     <Folder Include="Views\Base\" />
     <Folder Include="Views\CookProcess\" />
-    <Folder Include="Views\FoodMaterial\" />
-    <Folder Include="Views\FoodSort\" />
-    <Folder Include="Views\LikeCookBook\" />
-    <Folder Include="Views\SubjectArticle\" />
     <Folder Include="Views\SubjectSort\" />
     <Folder Include="Views\Taste\" />
     <Folder Include="Views\Upload\" />
