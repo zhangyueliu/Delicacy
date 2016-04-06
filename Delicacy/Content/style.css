@@ -102,7 +102,7 @@ img {
 body {
     font-family: 'AmbleRegular';
     padding-bottom: 10%;
-    
+    background:url(../images/body-bg.png)no-repeat center fixed;
     -webkit-background-size: cover;
     -moz-background-size: cover;
     -o-background-size: cover;
@@ -592,7 +592,7 @@ span.black {
 .col_1_of_3 {
     display: block;
     float: left;
-    margin: 1% 0 1% 1.6%;
+    /*margin: 1% 0 1% 1.6%;*/
 }
 
     .col_1_of_3:first-child {
@@ -985,6 +985,7 @@ span.black {
 
 .prod {
     margin-bottom: 20px;
+    margin-left:31px;
 }
 
 .prod-last {
