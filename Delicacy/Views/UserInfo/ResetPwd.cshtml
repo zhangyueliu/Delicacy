@@ -32,7 +32,7 @@
         <div class="login-top">
             <h1>重置密码</h1>
             <form>
-                <input type="hidden" id="email" value="@Session["LostPwdLoginId"]" />
+                <input type="hidden" id="email" value="@ViewBag.Email" />
                 <input type="password" id="pwd" value="" placeholder="输入新密码"/>
             </form>
             <div class="forgot">

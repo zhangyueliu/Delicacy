@@ -101,6 +101,8 @@ namespace Manager
             UserInfoTsfer uTsfer = userService.Get(loginId);
             if (uTsfer == null)
                 return OutputHelper.GetOutputResponse(ResultCode.NoData, "该邮箱未注册过，请先注册");
+            if (new VerifyRegisterServer().IsSend(loginId))
+                return OutputHelper.GetOutputResponse(ResultCode.ConditionNotSatisfied, "您的邮箱已经发送");
             VerifyRegisterTsfer verifyDt = new VerifyRegisterTsfer
             {
                 GUID = Guid.NewGuid().ToString().Replace("-", ""),
