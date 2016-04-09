@@ -310,6 +310,7 @@
     <Content Include="Views\CookBook\PublishCookBook.cshtml" />
     <Content Include="Views\UserInfo\ResetPwd.cshtml" />
     <Content Include="Views\UserInfo\LostPwd.cshtml" />
+    <Content Include="Views\Upload\UploadImgOne.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
@@ -322,7 +323,6 @@
     <Folder Include="Views\SubjectArticle\" />
     <Folder Include="Views\SubjectSort\" />
     <Folder Include="Views\Taste\" />
-    <Folder Include="Views\Upload\" />
   </ItemGroup>
   <ItemGroup>
     <Content Include="fonts\glyphicons-halflings-regular.woff" />

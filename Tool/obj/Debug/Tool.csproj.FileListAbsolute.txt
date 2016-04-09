@@ -9,3 +9,9 @@ G:\Delicacy\Tool\bin\Debug\Newtonsoft.Json.dll
 G:\Delicacy\Tool\obj\Debug\Tool.csprojResolveAssemblyReference.cache
 G:\Delicacy\Tool\obj\Debug\Tool.dll
 G:\Delicacy\Tool\obj\Debug\Tool.pdb
+F:\GraduationProject\Yueyue\Delicacy\Tool\bin\Debug\Tool.dll
+F:\GraduationProject\Yueyue\Delicacy\Tool\bin\Debug\Tool.pdb
+F:\GraduationProject\Yueyue\Delicacy\Tool\bin\Debug\Newtonsoft.Json.dll
+F:\GraduationProject\Yueyue\Delicacy\Tool\obj\Debug\Tool.csprojResolveAssemblyReference.cache
+F:\GraduationProject\Yueyue\Delicacy\Tool\obj\Debug\Tool.dll
+F:\GraduationProject\Yueyue\Delicacy\Tool\obj\Debug\Tool.pdb
