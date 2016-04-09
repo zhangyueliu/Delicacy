@@ -17,9 +17,10 @@ namespace Delicacy.Controllers
             try
             {
                 HttpFileCollectionBase files = Request.Files;
-                var data = new { code = 200, successFileLength = 1 };
+                //var data = new { code = 200, successFileLength = 1 };
                 //JsonConvert.SerializeObject(data);
-                return Content(JsonConvert.SerializeObject(data));//Content(UploadManager.UploadImg(files.Get("img")));
+                object uploadResult = UploadManager.UploadImg(files.Get("file"));
+                return Content(JsonConvert.SerializeObject(uploadResult));//Content(UploadManager.UploadImg(files.Get("img")));
             }
             catch 
             {
