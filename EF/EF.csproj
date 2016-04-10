@@ -76,9 +76,6 @@
       <DependentUpon>Delicacy.edmx</DependentUpon>
     </Compile>
     <Compile Include="EFDataAccess.cs" />
-    <Compile Include="FoodMaterial.cs">
-      <DependentUpon>Delicacy.tt</DependentUpon>
-    </Compile>
     <Compile Include="FoodSort.cs">
       <DependentUpon>Delicacy.tt</DependentUpon>
     </Compile>
@@ -93,6 +90,9 @@
       <DependentUpon>Delicacy.tt</DependentUpon>
     </Compile>
     <Compile Include="SupportScanRecord.cs">
+      <DependentUpon>Delicacy.tt</DependentUpon>
+    </Compile>
+    <Compile Include="sysdiagrams.cs">
       <DependentUpon>Delicacy.tt</DependentUpon>
     </Compile>
     <Compile Include="Taste.cs">

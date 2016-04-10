@@ -16,9 +16,10 @@ namespace EF
     {
         public int CookMaterialId { get; set; }
         public string CookBookId { get; set; }
-        public int FoodMaterialId { get; set; }
+        public string FoodMaterialName { get; set; }
+        public string Amount { get; set; }
+        public int Type { get; set; }
     
         public virtual CookBook CookBook { get; set; }
-        public virtual FoodMaterial FoodMaterial { get; set; }
     }
 }

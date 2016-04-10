@@ -3596,10 +3596,11 @@
         return h;
     }();
     f.getAjaxUrl = function (h) {
-        //alert(1);
+        //alert(h);
         h = h || {};
         h = $.param(h);
-        return "/Upload/images/";
+        //"/ajax/ajax.php?" + h;
+        return "";//{ac: "recipe", op: "upload_last_pic"};
     };
     f.queryUrl = function (l, k) {
         k = k ? (k.indexOf("?") > -1 ? k.substr(k.indexOf("?") + 1) : k) : location.search.substr(1);

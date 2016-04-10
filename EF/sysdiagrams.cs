@@ -12,16 +12,12 @@ namespace EF
     using System;
     using System.Collections.Generic;
     
-    public partial class FoodMaterial
+    public partial class sysdiagrams
     {
-        public FoodMaterial()
-        {
-            this.CookMaterial = new HashSet<CookMaterial>();
-        }
-    
-        public int FoodMaterialId { get; set; }
-        public string Name { get; set; }
-    
-        public virtual ICollection<CookMaterial> CookMaterial { get; set; }
+        public string name { get; set; }
+        public int principal_id { get; set; }
+        public int diagram_id { get; set; }
+        public Nullable<int> version { get; set; }
+        public byte[] definition { get; set; }
     }
 }

@@ -45,8 +45,8 @@
   <ItemGroup>
     <Compile Include="CommentRecordTsfer.cs" />
     <Compile Include="CookBookTsfer.cs" />
+    <Compile Include="CookMaterialTsfer.cs" />
     <Compile Include="CookProcessTsfer.cs" />
-    <Compile Include="FoodMaterialTsfer.cs" />
     <Compile Include="FoodSortTsfer.cs" />
     <Compile Include="LikeCookBookTsfer.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />

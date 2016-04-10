@@ -85,25 +85,7 @@ var upUrl = 'http://localhost:53565/';
         }, $.noop)
     });
 
-    function check_step() {
-        var istep = 0;
-        $('textarea[name="note[]"]').each(function () {
-            if (!/color_5b/.test($(this).attr("class")) || $(this).val() == "") {
-                istep = 1
-            }
-        });
-        return istep
-    }
-
-    function check_step_img() {
-        var istep_img = 0;
-        $(".div_file_img").each(function () {
-            if (/span/.test($(this).html())) {
-                istep_img = 1
-            }
-        });
-        return istep_img
-    }
+    
     $("#savebtn").click(function () {
         if ($("input[name=subject]").val() === "") {
             msc.ui.dialog.error("请输入菜谱名称");
@@ -179,7 +161,7 @@ var upUrl = 'http://localhost:53565/';
             path.find("div:last").addClass("J_addDiv")
         },
         Event_addBlockQ: function (th) {
-            var tpl = '<blockquote class="cp_block J_blockQ clear" style="display:none;cursor:move;">' + '<div class="left addicon J_fileImag" >' + '<input type="hidden" value="" name="step_img[]" class="J_imghidden" />' + '<input type="file" name="file"  value=""/>' + '<p class="p1">点击上传步骤图</p>' + '<p class="p3">（可不填）</p>' + "</div>" + '<div class="left">' + '<input type="hidden" name="stepid[]" value="">' + '<textArea name="note[]" class="textArea J_input">请输入做法说明菜谱描述，最多输入1000字</textArea>' + '<span class="J_step_num"></span>' + '<a href="javascript:;" class="add J_addTextarea"></a><a class="up J_upTextarea" href="javascript:;"></a><a class="down J_downTextarea" href="javascript:;"></a><a href="javascript:;" class="delete J_delTextarea"></a>' + "</div>" + "</blockquote>";
+            var tpl = '<blockquote class="cp_block J_blockQ clear" style="display:none;cursor:move;">' + '<div class="left addicon J_fileImag" >' + '<input type="hidden" value="" name="step_img[]" class="J_imghidden" />' + '<input type="file" name="file"  value=""/>' + '<p class="p1">点击上传步骤图</p>' + '<p class="p3">（可不填）</p>' + "</div>" + '<div class="left">' + '<input type="hidden" name="stepid[]" value="">' + '<textArea name="note[]" class="textArea J_input" placeholder="请输入做法说明菜谱描述"></textArea>' + '<span class="J_step_num"></span>' + '<a href="javascript:;" class="add J_addTextarea"></a><a class="up J_upTextarea" href="javascript:;"></a><a class="down J_downTextarea" href="javascript:;"></a><a href="javascript:;" class="delete J_delTextarea"></a>' + "</div>" + "</blockquote>";
             th.closest(".J_blockQ").after(tpl);
             th.parent().parent().next().slideDown("600");
             orderNumber();
@@ -293,7 +275,7 @@ var upUrl = 'http://localhost:53565/';
             }
         },
         Event_upload: function (win, ele) {
-            console.log(win);
+            
             var str = $(win.contentWindow.document.body).find("#upai_url").val();
             if (str) {
                 var delImg = ele.parent().find(".J_imghidden").val();
