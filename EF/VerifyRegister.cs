@@ -18,5 +18,6 @@ namespace EF
         public string LoginId { get; set; }
         public bool IsUsed { get; set; }
         public System.DateTime OutDate { get; set; }
+        public int Type { get; set; }
     }
 }

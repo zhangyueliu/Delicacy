@@ -131,6 +131,7 @@
           <Property Name="LoginId" Type="varchar" MaxLength="100" Nullable="false" />
           <Property Name="IsUsed" Type="bit" Nullable="false" />
           <Property Name="OutDate" Type="datetime" Nullable="false" />
+          <Property Name="Type" Type="int" Nullable="false" />
         </EntityType>
         <Association Name="FK_COMMENTR_REFERENCE_COOKBOOK">
           <End Role="CookBook" Type="Self.CookBook" Multiplicity="0..1" />
@@ -372,7 +373,6 @@
           <EntitySet Name="sysdiagrams" EntityType="DelicacyModel.sysdiagrams" />
           <EntitySet Name="Taste" EntityType="DelicacyModel.Taste" />
           <EntitySet Name="UserInfo" EntityType="DelicacyModel.UserInfo" />
-          <EntitySet Name="VerifyRegister" EntityType="DelicacyModel.VerifyRegister" />
           <AssociationSet Name="FK_COMMENTR_REFERENCE_COOKBOOK" Association="DelicacyModel.FK_COMMENTR_REFERENCE_COOKBOOK">
             <End Role="CookBook" EntitySet="CookBook" />
             <End Role="CommentRecord" EntitySet="CommentRecord" />
@@ -425,6 +425,7 @@
             <End Role="UserInfo" EntitySet="UserInfo" />
             <End Role="SupportScanRecord" EntitySet="SupportScanRecord" />
           </AssociationSet>
+          <EntitySet Name="VerifyRegister" EntityType="DelicacyModel.VerifyRegister" />
         </EntityContainer>
         <EntityType Name="CommentRecord">
           <Key>
@@ -569,15 +570,6 @@
           <NavigationProperty Name="LikeCookBook" Relationship="DelicacyModel.FK_LIKECOOK_REFERENCE_USERINFO" FromRole="UserInfo" ToRole="LikeCookBook" />
           <NavigationProperty Name="SubjectArticle" Relationship="DelicacyModel.FK_SUBJECTA_REFERENCE_USERINFO" FromRole="UserInfo" ToRole="SubjectArticle" />
           <NavigationProperty Name="SupportScanRecord" Relationship="DelicacyModel.FK_SUPPORTS_REFERENCE_USERINFO" FromRole="UserInfo" ToRole="SupportScanRecord" />
-        </EntityType>
-        <EntityType Name="VerifyRegister">
-          <Key>
-            <PropertyRef Name="GUID" />
-          </Key>
-          <Property Name="GUID" Type="String" Nullable="false" MaxLength="100" FixedLength="false" Unicode="false" />
-          <Property Name="LoginId" Type="String" Nullable="false" MaxLength="100" FixedLength="false" Unicode="false" />
-          <Property Name="IsUsed" Type="Boolean" Nullable="false" />
-          <Property Name="OutDate" Type="DateTime" Nullable="false" Precision="3" />
         </EntityType>
         <Association Name="FK_COMMENTR_REFERENCE_COOKBOOK">
           <End Type="DelicacyModel.CookBook" Role="CookBook" Multiplicity="0..1" />
@@ -735,6 +727,16 @@
             </Dependent>
           </ReferentialConstraint>
         </Association>
+        <EntityType Name="VerifyRegister">
+          <Key>
+            <PropertyRef Name="GUID" />
+          </Key>
+          <Property Name="GUID" Type="String" Nullable="false" MaxLength="100" FixedLength="false" Unicode="false" />
+          <Property Name="LoginId" Type="String" Nullable="false" MaxLength="100" FixedLength="false" Unicode="false" />
+          <Property Name="IsUsed" Type="Boolean" Nullable="false" />
+          <Property Name="OutDate" Type="DateTime" Nullable="false" Precision="3" />
+          <Property Name="Type" Type="Int32" Nullable="false" />
+        </EntityType>
         </Schema>
     </edmx:ConceptualModels>
     <!-- C-S mapping content -->
@@ -874,6 +876,7 @@
           <EntitySetMapping Name="VerifyRegister">
             <EntityTypeMapping TypeName="DelicacyModel.VerifyRegister">
               <MappingFragment StoreEntitySet="VerifyRegister">
+                <ScalarProperty Name="Type" ColumnName="Type" />
                 <ScalarProperty Name="OutDate" ColumnName="OutDate" />
                 <ScalarProperty Name="IsUsed" ColumnName="IsUsed" />
                 <ScalarProperty Name="LoginId" ColumnName="LoginId" />

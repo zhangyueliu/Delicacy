@@ -46,7 +46,8 @@ namespace Manager
                 GUID = Guid.NewGuid().ToString().Replace("-", ""),
                 IsUsed = false,
                 OutDate = DateTime.Now.AddDays(7.0),
-                LoginId = loginId
+                LoginId = loginId,
+                Type=1
             };
 
             if (userService.Add(newUser, verifyDt))
@@ -101,14 +102,15 @@ namespace Manager
             UserInfoTsfer uTsfer = userService.Get(loginId);
             if (uTsfer == null)
                 return OutputHelper.GetOutputResponse(ResultCode.NoData, "该邮箱未注册过，请先注册");
-            if (new VerifyRegisterServer().IsSend(loginId))
+            if (new VerifyRegisterServer().IsSend(loginId,2))
                 return OutputHelper.GetOutputResponse(ResultCode.ConditionNotSatisfied, "您的邮箱已经发送");
             VerifyRegisterTsfer verifyDt = new VerifyRegisterTsfer
             {
                 GUID = Guid.NewGuid().ToString().Replace("-", ""),
                 IsUsed = false,
                 OutDate = DateTime.Now.AddDays(7.0),
-                LoginId = loginId
+                LoginId = loginId,
+                Type=2
             };
             if(verifyService.Add(verifyDt))
             {

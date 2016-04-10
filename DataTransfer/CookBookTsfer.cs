@@ -27,5 +27,6 @@ namespace DataTransfer
         public Nullable<System.DateTime> DateTime { get; set; }
 
         public List<CookProcessTsfer> ListProcess { get; set; }
+        public List<CookMaterialTsfer> ListMaterial { get; set; }
     }
 }

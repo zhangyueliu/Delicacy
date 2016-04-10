@@ -17,7 +17,6 @@
         <EntityTypeShape EntityType="DelicacyModel.sysdiagrams" Width="1.5" PointX="0.75" PointY="0.75" />
         <EntityTypeShape EntityType="DelicacyModel.Taste" Width="1.5" PointX="0.75" PointY="13.75" />
         <EntityTypeShape EntityType="DelicacyModel.UserInfo" Width="1.5" PointX="0.75" PointY="8.875" />
-        <EntityTypeShape EntityType="DelicacyModel.VerifyRegister" Width="1.5" PointX="2.75" PointY="0.75" />
         <AssociationConnector Association="DelicacyModel.FK_COMMENTR_REFERENCE_COOKBOOK" />
         <AssociationConnector Association="DelicacyModel.FK_COMMENTR_REFERENCE_USERINFO" />
         <AssociationConnector Association="DelicacyModel.FK_COOKBOOK_REFERENCE_FOODSORT" />
@@ -31,6 +30,7 @@
         <AssociationConnector Association="DelicacyModel.FK_SUBJECTA_REFERENCE_SUBJECTS" />
         <AssociationConnector Association="DelicacyModel.FK_SUBJECTA_REFERENCE_USERINFO" />
         <AssociationConnector Association="DelicacyModel.FK_SUPPORTS_REFERENCE_USERINFO" />
+        <EntityTypeShape EntityType="DelicacyModel.VerifyRegister" Width="1.5" PointX="3.375" PointY="0.75" />
       </Diagram>
     </edmx:Diagrams>
   </edmx:Designer>
