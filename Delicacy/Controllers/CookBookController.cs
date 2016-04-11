@@ -27,7 +27,7 @@ namespace Delicacy.Controllers
                 return Content(OutputHelper.GetOutputResponse(ResultCode.NoLogin));
             CookBookManager manager = new CookBookManager();
             //这里可以用对象传入
-            OutputModel outModel = manager.AddCookBook(user.UserId, model.Taste, model.FoodSort, model.Name, model.Description, model.Tips, model.FinalImg, model.ProcessImgDes, model.FoodMaterial, model.Status);
+            OutputModel outModel = manager.AddCookBook(user.UserId, model.Taste, model.FoodSort, model.Name, model.Description, model.Tips, model.FinalImg, model.ProcessImgDes, model.MainMaterial, model.Status,model.AssistMaterial);
 
             return Content(outModel);
         }

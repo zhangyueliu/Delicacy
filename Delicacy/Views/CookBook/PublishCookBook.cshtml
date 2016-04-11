@@ -44,8 +44,8 @@
     </div>
     <div class="content">
 
-        <h3>展示自己的厨艺，与上千万网友共同分享，还能拿积分哦！所有步骤图齐全会有更好的推荐机会！</h3>
-        <form action="/CookBook/PublishCookBook" id="formRecipe" method="post">
+        <h3>展示自己的厨艺，与上千万网友共同分享！</h3>
+        <form action="" id="formRecipe" method="post">
             <input type="hidden" id="ifedit" value="0">
             <dl class="cp_name">
                 <dt>
@@ -62,17 +62,15 @@
 
                 </dt>
                 <dd>
-
-                    <div class="left addicon J_swf J_uploadflash" style="position: relative; left: 0px;">
+                    <div class="left addicon J_fileImag" id="finalImg">
+                        <input type="hidden" value="" name="" class="J_imghidden" id="final" style="opacity: 0; display: inline-block;">
+                        <input type="file" name="file" id="userfile_0" value="" style="opacity: 0; display: block; left: -5.5px; top: -35px;">
                         <p class="p1">点击上传成品图</p>
-                        <p class="p3">（按住Ctrl可多选照片）</p>
-                        <input type="hidden" name="allpic" id="allpic" value="">
-                        <input type="hidden" id="upai_bucket" value="Upload/UploadImg">
-                        <input type="hidden" id="upai_policy" value="eyJidWNrZXQiOiJtZWlzaGktcGljIiwiZXhwaXJhdGlvbiI6MTQ1OTMzNDc0Mywic2F2ZS1rZXkiOiJcL2F0dGFjaG1lbnRcL3JlY2lwZVwve3llYXJ9XC97bW9ufVwve2RheX1cL3t5ZWFyfXttb259e2RheX17cmFuZG9tfXsuc3VmZml4fSIsImFsbG93LWZpbGUtdHlwZSI6ImpwZyxqcGVnLGdpZixwbmcifQ==">
-                        <input type="hidden" id="upai_signature" value="527435dbdd1736026103a5fa45e3e184">
+                        <p class="p3">（必填）</p>
+
                     </div>
                     <div class="left">
-                        <textarea class="textAreaMain J_input J_swfDisc" name="message">请输入菜谱描述</textarea>
+                        <textarea class="textAreaMain J_input J_swfDisc" id="message" name="message">请输入菜谱描述</textarea>
                     </div>
                 </dd>
             </dl>
@@ -82,10 +80,17 @@
                     <span class="lable">基本参数：</span>
 
                 </dt>
+                
+
                 <dd>
-                    <div class="multiselect select_1" style="width: 103px;"><a tar="cuisine" href="javascript:;" check="false" class="multi_txt multi_1" title="口味">口味</a><ul class="" style=""><li><a href="javascript:;"><label class="J_radio"><input type="radio" name="cuisine" value="1">微辣</label></a></li><li><a href="javascript:;"><label class="J_radio"><input type="radio" name="cuisine" value="2">中辣</label></a></li><li><a href="javascript:;"><label class="J_radio"><input type="radio" name="cuisine" value="3">超辣</label></a></li><li><a href="javascript:;"><label class="J_radio"><input type="radio" name="cuisine" value="4">麻辣</label></a></li><li><a href="javascript:;"><label class="J_radio"><input type="radio" name="cuisine" value="5">酸辣</label></a></li><li><a href="javascript:;"><label class="J_radio"><input type="radio" name="cuisine" value="6">酸甜</label></a></li><li><a href="javascript:;"><label class="J_radio"><input type="radio" name="cuisine" value="7">酸咸</label></a></li><li><a href="javascript:;"><label class="J_radio"><input type="radio" name="cuisine" value="8">咸鲜</label></a></li><li><a href="javascript:;"><label class="J_radio"><input type="radio" name="cuisine" value="9">咸甜</label></a></li><li><a href="javascript:;"><label class="J_radio"><input type="radio" name="cuisine" value="10">甜味</label></a></li><li><a href="javascript:;"><label class="J_radio"><input type="radio" name="cuisine" value="11">苦味</label></a></li><li><a href="javascript:;"><label class="J_radio"><input type="radio" name="cuisine" value="12">原味</label></a></li><li><a href="javascript:;"><label class="J_radio"><input type="radio" name="cuisine" value="13">清淡</label></a></li><li><a href="javascript:;"><label class="J_radio"><input type="radio" name="cuisine" value="14">五香</label></a></li><li><a href="javascript:;"><label class="J_radio"><input type="radio" name="cuisine" value="15">鱼香</label></a></li><li><a href="javascript:;"><label class="J_radio"><input type="radio" name="cuisine" value="16">葱香</label></a></li><li><a href="javascript:;"><label class="J_radio"><input type="radio" name="cuisine" value="17">蒜香</label></a></li><li><a href="javascript:;"><label class="J_radio"><input type="radio" name="cuisine" value="18">奶香</label></a></li><li><a href="javascript:;"><label class="J_radio"><input type="radio" name="cuisine" value="19">酱香</label></a></li><li><a href="javascript:;"><label class="J_radio"><input type="radio" name="cuisine" value="20">糟香</label></a></li><li><a href="javascript:;"><label class="J_radio"><input type="radio" name="cuisine" value="21">咖喱</label></a></li><li><a href="javascript:;"><label class="J_radio"><input type="radio" name="cuisine" value="22">孜然</label></a></li><li><a href="javascript:;"><label class="J_radio"><input type="radio" name="cuisine" value="23">果味</label></a></li><li><a href="javascript:;"><label class="J_radio"><input type="radio" name="cuisine" value="24">香草</label></a></li><li><a href="javascript:;"><label class="J_radio"><input type="radio" name="cuisine" value="25">怪味</label></a></li><li><a href="javascript:;"><label class="J_radio"><input type="radio" name="cuisine" value="50">其它</label></a></li></ul></div>
+                    <div class="multiselect select_0" style="width: 103px;"><a tar="foodSort" href="javascript:;" check="false" class="multi_txt multi_1" title="口味">菜谱类别</a><ul class="" style=""><li><a href="javascript:;"><label class="J_radio"><input type="radio" name="foodSort" value="1">热菜</label></a></li><li><a href="javascript:;"><label class="J_radio"><input type="radio" name="foodSort" value="2">凉菜</label></a></li><li><a href="javascript:;"><label class="J_radio"><input type="radio" name="foodSort" value="3">主食</label></a></li><li><a href="javascript:;"><label class="J_radio"><input type="radio" name="foodSort" value="4">其它</label></a></li></ul></div>
+
+                    <div class="multiselect select_1" style="width: 103px;"><a tar="cuisine" href="javascript:;" check="false" class="multi_txt multi_1" title="口味">口味</a><ul class="" style=""><li><a href="javascript:;"><label class="J_radio"><input type="radio" name="cuisine" value="1">酸</label></a></li><li><a href="javascript:;"><label class="J_radio"><input type="radio" name="cuisine" value="2" />甜</label></a></li><li><a href="javascript:;"><label class="J_radio"><input type="radio" name="cuisine" value="3">苦</label></a></li><li><a href="javascript:;"><label class="J_radio"><input type="radio" name="cuisine" value="4">辣</label></a></li><li><a href="javascript:;"><label class="J_radio"><input type="radio" name="cuisine" value="5">腥</label></a></li><li><a href="javascript:;"><label class="J_radio"><input type="radio" name="cuisine" value="6">其他</label></a></li></ul></div>
+
+                    
 
                 </dd>
+
             </dl>
             <dl class="ingredient">
                 <dt>
@@ -138,7 +143,7 @@
                 </dt>
                 <dd>
 
-                    <div class="multi_step">批量上传</div>
+
                     <div id="dragsort" data-listidx="0">
                         <blockquote class="cp_block J_blockQ clear" style="cursor: move;">
                             <div class="left addicon J_fileImag" id="J_upload_0">
@@ -148,9 +153,10 @@
                                 <p class="p3">（可不填）</p>
 
                             </div>
+
                             <div class="left">
                                 <input type="hidden" value="" name="stepid[]">
-                                <textarea class="textArea J_input" name="note[]">请输入做法说明菜谱描述，最多输入1000字</textarea>
+                                <textarea class="textArea J_input" name="note[]" placeholder="请输入做法说明菜谱描述"></textarea>
                                 <span class="J_step_num">1、</span>
                                 <a href="javascript:;" class="add J_addTextarea"></a>
                                 <a href="javascript:;" class="up J_upTextarea"></a>
@@ -158,6 +164,7 @@
                                 <a href="javascript:;" class="delete J_delTextarea"></a>
                             </div>
                         </blockquote>
+
                         <blockquote class="cp_block J_blockQ clear" style="cursor: move;">
                             <div class="left addicon J_fileImag" id="J_upload_1">
                                 <input type="hidden" value="" name="step_img[]" class="J_imghidden" style="opacity: 0; display: inline-block;">
@@ -168,7 +175,7 @@
                             </div>
                             <div class="left">
                                 <input type="hidden" value="" name="stepid[]">
-                                <textarea class="textArea J_input" name="note[]">请输入做法说明菜谱描述，最多输入1000字</textarea>
+                                <textarea class="textArea J_input" name="note[]" placeholder="请输入做法说明菜谱描述"></textarea>
                                 <span class="J_step_num">2、</span>
                                 <a href="javascript:;" class="add J_addTextarea"></a>
                                 <a href="javascript:;" class="up J_upTextarea"></a>
@@ -187,7 +194,7 @@
                             </div>
                             <div class="left">
                                 <input type="hidden" value="" name="stepid[]">
-                                <textarea class="textArea J_input" name="note[]">请输入做法说明菜谱描述，最多输入1000字</textarea>
+                                <textarea class="textArea J_input" name="note[]" placeholder="请输入做法说明菜谱描述"></textarea>
                                 <span class="J_step_num">3、</span>
                                 <a href="javascript:;" class="add J_addTextarea"></a>
                                 <a href="javascript:;" class="up J_upTextarea"></a>
@@ -215,8 +222,6 @@
                     <div class="submitdiv">
                         <input class="postbtn" id="postbtn" name="submit" type="button" value="发布菜谱">
                         <input class="savebtn" id="savebtn" name="caogao" type="button" value="存为草稿">
-                        <input id="postsub" name="submit" type="submit" value="发布菜谱" style="display:none;">
-                        <input id="savesub" name="caogao" type="submit" value="存为草稿" style="display:none;">
                     </div>
                 </dd>
             </dl>
@@ -234,6 +239,7 @@
 <script src="~/Scripts/publishCookBook/msc-ui-select.js"></script>
 <script src="~/Scripts/publishCookBook/my_upload_recipe.js"></script>
 <script src="~/Scripts/publishCookBook/push.js"></script>
+<script src="~/Scripts/publishCookBook/cookBook.js"></script>
 <script type="text/javascript">
     var ifbtn = 0;
     msc.user.ready()
@@ -255,5 +261,57 @@
     msc.ui.select({ id: "#qiushou_id", width: 90, defaultValue: true });
     $("#tougao").click(function () { if (!$("#tougao").is(':checked')) $("#tougao_sub").slideUp('600'); else $("#tougao_sub").slideDown('600'); });
 
-    $("#postbtn").click(function () { if ($("input[name=subject]").val() === "") { msc.ui.dialog.error("请输入菜谱名称"); $("input[name=subject]").focus() } else { if (!/http/.test($("input[name=allpic]").val()) && $("#ifedit").val() == 0) { msc.ui.dialog.error("请上传至少一张成品图片") } else { if (!($("input[name=level]:checked").val() && $("input[name=cuisine]:checked").val() && $("input[name=technics]:checked").val() && $("input[name=during]:checked").val() && $("input[name=cookers]").val())) { msc.ui.dialog.error("请完善基本参数") } else { if (!/color_5b/.test($('input[name="food1[]"]:first').attr("class")) || $('input[name="food1[]"]:first').val() == "") { msc.ui.dialog.error("请输入食材明细") } else { if (check_step() == 1) { msc.ui.dialog.error("请完善菜谱步骤") } else { if (check_step_img() == 1) { msc.ui.dialog.error("步骤图正在上传中，请耐心等待...") } else { ifbtn = 1; $(this).val("提交中..."); $(this).attr("id", ""); $("#postsub").click() } } } } } } });
+    function check_step() {
+        var istep = 0;
+        $('textarea[name="note[]"]').each(function () {
+            if (!/color_5b/.test($(this).attr("class")) || $(this).val() == "") {
+                istep = 1
+            }
+        });
+        return istep
+    }
+
+    function check_step_img() {
+        var istep_img = 0;
+        $(".div_file_img").each(function () {
+            if (/span/.test($(this).html())) {
+                istep_img = 1
+            }
+        });
+        return istep_img
+    }
+
+    $("#postbtn").click(function () {
+        //publishCookBook();
+
+        if ($("input[name=subject]").val() === "") {
+            msc.ui.dialog.error("请输入菜谱名称");
+            $("input[name=subject]").focus()
+        } else {
+            if ($("#final").val() == "") {
+                msc.ui.dialog.error("请上传至少一张成品图片")
+            } else {
+                if (!$("input[name=cuisine]:checked").val() ||! $("input[name=foodSort]:checked").val()) {
+                    msc.ui.dialog.error("请完善基本参数(菜谱类别或口味)")
+                } else {
+                    if (!/color_5b/.test($('input[name="food1[]"]:first').attr("class")) || $('input[name="food1[]"]:first').val() == "") {
+                        msc.ui.dialog.error("请输入食材明细")
+                    } else {
+                        if (check_step() == 1) {
+                            msc.ui.dialog.error("请完善菜谱步骤")
+                        } else {
+                            if (check_step_img() == 1) {
+                                msc.ui.dialog.error("步骤图正在上传中，请耐心等待...")
+                            } else {
+                                ifbtn = 1;
+                                $(this).val("提交中...");
+                                $(this).attr("id", "");
+                                publishCookBook(0);//0待审核
+                            }
+                        }
+                    }
+                }
+            }
+        }
+    });
 </script>

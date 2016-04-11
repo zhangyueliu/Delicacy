@@ -16,10 +16,10 @@ namespace Delicacy.Controllers
             return View();
         }
 
-        public ContentResult GetList()
-        {
-            FoodMaterialManager manager = new FoodMaterialManager();
-           return Content(manager.GetList());
-        }
+        //public ContentResult GetList()
+        //{
+        //    FoodMaterialManager manager = new FoodMaterialManager();
+        //   return Content(manager.GetList());
+        //}
 	}
 }

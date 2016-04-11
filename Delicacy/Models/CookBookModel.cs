@@ -35,8 +35,12 @@ namespace Delicacy.Models
         /// </summary>
         public string Status { get; set; }
         /// <summary>
-        /// 食材ID 格式  1::2::3  
+        /// 主料(使用时先用"|||::"分割一下) 格式:猪肉::1斤|||牛肉::半斤
         /// </summary>
-        public string FoodMaterial { get; set; }
+        public string MainMaterial { get; set; }
+        /// <summary>
+        /// 辅料(使用时先用"|||::"分割一下) 格式:糖::一勺|||盐::适量
+        /// </summary>
+        public string AssistMaterial { get; set; }
     }
 }

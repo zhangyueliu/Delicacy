@@ -31,10 +31,11 @@ namespace Service
         /// 判断发给此人的链接是否已经使用
         /// </summary>
         /// <param name="email"></param>
+        /// <param name="type">1注册邮件  2忘记密码邮件</param>
         /// <returns></returns>
-        public bool IsSend(string email)
+        public bool IsSend(string email,int type)
         {
-            return Select(o => o.LoginId == email && (!o.IsUsed || o.OutDate < DateTime.Now)).Any();
+            return Select(o => o.LoginId == email && (!o.IsUsed && o.OutDate < DateTime.Now)&&o.Type==type).Any();
         }
     }
 }

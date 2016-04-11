@@ -264,11 +264,13 @@
     <Content Include="Scripts\md5.js" />
     <Content Include="Scripts\modernizr-2.6.2.js" />
     <Content Include="Scripts\publishCookBook\common.js" />
+    <Content Include="Scripts\publishCookBook\cookBook.js" />
     <Content Include="Scripts\publishCookBook\ga.js" />
     <Content Include="Scripts\publishCookBook\hm.js" />
     <Content Include="Scripts\publishCookBook\jquery.dragsort.js" />
     <Content Include="Scripts\publishCookBook\msc-tools-multiselect.js" />
     <Content Include="Scripts\publishCookBook\msc-ui-select.js" />
+    <Content Include="Scripts\publishCookBook\my_upload_recipe - 复制.js" />
     <Content Include="Scripts\publishCookBook\my_upload_recipe.js" />
     <Content Include="Scripts\publishCookBook\publishcook.js" />
     <Content Include="Scripts\publishCookBook\push.js" />
@@ -316,6 +318,7 @@
     <Content Include="Views\SubjectArticle\Index.cshtml" />
     <Content Include="Views\CookBook\List.cshtml" />
     <Content Include="Views\LikeCookBook\Index.cshtml" />
+    <Content Include="Views\Upload\UploadImgOne.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
@@ -324,7 +327,6 @@
     <Folder Include="Views\CookProcess\" />
     <Folder Include="Views\SubjectSort\" />
     <Folder Include="Views\Taste\" />
-    <Folder Include="Views\Upload\" />
   </ItemGroup>
   <ItemGroup>
     <Content Include="fonts\glyphicons-halflings-regular.woff" />

@@ -9,11 +9,20 @@ using System.IO;
 
 namespace Manager
 {
-public  static   class UploadManager
+    public static class UploadManager
     {
-    public static OutputModel UploadImg(HttpPostedFileBase img)
-    {
-        return UploadHelper.UploadImg(img);
-    }
+        public static object UploadImg(HttpPostedFileBase img)
+        {
+            string newImgName;
+            if (UploadHelper.UploadImg(img, out newImgName))
+                return new { code = 200, successFileLength = 1, url = newImgName };
+            else
+                return new { code = -1, successFileLength = 1 };
+        }
+
+        public static bool UploadImg(HttpPostedFileBase img, out string newImgName)
+        {
+            return UploadHelper.UploadImg(img, out newImgName);
+        }
     }
 }
