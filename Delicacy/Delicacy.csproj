@@ -189,6 +189,7 @@
     <Content Include="Content\flexslider.css" />
     <Content Include="Content\jquery.fancybox.css" />
     <Content Include="Content\my_newmenu.css" />
+    <Content Include="Content\PublishCookBook - 副本.css" />
     <Content Include="Content\PublishCookBook.css" />
     <Content Include="Content\register.css" />
     <Content Include="Content\style.css" />
