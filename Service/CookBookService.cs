@@ -29,9 +29,15 @@ namespace Service
             base.Delete(id);
             return Save() > 0;
         }
-        public CookBookTsfer Select(int id)
+        public CookBookTsfer Get(int id)
         {
             return TransferObject.ConvertObjectByEntity<CookBook,CookBookTsfer>(base.Select(id));
         }
+
+        public List<CookBookTsfer> GetList(int userId,int status)
+        {
+            return TransferObject.ConvertObjectByEntity<CookBook, CookBookTsfer>(Select(o => o.UserId == userId&&o.Status==status).OrderByDescending(o => o.DateTime).ToList());
+        }
+
     }
 }

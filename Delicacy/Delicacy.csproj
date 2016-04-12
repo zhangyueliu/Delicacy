@@ -170,6 +170,7 @@
     <Compile Include="Controllers\SubjectSortController.cs" />
     <Compile Include="Controllers\TasteController.cs" />
     <Compile Include="Controllers\UploadController.cs" />
+    <Compile Include="Controllers\UserCenterController.cs" />
     <Compile Include="Controllers\UserInfoController.cs" />
     <Compile Include="Global.asax.cs">
       <DependentUpon>Global.asax</DependentUpon>
@@ -271,7 +272,6 @@
     <Content Include="Scripts\publishCookBook\jquery.dragsort.js" />
     <Content Include="Scripts\publishCookBook\msc-tools-multiselect.js" />
     <Content Include="Scripts\publishCookBook\msc-ui-select.js" />
-    <Content Include="Scripts\publishCookBook\my_upload_recipe - 复制.js" />
     <Content Include="Scripts\publishCookBook\my_upload_recipe.js" />
     <Content Include="Scripts\publishCookBook\publishcook.js" />
     <Content Include="Scripts\publishCookBook\push.js" />
@@ -279,6 +279,7 @@
     <Content Include="Scripts\register.js" />
     <Content Include="Scripts\respond.js" />
     <Content Include="Scripts\respond.min.js" />
+    <Content Include="Scripts\UserCenter\WaitCheck.js" />
     <Content Include="Scripts\_references.js" />
     <Content Include="Web.config">
       <SubType>Designer</SubType>
@@ -320,6 +321,7 @@
     <Content Include="Views\CookBook\List.cshtml" />
     <Content Include="Views\LikeCookBook\Index.cshtml" />
     <Content Include="Views\Upload\UploadImgOne.cshtml" />
+    <Content Include="Views\UserCenter\WaitCheck.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />

@@ -11,7 +11,8 @@ namespace Manager
 {
     public class CookBookManager
     {
-        private CookBookService cookService = ObjectContainer.GetInstance<CookBookService>();
+        private CookBookService service = ObjectContainer.GetInstance<CookBookService>();
+        
         public OutputModel AddCookBook(int userId, string taste, string foodSort, string name, string description, string tips, string finalImg, string processImgDes, string mainMaterial, string status, string assistMaterial)
         {
             int iTaste, iFoodSort, iStatus;
@@ -54,22 +55,22 @@ namespace Manager
                 Tips = tips,
                 UserId = userId,
                 ListProcess = listProcess,
-                ListMaterial=listMaterial
+                ListMaterial=listMaterial,
+                DateTime=DateTime.Now
 
             };
-            if (cookService.Add(bookTsfer))
+            if (service.Add(bookTsfer))
                 return OutputHelper.GetOutputResponse(ResultCode.OK);
             else
                 return OutputHelper.GetOutputResponse(ResultCode.Error);
         }
-
-
 
         private List<CookProcessTsfer> GetListProcess(string processImgDes, string cookBookId)
         {
             List<CookProcessTsfer> listProcess = new List<CookProcessTsfer>();
             string[] arryProcess = processImgDes.Split(new[] { "|||" }, StringSplitOptions.RemoveEmptyEntries);
             //判断图片格式
+            int sort = 1;
             foreach (string item in arryProcess)
             {
                 string[] arrImgDesc = item.Split(new[] { "::" }, StringSplitOptions.RemoveEmptyEntries);
@@ -81,7 +82,8 @@ namespace Manager
                     {
                         CookBookId = cookBookId,
                         ImgUrl = arrImgDesc[0],
-                        Description = arrImgDesc[1]
+                        Description = arrImgDesc[1],
+                        Sort= sort++
                     };
                     listProcess.Add(cpTsfer);
                 }
@@ -136,6 +138,19 @@ namespace Manager
                 list.Add(materialObj);
             }
             return list;
+        }
+
+        /// <summary>
+        /// 获取待审核菜谱
+        /// </summary>
+        /// <param name="userId"></param>
+        /// <returns></returns>
+        public OutputModel GetWaitCheckCookBook(int userId)
+        {
+            List<CookBookTsfer> list = service.GetList(userId, 0);
+            if (list.Count == 0)
+                return OutputHelper.GetOutputResponse(ResultCode.NoData);
+            return OutputHelper.GetOutputResponse(ResultCode.OK, list);
         }
     }
 }

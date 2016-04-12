@@ -100,8 +100,8 @@
                 <dd>
                     <blockquote class="Left">
                         <div>
-                            <input type="text" name="food1[]" class="zhuliao btn37 J_input" value="主料 (如：猪肉)">
-                            <input type="text" name="food2[]" class="yongliang btn37 J_input" value="用量（如100g）">
+                            <input type="text" name="food1[]" class="zhuliao btn37 J_input" placeholder="主料 (如：猪肉)" />
+                            <input type="text" name="food2[]" class="yongliang btn37 J_input" placeholder="用量（如100g）" />
                         </div>
                         <div>
                             <input type="text" name="food1[]" class="zhuliao btn37 J_input" value="">
@@ -116,8 +116,8 @@
                     </blockquote>
                     <blockquote class="Right">
                         <div>
-                            <input type="text" name="food3[]" class="zhuliao btn37 J_input" value="调料 (如：盐)">
-                            <input type="text" name="food4[]" class="yongliang btn37 J_input" value="用量（如10g）">
+                            <input type="text" name="food3[]" class="zhuliao btn37 J_input" placeholder="调料 (如：盐)" />
+                            <input type="text" name="food4[]" class="yongliang btn37 J_input" placeholder="用量（如10g）" />
                         </div>
                         <div>
                             <input type="text" name="food3[]" class="zhuliao btn37 J_input" value="">
@@ -289,12 +289,13 @@
             $("input[name=subject]").focus()
         } else {
             if ($("#final").val() == "") {
-                msc.ui.dialog.error("请上传至少一张成品图片")
+                msc.ui.dialog.error("请上传至少一张成品图片");
+
             } else {
                 if (!$("input[name=cuisine]:checked").val() ||! $("input[name=foodSort]:checked").val()) {
-                    msc.ui.dialog.error("请完善基本参数(菜谱类别或口味)")
+                    msc.ui.dialog.error("请完善基本参数(菜谱类别或口味)");
                 } else {
-                    if (!/color_5b/.test($('input[name="food1[]"]:first').attr("class")) || $('input[name="food1[]"]:first').val() == "") {
+                    if (!/color_5b/.test($('input[name="food1[]"]:first').attr("class")) || $('input[name="food3[]"]:first').val() == "") {
                         msc.ui.dialog.error("请输入食材明细")
                     } else {
                         if (check_step() == 1) {
