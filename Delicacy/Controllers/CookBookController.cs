@@ -44,6 +44,9 @@ namespace Delicacy.Controllers
             return View();
         }
 
-        
+        public ContentResult Get(string cookBookId)
+        {
+            return new ContentResult();
+        }
     }
 }
