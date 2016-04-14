@@ -102,7 +102,7 @@ img {
 body {
     font-family: 'AmbleRegular';
     padding-bottom: 10%;
-    background:url(../images/body-bg.png)no-repeat center fixed;
+    background: url(../images/body-bg.png)no-repeat center fixed;
     -webkit-background-size: cover;
     -moz-background-size: cover;
     -o-background-size: cover;
@@ -211,7 +211,7 @@ body {
         border-right: none;
     }
 
-    .top-nav li.active a, .top-nav li a:hover {
+    .top-nav li.active a, .top-nav li:hover a {
         color: #FFF;
         background: #99261F;
     }
@@ -225,7 +225,39 @@ body {
         font-size: 18px;
         font-family: 'Patua One', cursive;
         text-transform: uppercase;
+        text-decoration: none;
     }
+
+.dropdown {
+    position: relative;
+    display: inline-block;
+}
+
+.dropdown-content {
+    display: none;
+    position: absolute;
+    left: 0;
+    z-index: 1000;
+    background-color: #f9f9f9;
+    min-width: 100%;
+    box-shadow: 0px 8px 16px 0px rgba(0,0,0,0.2);
+}
+
+.top-nav li .dropdown-content a {
+    background-color: #FFF;
+    color: #000;
+    display: block;
+}
+
+    .top-nav li .dropdown-content a:hover {
+        background-color: #f1f1f1;
+    }
+
+.dropdown:hover .dropdown-content {
+    display: block;
+}
+
+
 
 .header {
     padding: 2%;
@@ -985,7 +1017,7 @@ span.black {
 
 .prod {
     margin-bottom: 20px;
-    margin-left:31px;
+    margin-left: 31px;
 }
 
 .prod-last {

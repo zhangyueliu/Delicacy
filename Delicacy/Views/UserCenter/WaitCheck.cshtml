@@ -2,14 +2,32 @@
     ViewBag.Title = "待审核";
     Layout = "~/Views/Shared/_Layout.cshtml";
 }
+
 <link href="~/Content/center.css" rel="stylesheet" />
 <script src="~/Scripts/UserCenter/WaitCheck.js"></script>
 <div class="menu">
     <div class="top-nav">
         <ul>
             <li><a href="/Home/index">首页</a></li>
-            <li><a href="/FoodSort/Index">分类</a></li>
-            <li><a href="/FoodMaterial/Index">食材</a></li>
+            <li class="dropdown">
+                <a href="/FoodSort/Index">分类</a>
+                <div class="dropdown-content">
+                    <a href="#">菜鸟教程 1</a>
+                    <a href="#">菜鸟教程 2</a>
+                    <a href="#">菜鸟教程 3</a>
+
+                </div>
+            </li>
+            <li class="dropdown">
+                <a href="/FoodMaterial/Index">食材</a>
+                <div class="dropdown-content">
+                    <a href="#">大白菜</a>
+                    <a href="#">胡萝卜</a>
+                    <a href="#">土豆</a>
+                    <a href="#">大白菜</a>
+                    <a href="#">胡萝卜</a>
+                </div>
+            </li>
             <li><a href="/SubjectArticle/Index">饮食专题</a></li>
             <li class="active"><a href="/UserInfo/UserCenter">个人中心</a></li>
         </ul>
