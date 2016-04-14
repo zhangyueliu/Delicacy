@@ -29,9 +29,15 @@ namespace Service
             base.Delete(id);
             return Save() > 0;
         }
-        public CookBookTsfer Select(int id)
+        public CookBookTsfer Get(string  cookBookId)
         {
-            return TransferObject.ConvertObjectByEntity<CookBook,CookBookTsfer>(base.Select(id));
+            return TransferObject.ConvertObjectByEntity<CookBook,CookBookTsfer>(base.Select(o=>o.CookBookId==cookBookId).FirstOrDefault());
         }
+
+        public List<CookBookTsfer> GetList(int userId,int status)
+        {
+            return TransferObject.ConvertObjectByEntity<CookBook, CookBookTsfer>(Select(o => o.UserId == userId&&o.Status==status).OrderByDescending(o => o.DateTime).ToList());
+        }
+
     }
 }

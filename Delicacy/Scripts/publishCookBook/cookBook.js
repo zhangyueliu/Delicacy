@@ -14,13 +14,23 @@
         data: { Name: Name, Taste: Taste, FoodSort: FoodSort, Description: Description, Tips: Tips, FinalImg: FinalImg, ProcessImgDes: ProcessImgDes, MainMaterial: MainMaterial, AssistMaterial: AssistMaterial, status: status },
         dataType:'json',
         success: function (data) {
-            if(data.StatusCode==1)
-                return layer.alert('您的菜谱发布成功,正在审核', { icon: 1, skin: 'layer-ext-moon' });
+            $('#postbtn').val("发布菜谱");
+            if (data.StatusCode == 1)
+            {
+                $("input[name=subject]").val('');
+                //信息框-例2
+                layer.msg('您的菜谱发布成功,正在审核', {
+                    time: 2000 
+                });
+                setTimeout(function () { window.location.href = '/UserCenter/WaitCheck'; }, 2000);
+            }
             else
                 return layer.alert(data.Message, { icon: 3, skin: 'layer-ext-moon' });
         }
     });
 }
+
+
 
 
 function getSteps() {

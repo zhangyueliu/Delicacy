@@ -22,7 +22,7 @@ namespace Delicacy.Controllers
                 object uploadResult = UploadManager.UploadImg(files.Get("file"));
                 return Content(JsonConvert.SerializeObject(uploadResult));//Content(UploadManager.UploadImg(files.Get("img")));
             }
-            catch 
+            catch
             {
                 return Content(OutputHelper.GetOutputResponse(ResultCode.Error));
             }
@@ -30,24 +30,7 @@ namespace Delicacy.Controllers
 
         public ActionResult UploadImgOne()
         {
-            try
-            {
-            //    HttpFileCollectionBase files = Request.Files;
-            //    for (int i = 0; i < files.AllKeys.Length; i++)
-            //    {
-            //       HttpPostedFileBase file=  files[i];
-            //       string path= Server.MapPath("/Upload/Imagers/");
-            //       file.SaveAs(path+"abc.jpg");
-            //    }
-                //var data = new { code = 200, successFileLength = 1 };
-                //JsonConvert.SerializeObject(data);
-                //return Content("<input type='hidden' value='/Upload/Imagers/abc.jpg' id='upai_url'>");//Content(UploadManager.UploadImg(files.Get("img")));
-                return View();
-            }
-            catch
-            {
-                return Content(OutputHelper.GetOutputResponse(ResultCode.Error));
-            }
+            return View();
         }
 
         public ContentResult UploadImgTwo()
@@ -56,15 +39,15 @@ namespace Delicacy.Controllers
             {
                 HttpFileCollectionBase files = Request.Files;
                 string newImgName;
-                if(UploadManager.UploadImg(files.Get("file"),out newImgName))
+                if (UploadManager.UploadImg(files.Get("file"), out newImgName))
                     return Content("<input type='hidden' value='" + newImgName + "' id='upai_url'>");
                 else
-                return Content("");//Content(UploadManager.UploadImg(files.Get("img")));
+                    return Content("");//Content(UploadManager.UploadImg(files.Get("img")));
             }
             catch
             {
                 return Content(OutputHelper.GetOutputResponse(ResultCode.Error));
             }
         }
-	}
+    }
 }

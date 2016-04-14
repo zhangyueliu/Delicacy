@@ -35,13 +35,18 @@ namespace Delicacy.Controllers
         [HttpGet]
         public ActionResult  PublishCookBook()
         {
-            //if (user == null)
-            //    return Redirect("/Home/Index");
+            if (user == null)
+                return Redirect("/Home/Index");
             return View();
         }
         public ActionResult List()
         {
             return View();
+        }
+
+        public ContentResult Get(string cookBookId)
+        {
+            return new ContentResult();
         }
     }
 }
