@@ -12,7 +12,7 @@ namespace Manager
     public class CookBookManager
     {
         private CookBookService service = ObjectContainer.GetInstance<CookBookService>();
-        
+
         public OutputModel AddCookBook(int userId, string taste, string foodSort, string name, string description, string tips, string finalImg, string processImgDes, string mainMaterial, string status, string assistMaterial)
         {
             int iTaste, iFoodSort, iStatus;
@@ -45,7 +45,7 @@ namespace Manager
             //进行插入
             CookBookTsfer bookTsfer = new CookBookTsfer()
             {
-                CookBookId=cookBookId,
+                CookBookId = cookBookId,
                 Description = description,
                 FoodSortId = iFoodSort,
                 ImgUrl = finalImg,
@@ -55,8 +55,8 @@ namespace Manager
                 Tips = tips,
                 UserId = userId,
                 ListProcess = listProcess,
-                ListMaterial=listMaterial,
-                DateTime=DateTime.Now
+                ListMaterial = listMaterial,
+                DateTime = DateTime.Now
 
             };
             if (service.Add(bookTsfer))
@@ -83,7 +83,7 @@ namespace Manager
                         CookBookId = cookBookId,
                         ImgUrl = arrImgDesc[0],
                         Description = arrImgDesc[1],
-                        Sort= sort++
+                        Sort = sort++
                     };
                     listProcess.Add(cpTsfer);
                 }
@@ -151,6 +151,39 @@ namespace Manager
             if (list.Count == 0)
                 return OutputHelper.GetOutputResponse(ResultCode.NoData);
             return OutputHelper.GetOutputResponse(ResultCode.OK, list);
+        }
+
+        /// <summary>
+        /// 根据cookbookId获取菜谱详情
+        /// </summary>
+        /// <param name="cookBookId"></param>
+        /// <returns></returns>
+        public OutputModel GetCookBook(string cookBookId)
+        {
+            if (string.IsNullOrEmpty(cookBookId))
+                return OutputHelper.GetOutputResponse(ResultCode.NoParameter);
+            CookBookTsfer cookbook = service.Get(cookBookId);
+            if (cookbook == null)
+                return OutputHelper.GetOutputResponse(ResultCode.ConditionNotSatisfied, "菜谱不存在");
+            //获取过程图
+            CookProcessService processService = new CookProcessService();
+            List<CookProcessTsfer> listProcess = processService.GetList(cookBookId);
+            //在录入的时候必须有三个步骤,这里没有判断步骤是否为空
+            cookbook.ListProcess = listProcess;
+            //获取材料
+            List<CookMaterialTsfer> listMaterial = new CookMaterialService().GetList(cookBookId);
+            cookbook.ListMaterial = listMaterial;
+            //获取口味
+            TasteTsfer taste = new TasteService().Get(cookbook.TasteId.Value);
+            if(taste==null)
+                return OutputHelper.GetOutputResponse(ResultCode.ConditionNotSatisfied);
+            cookbook.TasteName = taste.Name;
+            //获取分类
+            FoodSortTsfer sort = new FoodSortService().Get(cookbook.FoodSortId.Value);
+            if(sort==null)
+                return OutputHelper.GetOutputResponse(ResultCode.ConditionNotSatisfied);
+            cookbook.FoodSortName = sort.Name;
+            return OutputHelper.GetOutputResponse(ResultCode.OK, cookbook);
         }
     }
 }

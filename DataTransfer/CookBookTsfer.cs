@@ -3,15 +3,20 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
-
+using Newtonsoft.Json;
 namespace DataTransfer
 {
     public  class CookBookTsfer
     {
 
         public string CookBookId { get; set; }
+        [JsonIgnore]
         public Nullable<int> TasteId { get; set; }
+        public string TasteName { get; set; }
+        [JsonIgnore]
         public Nullable<int> FoodSortId { get; set; }
+        public string FoodSortName { get; set; }
+        [JsonIgnore]
         public Nullable<int> UserId { get; set; }
         public string Name { get; set; }
         public string ImgUrl { get; set; }

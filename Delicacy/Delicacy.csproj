@@ -322,6 +322,7 @@
     <Content Include="Views\LikeCookBook\Index.cshtml" />
     <Content Include="Views\Upload\UploadImgOne.cshtml" />
     <Content Include="Views\UserCenter\WaitCheck.cshtml" />
+    <Content Include="Views\UserCenter\ShowDetail.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />

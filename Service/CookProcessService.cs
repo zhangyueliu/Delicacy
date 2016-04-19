@@ -16,6 +16,7 @@ namespace Service
             base.Add(TransferObject.ConvertObjectByEntity<CookProcessTsfer, CookProcess>(cookPro));
             return Save() > 0;
         }
+
         public bool Update(CookProcessTsfer cookPro)
         {
             base.Update(TransferObject.ConvertObjectByEntity<CookProcessTsfer, CookProcess>(cookPro));
@@ -37,10 +38,11 @@ namespace Service
             return Save() > 0;
         }
 
-        public CookProcessTsfer Get(int id)
-        {
-            return TransferObject.ConvertObjectByEntity<CookProcess, CookProcessTsfer>(base.Select(id));
-        }
+        //public CookProcessTsfer Get(int id)
+        //{
+        //    return TransferObject.ConvertObjectByEntity<CookProcess, CookProcessTsfer>(base.Select(id));
+        //}
+
         /// <summary>
         /// 获取某菜谱下的做菜步骤列表
         /// </summary>
