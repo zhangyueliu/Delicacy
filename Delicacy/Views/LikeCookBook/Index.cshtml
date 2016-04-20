@@ -2,12 +2,30 @@
     ViewBag.Title = "Index";
     Layout = "~/Views/Shared/_Layout.cshtml";
 }
+
 <div class="menu">
     <div class="top-nav">
         <ul>
             <li><a href="/Home/index">首页</a></li>
-            <li><a href="/FoodSort/Index">分类</a></li>
-            <li><a href="/FoodMaterial/Index">食材</a></li>
+            <li class="dropdown">
+                <a href="/FoodSort/Index">分类</a>
+                <div class="dropdown-content">
+                    <a href="/CookBook/List">菜鸟教程 1</a>
+                    <a href="/CookBook/List">菜鸟教程 2</a>
+                    <a href="/CookBook/List">菜鸟教程 3</a>
+
+                </div>
+            </li>
+            <li class="dropdown">
+                <a href="/FoodMaterial/Index">食材</a>
+                <div class="dropdown-content">
+                    <a href="#">大白菜</a>
+                    <a href="#">胡萝卜</a>
+                    <a href="#">土豆</a>
+                    <a href="#">大白菜</a>
+                    <a href="#">胡萝卜</a>
+                </div>
+            </li>
             <li><a href="/SubjectArticle/Index">饮食专题</a></li>
             <li class="active"><a href="/UserInfo/UserCenter">个人中心</a></li>
         </ul>
@@ -41,7 +59,7 @@
             <a href="#" class="on">我的收藏</a>
         </div>
     </div>
-    <div id="J_list" class="ui_list_1 space_box_home get_num" style="margin-left: 30px;">
+    <div id="J_list" class="ui_list_1 space_box_home get_num">
         <ul>
             <li data-id="256590">
                 <div class="pic"> <a target="_blank" href="#" title="火龙果汁樱花慕斯"> <img width="120" height="90" class="imgLoad" src="http://i3.meishichina.com/attachment/recipe/2016/03/14/p120_20160314145793744758513.jpg" alt="火龙果汁樱花慕斯" style="display: block;"></a></div>
