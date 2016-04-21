@@ -11,13 +11,13 @@ namespace Service
 {
     public class CookBookService : BaseService<CookBook>
     {
-        public bool Add(CookBookTsfer cookBook,List<FoodMaterial_CookBookTsfer> listMaterCook)
+        public bool Add(CookBookTsfer cookBook,List<FoodMaterial_CookBookTsferService> listMaterCook)
         {
             //这里增加菜过程的插入
             base.Add(TransferObject.ConvertObjectByEntity<CookBookTsfer, CookBook>(cookBook));
             base.Add<CookProcess>(TransferObject.ConvertObjectByEntity<CookProcessTsfer, CookProcess>(cookBook.ListProcess));
             base.Add<CookMaterial>(TransferObject.ConvertObjectByEntity<CookMaterialTsfer, CookMaterial>(cookBook.ListMaterial));
-            Add<FoodMaterial_CookBook>(TransferObject.ConvertObjectByEntity<FoodMaterial_CookBookTsfer, FoodMaterial_CookBook>(listMaterCook));
+            Add<FoodMaterial_CookBook>(TransferObject.ConvertObjectByEntity<FoodMaterial_CookBookTsferService, FoodMaterial_CookBook>(listMaterCook));
             return Save() > 0;
         }
         public bool Update(CookBookTsfer cookBook)
@@ -39,7 +39,10 @@ namespace Service
         {
             return TransferObject.ConvertObjectByEntity<CookBook, CookBookTsfer>(Select(o => o.UserId == userId&&o.Status==status).OrderByDescending(o => o.DateTime).ToList());
         }
-
+        public List<CookBookTsfer> GetCookBookBysort(int sort)
+        {
+            return TransferObject.ConvertObjectByEntity<CookBook, CookBookTsfer>(Select(o => o.FoodSortId == sort).OrderByDescending(o => o.DateTime).ToList());
+        }
     }
 }
 //=======

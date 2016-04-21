@@ -1,4 +1,5 @@
-﻿﻿<!DOCTYPE html>
+﻿@using DataTransfer
+﻿<!DOCTYPE html>
 <html>
 <head>
     <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
@@ -28,7 +29,7 @@
         //        $(this).addClass("active");
         //    });
         //});
-        
+
     </script>
 </head>
 <body>
@@ -79,21 +80,33 @@
                     <ul id="daohang">
                         <li><a href="/Home/index">首页</a></li>
                         <li id="secondli" class="dropdown">
-                            <a href="/FoodSort/Index">分类</a>
+                            <a href="javascript:;">分类</a>
                             <div class="dropdown-content">
-                                <a href="/CookBook/List">菜鸟教程 1</a>
-                                <a href="/CookBook/List">菜鸟教程 2</a>
-                                <a href="/CookBook/List">菜鸟教程 3</a>
+                                @{List<FoodSortTsfer> listfenlei = ViewBag.listfenlei;
+                                if (listfenlei.Count > 0)
+                                {
+                                    foreach (FoodSortTsfer sort in listfenlei)
+                                    {
+                                        <a href="/CookBook/List/@sort.FoodSortId">@sort.Name</a>
+                                    }
+                                }
+
+                                }
                             </div>
                         </li>
                         <li class="dropdown" id="thirdli">
-                            <a href="/FoodMaterial/Index">食材</a>
+                            <a href="javascript:;">食材</a>
                             <div class="dropdown-content">
-                                <a href="#">大白菜</a>
-                                <a href="#">胡萝卜</a>
-                                <a href="#">土豆</a>
-                                <a href="#">大白菜</a>
-                                <a href="#">胡萝卜</a>
+                                @{List<FoodMaterialTsfer> listshicai = ViewBag.listshicai;
+                                if (listshicai.Count > 0)
+                                {
+                                    foreach (FoodMaterialTsfer sort in listshicai)
+                                    {
+                                        <a href="/FoodMaterial/List/@sort.FoodMaterialId">@sort.Name</a>
+                                    }
+                                }
+
+                                }
                             </div>
                         </li>
                         <li id="forthli"><a href="/SubjectArticle/Index">饮食专题</a></li>

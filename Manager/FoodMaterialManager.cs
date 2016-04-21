@@ -17,5 +17,9 @@ namespace Manager
         {
             return service.GetList();
         }
+        public FoodMaterialTsfer Get(int id)
+        {
+            return service.Get(id);
+        }
     }
 }

@@ -1,82 +1,55 @@
-﻿@{
+﻿@using DataTransfer
+@{
     Layout = "~/Views/Shared/_Layout.cshtml";
 }
 <script>
-  $(document).ready(function () {
-      $("#secondli").addClass("active");
-  });
+    $(document).ready(function () {
+        $("#secondli").addClass("active");
+    });
+    function image() {
+        var height = $(".imagess").height;
+        var width = $(".imagess").width;
+        if (height >= width) {
+            $(".imagess").attr("height", "100%");
+        }
+        if (height < width) {
+             $(".imagess").attr("width", "100%");
+            }
+    }
 </script>
+<style>
 
+</style>
 
 
 
 <div class="main">
     <div class="ui_title mt20">
         <div class="ui_title_wrap">
-            <a href="javascript:;" class="on">热菜</a>
+            <a href="javascript:;" class="on">@ViewBag.sort</a>
         </div>
     </div>
     <div class="prod">
-        <div class="col_1_of_3 span_1_of_3">
+        @{List<CookBookTsfer> list = ViewBag.cookbookList;
+if (list.Count > 0)
+{
+    foreach (CookBookTsfer cook in list)
+    {
+        <div class="col_1_of_3 span_1_of_3" style="height:300px;">
             <div class="view effect">
-                <img src="/images/pic9.jpg" alt="" />
-                <div class="mask"></div>
-            </div>
-            <a href="#"><h3>油焖大虾</h3></a>
-        </div>
-        <div class="col_1_of_3 span_1_of_3">
-            <div class="view effect">
-                <img src="/images/pic10.jpg" alt="" />
-                <div class="mask"></div>
+                <img src="@cook.ImgUrl" alt="@cook.Name" class="imagess" onloadstart="image();" />
 
             </div>
-            <a href="#"><h3>红烧茄子</h3></a>
+            <a href="/CookBook/Get/?cookBookId=@cook.CookBookId"><h3>@cook.Name</h3></a>
         </div>
-        <div class="col_1_of_3 span_1_of_3">
-            <div class="view effect">
-                <img src="/images/pic10.jpg" alt="" />
-                <div class="mask"></div>
+    }
+}
+}
 
-            </div>
-            <a href="#"><h3>红烧茄子</h3></a>
-        </div>
-        <div class="col_1_of_3 span_1_of_3">
-            <div class="view effect">
-                <img src="/images/pic11.jpg" alt="" />
-                <div class="mask"></div>
-            </div>
-            <a href="#"> <h3>Lorem Ipsum is simply</h3></a>
-        </div>
-        <div class="col_1_of_3 span_1_of_3">
-            <div class="view effect">
-                <img src="/images/pic11.jpg" alt="" />
-                <div class="mask"></div>
-            </div>
-            <a href="#"> <h3>Lorem Ipsum is simply</h3></a>
-        </div>
-        <div class="col_1_of_3 span_1_of_3">
-            <div class="view effect">
-                <img src="/images/pic11.jpg" alt="" />
-                <div class="mask"></div>
-            </div>
-            <a href="#"> <h3>Lorem Ipsum is simply</h3></a>
-        </div>
-        <div class="col_1_of_3 span_1_of_3">
-            <div class="view effect">
-                <img src="/images/pic11.jpg" alt="" />
-                <div class="mask"></div>
-            </div>
-            <a href="#"> <h3>Lorem Ipsum is simply</h3></a>
-        </div>
+
         <div class="clear"></div>
     </div>
-
-
-
-
-
 </div>
-
 
 
 

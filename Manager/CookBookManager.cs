@@ -46,7 +46,7 @@ namespace Manager
             string [] arrMaterial = foodMaterial.Split(new [] {"',"}, StringSplitOptions.RemoveEmptyEntries);
             int temp;
             FoodMaterialService materialService = new FoodMaterialService();
-            List<FoodMaterial_CookBookTsfer> listMaterCook = new List<FoodMaterial_CookBookTsfer>();
+            List<FoodMaterial_CookBookTsferManager> listMaterCook = new List<FoodMaterial_CookBookTsferManager>();
             foreach (string material in arrMaterial)
             {
                 if (!int.TryParse(material, out temp))
@@ -55,7 +55,7 @@ namespace Manager
                 }
                 if( !materialService.IsExist(temp))
                     return OutputHelper.GetOutputResponse(ResultCode.ErrorParameter, "食材选择错误");
-                FoodMaterial_CookBookTsfer materCook = new FoodMaterial_CookBookTsfer { 
+                FoodMaterial_CookBookTsferManager materCook = new FoodMaterial_CookBookTsferManager { 
                 CookBookId=cookBookId,
                 FoodMaterialId=temp
                 };
@@ -203,6 +203,11 @@ namespace Manager
                 return OutputHelper.GetOutputResponse(ResultCode.ConditionNotSatisfied);
             cookbook.FoodSortName = sort.Name;
             return OutputHelper.GetOutputResponse(ResultCode.OK, cookbook);
+        }
+
+        public List<CookBookTsfer> GetCookBookBysort(int sort)
+        {
+           return service.GetCookBookBysort(sort);
         }
     }
 }

@@ -101,7 +101,7 @@ img {
 
 body {
     font-family: 'AmbleRegular';
-    padding-bottom: 10%;
+    padding-bottom: 1%;
     background: url(../images/body-bg.png)no-repeat center fixed;
     -webkit-background-size: cover;
     -moz-background-size: cover;
@@ -297,7 +297,7 @@ body {
         -o-transform: scale(0.99);
         opacity: 1;
     }
-body, button, input, select, textarea {
+body,button, input, select, textarea {
     font: 12px/1.6 "Hiragino Sans GB","STHeiti","Î¢ÈíÑÅºÚ","Microsoft YaHei",Helvetica,Arial,serif;
 }
 .banner2 a {
@@ -947,6 +947,7 @@ span.black {
     -o-box-shadow: 0px 0px 5px #aaa;
     -moz-box-shadow: 0px 0px 5px #aaa;
     cursor: default;
+    height:90%;
 }
 
     .view .mask, .view .content {
@@ -974,6 +975,7 @@ span.black {
     -o-transition: all 0.2s ease-in;
     -ms-transition: all 0.2s ease-in;
     transition: all 0.2s ease-in;
+    margin:auto;
 }
 
 .effect .mask {
@@ -997,12 +999,12 @@ span.black {
 }
 
 .effect:hover img {
-    opacity: 0.7;
+    /*opacity: 0.7;
     -moz-transform: scale(2,2);
     -webkit-transform: scale(2,2);
     -o-transform: scale(2,2);
     -ms-transform: scale(2,2);
-    transform: scale(2,2);
+    transform: scale(2,2);*/
 }
 
 .effect:hover .mask {

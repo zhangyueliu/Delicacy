@@ -15,7 +15,10 @@ namespace Service
         {
             return TransferObject.ConvertObjectByEntity<FoodMaterial, FoodMaterialTsfer>(Select(o => true).OrderByDescending(o => o.Priority).ToList());
         }
-
+        public FoodMaterialTsfer Get(int id)
+        {
+            return TransferObject.ConvertObjectByEntity<FoodMaterial, FoodMaterialTsfer>(Select(o => o.FoodMaterialId == id).FirstOrDefault());
+        }
         public bool IsExist(int foodMaterialId)
         {
             return  Select(o => o.FoodMaterialId == foodMaterialId).Any();

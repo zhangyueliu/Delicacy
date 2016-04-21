@@ -56,6 +56,7 @@
     <Compile Include="CookBookManager.cs" />
     <Compile Include="CookProcessManager.cs" />
     <Compile Include="FoodMaterialManager.cs" />
+    <Compile Include="FoodMaterial_CookBookTsferManager.cs" />
     <Compile Include="FoodSortManager.cs" />
     <Compile Include="LikeCookBookManager.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />

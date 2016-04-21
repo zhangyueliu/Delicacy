@@ -15,7 +15,6 @@ namespace Delicacy.Controllers
         {
             return View();
         }
-
         //public ContentResult GetList()
         //{
         //    FoodMaterialManager manager = new FoodMaterialManager();
