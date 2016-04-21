@@ -22,3 +22,15 @@ F:\GraduationProject\Yueyue\Delicacy\EF\bin\Debug\zh-Hans\EntityFramework.SqlSer
 F:\GraduationProject\Yueyue\Delicacy\EF\obj\Debug\EF.csprojResolveAssemblyReference.cache
 F:\GraduationProject\Yueyue\Delicacy\EF\obj\Debug\EF.dll
 F:\GraduationProject\Yueyue\Delicacy\EF\obj\Debug\EF.pdb
+E:\Important\Delicacy\Delicacy\EF\bin\Debug\EF.dll.config
+E:\Important\Delicacy\Delicacy\EF\bin\Debug\EF.dll
+E:\Important\Delicacy\Delicacy\EF\bin\Debug\EF.pdb
+E:\Important\Delicacy\Delicacy\EF\bin\Debug\EntityFramework.dll
+E:\Important\Delicacy\Delicacy\EF\bin\Debug\EntityFramework.SqlServer.dll
+E:\Important\Delicacy\Delicacy\EF\bin\Debug\EntityFramework.xml
+E:\Important\Delicacy\Delicacy\EF\bin\Debug\EntityFramework.SqlServer.xml
+E:\Important\Delicacy\Delicacy\EF\bin\Debug\zh-Hans\EntityFramework.resources.dll
+E:\Important\Delicacy\Delicacy\EF\bin\Debug\zh-Hans\EntityFramework.SqlServer.resources.dll
+E:\Important\Delicacy\Delicacy\EF\obj\Debug\EF.csprojResolveAssemblyReference.cache
+E:\Important\Delicacy\Delicacy\EF\obj\Debug\EF.dll
+E:\Important\Delicacy\Delicacy\EF\obj\Debug\EF.pdb

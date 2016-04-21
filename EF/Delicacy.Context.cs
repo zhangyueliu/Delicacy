@@ -29,6 +29,8 @@ namespace EF
         public virtual DbSet<CookBook> CookBook { get; set; }
         public virtual DbSet<CookMaterial> CookMaterial { get; set; }
         public virtual DbSet<CookProcess> CookProcess { get; set; }
+        public virtual DbSet<FoodMaterial> FoodMaterial { get; set; }
+        public virtual DbSet<FoodMaterial_CookBook> FoodMaterial_CookBook { get; set; }
         public virtual DbSet<FoodSort> FoodSort { get; set; }
         public virtual DbSet<LikeCookBook> LikeCookBook { get; set; }
         public virtual DbSet<SubjectArticle> SubjectArticle { get; set; }

@@ -76,6 +76,12 @@
       <DependentUpon>Delicacy.edmx</DependentUpon>
     </Compile>
     <Compile Include="EFDataAccess.cs" />
+    <Compile Include="FoodMaterial.cs">
+      <DependentUpon>Delicacy.tt</DependentUpon>
+    </Compile>
+    <Compile Include="FoodMaterial_CookBook.cs">
+      <DependentUpon>Delicacy.tt</DependentUpon>
+    </Compile>
     <Compile Include="FoodSort.cs">
       <DependentUpon>Delicacy.tt</DependentUpon>
     </Compile>
