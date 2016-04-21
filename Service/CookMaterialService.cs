@@ -11,9 +11,9 @@ namespace Service
 {
     public class CookMaterialService : BaseService<CookMaterial>
     {
-        public void AddNoSave(List<CookMaterialTsfer> list)
+        public List<CookMaterialTsfer> GetList(string cookBookId)
         {
-            Add(TransferObject.ConvertObjectByEntity<CookMaterialTsfer, CookMaterial>(list));
+            return TransferObject.ConvertObjectByEntity<CookMaterial, CookMaterialTsfer>(Select(o => o.CookBookId == cookBookId).ToList());
         }
     }
 }

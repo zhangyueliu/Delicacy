@@ -17,11 +17,15 @@ namespace Delicacy.Controllers
         // GET: /UserCenter/
         public ActionResult Index()
         {
+            if (!IsLogin())
+                return Redirect("/");
             return View();
         }
 
         public ActionResult WaitCheck()
         {
+            if (!IsLogin())
+                return Redirect("/");
             return View();
         }
 
@@ -29,11 +33,21 @@ namespace Delicacy.Controllers
         /// 获取待审核菜谱
         /// </summary>
         /// <returns></returns>
-        public ContentResult GetWaitCheckCookBook()
+        public ActionResult GetWaitCheckCookBook()
         {//这里没有分页
             if (user == null)
                 return Content(OutputHelper.GetOutputResponse(ResultCode.NoLogin));
             return Content(new CookBookManager().GetWaitCheckCookBook(user.UserId));
         }
-	}
+
+        /// <summary>
+        /// 显示菜谱详情页面
+        /// </summary>
+        /// <returns></returns>
+        public ActionResult ShowDetail(string cookBookId)
+        {
+            OutputModel model = new CookBookManager().GetCookBook(cookBookId);
+            return View(model.Data);
+        }
+    }
 }
