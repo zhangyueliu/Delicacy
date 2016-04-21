@@ -183,6 +183,7 @@
     <Compile Include="Startup.cs" />
   </ItemGroup>
   <ItemGroup>
+    <Content Include="Content\Admin\login.css" />
     <Content Include="Content\bootstrap.css" />
     <Content Include="Content\bootstrap.min.css" />
     <Content Include="Content\center.css" />
@@ -200,6 +201,7 @@
     <Content Include="fonts\glyphicons-halflings-regular.svg" />
     <Content Include="Global.asax" />
     <Content Include="Content\Site.css" />
+    <Content Include="images\Admin\1.jpg" />
     <Content Include="images\arrow.png" />
     <Content Include="images\banner1.jpg" />
     <Content Include="images\banner2.jpg" />
@@ -324,11 +326,12 @@
     <Content Include="Views\Upload\UploadImgOne.cshtml" />
     <Content Include="Views\UserCenter\WaitCheck.cshtml" />
     <Content Include="Views\UserCenter\ShowDetail.cshtml" />
+    <Content Include="Views\AdminUser\Login.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
+    <Folder Include="Scripts\Admin\" />
     <Folder Include="Upload\Images\" />
-    <Folder Include="Views\AdminUser\" />
     <Folder Include="Views\Base\" />
     <Folder Include="Views\CookProcess\" />
     <Folder Include="Views\SubjectSort\" />

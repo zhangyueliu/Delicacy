@@ -10,8 +10,9 @@ namespace Delicacy.Controllers.Admin
     {
         //
         // GET: /AdminUser/
-        public ActionResult Index()
+        public ActionResult Login(string userId,string pwd)
         {
+
             return View();
         }
 	}
