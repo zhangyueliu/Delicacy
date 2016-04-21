@@ -159,7 +159,9 @@
     <Compile Include="App_Start\RouteConfig.cs" />
     <Compile Include="App_Start\Startup.Auth.cs" />
     <Compile Include="Controllers\AccountController.cs" />
+    <Compile Include="Controllers\Admin\AdminCenterController.cs" />
     <Compile Include="Controllers\Admin\AdminUserController.cs" />
+    <Compile Include="Controllers\Admin\BaseController.cs" />
     <Compile Include="Controllers\BaseController.cs" />
     <Compile Include="Controllers\CookBookController.cs" />
     <Compile Include="Controllers\CookProcessController.cs" />
@@ -327,6 +329,7 @@
     <Content Include="Views\UserCenter\WaitCheck.cshtml" />
     <Content Include="Views\UserCenter\ShowDetail.cshtml" />
     <Content Include="Views\AdminUser\Login.cshtml" />
+    <Content Include="Views\AdminCenter\Index.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />

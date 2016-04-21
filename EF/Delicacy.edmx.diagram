@@ -33,6 +33,7 @@
         <AssociationConnector Association="DelicacyModel.FK_SUBJECTA_REFERENCE_SUBJECTS" />
         <AssociationConnector Association="DelicacyModel.FK_SUBJECTA_REFERENCE_USERINFO" />
         <AssociationConnector Association="DelicacyModel.FK_SUPPORTS_REFERENCE_USERINFO" />
+        <EntityTypeShape EntityType="DelicacyModel.AdminUser" Width="1.5" PointX="9.375" PointY="0.75" />
       </Diagram>
     </edmx:Diagrams>
   </edmx:Designer>

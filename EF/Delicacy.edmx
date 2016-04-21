@@ -5,6 +5,14 @@
     <!-- SSDL content -->
     <edmx:StorageModels>
     <Schema Namespace="DelicacyModel.Store" Provider="System.Data.SqlClient" ProviderManifestToken="2005" Alias="Self" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns="http://schemas.microsoft.com/ado/2009/11/edm/ssdl">
+        <EntityType Name="AdminUser">
+          <Key>
+            <PropertyRef Name="UserId" />
+          </Key>
+          <Property Name="UserId" Type="varchar" MaxLength="50" Nullable="false" />
+          <Property Name="pwd" Type="varchar" MaxLength="100" Nullable="false" />
+          <Property Name="RegDate" Type="datetime" Nullable="false" />
+        </EntityType>
         <EntityType Name="CommentRecord">
           <Key>
             <PropertyRef Name="CommentId" />
@@ -306,6 +314,7 @@
           </ReferentialConstraint>
         </Association>
         <EntityContainer Name="DelicacyModelStoreContainer">
+          <EntitySet Name="AdminUser" EntityType="Self.AdminUser" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="CommentRecord" EntityType="Self.CommentRecord" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="CookBook" EntityType="Self.CookBook" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="CookMaterial" EntityType="Self.CookMaterial" Schema="dbo" store:Type="Tables" />
@@ -446,6 +455,7 @@
             <End Role="UserInfo" EntitySet="UserInfo" />
             <End Role="SupportScanRecord" EntitySet="SupportScanRecord" />
           </AssociationSet>
+          <EntitySet Name="AdminUser" EntityType="DelicacyModel.AdminUser" />
         </EntityContainer>
         <EntityType Name="CommentRecord">
           <Key>
@@ -773,6 +783,14 @@
             </Dependent>
           </ReferentialConstraint>
         </Association>
+        <EntityType Name="AdminUser">
+          <Key>
+            <PropertyRef Name="UserId" />
+          </Key>
+          <Property Name="UserId" Type="String" Nullable="false" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Name="pwd" Type="String" Nullable="false" MaxLength="100" FixedLength="false" Unicode="false" />
+          <Property Name="RegDate" Type="DateTime" Nullable="false" Precision="3" />
+        </EntityType>
         </Schema>
     </edmx:ConceptualModels>
     <!-- C-S mapping content -->
@@ -935,6 +953,15 @@
                 <ScalarProperty Name="IsUsed" ColumnName="IsUsed" />
                 <ScalarProperty Name="LoginId" ColumnName="LoginId" />
                 <ScalarProperty Name="GUID" ColumnName="GUID" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="AdminUser">
+            <EntityTypeMapping TypeName="DelicacyModel.AdminUser">
+              <MappingFragment StoreEntitySet="AdminUser">
+                <ScalarProperty Name="RegDate" ColumnName="RegDate" />
+                <ScalarProperty Name="pwd" ColumnName="pwd" />
+                <ScalarProperty Name="UserId" ColumnName="UserId" />
               </MappingFragment>
             </EntityTypeMapping>
           </EntitySetMapping>

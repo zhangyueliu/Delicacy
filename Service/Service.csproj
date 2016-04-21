@@ -42,6 +42,7 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="AdminUserService.cs" />
     <Compile Include="BaseService.cs" />
     <Compile Include="CommentRecordService.cs" />
     <Compile Include="CookBookService.cs" />

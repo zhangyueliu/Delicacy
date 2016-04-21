@@ -16,21 +16,39 @@
     <script type="text/javascript">
         function login() {
             var userId = $('#u').val();
-            if (!userId)
-                return layer.alert('用户名不能为空', { icon: 3, skin: 'layer-ext-moon' });
-            var pwd = $('#p').val();
-            if (!pwd)
-                return layer.alert('密码不能为空', { icon: 3, skin: 'layer-ext-moon' });
-            $.ajax({
-                url: '',
-                type: 'post',
-                data: {userId:userId,pwd:hex_md5(pwd)},
-                success: function (data) {
+            if (!userId) {
+                layer.msg('账号不能为空', {
+                    time: 2000
+                });
+                $("#u").focus();
+                return;
+            }
 
+            var pwd = $('#p').val();
+            if (!pwd) {
+                layer.msg('密码不能为空', {
+                    time: 2000
+                });
+                $("#p").focus();
+                return;
+            }
+
+            $.ajax({
+                url: '/AdminUser/Login',
+                type: 'post',
+                data: { userId: userId, pwd: hex_md5(pwd) },
+                dataType: 'json',
+                success: function (data) {
+                    if (data.StatusCode === 1)
+                        window.location.href = '/AdminCenter';
+                    else
+                        layer.msg(data.Message, {
+                            time: 2000
+                        });
                 }
             });
         }
-        
+
 
     </script>
 </head>
@@ -53,7 +71,6 @@
                             <div class="uinArea" id="uinArea">
                                 <label class="input-tips" for="u">帐号：</label>
                                 <div class="inputOuter" id="uArea">
-
                                     <input type="text" id="u" name="username" class="inputstyle" />
                                 </div>
                             </div>

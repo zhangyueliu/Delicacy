@@ -40,5 +40,6 @@ namespace EF
         public virtual DbSet<Taste> Taste { get; set; }
         public virtual DbSet<UserInfo> UserInfo { get; set; }
         public virtual DbSet<VerifyRegister> VerifyRegister { get; set; }
+        public virtual DbSet<AdminUser> AdminUser { get; set; }
     }
 }

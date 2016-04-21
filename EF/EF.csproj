@@ -48,6 +48,9 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="AdminUser.cs">
+      <DependentUpon>Delicacy.tt</DependentUpon>
+    </Compile>
     <Compile Include="CommentRecord.cs">
       <DependentUpon>Delicacy.tt</DependentUpon>
     </Compile>
