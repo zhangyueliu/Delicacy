@@ -20,6 +20,7 @@ namespace Delicacy.Controllers
         public BaseController()
         {
             IsLogin();
+
         }
 
         /// <summary>
