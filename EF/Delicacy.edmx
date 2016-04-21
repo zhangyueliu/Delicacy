@@ -51,6 +51,22 @@
           <Property Name="Description" Type="nvarchar" MaxLength="100" />
           <Property Name="Sort" Type="int" Nullable="false" />
         </EntityType>
+        <EntityType Name="FoodMaterial">
+          <Key>
+            <PropertyRef Name="FoodMaterialId" />
+          </Key>
+          <Property Name="FoodMaterialId" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="Name" Type="nvarchar" MaxLength="50" Nullable="false" />
+          <Property Name="Priority" Type="int" Nullable="false" />
+        </EntityType>
+        <EntityType Name="FoodMaterial_CookBook">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="FoodMaterialId" Type="int" Nullable="false" />
+          <Property Name="CookBookId" Type="varchar" MaxLength="100" Nullable="false" />
+        </EntityType>
         <EntityType Name="FoodSort">
           <Key>
             <PropertyRef Name="FoodSortId" />
@@ -294,6 +310,8 @@
           <EntitySet Name="CookBook" EntityType="Self.CookBook" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="CookMaterial" EntityType="Self.CookMaterial" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="CookProcess" EntityType="Self.CookProcess" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="FoodMaterial" EntityType="Self.FoodMaterial" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="FoodMaterial_CookBook" EntityType="Self.FoodMaterial_CookBook" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="FoodSort" EntityType="Self.FoodSort" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="LikeCookBook" EntityType="Self.LikeCookBook" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="SubjectArticle" EntityType="Self.SubjectArticle" Schema="dbo" store:Type="Tables" />
@@ -365,6 +383,8 @@
           <EntitySet Name="CookBook" EntityType="DelicacyModel.CookBook" />
           <EntitySet Name="CookMaterial" EntityType="DelicacyModel.CookMaterial" />
           <EntitySet Name="CookProcess" EntityType="DelicacyModel.CookProcess" />
+          <EntitySet Name="FoodMaterial" EntityType="DelicacyModel.FoodMaterial" />
+          <EntitySet Name="FoodMaterial_CookBook" EntityType="DelicacyModel.FoodMaterial_CookBook" />
           <EntitySet Name="FoodSort" EntityType="DelicacyModel.FoodSort" />
           <EntitySet Name="LikeCookBook" EntityType="DelicacyModel.LikeCookBook" />
           <EntitySet Name="SubjectArticle" EntityType="DelicacyModel.SubjectArticle" />
@@ -373,6 +393,7 @@
           <EntitySet Name="sysdiagrams" EntityType="DelicacyModel.sysdiagrams" />
           <EntitySet Name="Taste" EntityType="DelicacyModel.Taste" />
           <EntitySet Name="UserInfo" EntityType="DelicacyModel.UserInfo" />
+          <EntitySet Name="VerifyRegister" EntityType="DelicacyModel.VerifyRegister" />
           <AssociationSet Name="FK_COMMENTR_REFERENCE_COOKBOOK" Association="DelicacyModel.FK_COMMENTR_REFERENCE_COOKBOOK">
             <End Role="CookBook" EntitySet="CookBook" />
             <End Role="CommentRecord" EntitySet="CommentRecord" />
@@ -425,7 +446,6 @@
             <End Role="UserInfo" EntitySet="UserInfo" />
             <End Role="SupportScanRecord" EntitySet="SupportScanRecord" />
           </AssociationSet>
-          <EntitySet Name="VerifyRegister" EntityType="DelicacyModel.VerifyRegister" />
         </EntityContainer>
         <EntityType Name="CommentRecord">
           <Key>
@@ -484,6 +504,22 @@
           <Property Name="Description" Type="String" MaxLength="100" FixedLength="false" Unicode="true" />
           <Property Name="Sort" Type="Int32" Nullable="false" />
           <NavigationProperty Name="CookBook" Relationship="DelicacyModel.FK_COOKPROC_REFERENCE_COOKBOOK" FromRole="CookProcess" ToRole="CookBook" />
+        </EntityType>
+        <EntityType Name="FoodMaterial">
+          <Key>
+            <PropertyRef Name="FoodMaterialId" />
+          </Key>
+          <Property Name="FoodMaterialId" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="Name" Type="String" Nullable="false" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="Priority" Type="Int32" Nullable="false" />
+        </EntityType>
+        <EntityType Name="FoodMaterial_CookBook">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="FoodMaterialId" Type="Int32" Nullable="false" />
+          <Property Name="CookBookId" Type="String" Nullable="false" MaxLength="100" FixedLength="false" Unicode="false" />
         </EntityType>
         <EntityType Name="FoodSort">
           <Key>
@@ -570,6 +606,16 @@
           <NavigationProperty Name="LikeCookBook" Relationship="DelicacyModel.FK_LIKECOOK_REFERENCE_USERINFO" FromRole="UserInfo" ToRole="LikeCookBook" />
           <NavigationProperty Name="SubjectArticle" Relationship="DelicacyModel.FK_SUBJECTA_REFERENCE_USERINFO" FromRole="UserInfo" ToRole="SubjectArticle" />
           <NavigationProperty Name="SupportScanRecord" Relationship="DelicacyModel.FK_SUPPORTS_REFERENCE_USERINFO" FromRole="UserInfo" ToRole="SupportScanRecord" />
+        </EntityType>
+        <EntityType Name="VerifyRegister">
+          <Key>
+            <PropertyRef Name="GUID" />
+          </Key>
+          <Property Name="GUID" Type="String" Nullable="false" MaxLength="100" FixedLength="false" Unicode="false" />
+          <Property Name="LoginId" Type="String" Nullable="false" MaxLength="100" FixedLength="false" Unicode="false" />
+          <Property Name="IsUsed" Type="Boolean" Nullable="false" />
+          <Property Name="OutDate" Type="DateTime" Nullable="false" Precision="3" />
+          <Property Name="Type" Type="Int32" Nullable="false" />
         </EntityType>
         <Association Name="FK_COMMENTR_REFERENCE_COOKBOOK">
           <End Type="DelicacyModel.CookBook" Role="CookBook" Multiplicity="0..1" />
@@ -727,16 +773,6 @@
             </Dependent>
           </ReferentialConstraint>
         </Association>
-        <EntityType Name="VerifyRegister">
-          <Key>
-            <PropertyRef Name="GUID" />
-          </Key>
-          <Property Name="GUID" Type="String" Nullable="false" MaxLength="100" FixedLength="false" Unicode="false" />
-          <Property Name="LoginId" Type="String" Nullable="false" MaxLength="100" FixedLength="false" Unicode="false" />
-          <Property Name="IsUsed" Type="Boolean" Nullable="false" />
-          <Property Name="OutDate" Type="DateTime" Nullable="false" Precision="3" />
-          <Property Name="Type" Type="Int32" Nullable="false" />
-        </EntityType>
         </Schema>
     </edmx:ConceptualModels>
     <!-- C-S mapping content -->
@@ -790,6 +826,24 @@
                 <ScalarProperty Name="ImgUrl" ColumnName="ImgUrl" />
                 <ScalarProperty Name="CookBookId" ColumnName="CookBookId" />
                 <ScalarProperty Name="CookProcessId" ColumnName="CookProcessId" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="FoodMaterial">
+            <EntityTypeMapping TypeName="DelicacyModel.FoodMaterial">
+              <MappingFragment StoreEntitySet="FoodMaterial">
+                <ScalarProperty Name="Priority" ColumnName="Priority" />
+                <ScalarProperty Name="Name" ColumnName="Name" />
+                <ScalarProperty Name="FoodMaterialId" ColumnName="FoodMaterialId" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="FoodMaterial_CookBook">
+            <EntityTypeMapping TypeName="DelicacyModel.FoodMaterial_CookBook">
+              <MappingFragment StoreEntitySet="FoodMaterial_CookBook">
+                <ScalarProperty Name="CookBookId" ColumnName="CookBookId" />
+                <ScalarProperty Name="FoodMaterialId" ColumnName="FoodMaterialId" />
+                <ScalarProperty Name="Id" ColumnName="Id" />
               </MappingFragment>
             </EntityTypeMapping>
           </EntitySetMapping>

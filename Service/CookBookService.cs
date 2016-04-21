@@ -31,7 +31,7 @@ namespace Service
         }
         public CookBookTsfer Get(string  cookBookId)
         {
-            return TransferObject.ConvertObjectByEntity<CookBook,CookBookTsfer>(base.Select(o=>o.CookBookId==cookBookId).FirstOrDefault());
+            return TransferObject.ConvertObjectByEntity<CookBook, CookBookTsfer>(base.Select(o => o.CookBookId == cookBookId).FirstOrDefault());
         }
 
         public List<CookBookTsfer> GetList(int userId,int status)
