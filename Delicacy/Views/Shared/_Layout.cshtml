@@ -22,7 +22,15 @@
     <script src="~/Scripts/publishCookBook/hm.js"></script>
     <script src="~/Scripts/bootstrap.js"></script>
     @*<link href="~/Content/bootstrap.css" rel="stylesheet" />*@
-    
+    <script type="text/javascript">
+        //$(document).ready(function(){
+        //    $("#daohang li").click(function () {
+        //        $("#daohang li").removeClass("active");
+        //        $(this).addClass("active");
+        //    });
+        //});
+        
+    </script>
 </head>
 <body>
     <div class="wrap">
@@ -40,7 +48,7 @@
                         }
                         else
                         {
-                             <li><a href="/UserInfo/Login">登录</a></li>
+                            <li><a href="/UserInfo/Login">登录</a></li>
                             <li> |</li>
                             <li><a href="/UserInfo/Register">注册</a></li>
                         }
@@ -67,7 +75,35 @@
                 </div>
                 <div class="clear"></div>
             </div>
-            
+            <div class="menu">
+                <div class="top-nav">
+                    <ul id="daohang">
+                        <li><a href="/Home/index">首页</a></li>
+                        <li id="secondli" class="dropdown">
+                            <a href="/FoodSort/Index">分类</a>
+                            <div class="dropdown-content">
+                                <a href="/CookBook/List">菜鸟教程 1</a>
+                                <a href="/CookBook/List">菜鸟教程 2</a>
+                                <a href="/CookBook/List">菜鸟教程 3</a>
+                            </div>
+                        </li>
+                        <li class="dropdown" id="thirdli">
+                            <a href="/FoodMaterial/Index">食材</a>
+                            <div class="dropdown-content">
+                                <a href="#">大白菜</a>
+                                <a href="#">胡萝卜</a>
+                                <a href="#">土豆</a>
+                                <a href="#">大白菜</a>
+                                <a href="#">胡萝卜</a>
+                            </div>
+                        </li>
+                        <li id="forthli"><a href="/SubjectArticle/Index">饮食专题</a></li>
+                        <li><a href="/UserInfo/UserCenter">个人中心</a></li>
+                    </ul>
+                    <div class="clear"></div>
+                </div>
+            </div>
+
             @RenderBody()
         </div>
     </div>

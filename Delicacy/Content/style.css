@@ -112,7 +112,7 @@ body {
 }
 
 .wrap {
-    width: 80%;
+    width: 68%;
     margin: 0 auto;
     -moz-transition: all .2s linear;
     -webkit-transition: all .2s linear;
@@ -127,7 +127,6 @@ body {
     -moz-box-shadow: 0px 0px 15px #E3E3E3;
     background: #fff9ed;
     box-shadow: inset 0 1px 0 #ffe7b7,inset 0 0 340px 0 #ffe7b7;
-    min-height:700px;
 }
 
 .search-bar {
@@ -1270,7 +1269,7 @@ p.paragraph {
 /*--responsive design--*/
 @media (max-width:1399px) {
     .wrap {
-        width: 90%;
+        width: 80%;
     }
 
     h3.head {
@@ -1285,7 +1284,7 @@ p.paragraph {
 
 @media (max-width:1280px) {
     .wrap {
-        width: 90%;
+        width: 80%;
     }
 
     h3.head {
@@ -1300,7 +1299,7 @@ p.paragraph {
 
 @media (max-width:1024px) {
     .wrap {
-        width: 90%;
+        width: 80%;
     }
 
     h3.head {
@@ -1339,7 +1338,7 @@ p.paragraph {
 
 @media (max-width:800px) {
     .wrap {
-        width: 90%;
+        width: 80%;
     }
 
     h3.head {
