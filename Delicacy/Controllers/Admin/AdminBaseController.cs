@@ -3,26 +3,22 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Web;
 using System.Web.Mvc;
-using Tool;
 using DataTransfer;
-
-namespace Delicacy.Controllers
+using Tool;
+namespace Delicacy.Controllers.Admin
 {
-    public class BaseController : Controller
+    public class AdminBaseController : Controller
     {
         protected ContentResult Content(OutputModel model)
         {
             return Content(JsonHelper.SerializeObject(model), "application/json", System.Text.Encoding.UTF8);
         }
 
-        protected UserInfoTsfer user{get;set;}
+        protected AdminUserTsfer  adminUser { get; set; }
 
-        public BaseController()
+        public AdminBaseController()
         {
-            user = System.Web.HttpContext.Current.Session["user"] as UserInfoTsfer;
-            ViewBag.User = user;
-            ViewBag.IsLogin = (user != null);
-
+            adminUser = System.Web.HttpContext.Current.Session["adminUser"] as AdminUserTsfer;
         }
 
         /// <summary>
@@ -32,9 +28,12 @@ namespace Delicacy.Controllers
         /// <returns></returns>
         protected bool IsLogin()
         {
-            return user != null;
+            return adminUser != null;
         }
 
-        
+        protected ActionResult RedirectIndex()
+        {
+            return Redirect("/AdminUser/Login");
+        }
 	}
 }

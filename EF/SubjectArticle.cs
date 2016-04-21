@@ -16,11 +16,8 @@ namespace EF
     {
         public int SubjectArticleId { get; set; }
         public int SubjectSortId { get; set; }
-        public int UserId { get; set; }
-        public string content { get; set; }
+        public string UserId { get; set; }
+        public string Content { get; set; }
         public System.DateTime Datetime { get; set; }
-    
-        public virtual SubjectSort SubjectSort { get; set; }
-        public virtual UserInfo UserInfo { get; set; }
     }
 }

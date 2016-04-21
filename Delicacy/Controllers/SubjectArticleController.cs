@@ -14,5 +14,10 @@ namespace Delicacy.Controllers
         {
             return View();
         }
+
+        //public ActionResult  GetAll(string pageIndex,string pageSize)
+        //{
+
+        //}
 	}
 }

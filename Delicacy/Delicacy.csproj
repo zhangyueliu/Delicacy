@@ -160,8 +160,9 @@
     <Compile Include="App_Start\Startup.Auth.cs" />
     <Compile Include="Controllers\AccountController.cs" />
     <Compile Include="Controllers\Admin\AdminCenterController.cs" />
+    <Compile Include="Controllers\Admin\AdminSubjectArticleController.cs" />
     <Compile Include="Controllers\Admin\AdminUserController.cs" />
-    <Compile Include="Controllers\Admin\BaseController.cs" />
+    <Compile Include="Controllers\Admin\AdminBaseController.cs" />
     <Compile Include="Controllers\BaseController.cs" />
     <Compile Include="Controllers\CookBookController.cs" />
     <Compile Include="Controllers\CookProcessController.cs" />
@@ -284,6 +285,8 @@
     <Content Include="Scripts\register.js" />
     <Content Include="Scripts\respond.js" />
     <Content Include="Scripts\respond.min.js" />
+    <Content Include="Scripts\ueditor\ueditor.all.min.js" />
+    <Content Include="Scripts\ueditor\ueditor.config.js" />
     <Content Include="Scripts\UserCenter\WaitCheck.js" />
     <Content Include="Scripts\_references.js" />
     <Content Include="Web.config">
@@ -330,6 +333,8 @@
     <Content Include="Views\UserCenter\ShowDetail.cshtml" />
     <Content Include="Views\AdminUser\Login.cshtml" />
     <Content Include="Views\AdminCenter\Index.cshtml" />
+    <Content Include="Views\Shared\_AdminLayout.cshtml" />
+    <Content Include="Views\AdminSubjectArticle\Index.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />

@@ -14,14 +14,7 @@ namespace EF
     
     public partial class SubjectSort
     {
-        public SubjectSort()
-        {
-            this.SubjectArticle = new HashSet<SubjectArticle>();
-        }
-    
         public int SubjectSortId { get; set; }
         public string Name { get; set; }
-    
-        public virtual ICollection<SubjectArticle> SubjectArticle { get; set; }
     }
 }

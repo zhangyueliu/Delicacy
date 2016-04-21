@@ -9,7 +9,7 @@ using Tool;
 
 namespace Delicacy.Controllers.Admin
 {
-    public class AdminUserController : BaseController
+    public class AdminUserController : AdminBaseController
     {
         
         public ActionResult Login()
