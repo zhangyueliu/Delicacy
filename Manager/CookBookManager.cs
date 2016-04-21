@@ -12,8 +12,8 @@ namespace Manager
     public class CookBookManager
     {
         private CookBookService service = ObjectContainer.GetInstance<CookBookService>();
-        
-        public OutputModel AddCookBook(int userId, string taste, string foodSort, string name, string description, string tips, string finalImg, string processImgDes, string mainMaterial, string status, string assistMaterial)
+
+        public OutputModel AddCookBook(int userId, string taste, string foodSort, string name, string description, string tips, string finalImg, string processImgDes, string mainMaterial, string status, string assistMaterial, string foodMaterial)
         {
             int iTaste, iFoodSort, iStatus;
             if (!int.TryParse(taste, out iTaste) || !int.TryParse(foodSort, out iFoodSort) || !int.TryParse(status, out iStatus))
@@ -42,6 +42,25 @@ namespace Manager
             FoodSortService foodService = ObjectContainer.GetInstance<FoodSortService>();
             if (!foodService.IsExist(iFoodSort))
                 return OutputHelper.GetOutputResponse(ResultCode.ErrorParameter, "类别选择错误");
+            //判断食材foodMaterial
+            string [] arrMaterial = foodMaterial.Split(new [] {"',"}, StringSplitOptions.RemoveEmptyEntries);
+            int temp;
+            FoodMaterialService materialService = new FoodMaterialService();
+            List<FoodMaterial_CookBookTsfer> listMaterCook = new List<FoodMaterial_CookBookTsfer>();
+            foreach (string material in arrMaterial)
+            {
+                if (!int.TryParse(material, out temp))
+                {
+                    return OutputHelper.GetOutputResponse(ResultCode.ErrorParameter, "食材选择错误");
+                }
+                if( !materialService.IsExist(temp))
+                    return OutputHelper.GetOutputResponse(ResultCode.ErrorParameter, "食材选择错误");
+                FoodMaterial_CookBookTsfer materCook = new FoodMaterial_CookBookTsfer { 
+                CookBookId=cookBookId,
+                FoodMaterialId=temp
+                };
+                listMaterCook.Add(materCook);
+            }
             //进行插入
             CookBookTsfer bookTsfer = new CookBookTsfer()
             {
@@ -59,7 +78,7 @@ namespace Manager
                 DateTime=DateTime.Now
 
             };
-            if (service.Add(bookTsfer))
+            if (service.Add(bookTsfer,listMaterCook))
                 return OutputHelper.GetOutputResponse(ResultCode.OK);
             else
                 return OutputHelper.GetOutputResponse(ResultCode.Error);

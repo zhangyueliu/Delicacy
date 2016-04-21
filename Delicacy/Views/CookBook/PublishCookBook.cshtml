@@ -1,4 +1,5 @@
-﻿@{
+﻿@using DataTransfer
+@{
     ViewBag.Title = "上传菜谱-美食网";
     Layout = "~/Views/Shared/_Layout.cshtml";
 }
@@ -97,14 +98,30 @@
                     <span class="lable">基本参数：</span>
 
                 </dt>
-                
+
 
                 <dd>
                     <div class="multiselect select_0" style="width: 103px;"><a tar="foodSort" href="javascript:;" check="false" class="multi_txt multi_1" title="口味">菜谱类别</a><ul class="" style=""><li><a href="javascript:;"><label class="J_radio"><input type="radio" name="foodSort" value="1">热菜</label></a></li><li><a href="javascript:;"><label class="J_radio"><input type="radio" name="foodSort" value="2">凉菜</label></a></li><li><a href="javascript:;"><label class="J_radio"><input type="radio" name="foodSort" value="3">主食</label></a></li><li><a href="javascript:;"><label class="J_radio"><input type="radio" name="foodSort" value="4">其它</label></a></li></ul></div>
 
                     <div class="multiselect select_1" style="width: 103px;"><a tar="cuisine" href="javascript:;" check="false" class="multi_txt multi_1" title="口味">口味</a><ul class="" style=""><li><a href="javascript:;"><label class="J_radio"><input type="radio" name="cuisine" value="1">酸</label></a></li><li><a href="javascript:;"><label class="J_radio"><input type="radio" name="cuisine" value="2" />甜</label></a></li><li><a href="javascript:;"><label class="J_radio"><input type="radio" name="cuisine" value="3">苦</label></a></li><li><a href="javascript:;"><label class="J_radio"><input type="radio" name="cuisine" value="4">辣</label></a></li><li><a href="javascript:;"><label class="J_radio"><input type="radio" name="cuisine" value="5">腥</label></a></li><li><a href="javascript:;"><label class="J_radio"><input type="radio" name="cuisine" value="6">其他</label></a></li></ul></div>
 
-                    
+                    <div class="multiselect select_4" style="width: 103px;">
+                        <input type="hidden" name="foodMaterial" id="J_foodMaterial" value="">
+                        <a tar="foodMaterial" href="javascript:;" check="false" class="multi_txt multi_0" title="食材">食材</a>
+                        <ul class="" style="">
+                            @{
+                                List<FoodMaterialTsfer> list = ViewBag.FoodMaterial;
+                                for (int i = 0; i < list.Count;i++ )
+                                {
+                                    <li>
+                                        <a href="javascript:;">
+                                            <label class="J_checkbox"><input names="foodMaterial@(i+1)" type="checkbox" value="@list[i].FoodMaterialId">@list[i].Name</label>
+                                        </a>
+                                    </li>
+                                }
+                            }
+                        </ul>
+                    </div>
 
                 </dd>
 
@@ -309,8 +326,8 @@
                 msc.ui.dialog.error("请上传至少一张成品图片");
 
             } else {
-                if (!$("input[name=cuisine]:checked").val() ||! $("input[name=foodSort]:checked").val()) {
-                    msc.ui.dialog.error("请完善基本参数(菜谱类别或口味)");
+                if (!$("input[name=cuisine]:checked").val() || !$("input[name=foodSort]:checked").val() || !$("input[name=foodMaterial]").val()) {
+                    msc.ui.dialog.error("请完善基本参数(菜谱类别,口味或食材)");
                 } else {
                     if (!/color_5b/.test($('input[name="food1[]"]:first').attr("class")) || $('input[name="food3[]"]:first').val() == "") {
                         msc.ui.dialog.error("请输入食材明细")
@@ -323,7 +340,7 @@
                             } else {
                                 ifbtn = 1;
                                 $(this).val("提交中...");
-                                $(this).attr("id", "");
+                                //$(this).attr("id", "");
                                 publishCookBook(0);//0待审核
                             }
                         }

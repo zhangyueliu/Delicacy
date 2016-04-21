@@ -11,12 +11,13 @@ namespace Service
 {
     public class CookBookService : BaseService<CookBook>
     {
-        public bool Add(CookBookTsfer cookBook)
+        public bool Add(CookBookTsfer cookBook,List<FoodMaterial_CookBookTsfer> listMaterCook)
         {
             //这里增加菜过程的插入
             base.Add(TransferObject.ConvertObjectByEntity<CookBookTsfer, CookBook>(cookBook));
             base.Add<CookProcess>(TransferObject.ConvertObjectByEntity<CookProcessTsfer, CookProcess>(cookBook.ListProcess));
             base.Add<CookMaterial>(TransferObject.ConvertObjectByEntity<CookMaterialTsfer, CookMaterial>(cookBook.ListMaterial));
+            Add<FoodMaterial_CookBook>(TransferObject.ConvertObjectByEntity<FoodMaterial_CookBookTsfer, FoodMaterial_CookBook>(listMaterCook));
             return Save() > 0;
         }
         public bool Update(CookBookTsfer cookBook)

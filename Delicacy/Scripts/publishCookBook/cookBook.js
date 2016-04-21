@@ -2,6 +2,7 @@
     var Name = $("input[name=subject]").val();
     var Taste = $("input[name=cuisine]:checked").val();
     var FoodSort = $("input[name=foodSort]:checked").val();
+    var foodMaterial = $("input[name=foodMaterial]").val()
     var Description = $("#message").val();
     var Tips = $("#tips").val();//$("#").val();
     var FinalImg = $("#final").val();
@@ -11,7 +12,7 @@
     $.ajax({
         type: 'Post',
         url: '/CookBook/PublishCookBook',
-        data: { Name: Name, Taste: Taste, FoodSort: FoodSort, Description: Description, Tips: Tips, FinalImg: FinalImg, ProcessImgDes: ProcessImgDes, MainMaterial: MainMaterial, AssistMaterial: AssistMaterial, status: status },
+        data: { Name: Name, Taste: Taste, FoodSort: FoodSort, Description: Description, Tips: Tips, FinalImg: FinalImg, ProcessImgDes: ProcessImgDes, MainMaterial: MainMaterial, AssistMaterial: AssistMaterial, status: status, foodMaterial: foodMaterial },
         dataType:'json',
         success: function (data) {
             $('#postbtn').val("发布菜谱");
