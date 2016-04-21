@@ -1,10 +1,9 @@
-
 ﻿@{
     ViewBag.Title = "待审核";
     Layout = "~/Views/Shared/_Layout.cshtml";
 }
 
-
+<link href="~/Content/PublishCookBook.css" rel="stylesheet" />
 <script src="~/Scripts/UserCenter/WaitCheck.js"></script>
 <script>
     $(document).ready(function () {
@@ -34,7 +33,6 @@
             <a href="/UserInfo/UserCenter">我的菜谱</a>
             <a href="/UserCenter/WaitCheck" class="on">待审核</a>
             <a href="#">审核未通过</a>
-            <a href="#">草稿箱</a>
         </div>
         <div class="ui_title_right">
             <a href="/CookBook/PublishCookBook" class="ui_btn_blue on">发布新菜谱</a>
@@ -46,7 +44,4 @@
 </div>
 <div class="clear"></div>
 
-<ul class="ui_list_1">
-    
-</ul>
 
