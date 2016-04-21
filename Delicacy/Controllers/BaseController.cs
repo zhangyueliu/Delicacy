@@ -20,6 +20,7 @@ namespace Delicacy.Controllers
         public BaseController()
         {
             IsLogin();
+
         }
 
         /// <summary>
@@ -31,7 +32,9 @@ namespace Delicacy.Controllers
         {
             user = System.Web.HttpContext.Current.Session["user"] as UserInfoTsfer;
             ViewBag.User = user;
+            ViewBag.IsLogin = (user != null);
             return ViewBag.IsLogin = (user != null);
+            //return true;
         }
 	}
 }

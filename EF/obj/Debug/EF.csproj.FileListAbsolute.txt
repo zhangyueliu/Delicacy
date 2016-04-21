@@ -19,7 +19,6 @@ F:\GraduationProject\Yueyue\Delicacy\EF\bin\Debug\EntityFramework.xml
 F:\GraduationProject\Yueyue\Delicacy\EF\bin\Debug\EntityFramework.SqlServer.xml
 F:\GraduationProject\Yueyue\Delicacy\EF\bin\Debug\zh-Hans\EntityFramework.resources.dll
 F:\GraduationProject\Yueyue\Delicacy\EF\bin\Debug\zh-Hans\EntityFramework.SqlServer.resources.dll
-F:\GraduationProject\Yueyue\Delicacy\EF\obj\Debug\EF.csprojResolveAssemblyReference.cache
 F:\GraduationProject\Yueyue\Delicacy\EF\obj\Debug\EF.dll
 F:\GraduationProject\Yueyue\Delicacy\EF\obj\Debug\EF.pdb
 E:\Important\Delicacy\Delicacy\EF\bin\Debug\EF.dll.config

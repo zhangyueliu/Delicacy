@@ -27,7 +27,7 @@ namespace Delicacy.Controllers
                 return Content(OutputHelper.GetOutputResponse(ResultCode.NoLogin));
             CookBookManager manager = new CookBookManager();
             //这里可以用对象传入
-            OutputModel outModel = manager.AddCookBook(user.UserId, model.Taste, model.FoodSort, model.Name, model.Description, model.Tips, model.FinalImg, model.ProcessImgDes, model.MainMaterial, model.Status,model.AssistMaterial);
+            OutputModel outModel = manager.AddCookBook(user.UserId, model.Taste, model.FoodSort, model.Name, model.Description, model.Tips, model.FinalImg, model.ProcessImgDes, model.MainMaterial, model.Status,model.AssistMaterial,model.FoodMaterial);
 
             return Content(outModel);
         }
@@ -35,8 +35,9 @@ namespace Delicacy.Controllers
         [HttpGet]
         public ActionResult  PublishCookBook()
         {
-            if (user == null)
-                return Redirect("/Home/Index");
+            if (!IsLogin())
+                return Redirect("/");
+            ViewBag.FoodMaterial = new FoodMaterialManager().GetList();
             return View();
         }
         public ActionResult List()
@@ -46,7 +47,9 @@ namespace Delicacy.Controllers
 
         public ContentResult Get(string cookBookId)
         {
-            return new ContentResult();
+            return Content( new CookBookManager().GetCookBook(cookBookId));
         }
+
+
     }
 }
