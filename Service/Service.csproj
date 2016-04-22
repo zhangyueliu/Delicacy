@@ -49,6 +49,7 @@
     <Compile Include="CookProcessService.cs" />
     <Compile Include="CookMaterialService.cs" />
     <Compile Include="FoodMaterialService.cs" />
+    <Compile Include="FoodMaterial_CookBookTsferService.cs" />
     <Compile Include="FoodSortService.cs" />
     <Compile Include="LikeCookBookService.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />

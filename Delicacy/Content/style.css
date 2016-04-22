@@ -7,7 +7,6 @@ html, body, div, span, applet, object, iframe, h1, h2, h3, h4, h5, h6, p, blockq
     font: inherit;
     vertical-align: baseline;
 }
-
 article, aside, details, figcaption, figure, footer, header, hgroup, menu, nav, section {
     display: block;
 }
@@ -101,7 +100,7 @@ img {
 
 body {
     font-family: 'AmbleRegular';
-    padding-bottom: 10%;
+    padding-bottom: 1%;
     background: url(../images/body-bg.png)no-repeat center fixed;
     -webkit-background-size: cover;
     -moz-background-size: cover;
@@ -119,7 +118,6 @@ body {
     -webkit-transition: all .2s linear;
     -o-transition: all .2s linear;
     -ms-transition: all .2s linear;
-    min-height:100%;
 }
 
 .total {
@@ -129,7 +127,7 @@ body {
     -moz-box-shadow: 0px 0px 15px #E3E3E3;
     background: #fff9ed;
     box-shadow: inset 0 1px 0 #ffe7b7,inset 0 0 340px 0 #ffe7b7;
-      min-height:100%;
+      min-height:90%;
 }
 
 .search-bar {
@@ -297,7 +295,7 @@ body {
         -o-transform: scale(0.99);
         opacity: 1;
     }
-body, button, input, select, textarea {
+body,button, input, select, textarea {
     font: 12px/1.6 "Hiragino Sans GB","STHeiti","Î¢ÈíÑÅºÚ","Microsoft YaHei",Helvetica,Arial,serif;
 }
 .banner2 a {
@@ -947,6 +945,7 @@ span.black {
     -o-box-shadow: 0px 0px 5px #aaa;
     -moz-box-shadow: 0px 0px 5px #aaa;
     cursor: default;
+    height:90%;
 }
 
     .view .mask, .view .content {
@@ -974,6 +973,7 @@ span.black {
     -o-transition: all 0.2s ease-in;
     -ms-transition: all 0.2s ease-in;
     transition: all 0.2s ease-in;
+    margin:auto;
 }
 
 .effect .mask {
@@ -997,12 +997,12 @@ span.black {
 }
 
 .effect:hover img {
-    opacity: 0.7;
+    /*opacity: 0.7;
     -moz-transform: scale(2,2);
     -webkit-transform: scale(2,2);
     -o-transform: scale(2,2);
     -ms-transform: scale(2,2);
-    transform: scale(2,2);
+    transform: scale(2,2);*/
 }
 
 .effect:hover .mask {

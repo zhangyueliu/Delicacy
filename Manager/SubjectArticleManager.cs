@@ -13,6 +13,7 @@ namespace Manager
     public class SubjectArticleManager
     {
         private SubjectArticleService service = new SubjectArticleService();
+
         public OutputModel Add(string  content,string userId)
         {
             if (string.IsNullOrWhiteSpace(content))
@@ -27,6 +28,7 @@ namespace Manager
                 return OutputHelper.GetOutputResponse(ResultCode.OK);
             return OutputHelper.GetOutputResponse(ResultCode.Error);
         }
+
         public OutputModel Update(SubjectArticleTsfer subarticle)
         {
             if (subarticle == null)
@@ -35,12 +37,14 @@ namespace Manager
                 return OutputHelper.GetOutputResponse(ResultCode.OK);
             return OutputHelper.GetOutputResponse(ResultCode.Error);
         }
+
         public OutputModel Delete(int id)
         {
             if (service.Delete(id))
                 return OutputHelper.GetOutputResponse(ResultCode.OK);
             return OutputHelper.GetOutputResponse(ResultCode.Error);
         }
+
         /// <summary>
         /// 删除某分类下的专题列表
         /// </summary>
@@ -58,6 +62,7 @@ namespace Manager
             }
             return outputmodel;
         }
+
         public OutputModel Get(int id)
         {
             SubjectArticleTsfer s = service.Get(id);
@@ -91,6 +96,7 @@ namespace Manager
                 return OutputHelper.GetOutputResponse(ResultCode.NoData);
             return OutputHelper.GetOutputResponse(ResultCode.OK, list);
         }
+
         public OutputModel GetList()
         {
             List<SubjectArticleTsfer> list = service.GetList();
