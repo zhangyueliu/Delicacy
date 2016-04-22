@@ -57,5 +57,14 @@ namespace Delicacy.Controllers
         {
             return user != null;
         }
+
+        /// <summary>
+        /// 跳转到首页
+        /// </summary>
+        /// <returns></returns>
+        protected ActionResult RedirectHome()
+        {
+            return Redirect("/Home/Index");
+        }
     }
 }

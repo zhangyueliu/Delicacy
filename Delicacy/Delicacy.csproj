@@ -170,6 +170,7 @@
     <Compile Include="Controllers\FoodSortController.cs" />
     <Compile Include="Controllers\HomeController.cs" />
     <Compile Include="Controllers\LikeCookBookController.cs" />
+    <Compile Include="Controllers\SearchController.cs" />
     <Compile Include="Controllers\SubjectArticleController.cs" />
     <Compile Include="Controllers\SubjectSortController.cs" />
     <Compile Include="Controllers\TasteController.cs" />
@@ -344,6 +345,7 @@
     <Folder Include="Upload\Images\" />
     <Folder Include="Views\Base\" />
     <Folder Include="Views\CookProcess\" />
+    <Folder Include="Views\Search\" />
     <Folder Include="Views\SubjectSort\" />
     <Folder Include="Views\Taste\" />
   </ItemGroup>

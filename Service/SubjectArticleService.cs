@@ -38,9 +38,10 @@ namespace Service
             base.Delete(TransferObject.ConvertObjectByEntity<SubjectArticleTsfer, SubjectArticle>(list));
             return Save() > 0;
         }
-        public SubjectArticleTsfer Get(int id)
+
+        public SubjectArticleTsfer Get(int subjectArticleId)
         {
-            return TransferObject.ConvertObjectByEntity<SubjectArticle, SubjectArticleTsfer>(base.Select(id));
+            return TransferObject.ConvertObjectByEntity<SubjectArticle, SubjectArticleTsfer>(base.Select(o => o.SubjectArticleId == subjectArticleId).FirstOrDefault());
         }
         ///// <summary>
         ///// 获取某用户下的专题
@@ -65,7 +66,7 @@ namespace Service
             return TransferObject.ConvertObjectByEntity<SubjectArticle, SubjectArticleTsfer>(base.Select(o => true).ToList());
         }
 
-        public List<SubjectArticleTsfer> GetList(int pageIndex,int pageSize, out int rowCount)
+        public List<SubjectArticleTsfer> GetPage(int pageIndex,int pageSize, out int rowCount)
         {
             return TransferObject.ConvertObjectByEntity<SubjectArticle,SubjectArticleTsfer>( SelectDesc(pageIndex, pageSize, o => true, o => o.Datetime,out rowCount).ToList());
         }

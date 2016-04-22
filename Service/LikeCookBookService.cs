@@ -16,7 +16,7 @@ namespace Service
             base.Add(TransferObject.ConvertObjectByEntity<LikeCookBookTsfer, LikeCookBook>(like));
             return Save() > 0;
         }
-        public bool Delete(int id)
+        public new bool Delete(int id)
         {
             base.Delete(id);
             return Save() > 0;

@@ -22,5 +22,7 @@ namespace Delicacy.Controllers.Admin
         {
             return Content(new AdminUserManager().Login(userId, pwd));
         }
+
+
 	}
 }

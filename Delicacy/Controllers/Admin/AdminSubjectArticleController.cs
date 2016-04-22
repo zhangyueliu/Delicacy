@@ -22,12 +22,12 @@ namespace Delicacy.Controllers.Admin
 
         [HttpPost]
         [ValidateInput(false)]
-        public ActionResult Add(string content)
+        public ActionResult Add(string content,string title,string brief)
         {
             if (!IsLogin())
                 return RedirectIndex();
             SubjectArticleManager articleManager = new SubjectArticleManager();
-             return Content(articleManager.Add(content, adminUser.UserId));
+             return Content(articleManager.Add(content, adminUser.UserId,title,brief));
         }
 	}
 }
