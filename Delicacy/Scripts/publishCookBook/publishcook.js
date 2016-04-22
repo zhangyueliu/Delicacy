@@ -5030,7 +5030,7 @@ _gaq.push(["_trackPageLoadTime"]);
     var a = document.getElementsByTagName("head")[0];
     b.type = "text/javascript";
     b.async = true;
-    b.src = ("https:" == document.location.protocol ? "https://ssl" : "http://www") + ".google-analytics.com/ga.js";
+    //b.src = ("https:" == document.location.protocol ? "https://ssl" : "http://www") + ".google-analytics.com/ga.js";
     a.appendChild(b);
     a = b = null;
 }());

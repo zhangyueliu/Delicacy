@@ -154,7 +154,7 @@ namespace Manager
 
         public List<UserInfoTsfer> GetAll()
         {
-            return service.GetList();
+            return service.GetAll();
         }
     }
 }
