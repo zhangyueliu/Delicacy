@@ -55,6 +55,7 @@ namespace Delicacy.Controllers
             ViewBag.pageCount = pagecount;
             ViewBag.pageIndex = pageindex;
             ViewBag.pageSize = pagesize;
+            ViewBag.IsSort = true;
             return View();
         }
         public ActionResult ListShicai(string id)
@@ -77,6 +78,7 @@ namespace Delicacy.Controllers
             OutputModel o = manager.GetListByIds(strs);
             if (o.StatusCode == 1)
                 ViewBag.cookbookList = (List<CookBookTsfer>)o.Data;
+            ViewBag.IsSort = false;
             return View("List");
         }
         public ContentResult Get(string cookBookId)

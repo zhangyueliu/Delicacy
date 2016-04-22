@@ -138,7 +138,15 @@ namespace Manager
         {
             return service.Delete(userInfo.UserId);
         }
-
+        public OutputModel Delete(string id)
+        {
+            int i;
+            if (!int.TryParse(id, out i))
+                return OutputHelper.GetOutputResponse(ResultCode.ErrorParameter);
+            if (service.Delete(i))
+                return OutputHelper.GetOutputResponse(ResultCode.OK);
+            return OutputHelper.GetOutputResponse(ResultCode.Error);
+        }
         /// <summary>
         /// 根据邮箱获取用户对象
         /// </summary>

@@ -2,16 +2,8 @@
 @{
     Layout = "~/Views/Shared/_Layout.cshtml";
 }
-@*<script src="~/Scripts/page.js"></script>*@
+
 <link href="~/Content/pager.css" rel="stylesheet" />
-
-
-<style>
-
-</style>
-
-
-
 <div class="main">
     <div class="ui_title mt20">
         <div class="ui_title_wrap">
@@ -46,28 +38,27 @@
     </div>*@
 <script src="http://www.lanrenzhijia.com/ajaxjs/jquery.page.js"></script>
 <script>
-    //$(document).ready(function () {
-    //    $("#secondli").addClass("active");
-    //});
-    //function image() {
-    //    var height = $(".imagess").height;
-    //    var width = $(".imagess").width;
-    //    if (height >= width) {
-    //        $(".imagess").attr("height", "100%");
-    //    }
-    //    if (height < width) {
-    //        $(".imagess").attr("width", "100%");
-    //    }
-    //}
-    //$.jqPaginator('#pagination1', {
-    //    totalCounts: 100,
-    //    pageSize: 9,
-    //    visiblePages: 10,
-    //    currentPage: 1,
-    //    onPageChange: function (num, type) {
-    //        $('#p1').text(type + '：' + num);
-    //    }
-    //});
+    $(document).ready(function () {
+        $(document).ready(function () {
+            if ("@ViewBag.IsSort" == "True") {
+                $("#secondli").addClass("active");
+            }
+            else {
+                $("#thirdli").addClass("active");
+            }
+        });
+    });
+    function image() {
+        var height = $(".imagess").height;
+        var width = $(".imagess").width;
+        if (height >= width) {
+            $(".imagess").attr("height", "100%");
+        }
+        if (height < width) {
+            $(".imagess").attr("width", "100%");
+        }
+    }
+    
     $(".tcdPageCode").createPage({
         pageCount: 50,
         current: 1,
