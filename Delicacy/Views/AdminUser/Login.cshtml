@@ -16,21 +16,45 @@
     <script type="text/javascript">
         function login() {
             var userId = $('#u').val();
-            if (!userId)
-                return layer.alert('用户名不能为空', { icon: 3, skin: 'layer-ext-moon' });
-            var pwd = $('#p').val();
-            if (!pwd)
-                return layer.alert('密码不能为空', { icon: 3, skin: 'layer-ext-moon' });
-            $.ajax({
-                url: '',
-                type: 'post',
-                data: {userId:userId,pwd:hex_md5(pwd)},
-                success: function (data) {
+            if (!userId) {
+                layer.msg('账号不能为空', {
+                    time: 2000
+                });
+                $("#u").focus();
+                return;
+            }
 
+            var pwd = $('#p').val();
+            if (!pwd) {
+                layer.msg('密码不能为空', {
+                    time: 2000
+                });
+                $("#p").focus();
+                return;
+            }
+            $('#btnLogin').val('登录中...');
+            $('#btnLogin').css('disabled');
+            $.ajax({
+                url: '/AdminUser/Login',
+                type: 'post',
+                data: { userId: userId, pwd: hex_md5(pwd) },
+                dataType: 'json',
+                success: function (data) {
+                    if (data.StatusCode === 1)
+                        window.location.href = '/AdminCenter';
+                    else
+                    {
+                        layer.msg(data.Message, {
+                            time: 2000
+                        });
+                        $('#btnLogin').val('登录');
+                        $('#btnLogin').removeAttr('disabled');
+                    }
+                        
                 }
             });
         }
-        
+
 
     </script>
 </head>
@@ -53,7 +77,6 @@
                             <div class="uinArea" id="uinArea">
                                 <label class="input-tips" for="u">帐号：</label>
                                 <div class="inputOuter" id="uArea">
-
                                     <input type="text" id="u" name="username" class="inputstyle" />
                                 </div>
                             </div>
@@ -65,7 +88,7 @@
                                 </div>
                             </div>
 
-                            <div style="padding-left:50px;margin-top:20px;"><input type="button" onclick="login()" value="登 录" style="width:150px;" class="button_blue" /></div>
+                            <div style="padding-left:50px;margin-top:20px;"><input type="button"  id="btnLogin" onclick="login()" value="登 录" style="width:150px;" class="button_blue" /></div>
                         </form>
                     </div>
 

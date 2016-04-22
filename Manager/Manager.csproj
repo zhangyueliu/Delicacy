@@ -52,6 +52,7 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="AdminUserManager.cs" />
     <Compile Include="CommentRecordManager.cs" />
     <Compile Include="CookBookManager.cs" />
     <Compile Include="CookProcessManager.cs" />

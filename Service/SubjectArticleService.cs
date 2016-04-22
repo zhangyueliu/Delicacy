@@ -1,4 +1,4 @@
-﻿using System;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
@@ -41,15 +41,15 @@ namespace Service
         {
             return TransferObject.ConvertObjectByEntity<SubjectArticle, SubjectArticleTsfer>(base.Select(id));
         }
-        /// <summary>
-        /// 获取某用户下的专题
-        /// </summary>
-        /// <param name="userid"></param>
-        /// <returns></returns>
-        public List<SubjectArticleTsfer> GetUsers(int userid)
-        {
-            return TransferObject.ConvertObjectByEntity<SubjectArticle, SubjectArticleTsfer>(base.Select(o => o.UserId == userid).ToList());
-        }
+        ///// <summary>
+        ///// 获取某用户下的专题
+        ///// </summary>
+        ///// <param name="userid"></param>
+        ///// <returns></returns>
+        //public List<SubjectArticleTsfer> GetUsers(int userid)
+        //{
+        //    return TransferObject.ConvertObjectByEntity<SubjectArticle, SubjectArticleTsfer>(base.Select(o => o.UserId == userid).ToList());
+        //}
         /// <summary>
         /// 获取分类下的饮食专题
         /// </summary>
@@ -65,3 +65,4 @@ namespace Service
         }
     }
 }
+

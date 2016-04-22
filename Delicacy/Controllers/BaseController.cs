@@ -20,7 +20,9 @@ namespace Delicacy.Controllers
 
         public BaseController()
         {
-            IsLogin();
+            user = System.Web.HttpContext.Current.Session["user"] as UserInfoTsfer;
+            ViewBag.User = user;
+            ViewBag.IsLogin = (user != null);
             FenleiList();
             ShicaiList();
         }
@@ -31,16 +33,16 @@ namespace Delicacy.Controllers
         {
             FoodSortManager manager = new FoodSortManager();
             OutputModel m = manager.GetList();
-            if(m.StatusCode==1)
+            if (m.StatusCode == 1)
             {
-                 ViewBag.listfenlei= (List<FoodSortTsfer>)m.Data;
+                ViewBag.listfenlei = (List<FoodSortTsfer>)m.Data;
             }
         }
         protected void ShicaiList()
         {
             FoodMaterialManager manager = new FoodMaterialManager();
-            List<FoodMaterialTsfer>list = manager.GetList();
-            
+            List<FoodMaterialTsfer> list = manager.GetList();
+
             if (list.Count > 0)
                 ViewBag.listshicai = list;
         }
@@ -53,11 +55,7 @@ namespace Delicacy.Controllers
         /// <returns></returns>
         protected bool IsLogin()
         {
-            user = System.Web.HttpContext.Current.Session["user"] as UserInfoTsfer;
-            ViewBag.User = user;
-            ViewBag.IsLogin = (user != null);
-            return ViewBag.IsLogin = (user != null);
-            //return true;
+            return user != null;
         }
     }
 }

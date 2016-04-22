@@ -48,6 +48,9 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="AdminUser.cs">
+      <DependentUpon>Delicacy.tt</DependentUpon>
+    </Compile>
     <Compile Include="CommentRecord.cs">
       <DependentUpon>Delicacy.tt</DependentUpon>
     </Compile>
@@ -96,9 +99,6 @@
       <DependentUpon>Delicacy.tt</DependentUpon>
     </Compile>
     <Compile Include="SupportScanRecord.cs">
-      <DependentUpon>Delicacy.tt</DependentUpon>
-    </Compile>
-    <Compile Include="sysdiagrams.cs">
       <DependentUpon>Delicacy.tt</DependentUpon>
     </Compile>
     <Compile Include="Taste.cs">

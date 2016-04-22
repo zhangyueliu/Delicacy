@@ -1,5 +1,5 @@
-﻿@using DataTransfer
-﻿<!DOCTYPE html>
+﻿﻿@using DataTransfer
+﻿﻿<!DOCTYPE html>
 <html>
 <head>
     <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
@@ -22,15 +22,7 @@
 
     <script src="~/Scripts/bootstrap.js"></script>
     @*<link href="~/Content/bootstrap.css" rel="stylesheet" />*@
-    <script type="text/javascript">
-        //$(document).ready(function(){
-        //    $("#daohang li").click(function () {
-        //        $("#daohang li").removeClass("active");
-        //        $(this).addClass("active");
-        //    });
-        //});
 
-    </script>
 </head>
 <body>
     <div class="wrap">
@@ -80,6 +72,7 @@
                     <ul id="daohang">
                         <li><a href="/Home/index">首页</a></li>
                         <li id="secondli" class="dropdown">
+
                             <a href="javascript:;">分类</a>
                             <div class="dropdown-content">
                                 @{List<FoodSortTsfer> listfenlei = ViewBag.listfenlei;
@@ -102,7 +95,7 @@
                                 {
                                     foreach (FoodMaterialTsfer sort in listshicai)
                                     {
-                                        <a href="/FoodMaterial/List/@sort.FoodMaterialId">@sort.Name</a>
+                                        <a href="/CookBook/ListShicai/@sort.FoodMaterialId">@sort.Name</a>
                                     }
                                 }
 

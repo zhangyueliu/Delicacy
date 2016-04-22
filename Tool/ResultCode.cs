@@ -1,4 +1,4 @@
-﻿using System;
+using System;
 using System.Collections.Generic;
 using System.ComponentModel;
 using System.Linq;
@@ -48,6 +48,14 @@ namespace Tool
        /// 已存在
        /// </summary>
        [Description("已存在")]
-       DataExisted=7
+       DataExisted=7,
+
+       /// <summary>
+       /// 用户名或密码错误
+       /// </summary>
+       [Description("用户名或密码错误")]
+       LoginFail=8
+
+
     }
 }

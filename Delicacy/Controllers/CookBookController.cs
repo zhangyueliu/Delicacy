@@ -56,10 +56,20 @@ namespace Delicacy.Controllers
             CookBookManager manager = new CookBookManager();
             FoodMaterial_CookBookTsferManager fmcbmanager = new FoodMaterial_CookBookTsferManager();
             FoodMaterialManager fmmanager = new FoodMaterialManager();
-            fmmanager.Get(id);
-            List<FoodMaterial_CookBookTsfer>list = fmcbmanager.GetListByFoodMaterialId(i);
-            //ViewBag.sort = f.Name;
-            ViewBag.cookbookList = manager.GetCookBookBysort(i);
+            FoodMaterialTsfer f = fmmanager.Get(i);
+            if (f != null)
+            {
+                ViewBag.sort = f.Name;
+            }
+            List<FoodMaterial_CookBookTsfer> list = fmcbmanager.GetListByFoodMaterialId(i);
+            List<string> strs = new List<string>();
+            foreach (FoodMaterial_CookBookTsfer item in list)
+            {
+                strs.Add(item.CookBookId);
+            }
+            OutputModel o = manager.GetListByIds(strs);
+            if (o.StatusCode == 1)
+                ViewBag.cookbookList = (List<CookBookTsfer>)o.Data;
             return View("List");
         }
         public ContentResult Get(string cookBookId)

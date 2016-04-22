@@ -4,20 +4,19 @@ using System.Linq;
 using System.Web;
 using System.Web.Mvc;
 
-namespace Delicacy.Controllers
+namespace Delicacy.Controllers.Admin
 {
-    public class SubjectArticleController : BaseController
+    public class AdminCenterController : AdminBaseController
     {
         //
-        // GET: /SubjectArticle/
+        // GET: /AdminCenter/
         public ActionResult Index()
         {
+            if (!IsLogin())
+                return RedirectIndex();
             return View();
         }
 
-        //public ActionResult  GetAll(string pageIndex,string pageSize)
-        //{
 
-        //}
 	}
 }

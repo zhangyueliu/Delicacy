@@ -5,6 +5,14 @@
     <!-- SSDL content -->
     <edmx:StorageModels>
     <Schema Namespace="DelicacyModel.Store" Provider="System.Data.SqlClient" ProviderManifestToken="2005" Alias="Self" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns="http://schemas.microsoft.com/ado/2009/11/edm/ssdl">
+        <EntityType Name="AdminUser">
+          <Key>
+            <PropertyRef Name="UserId" />
+          </Key>
+          <Property Name="UserId" Type="varchar" MaxLength="50" Nullable="false" />
+          <Property Name="pwd" Type="varchar" MaxLength="100" Nullable="false" />
+          <Property Name="RegDate" Type="datetime" Nullable="false" />
+        </EntityType>
         <EntityType Name="CommentRecord">
           <Key>
             <PropertyRef Name="CommentId" />
@@ -89,8 +97,8 @@
           </Key>
           <Property Name="SubjectArticleId" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
           <Property Name="SubjectSortId" Type="int" Nullable="false" />
-          <Property Name="UserId" Type="int" Nullable="false" />
-          <Property Name="content" Type="nvarchar(max)" Nullable="false" />
+          <Property Name="UserId" Type="varchar" MaxLength="100" Nullable="false" />
+          <Property Name="Content" Type="nvarchar(max)" Nullable="false" />
           <Property Name="Datetime" Type="datetime" Nullable="false" />
         </EntityType>
         <EntityType Name="SubjectSort">
@@ -109,16 +117,6 @@
           <Property Name="UserId" Type="int" />
           <Property Name="Type" Type="int" Nullable="false" />
           <Property Name="DateTime" Type="datetime" Nullable="false" />
-        </EntityType>
-        <EntityType Name="sysdiagrams">
-          <Key>
-            <PropertyRef Name="diagram_id" />
-          </Key>
-          <Property Name="name" Type="nvarchar" MaxLength="128" Nullable="false" />
-          <Property Name="principal_id" Type="int" Nullable="false" />
-          <Property Name="diagram_id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
-          <Property Name="version" Type="int" />
-          <Property Name="definition" Type="varbinary(max)" />
         </EntityType>
         <EntityType Name="Taste">
           <Key>
@@ -257,30 +255,6 @@
             </Dependent>
           </ReferentialConstraint>
         </Association>
-        <Association Name="FK_SUBJECTA_REFERENCE_SUBJECTS">
-          <End Role="SubjectSort" Type="Self.SubjectSort" Multiplicity="1" />
-          <End Role="SubjectArticle" Type="Self.SubjectArticle" Multiplicity="*" />
-          <ReferentialConstraint>
-            <Principal Role="SubjectSort">
-              <PropertyRef Name="SubjectSortId" />
-            </Principal>
-            <Dependent Role="SubjectArticle">
-              <PropertyRef Name="SubjectSortId" />
-            </Dependent>
-          </ReferentialConstraint>
-        </Association>
-        <Association Name="FK_SUBJECTA_REFERENCE_USERINFO">
-          <End Role="UserInfo" Type="Self.UserInfo" Multiplicity="1" />
-          <End Role="SubjectArticle" Type="Self.SubjectArticle" Multiplicity="*" />
-          <ReferentialConstraint>
-            <Principal Role="UserInfo">
-              <PropertyRef Name="UserId" />
-            </Principal>
-            <Dependent Role="SubjectArticle">
-              <PropertyRef Name="UserId" />
-            </Dependent>
-          </ReferentialConstraint>
-        </Association>
         <Association Name="FK_SUPPORTS_REFERENCE_COOKBOOK">
           <End Role="CookBook" Type="Self.CookBook" Multiplicity="1" />
           <End Role="SupportScanRecord" Type="Self.SupportScanRecord" Multiplicity="*" />
@@ -306,6 +280,7 @@
           </ReferentialConstraint>
         </Association>
         <EntityContainer Name="DelicacyModelStoreContainer">
+          <EntitySet Name="AdminUser" EntityType="Self.AdminUser" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="CommentRecord" EntityType="Self.CommentRecord" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="CookBook" EntityType="Self.CookBook" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="CookMaterial" EntityType="Self.CookMaterial" Schema="dbo" store:Type="Tables" />
@@ -317,7 +292,6 @@
           <EntitySet Name="SubjectArticle" EntityType="Self.SubjectArticle" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="SubjectSort" EntityType="Self.SubjectSort" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="SupportScanRecord" EntityType="Self.SupportScanRecord" Schema="dbo" store:Type="Tables" />
-          <EntitySet Name="sysdiagrams" EntityType="Self.sysdiagrams" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="Taste" EntityType="Self.Taste" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="UserInfo" EntityType="Self.UserInfo" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="VerifyRegister" EntityType="Self.VerifyRegister" Schema="dbo" store:Type="Tables" />
@@ -357,14 +331,6 @@
             <End Role="UserInfo" EntitySet="UserInfo" />
             <End Role="LikeCookBook" EntitySet="LikeCookBook" />
           </AssociationSet>
-          <AssociationSet Name="FK_SUBJECTA_REFERENCE_SUBJECTS" Association="Self.FK_SUBJECTA_REFERENCE_SUBJECTS">
-            <End Role="SubjectSort" EntitySet="SubjectSort" />
-            <End Role="SubjectArticle" EntitySet="SubjectArticle" />
-          </AssociationSet>
-          <AssociationSet Name="FK_SUBJECTA_REFERENCE_USERINFO" Association="Self.FK_SUBJECTA_REFERENCE_USERINFO">
-            <End Role="UserInfo" EntitySet="UserInfo" />
-            <End Role="SubjectArticle" EntitySet="SubjectArticle" />
-          </AssociationSet>
           <AssociationSet Name="FK_SUPPORTS_REFERENCE_COOKBOOK" Association="Self.FK_SUPPORTS_REFERENCE_COOKBOOK">
             <End Role="CookBook" EntitySet="CookBook" />
             <End Role="SupportScanRecord" EntitySet="SupportScanRecord" />
@@ -379,6 +345,7 @@
     <edmx:ConceptualModels>
       <Schema Namespace="DelicacyModel" Alias="Self" annotation:UseStrongSpatialTypes="false" xmlns:annotation="http://schemas.microsoft.com/ado/2009/02/edm/annotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm">
         <EntityContainer Name="Entities" annotation:LazyLoadingEnabled="true">
+          <EntitySet Name="AdminUser" EntityType="DelicacyModel.AdminUser" />
           <EntitySet Name="CommentRecord" EntityType="DelicacyModel.CommentRecord" />
           <EntitySet Name="CookBook" EntityType="DelicacyModel.CookBook" />
           <EntitySet Name="CookMaterial" EntityType="DelicacyModel.CookMaterial" />
@@ -387,10 +354,8 @@
           <EntitySet Name="FoodMaterial_CookBook" EntityType="DelicacyModel.FoodMaterial_CookBook" />
           <EntitySet Name="FoodSort" EntityType="DelicacyModel.FoodSort" />
           <EntitySet Name="LikeCookBook" EntityType="DelicacyModel.LikeCookBook" />
-          <EntitySet Name="SubjectArticle" EntityType="DelicacyModel.SubjectArticle" />
           <EntitySet Name="SubjectSort" EntityType="DelicacyModel.SubjectSort" />
           <EntitySet Name="SupportScanRecord" EntityType="DelicacyModel.SupportScanRecord" />
-          <EntitySet Name="sysdiagrams" EntityType="DelicacyModel.sysdiagrams" />
           <EntitySet Name="Taste" EntityType="DelicacyModel.Taste" />
           <EntitySet Name="UserInfo" EntityType="DelicacyModel.UserInfo" />
           <EntitySet Name="VerifyRegister" EntityType="DelicacyModel.VerifyRegister" />
@@ -434,19 +399,20 @@
             <End Role="UserInfo" EntitySet="UserInfo" />
             <End Role="LikeCookBook" EntitySet="LikeCookBook" />
           </AssociationSet>
-          <AssociationSet Name="FK_SUBJECTA_REFERENCE_SUBJECTS" Association="DelicacyModel.FK_SUBJECTA_REFERENCE_SUBJECTS">
-            <End Role="SubjectSort" EntitySet="SubjectSort" />
-            <End Role="SubjectArticle" EntitySet="SubjectArticle" />
-          </AssociationSet>
-          <AssociationSet Name="FK_SUBJECTA_REFERENCE_USERINFO" Association="DelicacyModel.FK_SUBJECTA_REFERENCE_USERINFO">
-            <End Role="UserInfo" EntitySet="UserInfo" />
-            <End Role="SubjectArticle" EntitySet="SubjectArticle" />
-          </AssociationSet>
           <AssociationSet Name="FK_SUPPORTS_REFERENCE_USERINFO" Association="DelicacyModel.FK_SUPPORTS_REFERENCE_USERINFO">
             <End Role="UserInfo" EntitySet="UserInfo" />
             <End Role="SupportScanRecord" EntitySet="SupportScanRecord" />
           </AssociationSet>
+          <EntitySet Name="SubjectArticle" EntityType="DelicacyModel.SubjectArticle" />
         </EntityContainer>
+        <EntityType Name="AdminUser">
+          <Key>
+            <PropertyRef Name="UserId" />
+          </Key>
+          <Property Name="UserId" Type="String" Nullable="false" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Name="pwd" Type="String" Nullable="false" MaxLength="100" FixedLength="false" Unicode="false" />
+          <Property Name="RegDate" Type="DateTime" Nullable="false" Precision="3" />
+        </EntityType>
         <EntityType Name="CommentRecord">
           <Key>
             <PropertyRef Name="CommentId" />
@@ -540,25 +506,12 @@
           <NavigationProperty Name="CookBook" Relationship="DelicacyModel.FK_LIKECOOK_REFERENCE_COOKBOOK" FromRole="LikeCookBook" ToRole="CookBook" />
           <NavigationProperty Name="UserInfo" Relationship="DelicacyModel.FK_LIKECOOK_REFERENCE_USERINFO" FromRole="LikeCookBook" ToRole="UserInfo" />
         </EntityType>
-        <EntityType Name="SubjectArticle">
-          <Key>
-            <PropertyRef Name="SubjectArticleId" />
-          </Key>
-          <Property Name="SubjectArticleId" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
-          <Property Name="SubjectSortId" Type="Int32" Nullable="false" />
-          <Property Name="UserId" Type="Int32" Nullable="false" />
-          <Property Name="content" Type="String" Nullable="false" MaxLength="Max" FixedLength="false" Unicode="true" />
-          <Property Name="Datetime" Type="DateTime" Nullable="false" Precision="3" />
-          <NavigationProperty Name="SubjectSort" Relationship="DelicacyModel.FK_SUBJECTA_REFERENCE_SUBJECTS" FromRole="SubjectArticle" ToRole="SubjectSort" />
-          <NavigationProperty Name="UserInfo" Relationship="DelicacyModel.FK_SUBJECTA_REFERENCE_USERINFO" FromRole="SubjectArticle" ToRole="UserInfo" />
-        </EntityType>
         <EntityType Name="SubjectSort">
           <Key>
             <PropertyRef Name="SubjectSortId" />
           </Key>
           <Property Name="SubjectSortId" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
           <Property Name="Name" Type="String" Nullable="false" MaxLength="50" FixedLength="false" Unicode="true" />
-          <NavigationProperty Name="SubjectArticle" Relationship="DelicacyModel.FK_SUBJECTA_REFERENCE_SUBJECTS" FromRole="SubjectSort" ToRole="SubjectArticle" />
         </EntityType>
         <EntityType Name="SupportScanRecord">
           <Key>
@@ -571,16 +524,6 @@
           <Property Name="DateTime" Type="DateTime" Nullable="false" Precision="3" />
           <NavigationProperty Name="CookBook" Relationship="DelicacyModel.FK_SUPPORTS_REFERENCE_COOKBOOK" FromRole="SupportScanRecord" ToRole="CookBook" />
           <NavigationProperty Name="UserInfo" Relationship="DelicacyModel.FK_SUPPORTS_REFERENCE_USERINFO" FromRole="SupportScanRecord" ToRole="UserInfo" />
-        </EntityType>
-        <EntityType Name="sysdiagrams">
-          <Key>
-            <PropertyRef Name="diagram_id" />
-          </Key>
-          <Property Name="name" Type="String" Nullable="false" MaxLength="128" FixedLength="false" Unicode="true" />
-          <Property Name="principal_id" Type="Int32" Nullable="false" />
-          <Property Name="diagram_id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
-          <Property Name="version" Type="Int32" />
-          <Property Name="definition" Type="Binary" MaxLength="Max" FixedLength="false" />
         </EntityType>
         <EntityType Name="Taste">
           <Key>
@@ -604,7 +547,6 @@
           <NavigationProperty Name="CommentRecord" Relationship="DelicacyModel.FK_COMMENTR_REFERENCE_USERINFO" FromRole="UserInfo" ToRole="CommentRecord" />
           <NavigationProperty Name="CookBook" Relationship="DelicacyModel.FK_COOKBOOK_REFERENCE_USERINFO" FromRole="UserInfo" ToRole="CookBook" />
           <NavigationProperty Name="LikeCookBook" Relationship="DelicacyModel.FK_LIKECOOK_REFERENCE_USERINFO" FromRole="UserInfo" ToRole="LikeCookBook" />
-          <NavigationProperty Name="SubjectArticle" Relationship="DelicacyModel.FK_SUBJECTA_REFERENCE_USERINFO" FromRole="UserInfo" ToRole="SubjectArticle" />
           <NavigationProperty Name="SupportScanRecord" Relationship="DelicacyModel.FK_SUPPORTS_REFERENCE_USERINFO" FromRole="UserInfo" ToRole="SupportScanRecord" />
         </EntityType>
         <EntityType Name="VerifyRegister">
@@ -737,30 +679,6 @@
             </Dependent>
           </ReferentialConstraint>
         </Association>
-        <Association Name="FK_SUBJECTA_REFERENCE_SUBJECTS">
-          <End Type="DelicacyModel.SubjectSort" Role="SubjectSort" Multiplicity="1" />
-          <End Type="DelicacyModel.SubjectArticle" Role="SubjectArticle" Multiplicity="*" />
-          <ReferentialConstraint>
-            <Principal Role="SubjectSort">
-              <PropertyRef Name="SubjectSortId" />
-            </Principal>
-            <Dependent Role="SubjectArticle">
-              <PropertyRef Name="SubjectSortId" />
-            </Dependent>
-          </ReferentialConstraint>
-        </Association>
-        <Association Name="FK_SUBJECTA_REFERENCE_USERINFO">
-          <End Type="DelicacyModel.UserInfo" Role="UserInfo" Multiplicity="1" />
-          <End Type="DelicacyModel.SubjectArticle" Role="SubjectArticle" Multiplicity="*" />
-          <ReferentialConstraint>
-            <Principal Role="UserInfo">
-              <PropertyRef Name="UserId" />
-            </Principal>
-            <Dependent Role="SubjectArticle">
-              <PropertyRef Name="UserId" />
-            </Dependent>
-          </ReferentialConstraint>
-        </Association>
         <Association Name="FK_SUPPORTS_REFERENCE_USERINFO">
           <End Type="DelicacyModel.UserInfo" Role="UserInfo" Multiplicity="0..1" />
           <End Type="DelicacyModel.SupportScanRecord" Role="SupportScanRecord" Multiplicity="*" />
@@ -773,12 +691,31 @@
             </Dependent>
           </ReferentialConstraint>
         </Association>
+        <EntityType Name="SubjectArticle">
+          <Key>
+            <PropertyRef Name="SubjectArticleId" />
+          </Key>
+          <Property Name="SubjectArticleId" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="SubjectSortId" Type="Int32" Nullable="false" />
+          <Property Name="UserId" Type="String" Nullable="false" MaxLength="100" FixedLength="false" Unicode="false" />
+          <Property Name="Content" Type="String" Nullable="false" MaxLength="Max" FixedLength="false" Unicode="true" />
+          <Property Name="Datetime" Type="DateTime" Nullable="false" Precision="3" />
+        </EntityType>
         </Schema>
     </edmx:ConceptualModels>
     <!-- C-S mapping content -->
     <edmx:Mappings>
       <Mapping Space="C-S" xmlns="http://schemas.microsoft.com/ado/2009/11/mapping/cs">
         <EntityContainerMapping StorageEntityContainer="DelicacyModelStoreContainer" CdmEntityContainer="Entities">
+          <EntitySetMapping Name="AdminUser">
+            <EntityTypeMapping TypeName="DelicacyModel.AdminUser">
+              <MappingFragment StoreEntitySet="AdminUser">
+                <ScalarProperty Name="RegDate" ColumnName="RegDate" />
+                <ScalarProperty Name="pwd" ColumnName="pwd" />
+                <ScalarProperty Name="UserId" ColumnName="UserId" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
           <EntitySetMapping Name="CommentRecord">
             <EntityTypeMapping TypeName="DelicacyModel.CommentRecord">
               <MappingFragment StoreEntitySet="CommentRecord">
@@ -865,17 +802,6 @@
               </MappingFragment>
             </EntityTypeMapping>
           </EntitySetMapping>
-          <EntitySetMapping Name="SubjectArticle">
-            <EntityTypeMapping TypeName="DelicacyModel.SubjectArticle">
-              <MappingFragment StoreEntitySet="SubjectArticle">
-                <ScalarProperty Name="Datetime" ColumnName="Datetime" />
-                <ScalarProperty Name="content" ColumnName="content" />
-                <ScalarProperty Name="UserId" ColumnName="UserId" />
-                <ScalarProperty Name="SubjectSortId" ColumnName="SubjectSortId" />
-                <ScalarProperty Name="SubjectArticleId" ColumnName="SubjectArticleId" />
-              </MappingFragment>
-            </EntityTypeMapping>
-          </EntitySetMapping>
           <EntitySetMapping Name="SubjectSort">
             <EntityTypeMapping TypeName="DelicacyModel.SubjectSort">
               <MappingFragment StoreEntitySet="SubjectSort">
@@ -892,17 +818,6 @@
                 <ScalarProperty Name="UserId" ColumnName="UserId" />
                 <ScalarProperty Name="CookBookId" ColumnName="CookBookId" />
                 <ScalarProperty Name="SSRId" ColumnName="SSRId" />
-              </MappingFragment>
-            </EntityTypeMapping>
-          </EntitySetMapping>
-          <EntitySetMapping Name="sysdiagrams">
-            <EntityTypeMapping TypeName="DelicacyModel.sysdiagrams">
-              <MappingFragment StoreEntitySet="sysdiagrams">
-                <ScalarProperty Name="definition" ColumnName="definition" />
-                <ScalarProperty Name="version" ColumnName="version" />
-                <ScalarProperty Name="diagram_id" ColumnName="diagram_id" />
-                <ScalarProperty Name="principal_id" ColumnName="principal_id" />
-                <ScalarProperty Name="name" ColumnName="name" />
               </MappingFragment>
             </EntityTypeMapping>
           </EntitySetMapping>
@@ -935,6 +850,17 @@
                 <ScalarProperty Name="IsUsed" ColumnName="IsUsed" />
                 <ScalarProperty Name="LoginId" ColumnName="LoginId" />
                 <ScalarProperty Name="GUID" ColumnName="GUID" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="SubjectArticle">
+            <EntityTypeMapping TypeName="DelicacyModel.SubjectArticle">
+              <MappingFragment StoreEntitySet="SubjectArticle">
+                <ScalarProperty Name="Datetime" ColumnName="Datetime" />
+                <ScalarProperty Name="Content" ColumnName="Content" />
+                <ScalarProperty Name="UserId" ColumnName="UserId" />
+                <ScalarProperty Name="SubjectSortId" ColumnName="SubjectSortId" />
+                <ScalarProperty Name="SubjectArticleId" ColumnName="SubjectArticleId" />
               </MappingFragment>
             </EntityTypeMapping>
           </EntitySetMapping>
