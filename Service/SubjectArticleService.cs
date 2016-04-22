@@ -64,9 +64,9 @@ namespace Service
             return TransferObject.ConvertObjectByEntity<SubjectArticle, SubjectArticleTsfer>(base.Select(o => true).ToList());
         }
 
-        public List<SubjectArticleTsfer> GetList(int pageIndex,int pageSize)
+        public List<SubjectArticleTsfer> GetList(int pageIndex,int pageSize, out int rowCount)
         {
-            return TransferObject.ConvertObjectByEntity<SubjectArticle,SubjectArticleTsfer>( SelectDesc(pageIndex, pageSize, o => true, o => o.Datetime).ToList());
+            return TransferObject.ConvertObjectByEntity<SubjectArticle,SubjectArticleTsfer>( SelectDesc(pageIndex, pageSize, o => true, o => o.Datetime,out rowCount).ToList());
         }
     }
 }
