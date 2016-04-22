@@ -11,7 +11,7 @@ namespace Manager
 {
     public class UserInfoManager
     {
-        private UserInfoService userService = ObjectContainer.GetInstance<UserInfoService>();
+        private UserInfoService service = ObjectContainer.GetInstance<UserInfoService>();
         private VerifyRegisterServer verifyService = ObjectContainer.GetInstance<VerifyRegisterServer>();
         /// <summary>
         /// 注册
@@ -29,7 +29,7 @@ namespace Manager
             if (!RegExVerify.VerifyEmail(loginId))
                 return OutputHelper.GetOutputResponse(ResultCode.ErrorParameter, "邮箱格式不正确");
             //判断邮箱是否被注册
-            UserInfoTsfer uTsfer = userService.Get(loginId);
+            UserInfoTsfer uTsfer = service.Get(loginId);
             if (uTsfer != null)
                 return OutputHelper.GetOutputResponse(ResultCode.ConditionNotSatisfied, "此邮箱已被注册，可以直接登录");
             //进行注册
@@ -50,7 +50,7 @@ namespace Manager
                 Type=1
             };
 
-            if (userService.Add(newUser, verifyDt))
+            if (service.Add(newUser, verifyDt))
             {
                 //发邮件
                 EmailHelper.SendEmail("[食谱网]感谢注册食谱网,请验证邮箱" + loginId, loginId.Substring(0, loginId.IndexOf('@')) + "：您好，感谢您注册食谱网，请点击下面的链接验证您的邮箱：<a href='http://121.42.58.78:8888/UserInfo/VerifyEmail?guid=" + verifyDt.GUID + "'>http://121.42.58.78:8888/UserInfo/VerifyEmail?guid=" + verifyDt.GUID + "</a>该链接7天后失效。", loginId);
@@ -76,7 +76,7 @@ namespace Manager
             if (!RegExVerify.VerifyEmail(loginId))
                 return OutputHelper.GetOutputResponse(ResultCode.ErrorParameter, "邮箱格式不正确");
             //获取邮箱对应的用户
-            UserInfoTsfer uTsfer = userService.Get(loginId);
+            UserInfoTsfer uTsfer = service.Get(loginId);
             if (uTsfer == null)
                 return OutputHelper.GetOutputResponse(ResultCode.NoData, "该邮箱未注册过，请先注册");
             if (MD5Helper.GeneratePwd(password) != uTsfer.Password)
@@ -99,7 +99,7 @@ namespace Manager
             if (!RegExVerify.VerifyEmail(loginId))
                 return OutputHelper.GetOutputResponse(ResultCode.ErrorParameter, "邮箱格式不正确");
             //获取邮箱对应的用户
-            UserInfoTsfer uTsfer = userService.Get(loginId);
+            UserInfoTsfer uTsfer = service.Get(loginId);
             if (uTsfer == null)
                 return OutputHelper.GetOutputResponse(ResultCode.NoData, "该邮箱未注册过，请先注册");
             if (new VerifyRegisterServer().IsSend(loginId,2))
@@ -130,13 +130,13 @@ namespace Manager
             if (userInfo == null)
                 return OutputHelper.GetOutputResponse(ResultCode.NoParameter);
             userInfo.Password = MD5Helper.GeneratePwd(userInfo.Password);
-            if(userService.Update(userInfo))
+            if(service.Update(userInfo))
                 return OutputHelper.GetOutputResponse(ResultCode.OK);
             return OutputHelper.GetOutputResponse(ResultCode.Error);
         }
         public bool Delete(UserInfoTsfer userInfo)
         {
-            return userService.Delete(userInfo.UserId);
+            return service.Delete(userInfo.UserId);
         }
 
         /// <summary>
@@ -146,10 +146,15 @@ namespace Manager
         /// <returns></returns>
         public OutputModel Get(string loginId)
         {
-            UserInfoTsfer u = userService.Get(loginId);
+            UserInfoTsfer u = service.Get(loginId);
             if (u == null)
                 return OutputHelper.GetOutputResponse(ResultCode.NoData);
             return OutputHelper.GetOutputResponse(ResultCode.OK, u);
+        }
+
+        public List<UserInfoTsfer> GetAll()
+        {
+            return service.GetAll();
         }
     }
 }

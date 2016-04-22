@@ -23,6 +23,7 @@ namespace Delicacy.Controllers.Admin
             return Content(new AdminUserManager().Login(userId, pwd));
         }
 
+
         [HttpGet]
         public ActionResult Add()
         {
@@ -34,5 +35,11 @@ namespace Delicacy.Controllers.Admin
             return Content(new AdminUserManager().Add(userId,password));
         }
 
+        public ActionResult UserManager()
+        {
+            if (!IsLogin())
+                return RedirectHome();
+            return View(new UserInfoManager().GetAll());
+        }
 	}
 }

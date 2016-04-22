@@ -13,7 +13,7 @@ namespace Delicacy.Controllers.Admin
         public ActionResult Index()
         {
             if (!IsLogin())
-                return RedirectIndex();
+                return RedirectHome();
             return View();
         }
 

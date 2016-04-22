@@ -16,7 +16,7 @@ namespace Delicacy.Controllers.Admin
         public ActionResult Index()
         {
             if (!IsLogin())
-                return  RedirectIndex();
+                return  RedirectHome();
             return View();
         }
 
@@ -25,7 +25,7 @@ namespace Delicacy.Controllers.Admin
         public ActionResult Add(string content,string title,string brief)
         {
             if (!IsLogin())
-                return RedirectIndex();
+                return RedirectHome();
             SubjectArticleManager articleManager = new SubjectArticleManager();
              return Content(articleManager.Add(content, adminUser.UserId,title,brief));
         }

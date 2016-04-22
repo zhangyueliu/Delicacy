@@ -338,6 +338,7 @@
     <Content Include="Views\AdminCenter\Index.cshtml" />
     <Content Include="Views\Shared\_AdminLayout.cshtml" />
     <Content Include="Views\AdminSubjectArticle\Index.cshtml" />
+    <Content Include="Views\AdminUser\UserManager.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
