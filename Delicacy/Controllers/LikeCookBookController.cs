@@ -4,6 +4,7 @@ using System.Linq;
 using System.Web;
 using System.Web.Mvc;
 using Manager;
+using Tool;
 
 namespace Delicacy.Controllers
 {
@@ -20,6 +21,18 @@ namespace Delicacy.Controllers
         {
             LikeCookBookManager manager = new LikeCookBookManager();
            return Content(manager.GetList());
+        }
+
+        /// <summary>
+        /// 收藏
+        /// </summary>
+        /// <param name="cookBookId"></param>
+        /// <returns></returns>
+        public ActionResult Add(string cookBookId)
+        {
+            if (!IsLogin())
+                return Content( OutputHelper.GetOutputResponse(ResultCode.NoLogin));
+            return Content(new LikeCookBookManager().Add(cookBookId, user.UserId));
         }
 	}
 }

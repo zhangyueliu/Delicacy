@@ -43,6 +43,11 @@ namespace Service
         {
             return TransferObject.ConvertObjectByEntity<CookBook, CookBookTsfer>(Select(o => o.FoodSortId == sort).OrderByDescending(o => o.DateTime).ToList());
         }
+
+        public bool IsExist(string cookBookId)
+        {
+            return  Select(o => o.CookBookId == cookBookId).Any();
+        }
     }
 }
 

@@ -11,14 +11,26 @@ namespace Manager
 {
     public class LikeCookBookManager
     {
-        private LikeCookBookService Service = ObjectContainer.GetInstance<LikeCookBookService>();
-        public OutputModel Add(LikeCookBookTsfer like)
+        private LikeCookBookService Service = new  LikeCookBookService();
+        public OutputModel Add(string cookBookId,int userId)
         {
-            if (like == null)
+            if (string.IsNullOrEmpty(cookBookId)||userId==0)
                 return OutputHelper.GetOutputResponse(ResultCode.NoParameter);
-            LikeCookBookTsfer l = Service.Get(like.UserId, like.CookBookId);
+            //判断是否关注过
+            LikeCookBookTsfer l = Service.Get(userId, cookBookId);
             if (l != null)
                 return Delete(l);
+            
+            
+            //判断菜谱是否存在
+            CookBookService cookService = new CookBookService();
+            if(! cookService.IsExist(cookBookId))
+                return OutputHelper.GetOutputResponse(ResultCode.ConditionNotSatisfied,"菜谱不存在");
+            LikeCookBookTsfer like = new LikeCookBookTsfer { 
+            CookBookId=cookBookId,
+            DateTime=DateTime.Now,
+            UserId=userId,
+            };
             if (Service.Add(like))
                 return OutputHelper.GetOutputResponse(ResultCode.OK);
             return OutputHelper.GetOutputResponse(ResultCode.Error);

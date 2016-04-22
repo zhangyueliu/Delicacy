@@ -14,15 +14,17 @@ namespace Manager
     {
         private SubjectArticleService service = new SubjectArticleService();
 
-        public OutputModel Add(string  content,string userId)
+        public OutputModel Add(string  content,string userId,string title,string brief)
         {
-            if (string.IsNullOrWhiteSpace(content))
+            if (CheckParameter.IsNullOrWhiteSpace(content, title, brief))
                 return OutputHelper.GetOutputResponse(ResultCode.NoParameter);
             SubjectArticleTsfer article = new SubjectArticleTsfer {
             Content=content,
             Datetime=DateTime.Now,
             SubjectSortId=-1,
-            UserId=userId
+            UserId=userId,
+            Title=title,
+            Brief=brief
             };
             if (service.Add(article))
                 return OutputHelper.GetOutputResponse(ResultCode.OK);
@@ -104,5 +106,7 @@ namespace Manager
                 return OutputHelper.GetOutputResponse(ResultCode.NoData);
             return OutputHelper.GetOutputResponse(ResultCode.OK, list);
         }
+
+        //public 
     }
 }

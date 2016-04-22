@@ -9,13 +9,39 @@
         //CKEDITOR.instances.content.getData();
         var content = CKEDITOR.instances.content.getData();
         //alert(content);
+        var title = $('#title').val();
+        if (!title)
+        {
+            layer.msg('标题不能为空')
+            $('#title').focus();
+            return;
+        }
+        var brief = $('#brief').val();
+        if (!brief) {
+            layer.msg('简介不能为空')
+            $('#brief').focus();
+            return;
+        }
+       
+        if (!content) {
+            layer.msg('正文不能为空')
+            $('#content').focus();
+            return;
+        }
+
         $.ajax({
             type: 'post',
             url: '/AdminSubjectArticle/Add',
             dataType: 'json',
-            data:{content:content},
+            data:{content:content,title:title,brief:brief},
             success: function (data) {
+                
                 layer.alert(data.Message);
+                if(data.StatusCode===1)
+                {
+                    $('#title').val('');
+                    $('#brief').val('');
+                }
             }
         });
     }
@@ -30,7 +56,11 @@
 
 <script src="http://shianyun-oss.oss-cn-beijing.aliyuncs.com/statics/DP/JsLib/ckeditor/ckeditor.js"></script>
 
-<input type="text" id="content" />
+<label>标题</label><input type="text" id="title" />
+<br />
+<label>简介</label><textarea rows="10" cols="80" id="brief"></textarea>
+<br />
+<label>正文</label><input type="text" id="content" />
  
 
 <script type="text/javascript">
