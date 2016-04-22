@@ -1,4 +1,4 @@
-﻿using System;
+﻿﻿﻿using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
@@ -209,9 +209,11 @@ namespace Manager
         }
 
 
-        public List<CookBookTsfer> GetCookBookBysort(int sort)
+      public List<CookBookTsfer> GetCookBookBysort(int sort, int pageIndex, int pageSize, out int rowCount,out int pageCount)
         {
-            return service.GetCookBookBysort(sort);
+           List<CookBookTsfer>list= service.GetCookBookBysort(sort, pageIndex, pageSize, out rowCount);
+           pageCount =(int)Math.Ceiling(rowCount * 1.0 / pageSize);
+           return list;
         }
 
         public OutputModel SearchByName(string name)
@@ -252,4 +254,3 @@ namespace Manager
         }
     }
 }
-

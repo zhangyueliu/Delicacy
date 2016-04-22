@@ -1,4 +1,4 @@
-﻿using System;
+﻿﻿﻿using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
@@ -49,11 +49,10 @@ namespace Service
         {
             return TransferObject.ConvertObjectByEntity<CookBook, CookBookTsfer>(Select(o => o.UserId == userId&&o.Status==status).OrderByDescending(o => o.DateTime).ToList());
         }
-        public List<CookBookTsfer> GetCookBookBysort(int sort)
+        public List<CookBookTsfer> GetCookBookBysort(int sort, int pageIndex, int pageSize, out int rowCount)
         {
-            return TransferObject.ConvertObjectByEntity<CookBook, CookBookTsfer>(Select(o => o.FoodSortId == sort).OrderByDescending(o => o.DateTime).ToList());
+            return TransferObject.ConvertObjectByEntity<CookBook, CookBookTsfer>(SelectDesc(pageIndex, pageSize,o => o.FoodSortId == sort,o=>o.DateTime,out rowCount).ToList());
         }
-
         public bool IsExist(string cookBookId)
         {
             return  Select(o => o.CookBookId == cookBookId).Any();

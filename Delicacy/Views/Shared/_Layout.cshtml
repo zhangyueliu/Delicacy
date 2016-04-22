@@ -19,7 +19,7 @@
     <script src="~/Scripts/layer9.1/layer.js"></script>
     <link href="~/Content/center.css" rel="stylesheet" />
     <link href="~/Content/my_newmenu.css" rel="stylesheet" />
-
+    <script src="~/Scripts/jqPaginator.js"></script>
     <script src="~/Scripts/bootstrap.js"></script>
     @*<link href="~/Content/bootstrap.css" rel="stylesheet" />*@
 
@@ -80,7 +80,7 @@
                                 {
                                     foreach (FoodSortTsfer sort in listfenlei)
                                     {
-                                        <a href="/CookBook/List/@sort.FoodSortId">@sort.Name</a>
+                                        <a href="/CookBook/List?id=@sort.FoodSortId">@sort.Name</a>
                                     }
                                 }
 

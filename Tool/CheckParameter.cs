@@ -27,5 +27,13 @@ namespace Tool
            }
            return false;
        }
+
+       public static void PageCheck(string pageIndex, out int pageindex)
+       {
+           if(!int.TryParse(pageIndex, out pageindex))
+           {
+               pageindex=1;
+           }
+       }
     }
 }
