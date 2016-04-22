@@ -35,6 +35,16 @@ namespace Service
             return TransferObject.ConvertObjectByEntity<CookBook, CookBookTsfer>(base.Select(o => o.CookBookId == cookBookId).FirstOrDefault());
         }
 
+        /// <summary>
+        /// 根据菜谱名称进行模糊查询
+        /// </summary>
+        /// <param name="name"></param>
+        /// <returns></returns>
+        public List<CookBookTsfer>  GetByName(string name)
+        {
+            return TransferObject.ConvertObjectByEntity<CookBook, CookBookTsfer>(Select(o => o.Name.Contains(name)).ToList());
+        }
+
         public List<CookBookTsfer> GetList(int userId,int status)
         {
             return TransferObject.ConvertObjectByEntity<CookBook, CookBookTsfer>(Select(o => o.UserId == userId&&o.Status==status).OrderByDescending(o => o.DateTime).ToList());
