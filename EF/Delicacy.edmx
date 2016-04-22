@@ -98,6 +98,8 @@
           <Property Name="SubjectArticleId" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
           <Property Name="SubjectSortId" Type="int" Nullable="false" />
           <Property Name="UserId" Type="varchar" MaxLength="100" Nullable="false" />
+          <Property Name="Title" Type="nvarchar" MaxLength="50" Nullable="false" />
+          <Property Name="Brief" Type="nvarchar" MaxLength="300" Nullable="false" />
           <Property Name="Content" Type="nvarchar(max)" Nullable="false" />
           <Property Name="Datetime" Type="datetime" Nullable="false" />
         </EntityType>
@@ -698,6 +700,8 @@
           <Property Name="SubjectArticleId" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
           <Property Name="SubjectSortId" Type="Int32" Nullable="false" />
           <Property Name="UserId" Type="String" Nullable="false" MaxLength="100" FixedLength="false" Unicode="false" />
+          <Property Name="Title" Type="String" Nullable="false" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="Brief" Type="String" Nullable="false" MaxLength="300" FixedLength="false" Unicode="true" />
           <Property Name="Content" Type="String" Nullable="false" MaxLength="Max" FixedLength="false" Unicode="true" />
           <Property Name="Datetime" Type="DateTime" Nullable="false" Precision="3" />
         </EntityType>
@@ -858,6 +862,8 @@
               <MappingFragment StoreEntitySet="SubjectArticle">
                 <ScalarProperty Name="Datetime" ColumnName="Datetime" />
                 <ScalarProperty Name="Content" ColumnName="Content" />
+                <ScalarProperty Name="Brief" ColumnName="Brief" />
+                <ScalarProperty Name="Title" ColumnName="Title" />
                 <ScalarProperty Name="UserId" ColumnName="UserId" />
                 <ScalarProperty Name="SubjectSortId" ColumnName="SubjectSortId" />
                 <ScalarProperty Name="SubjectArticleId" ColumnName="SubjectArticleId" />

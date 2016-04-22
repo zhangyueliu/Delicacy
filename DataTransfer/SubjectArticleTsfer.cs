@@ -11,6 +11,8 @@ namespace DataTransfer
         public int SubjectArticleId { get; set; }
         public int SubjectSortId { get; set; }
         public string UserId { get; set; }
+        public string Title { get; set; }
+        public string Brief { get; set; }
         public string Content { get; set; }
         public System.DateTime Datetime { get; set; }
     }
