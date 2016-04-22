@@ -2,31 +2,10 @@
 @{
     Layout = "~/Views/Shared/_Layout.cshtml";
 }
-<script src="~/Scripts/page.js"></script>
-<script>
-    $(document).ready(function () {
-        $("#secondli").addClass("active");
-    });
-    function image() {
-        var height = $(".imagess").height;
-        var width = $(".imagess").width;
-        if (height >= width) {
-            $(".imagess").attr("height", "100%");
-        }
-        if (height < width) {
-            $(".imagess").attr("width", "100%");
-        }
-    }
-    $.jqPaginator('#pagination1', {
-        totalCounts: 100,
-        pageSize: 9,
-        visiblePages: 10,
-        currentPage: 1,
-        onPageChange: function (num, type) {
-            $('#p1').text(type + '：' + num);
-        }
-    });
-</script>
+@*<script src="~/Scripts/page.js"></script>*@
+<link href="~/Content/pager.css" rel="stylesheet" />
+
+
 <style>
 
 </style>
@@ -41,7 +20,7 @@
     </div>
     <div class="prod">
         @{List<CookBookTsfer> list = ViewBag.cookbookList;
-        if (list!=null&&list.Count > 0)
+        if (list != null && list.Count > 0)
         {
             foreach (CookBookTsfer cook in list)
             {
@@ -56,10 +35,44 @@
         }
         }
         <div class="clear"></div>
-       
+
+    </div>
+    <div class="tcdPageCode">
     </div>
 </div>
-<div style="position:relative;">
-    <p id="p1"></p>
-    <ul class="pagination" id="pagination1" style="position: absolute;left: 50%;transform: translateX(-50%);"></ul>
-</div>
+@*<div style="position:relative;">
+        <p id="p1"></p>
+        <ul class="pagination" id="pagination1" style="position: absolute;left: 50%;transform: translateX(-50%);"></ul>
+    </div>*@
+<script src="http://www.lanrenzhijia.com/ajaxjs/jquery.page.js"></script>
+<script>
+    //$(document).ready(function () {
+    //    $("#secondli").addClass("active");
+    //});
+    //function image() {
+    //    var height = $(".imagess").height;
+    //    var width = $(".imagess").width;
+    //    if (height >= width) {
+    //        $(".imagess").attr("height", "100%");
+    //    }
+    //    if (height < width) {
+    //        $(".imagess").attr("width", "100%");
+    //    }
+    //}
+    //$.jqPaginator('#pagination1', {
+    //    totalCounts: 100,
+    //    pageSize: 9,
+    //    visiblePages: 10,
+    //    currentPage: 1,
+    //    onPageChange: function (num, type) {
+    //        $('#p1').text(type + '：' + num);
+    //    }
+    //});
+    $(".tcdPageCode").createPage({
+        pageCount: 50,
+        current: 1,
+        backFn: function (p) {
+            console.log(p);
+        }
+    });
+</script>
