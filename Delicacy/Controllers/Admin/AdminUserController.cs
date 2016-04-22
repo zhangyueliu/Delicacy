@@ -23,6 +23,12 @@ namespace Delicacy.Controllers.Admin
             return Content(new AdminUserManager().Login(userId, pwd));
         }
 
+        public ActionResult UserManager()
+        {
+            if (!IsLogin())
+                return RedirectHome();
 
+            return View(new UserInfoManager().GetAll());
+        }
 	}
 }

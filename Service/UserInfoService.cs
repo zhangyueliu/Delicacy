@@ -51,5 +51,10 @@ namespace Service
         {
             return TransferObject.ConvertObjectByEntity<UserInfo, UserInfoTsfer>(Select(o => o.LoginId == userId).FirstOrDefault());
         }
+
+        public List<UserInfoTsfer> GetAll()
+        {
+            return TransferObject.ConvertObjectByEntity<UserInfo, UserInfoTsfer>(Select(o => true).ToList());
+        }
     }
 }

@@ -31,7 +31,7 @@ namespace Delicacy.Controllers.Admin
             return adminUser != null;
         }
 
-        protected ActionResult RedirectIndex()
+        protected ActionResult RedirectHome()
         {
             return Redirect("/AdminUser/Login");
         }
