@@ -40,14 +40,21 @@ namespace Delicacy.Controllers
             ViewBag.FoodMaterial = new FoodMaterialManager().GetList();
             return View();
         }
-        public ActionResult List(string id)
+        public ActionResult List(string id, string pageIndex)
         {
-            int sort = int.Parse(id);
+            int count;//总条数
+            int pagecount;//总页数
+            int sort=1; int pageindex; int pagesize = 9;
+            int.TryParse(id, out sort);
+            CheckParameter.PageCheck(pageIndex, out pageindex);
             CookBookManager manager = new CookBookManager();
             FoodSortManager sortmanager = new FoodSortManager();
             FoodSortTsfer f = (FoodSortTsfer)sortmanager.Get(sort).Data;
             ViewBag.sort = f.Name;
-            ViewBag.cookbookList = manager.GetCookBookBysort(sort);
+            ViewBag.cookbookList = manager.GetCookBookBysort(sort, pageindex, pagesize, out count,out pagecount);
+            ViewBag.pageCount = pagecount;
+            ViewBag.pageIndex = pageindex;
+            ViewBag.pageSize = pagesize;
             return View();
         }
         public ActionResult ListShicai(string id)

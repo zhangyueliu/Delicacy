@@ -250,6 +250,7 @@
     <None Include="Properties\PublishProfiles\Delicacy.pubxml" />
     <None Include="Scripts\jquery-1.10.2.intellisense.js" />
     <Content Include="Scripts\formatVerify.js" />
+    <Content Include="Scripts\jqPaginator.js" />
     <Content Include="Scripts\jquery-1.10.2.js" />
     <Content Include="Scripts\jquery-1.10.2.min.js" />
     <None Include="Scripts\jquery.validate-vsdoc.js" />
@@ -271,6 +272,7 @@
     <Content Include="Scripts\layer9.1\skin\layer.ext.css" />
     <Content Include="Scripts\md5.js" />
     <Content Include="Scripts\modernizr-2.6.2.js" />
+    <Content Include="Scripts\page.js" />
     <Content Include="Scripts\publishCookBook\common.js" />
     <Content Include="Scripts\publishCookBook\cookBook.js" />
     <Content Include="Scripts\publishCookBook\ga.js" />
