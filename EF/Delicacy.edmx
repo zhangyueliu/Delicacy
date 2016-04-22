@@ -149,20 +149,10 @@
           <Property Name="OutDate" Type="datetime" Nullable="false" />
           <Property Name="Type" Type="int" Nullable="false" />
         </EntityType>
-        <Association Name="FK_COMMENTR_REFERENCE_COOKBOOK">
-          <End Role="CookBook" Type="Self.CookBook" Multiplicity="0..1" />
-          <End Role="CommentRecord" Type="Self.CommentRecord" Multiplicity="*" />
-          <ReferentialConstraint>
-            <Principal Role="CookBook">
-              <PropertyRef Name="CookBookId" />
-            </Principal>
-            <Dependent Role="CommentRecord">
-              <PropertyRef Name="CookBookId" />
-            </Dependent>
-          </ReferentialConstraint>
-        </Association>
         <Association Name="FK_COMMENTR_REFERENCE_USERINFO">
-          <End Role="UserInfo" Type="Self.UserInfo" Multiplicity="0..1" />
+          <End Role="UserInfo" Type="Self.UserInfo" Multiplicity="0..1">
+            <OnDelete Action="Cascade" />
+          </End>
           <End Role="CommentRecord" Type="Self.CommentRecord" Multiplicity="*" />
           <ReferentialConstraint>
             <Principal Role="UserInfo">
@@ -174,7 +164,9 @@
           </ReferentialConstraint>
         </Association>
         <Association Name="FK_COOKBOOK_REFERENCE_FOODSORT">
-          <End Role="FoodSort" Type="Self.FoodSort" Multiplicity="0..1" />
+          <End Role="FoodSort" Type="Self.FoodSort" Multiplicity="0..1">
+            <OnDelete Action="Cascade" />
+          </End>
           <End Role="CookBook" Type="Self.CookBook" Multiplicity="*" />
           <ReferentialConstraint>
             <Principal Role="FoodSort">
@@ -186,7 +178,9 @@
           </ReferentialConstraint>
         </Association>
         <Association Name="FK_COOKBOOK_REFERENCE_TASTE">
-          <End Role="Taste" Type="Self.Taste" Multiplicity="0..1" />
+          <End Role="Taste" Type="Self.Taste" Multiplicity="0..1">
+            <OnDelete Action="Cascade" />
+          </End>
           <End Role="CookBook" Type="Self.CookBook" Multiplicity="*" />
           <ReferentialConstraint>
             <Principal Role="Taste">
@@ -198,7 +192,9 @@
           </ReferentialConstraint>
         </Association>
         <Association Name="FK_COOKBOOK_REFERENCE_USERINFO">
-          <End Role="UserInfo" Type="Self.UserInfo" Multiplicity="0..1" />
+          <End Role="UserInfo" Type="Self.UserInfo" Multiplicity="0..1">
+            <OnDelete Action="Cascade" />
+          </End>
           <End Role="CookBook" Type="Self.CookBook" Multiplicity="*" />
           <ReferentialConstraint>
             <Principal Role="UserInfo">
@@ -210,7 +206,9 @@
           </ReferentialConstraint>
         </Association>
         <Association Name="FK_COOKMATE_REFERENCE_COOKBOOK">
-          <End Role="CookBook" Type="Self.CookBook" Multiplicity="1" />
+          <End Role="CookBook" Type="Self.CookBook" Multiplicity="1">
+            <OnDelete Action="Cascade" />
+          </End>
           <End Role="CookMaterial" Type="Self.CookMaterial" Multiplicity="*" />
           <ReferentialConstraint>
             <Principal Role="CookBook">
@@ -222,7 +220,9 @@
           </ReferentialConstraint>
         </Association>
         <Association Name="FK_COOKPROC_REFERENCE_COOKBOOK">
-          <End Role="CookBook" Type="Self.CookBook" Multiplicity="0..1" />
+          <End Role="CookBook" Type="Self.CookBook" Multiplicity="0..1">
+            <OnDelete Action="Cascade" />
+          </End>
           <End Role="CookProcess" Type="Self.CookProcess" Multiplicity="*" />
           <ReferentialConstraint>
             <Principal Role="CookBook">
@@ -233,20 +233,10 @@
             </Dependent>
           </ReferentialConstraint>
         </Association>
-        <Association Name="FK_LIKECOOK_REFERENCE_COOKBOOK">
-          <End Role="CookBook" Type="Self.CookBook" Multiplicity="1" />
-          <End Role="LikeCookBook" Type="Self.LikeCookBook" Multiplicity="*" />
-          <ReferentialConstraint>
-            <Principal Role="CookBook">
-              <PropertyRef Name="CookBookId" />
-            </Principal>
-            <Dependent Role="LikeCookBook">
-              <PropertyRef Name="CookBookId" />
-            </Dependent>
-          </ReferentialConstraint>
-        </Association>
         <Association Name="FK_LIKECOOK_REFERENCE_USERINFO">
-          <End Role="UserInfo" Type="Self.UserInfo" Multiplicity="1" />
+          <End Role="UserInfo" Type="Self.UserInfo" Multiplicity="1">
+            <OnDelete Action="Cascade" />
+          </End>
           <End Role="LikeCookBook" Type="Self.LikeCookBook" Multiplicity="*" />
           <ReferentialConstraint>
             <Principal Role="UserInfo">
@@ -257,20 +247,10 @@
             </Dependent>
           </ReferentialConstraint>
         </Association>
-        <Association Name="FK_SUPPORTS_REFERENCE_COOKBOOK">
-          <End Role="CookBook" Type="Self.CookBook" Multiplicity="1" />
-          <End Role="SupportScanRecord" Type="Self.SupportScanRecord" Multiplicity="*" />
-          <ReferentialConstraint>
-            <Principal Role="CookBook">
-              <PropertyRef Name="CookBookId" />
-            </Principal>
-            <Dependent Role="SupportScanRecord">
-              <PropertyRef Name="CookBookId" />
-            </Dependent>
-          </ReferentialConstraint>
-        </Association>
         <Association Name="FK_SUPPORTS_REFERENCE_USERINFO">
-          <End Role="UserInfo" Type="Self.UserInfo" Multiplicity="0..1" />
+          <End Role="UserInfo" Type="Self.UserInfo" Multiplicity="0..1">
+            <OnDelete Action="Cascade" />
+          </End>
           <End Role="SupportScanRecord" Type="Self.SupportScanRecord" Multiplicity="*" />
           <ReferentialConstraint>
             <Principal Role="UserInfo">
@@ -297,10 +277,6 @@
           <EntitySet Name="Taste" EntityType="Self.Taste" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="UserInfo" EntityType="Self.UserInfo" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="VerifyRegister" EntityType="Self.VerifyRegister" Schema="dbo" store:Type="Tables" />
-          <AssociationSet Name="FK_COMMENTR_REFERENCE_COOKBOOK" Association="Self.FK_COMMENTR_REFERENCE_COOKBOOK">
-            <End Role="CookBook" EntitySet="CookBook" />
-            <End Role="CommentRecord" EntitySet="CommentRecord" />
-          </AssociationSet>
           <AssociationSet Name="FK_COMMENTR_REFERENCE_USERINFO" Association="Self.FK_COMMENTR_REFERENCE_USERINFO">
             <End Role="UserInfo" EntitySet="UserInfo" />
             <End Role="CommentRecord" EntitySet="CommentRecord" />
@@ -325,17 +301,9 @@
             <End Role="CookBook" EntitySet="CookBook" />
             <End Role="CookProcess" EntitySet="CookProcess" />
           </AssociationSet>
-          <AssociationSet Name="FK_LIKECOOK_REFERENCE_COOKBOOK" Association="Self.FK_LIKECOOK_REFERENCE_COOKBOOK">
-            <End Role="CookBook" EntitySet="CookBook" />
-            <End Role="LikeCookBook" EntitySet="LikeCookBook" />
-          </AssociationSet>
           <AssociationSet Name="FK_LIKECOOK_REFERENCE_USERINFO" Association="Self.FK_LIKECOOK_REFERENCE_USERINFO">
             <End Role="UserInfo" EntitySet="UserInfo" />
             <End Role="LikeCookBook" EntitySet="LikeCookBook" />
-          </AssociationSet>
-          <AssociationSet Name="FK_SUPPORTS_REFERENCE_COOKBOOK" Association="Self.FK_SUPPORTS_REFERENCE_COOKBOOK">
-            <End Role="CookBook" EntitySet="CookBook" />
-            <End Role="SupportScanRecord" EntitySet="SupportScanRecord" />
           </AssociationSet>
           <AssociationSet Name="FK_SUPPORTS_REFERENCE_USERINFO" Association="Self.FK_SUPPORTS_REFERENCE_USERINFO">
             <End Role="UserInfo" EntitySet="UserInfo" />
@@ -356,15 +324,12 @@
           <EntitySet Name="FoodMaterial_CookBook" EntityType="DelicacyModel.FoodMaterial_CookBook" />
           <EntitySet Name="FoodSort" EntityType="DelicacyModel.FoodSort" />
           <EntitySet Name="LikeCookBook" EntityType="DelicacyModel.LikeCookBook" />
+          <EntitySet Name="SubjectArticle" EntityType="DelicacyModel.SubjectArticle" />
           <EntitySet Name="SubjectSort" EntityType="DelicacyModel.SubjectSort" />
           <EntitySet Name="SupportScanRecord" EntityType="DelicacyModel.SupportScanRecord" />
           <EntitySet Name="Taste" EntityType="DelicacyModel.Taste" />
           <EntitySet Name="UserInfo" EntityType="DelicacyModel.UserInfo" />
           <EntitySet Name="VerifyRegister" EntityType="DelicacyModel.VerifyRegister" />
-          <AssociationSet Name="FK_COMMENTR_REFERENCE_COOKBOOK" Association="DelicacyModel.FK_COMMENTR_REFERENCE_COOKBOOK">
-            <End Role="CookBook" EntitySet="CookBook" />
-            <End Role="CommentRecord" EntitySet="CommentRecord" />
-          </AssociationSet>
           <AssociationSet Name="FK_COMMENTR_REFERENCE_USERINFO" Association="DelicacyModel.FK_COMMENTR_REFERENCE_USERINFO">
             <End Role="UserInfo" EntitySet="UserInfo" />
             <End Role="CommentRecord" EntitySet="CommentRecord" />
@@ -389,14 +354,6 @@
             <End Role="CookBook" EntitySet="CookBook" />
             <End Role="CookProcess" EntitySet="CookProcess" />
           </AssociationSet>
-          <AssociationSet Name="FK_LIKECOOK_REFERENCE_COOKBOOK" Association="DelicacyModel.FK_LIKECOOK_REFERENCE_COOKBOOK">
-            <End Role="CookBook" EntitySet="CookBook" />
-            <End Role="LikeCookBook" EntitySet="LikeCookBook" />
-          </AssociationSet>
-          <AssociationSet Name="FK_SUPPORTS_REFERENCE_COOKBOOK" Association="DelicacyModel.FK_SUPPORTS_REFERENCE_COOKBOOK">
-            <End Role="CookBook" EntitySet="CookBook" />
-            <End Role="SupportScanRecord" EntitySet="SupportScanRecord" />
-          </AssociationSet>
           <AssociationSet Name="FK_LIKECOOK_REFERENCE_USERINFO" Association="DelicacyModel.FK_LIKECOOK_REFERENCE_USERINFO">
             <End Role="UserInfo" EntitySet="UserInfo" />
             <End Role="LikeCookBook" EntitySet="LikeCookBook" />
@@ -405,7 +362,6 @@
             <End Role="UserInfo" EntitySet="UserInfo" />
             <End Role="SupportScanRecord" EntitySet="SupportScanRecord" />
           </AssociationSet>
-          <EntitySet Name="SubjectArticle" EntityType="DelicacyModel.SubjectArticle" />
         </EntityContainer>
         <EntityType Name="AdminUser">
           <Key>
@@ -425,7 +381,6 @@
           <Property Name="PId" Type="Int32" Nullable="false" />
           <Property Name="Content" Type="String" Nullable="false" MaxLength="200" FixedLength="false" Unicode="true" />
           <Property Name="DateTime" Type="DateTime" Nullable="false" Precision="3" />
-          <NavigationProperty Name="CookBook" Relationship="DelicacyModel.FK_COMMENTR_REFERENCE_COOKBOOK" FromRole="CommentRecord" ToRole="CookBook" />
           <NavigationProperty Name="UserInfo" Relationship="DelicacyModel.FK_COMMENTR_REFERENCE_USERINFO" FromRole="CommentRecord" ToRole="UserInfo" />
         </EntityType>
         <EntityType Name="CookBook">
@@ -442,14 +397,11 @@
           <Property Name="Tips" Type="String" MaxLength="100" FixedLength="false" Unicode="true" />
           <Property Name="Status" Type="Int32" Nullable="false" />
           <Property Name="DateTime" Type="DateTime" Precision="3" />
-          <NavigationProperty Name="CommentRecord" Relationship="DelicacyModel.FK_COMMENTR_REFERENCE_COOKBOOK" FromRole="CookBook" ToRole="CommentRecord" />
           <NavigationProperty Name="FoodSort" Relationship="DelicacyModel.FK_COOKBOOK_REFERENCE_FOODSORT" FromRole="CookBook" ToRole="FoodSort" />
           <NavigationProperty Name="Taste" Relationship="DelicacyModel.FK_COOKBOOK_REFERENCE_TASTE" FromRole="CookBook" ToRole="Taste" />
           <NavigationProperty Name="UserInfo" Relationship="DelicacyModel.FK_COOKBOOK_REFERENCE_USERINFO" FromRole="CookBook" ToRole="UserInfo" />
           <NavigationProperty Name="CookMaterial" Relationship="DelicacyModel.FK_COOKMATE_REFERENCE_COOKBOOK" FromRole="CookBook" ToRole="CookMaterial" />
           <NavigationProperty Name="CookProcess" Relationship="DelicacyModel.FK_COOKPROC_REFERENCE_COOKBOOK" FromRole="CookBook" ToRole="CookProcess" />
-          <NavigationProperty Name="LikeCookBook" Relationship="DelicacyModel.FK_LIKECOOK_REFERENCE_COOKBOOK" FromRole="CookBook" ToRole="LikeCookBook" />
-          <NavigationProperty Name="SupportScanRecord" Relationship="DelicacyModel.FK_SUPPORTS_REFERENCE_COOKBOOK" FromRole="CookBook" ToRole="SupportScanRecord" />
         </EntityType>
         <EntityType Name="CookMaterial">
           <Key>
@@ -505,8 +457,19 @@
           <Property Name="CookBookId" Type="String" Nullable="false" MaxLength="100" FixedLength="false" Unicode="false" />
           <Property Name="UserId" Type="Int32" Nullable="false" />
           <Property Name="DateTime" Type="DateTime" Nullable="false" Precision="3" />
-          <NavigationProperty Name="CookBook" Relationship="DelicacyModel.FK_LIKECOOK_REFERENCE_COOKBOOK" FromRole="LikeCookBook" ToRole="CookBook" />
           <NavigationProperty Name="UserInfo" Relationship="DelicacyModel.FK_LIKECOOK_REFERENCE_USERINFO" FromRole="LikeCookBook" ToRole="UserInfo" />
+        </EntityType>
+        <EntityType Name="SubjectArticle">
+          <Key>
+            <PropertyRef Name="SubjectArticleId" />
+          </Key>
+          <Property Name="SubjectArticleId" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="SubjectSortId" Type="Int32" Nullable="false" />
+          <Property Name="UserId" Type="String" Nullable="false" MaxLength="100" FixedLength="false" Unicode="false" />
+          <Property Name="Title" Type="String" Nullable="false" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="Brief" Type="String" Nullable="false" MaxLength="300" FixedLength="false" Unicode="true" />
+          <Property Name="Content" Type="String" Nullable="false" MaxLength="Max" FixedLength="false" Unicode="true" />
+          <Property Name="Datetime" Type="DateTime" Nullable="false" Precision="3" />
         </EntityType>
         <EntityType Name="SubjectSort">
           <Key>
@@ -524,7 +487,6 @@
           <Property Name="UserId" Type="Int32" />
           <Property Name="Type" Type="Int32" Nullable="false" />
           <Property Name="DateTime" Type="DateTime" Nullable="false" Precision="3" />
-          <NavigationProperty Name="CookBook" Relationship="DelicacyModel.FK_SUPPORTS_REFERENCE_COOKBOOK" FromRole="SupportScanRecord" ToRole="CookBook" />
           <NavigationProperty Name="UserInfo" Relationship="DelicacyModel.FK_SUPPORTS_REFERENCE_USERINFO" FromRole="SupportScanRecord" ToRole="UserInfo" />
         </EntityType>
         <EntityType Name="Taste">
@@ -561,20 +523,10 @@
           <Property Name="OutDate" Type="DateTime" Nullable="false" Precision="3" />
           <Property Name="Type" Type="Int32" Nullable="false" />
         </EntityType>
-        <Association Name="FK_COMMENTR_REFERENCE_COOKBOOK">
-          <End Type="DelicacyModel.CookBook" Role="CookBook" Multiplicity="0..1" />
-          <End Type="DelicacyModel.CommentRecord" Role="CommentRecord" Multiplicity="*" />
-          <ReferentialConstraint>
-            <Principal Role="CookBook">
-              <PropertyRef Name="CookBookId" />
-            </Principal>
-            <Dependent Role="CommentRecord">
-              <PropertyRef Name="CookBookId" />
-            </Dependent>
-          </ReferentialConstraint>
-        </Association>
         <Association Name="FK_COMMENTR_REFERENCE_USERINFO">
-          <End Type="DelicacyModel.UserInfo" Role="UserInfo" Multiplicity="0..1" />
+          <End Type="DelicacyModel.UserInfo" Role="UserInfo" Multiplicity="0..1">
+            <OnDelete Action="Cascade" />
+          </End>
           <End Type="DelicacyModel.CommentRecord" Role="CommentRecord" Multiplicity="*" />
           <ReferentialConstraint>
             <Principal Role="UserInfo">
@@ -586,7 +538,9 @@
           </ReferentialConstraint>
         </Association>
         <Association Name="FK_COOKBOOK_REFERENCE_FOODSORT">
-          <End Type="DelicacyModel.FoodSort" Role="FoodSort" Multiplicity="0..1" />
+          <End Type="DelicacyModel.FoodSort" Role="FoodSort" Multiplicity="0..1">
+            <OnDelete Action="Cascade" />
+          </End>
           <End Type="DelicacyModel.CookBook" Role="CookBook" Multiplicity="*" />
           <ReferentialConstraint>
             <Principal Role="FoodSort">
@@ -598,7 +552,9 @@
           </ReferentialConstraint>
         </Association>
         <Association Name="FK_COOKBOOK_REFERENCE_TASTE">
-          <End Type="DelicacyModel.Taste" Role="Taste" Multiplicity="0..1" />
+          <End Type="DelicacyModel.Taste" Role="Taste" Multiplicity="0..1">
+            <OnDelete Action="Cascade" />
+          </End>
           <End Type="DelicacyModel.CookBook" Role="CookBook" Multiplicity="*" />
           <ReferentialConstraint>
             <Principal Role="Taste">
@@ -610,7 +566,9 @@
           </ReferentialConstraint>
         </Association>
         <Association Name="FK_COOKBOOK_REFERENCE_USERINFO">
-          <End Type="DelicacyModel.UserInfo" Role="UserInfo" Multiplicity="0..1" />
+          <End Type="DelicacyModel.UserInfo" Role="UserInfo" Multiplicity="0..1">
+            <OnDelete Action="Cascade" />
+          </End>
           <End Type="DelicacyModel.CookBook" Role="CookBook" Multiplicity="*" />
           <ReferentialConstraint>
             <Principal Role="UserInfo">
@@ -622,7 +580,9 @@
           </ReferentialConstraint>
         </Association>
         <Association Name="FK_COOKMATE_REFERENCE_COOKBOOK">
-          <End Type="DelicacyModel.CookBook" Role="CookBook" Multiplicity="1" />
+          <End Type="DelicacyModel.CookBook" Role="CookBook" Multiplicity="1">
+            <OnDelete Action="Cascade" />
+          </End>
           <End Type="DelicacyModel.CookMaterial" Role="CookMaterial" Multiplicity="*" />
           <ReferentialConstraint>
             <Principal Role="CookBook">
@@ -634,7 +594,9 @@
           </ReferentialConstraint>
         </Association>
         <Association Name="FK_COOKPROC_REFERENCE_COOKBOOK">
-          <End Type="DelicacyModel.CookBook" Role="CookBook" Multiplicity="0..1" />
+          <End Type="DelicacyModel.CookBook" Role="CookBook" Multiplicity="0..1">
+            <OnDelete Action="Cascade" />
+          </End>
           <End Type="DelicacyModel.CookProcess" Role="CookProcess" Multiplicity="*" />
           <ReferentialConstraint>
             <Principal Role="CookBook">
@@ -645,32 +607,10 @@
             </Dependent>
           </ReferentialConstraint>
         </Association>
-        <Association Name="FK_LIKECOOK_REFERENCE_COOKBOOK">
-          <End Type="DelicacyModel.CookBook" Role="CookBook" Multiplicity="1" />
-          <End Type="DelicacyModel.LikeCookBook" Role="LikeCookBook" Multiplicity="*" />
-          <ReferentialConstraint>
-            <Principal Role="CookBook">
-              <PropertyRef Name="CookBookId" />
-            </Principal>
-            <Dependent Role="LikeCookBook">
-              <PropertyRef Name="CookBookId" />
-            </Dependent>
-          </ReferentialConstraint>
-        </Association>
-        <Association Name="FK_SUPPORTS_REFERENCE_COOKBOOK">
-          <End Type="DelicacyModel.CookBook" Role="CookBook" Multiplicity="1" />
-          <End Type="DelicacyModel.SupportScanRecord" Role="SupportScanRecord" Multiplicity="*" />
-          <ReferentialConstraint>
-            <Principal Role="CookBook">
-              <PropertyRef Name="CookBookId" />
-            </Principal>
-            <Dependent Role="SupportScanRecord">
-              <PropertyRef Name="CookBookId" />
-            </Dependent>
-          </ReferentialConstraint>
-        </Association>
         <Association Name="FK_LIKECOOK_REFERENCE_USERINFO">
-          <End Type="DelicacyModel.UserInfo" Role="UserInfo" Multiplicity="1" />
+          <End Type="DelicacyModel.UserInfo" Role="UserInfo" Multiplicity="1">
+            <OnDelete Action="Cascade" />
+          </End>
           <End Type="DelicacyModel.LikeCookBook" Role="LikeCookBook" Multiplicity="*" />
           <ReferentialConstraint>
             <Principal Role="UserInfo">
@@ -682,7 +622,9 @@
           </ReferentialConstraint>
         </Association>
         <Association Name="FK_SUPPORTS_REFERENCE_USERINFO">
-          <End Type="DelicacyModel.UserInfo" Role="UserInfo" Multiplicity="0..1" />
+          <End Type="DelicacyModel.UserInfo" Role="UserInfo" Multiplicity="0..1">
+            <OnDelete Action="Cascade" />
+          </End>
           <End Type="DelicacyModel.SupportScanRecord" Role="SupportScanRecord" Multiplicity="*" />
           <ReferentialConstraint>
             <Principal Role="UserInfo">
@@ -693,18 +635,6 @@
             </Dependent>
           </ReferentialConstraint>
         </Association>
-        <EntityType Name="SubjectArticle">
-          <Key>
-            <PropertyRef Name="SubjectArticleId" />
-          </Key>
-          <Property Name="SubjectArticleId" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
-          <Property Name="SubjectSortId" Type="Int32" Nullable="false" />
-          <Property Name="UserId" Type="String" Nullable="false" MaxLength="100" FixedLength="false" Unicode="false" />
-          <Property Name="Title" Type="String" Nullable="false" MaxLength="50" FixedLength="false" Unicode="true" />
-          <Property Name="Brief" Type="String" Nullable="false" MaxLength="300" FixedLength="false" Unicode="true" />
-          <Property Name="Content" Type="String" Nullable="false" MaxLength="Max" FixedLength="false" Unicode="true" />
-          <Property Name="Datetime" Type="DateTime" Nullable="false" Precision="3" />
-        </EntityType>
         </Schema>
     </edmx:ConceptualModels>
     <!-- C-S mapping content -->
@@ -806,6 +736,19 @@
               </MappingFragment>
             </EntityTypeMapping>
           </EntitySetMapping>
+          <EntitySetMapping Name="SubjectArticle">
+            <EntityTypeMapping TypeName="DelicacyModel.SubjectArticle">
+              <MappingFragment StoreEntitySet="SubjectArticle">
+                <ScalarProperty Name="Datetime" ColumnName="Datetime" />
+                <ScalarProperty Name="Content" ColumnName="Content" />
+                <ScalarProperty Name="Brief" ColumnName="Brief" />
+                <ScalarProperty Name="Title" ColumnName="Title" />
+                <ScalarProperty Name="UserId" ColumnName="UserId" />
+                <ScalarProperty Name="SubjectSortId" ColumnName="SubjectSortId" />
+                <ScalarProperty Name="SubjectArticleId" ColumnName="SubjectArticleId" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
           <EntitySetMapping Name="SubjectSort">
             <EntityTypeMapping TypeName="DelicacyModel.SubjectSort">
               <MappingFragment StoreEntitySet="SubjectSort">
@@ -854,19 +797,6 @@
                 <ScalarProperty Name="IsUsed" ColumnName="IsUsed" />
                 <ScalarProperty Name="LoginId" ColumnName="LoginId" />
                 <ScalarProperty Name="GUID" ColumnName="GUID" />
-              </MappingFragment>
-            </EntityTypeMapping>
-          </EntitySetMapping>
-          <EntitySetMapping Name="SubjectArticle">
-            <EntityTypeMapping TypeName="DelicacyModel.SubjectArticle">
-              <MappingFragment StoreEntitySet="SubjectArticle">
-                <ScalarProperty Name="Datetime" ColumnName="Datetime" />
-                <ScalarProperty Name="Content" ColumnName="Content" />
-                <ScalarProperty Name="Brief" ColumnName="Brief" />
-                <ScalarProperty Name="Title" ColumnName="Title" />
-                <ScalarProperty Name="UserId" ColumnName="UserId" />
-                <ScalarProperty Name="SubjectSortId" ColumnName="SubjectSortId" />
-                <ScalarProperty Name="SubjectArticleId" ColumnName="SubjectArticleId" />
               </MappingFragment>
             </EntityTypeMapping>
           </EntitySetMapping>

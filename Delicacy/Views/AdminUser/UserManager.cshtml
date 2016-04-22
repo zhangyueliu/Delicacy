@@ -1,10 +1,27 @@
 ﻿@model IEnumerable<DataTransfer.UserInfoTsfer>
-
 @{
     ViewBag.Title = "UserManager";
     Layout = "~/Views/Shared/_AdminLayout.cshtml";
 }
+<script type="text/javascript">
+    function deleteUser(id){
+        $.ajax({
+            type:"post",
+            url:"/AdminUser/Delete",
+            data:{id:id},
+            success:function (o) {
+                if(o.StatusCode==1){
+                    layer.alert("成功");
+                    setTimeout(function () { location.reload(); }, 2000);
+                    
+                } else {
+                    layer.alert("失败");
+                }
+            }
+        })
+    }
 
+</script>
 <h2>UserManager</h2>
 
 <p>
@@ -54,9 +71,7 @@
             @Html.DisplayFor(modelItem => item.RegisterDate)
         </td>
         <td>
-            @Html.ActionLink("Edit", "Edit", new { id=item.UserId }) |
-            @Html.ActionLink("Details", "Details", new { id = item.UserId }) |
-            @Html.ActionLink("Delete", "Delete", new { id = item.UserId })
+            <a href="javascript:;" onclick="deleteUser(@item.UserId)">Delete</a>
         </td>
     </tr>
 }

@@ -5,7 +5,14 @@
 <script src="~/Scripts/page.js"></script>
 <script>
     $(document).ready(function () {
-        $("#secondli").addClass("active");
+        if("@ViewBag.IsSort" =="True")
+        {
+            $("#secondli").addClass("active");
+        }
+        else
+        {
+            $("#thirdli").addClass("active");
+        }
     });
     function image() {
         var height = $(".imagess").height;

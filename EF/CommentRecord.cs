@@ -21,7 +21,6 @@ namespace EF
         public string Content { get; set; }
         public System.DateTime DateTime { get; set; }
     
-        public virtual CookBook CookBook { get; set; }
         public virtual UserInfo UserInfo { get; set; }
     }
 }

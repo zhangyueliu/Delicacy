@@ -34,11 +34,11 @@ namespace EF
         public virtual DbSet<FoodMaterial_CookBook> FoodMaterial_CookBook { get; set; }
         public virtual DbSet<FoodSort> FoodSort { get; set; }
         public virtual DbSet<LikeCookBook> LikeCookBook { get; set; }
+        public virtual DbSet<SubjectArticle> SubjectArticle { get; set; }
         public virtual DbSet<SubjectSort> SubjectSort { get; set; }
         public virtual DbSet<SupportScanRecord> SupportScanRecord { get; set; }
         public virtual DbSet<Taste> Taste { get; set; }
         public virtual DbSet<UserInfo> UserInfo { get; set; }
         public virtual DbSet<VerifyRegister> VerifyRegister { get; set; }
-        public virtual DbSet<SubjectArticle> SubjectArticle { get; set; }
     }
 }

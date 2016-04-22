@@ -91,11 +91,11 @@
                             <a href="javascript:;">食材</a>
                             <div class="dropdown-content">
                                 @{List<FoodMaterialTsfer> listshicai = ViewBag.listshicai;
-                                if (listshicai.Count > 0)
+                                if ( listshicai!=null&& listshicai.Count > 0)
                                 {
                                     foreach (FoodMaterialTsfer sort in listshicai)
                                     {
-                                        <a href="/CookBook/ListShicai/@sort.FoodMaterialId">@sort.Name</a>
+                                        <a href="/CookBook/ListShicai?id=@sort.FoodMaterialId">@sort.Name</a>
                                     }
                                 }
 
