@@ -40,24 +40,33 @@ namespace Delicacy.Controllers
             ViewBag.FoodMaterial = new FoodMaterialManager().GetList();
             return View();
         }
-        public ActionResult List(string id, string pageIndex)
+        public ActionResult List(string id)
         {
-            int count;//总条数
-            int pagecount;//总页数
-            int sort=1; int pageindex; int pagesize = 9;
-            int.TryParse(id, out sort);
-            CheckParameter.PageCheck(pageIndex, out pageindex);
-            CookBookManager manager = new CookBookManager();
-            FoodSortManager sortmanager = new FoodSortManager();
-            FoodSortTsfer f = (FoodSortTsfer)sortmanager.Get(sort).Data;
-            ViewBag.sort = f.Name;
-            ViewBag.cookbookList = manager.GetCookBookBysort(sort, pageindex, pagesize, out count,out pagecount);
-            ViewBag.pageCount = pagecount;
-            ViewBag.pageIndex = pageindex;
-            ViewBag.pageSize = pagesize;
+            if (string.IsNullOrEmpty(id))
+                return RedirectHome();
+            //int count;//总条数
+            //int pagecount;//总页数
+            //int sort=1; int pageindex; int pagesize = 9;
+            //int.TryParse(id, out sort);
+            //CheckParameter.PageCheck(pageIndex, out pageindex);
+            //CookBookManager manager = new CookBookManager();
+            //FoodSortManager sortmanager = new FoodSortManager();
+            //FoodSortTsfer f = (FoodSortTsfer)sortmanager.Get(sort).Data;
+            //ViewBag.sort = f.Name;
+            //ViewBag.cookbookList = manager.GetCookBookBysort(sort, pageindex, pagesize, out count,out pagecount);
+            //ViewBag.pageCount = pagecount;
+            //ViewBag.pageIndex = pageindex;
+            //ViewBag.pageSize = pagesize;
             ViewBag.IsSort = true;
             return View();
         }
+
+        public ActionResult GetPageBySort(string sortId,string pageIndex,string pageSize)
+        {
+            return Content(new CookBookManager().GetCookBookBysort(sortId,pageIndex,pageSize));
+        }
+
+
         public ActionResult ListShicai(string id)
         {
             int i = int.Parse(id);

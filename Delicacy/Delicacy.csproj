@@ -289,6 +289,7 @@
     <Content Include="Scripts\register.js" />
     <Content Include="Scripts\respond.js" />
     <Content Include="Scripts\respond.min.js" />
+    <Content Include="Scripts\Tool.js" />
     <Content Include="Scripts\ueditor\ueditor.all.min.js" />
     <Content Include="Scripts\ueditor\ueditor.config.js" />
     <Content Include="Scripts\UserCenter\WaitCheck.js" />

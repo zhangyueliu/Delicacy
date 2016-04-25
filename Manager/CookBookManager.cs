@@ -209,16 +209,25 @@ namespace Manager
         }
 
 
-      public List<CookBookTsfer> GetCookBookBysort(int sort, int pageIndex, int pageSize, out int rowCount,out int pageCount)
+        public OutputModel GetCookBookBysort(string  sort, string pageIndex, string pageSize)
         {
-           List<CookBookTsfer>list= service.GetCookBookBysort(sort, pageIndex, pageSize, out rowCount);
-           pageCount =(int)Math.Ceiling(rowCount * 1.0 / pageSize);
-           return list;
+            int iSort,rowCount, index, size;
+            
+            CheckParameter.PageCheck(pageIndex, pageSize, out index, out size);
+            if (!int.TryParse(sort, out iSort))
+                return OutputHelper.GetOutputResponse(ResultCode.ErrorParameter);
+
+            List<CookBookTsfer> list = service.GetCookBookBysort(iSort, index, size, out rowCount);
+            if(list.Count==0)
+                return OutputHelper.GetOutputResponse(ResultCode.NoData);
+           int pageCount = (int)Math.Ceiling(rowCount * 1.0 / size);
+
+            return OutputHelper.GetOutputResponse(ResultCode.OK, new { List=list,PageCount=pageCount});
         }
 
         public OutputModel SearchByName(string name)
         {
-            if(string.IsNullOrWhiteSpace(name))
+            if (string.IsNullOrWhiteSpace(name))
                 return OutputHelper.GetOutputResponse(ResultCode.NoParameter);
             List<CookBookTsfer> listCookBook = service.GetByName(name);
             if (listCookBook.Count == 0)

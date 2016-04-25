@@ -35,5 +35,15 @@ namespace Tool
                pageindex=1;
            }
        }
+
+       public static void PageCheck(string pageIndex,string pageSize, out int index,out int size)
+       {
+           if (!int.TryParse(pageIndex, out index))
+           {
+               index = 1;
+           }
+           if (!int.TryParse(pageSize, out size))
+               size = 9;
+       }
     }
 }
