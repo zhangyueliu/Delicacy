@@ -49,19 +49,12 @@ namespace Manager
             }
             return OutputHelper.GetOutputResponse(ResultCode.Error);
         }
-        public OutputModel Get(int id)
+        public string Get(string id)
         {
-            FoodSortTsfer f = Service.Get(id);
-            if (f == null)
-                return OutputHelper.GetOutputResponse(ResultCode.NoData);
-            return OutputHelper.GetOutputResponse(ResultCode.OK, f);
-        }
-         public OutputModel Get(string name)
-        {
-            FoodSortTsfer f = Service.Get(name);
-            if (f == null)
-                return OutputHelper.GetOutputResponse(ResultCode.NoData);
-            return OutputHelper.GetOutputResponse(ResultCode.OK);
+            int i;
+            CheckParameter.PageCheck(id, out i);
+            FoodSortTsfer f = Service.Get(i);
+            return f.Name;
         }
 
         public OutputModel GetList()

@@ -29,5 +29,12 @@ namespace Delicacy.Controllers.Admin
             SubjectArticleManager articleManager = new SubjectArticleManager();
              return Content(articleManager.Add(content, adminUser.UserId,title,brief));
         }
+        public ActionResult Manager()
+        {
+            if (!IsLogin())
+                return RedirectHome();
+            List<SubjectArticleTsfer> list = new SubjectArticleManager().GetList();
+            return View(list);
+        }
 	}
 }

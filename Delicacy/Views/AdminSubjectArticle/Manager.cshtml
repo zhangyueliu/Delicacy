@@ -1,0 +1,76 @@
+﻿@model IEnumerable<DataTransfer.SubjectArticleTsfer>
+
+@{
+    ViewBag.Title = "Manager";
+    Layout = "~/Views/Shared/_AdminLayout.cshtml";
+}
+
+<h2>Manager</h2>
+
+<p>
+    @Html.ActionLink("Create New", "Create")
+    <input type="button" class="btn-default" id="subjectArticle" onclick="subjectArticle()" value="饮食专题发表"/>
+</p>
+<table class="table">
+    <tr>
+        <th>
+            @Html.DisplayNameFor(model => model.SubjectArticleId)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.SubjectSortId)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.UserId)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.Title)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.Brief)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.Content)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.Datetime)
+        </th>
+        <th></th>
+    </tr>
+
+@if(Model!=null)
+{ 
+    foreach (var item in Model) {
+    <tr style="line-height:20px;">
+        <td>
+            @Html.DisplayFor(modelItem => item.SubjectArticleId)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.SubjectSortId)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.UserId)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.Title)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.Brief)
+        </td>
+        <td>
+            <div>
+                @Html.DisplayFor(modelItem => item.Content)
+            </div>
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.Datetime)
+        </td>
+        <td>
+            @Html.ActionLink("Edit", "Edit", new { /* id=item.PrimaryKey */ }) |
+            @Html.ActionLink("Details", "Details", new { /* id=item.PrimaryKey */ }) |
+            @Html.ActionLink("Delete", "Delete", new { /* id=item.PrimaryKey */ })
+        </td>
+    </tr>
+    }
+}
+
+</table>

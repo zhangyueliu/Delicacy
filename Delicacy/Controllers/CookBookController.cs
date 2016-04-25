@@ -43,6 +43,8 @@ namespace Delicacy.Controllers
         {
             if (string.IsNullOrEmpty(id))
                 return RedirectHome();
+
+            ViewBag.sort = new FoodSortManager().Get(id);
             ViewBag.IsSort = true;
             return View();
         }
@@ -62,6 +64,7 @@ namespace Delicacy.Controllers
         {
             if (string.IsNullOrWhiteSpace(id))
                 return RedirectHome();
+            ViewBag.sort = new FoodMaterialManager().Get(id).Name;
             ViewBag.IsSort = false;
             return View("List");
         }
