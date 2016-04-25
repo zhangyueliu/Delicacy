@@ -79,12 +79,6 @@ namespace Manager
             return OutputHelper.GetOutputResponse(ResultCode.OK,list);
         }
 
-         public OutputModel GetList()
-        {
-            List<CommentRecordTsfer> list = Service.GetList();
-            if (list == null)
-                return OutputHelper.GetOutputResponse(ResultCode.NoData);
-            return OutputHelper.GetOutputResponse(ResultCode.OK, list);
-        }
+        
     }
 }
