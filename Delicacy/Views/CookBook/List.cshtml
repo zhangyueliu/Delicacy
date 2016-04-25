@@ -11,27 +11,9 @@
             <a href="javascript:;" class="on">@ViewBag.sort</a>
         </div>
     </div>
-<<<<<<< HEAD
-    <div id="cookBookList" class="prod">
-       
-=======
-    <div class="prod">
-        @{List<CookBookTsfer> list = ViewBag.cookbookList;
-        if (list != null && list.Count > 0)
-        {
-            foreach (CookBookTsfer cook in list)
-            {
-                <div class="col_1_of_3 span_1_of_3" style="height:300px;text-align:center;">
-                    <div class="view effect">
-                        <img src="@cook.ImgUrl" alt="@cook.Name" class="imagess" onloadstart="image();" />
 
-                    </div>
-                    <a href="/CookBook/ShowDetail?cookBookId=@cook.CookBookId&isSort=@ViewBag.IsSort"><h3>@cook.Name</h3></a>
-                </div>
-            }
-        }
-        }
->>>>>>> 1c857ac72d70fdc31e48f0aaa5ef3637fbe6735b
+    <div id="cookBookList" class="prod">
+
         <div class="clear"></div>
 
     </div>
