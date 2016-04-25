@@ -33,4 +33,3 @@ E:\Important\Delicacy\Delicacy\EF\bin\Debug\zh-Hans\EntityFramework.SqlServer.re
 E:\Important\Delicacy\Delicacy\EF\obj\Debug\EF.csprojResolveAssemblyReference.cache
 E:\Important\Delicacy\Delicacy\EF\obj\Debug\EF.dll
 E:\Important\Delicacy\Delicacy\EF\obj\Debug\EF.pdb
-F:\GraduationProject\Yueyue\Delicacy\EF\obj\Debug\EF.csprojResolveAssemblyReference.cache
