@@ -52,6 +52,11 @@ namespace Delicacy.Controllers
             return Content(new CookBookManager().GetCookBookBySort(sortId, pageIndex, pageSize));
         }
 
+        public ActionResult GetPageByFoodMaterial(string foodMaterialId, string pageIndex, string pageSize)
+        {
+            return Content(new CookBookManager().GetPageByFoodMaterial(foodMaterialId, pageIndex, pageSize));
+        }
+
 
         public ActionResult ListShiCai(string id)
         {
