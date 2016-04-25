@@ -16,7 +16,6 @@ namespace Delicacy.Controllers
         // GET: /CookBook/
         public ActionResult Index()
         {
-
             return View();
         }
 
@@ -58,25 +57,6 @@ namespace Delicacy.Controllers
         {
             if (string.IsNullOrWhiteSpace(id))
                 return RedirectHome();
-            //int i = int.Parse(id);
-            //CookBookManager manager = new CookBookManager();
-            //FoodMaterial_CookBookTsferManager fmcbmanager = new FoodMaterial_CookBookTsferManager();
-            //FoodMaterialManager fmmanager = new FoodMaterialManager();
-            //FoodMaterialTsfer f = fmmanager.Get(i);
-            //if (f != null)
-            //{
-            //    ViewBag.sort = f.Name;
-            //}
-            //List<FoodMaterial_CookBookTsfer> list = fmcbmanager.GetListByFoodMaterialId(i);
-            //List<string> strs = new List<string>();
-            //foreach (FoodMaterial_CookBookTsfer item in list)
-            //{
-            //    strs.Add(item.CookBookId);
-            //}
-            //OutputModel o = manager.GetListByIds(strs);
-            //if (o.StatusCode == 1)
-            //    ViewBag.cookbookList = (List<CookBookTsfer>)o.Data;
-
             ViewBag.IsSort = false;
             return View("List");
         }
