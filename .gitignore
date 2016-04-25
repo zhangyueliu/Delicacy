@@ -156,3 +156,4 @@ $RECYCLE.BIN/
 .DS_Store
 /Delicacy/Properties/PublishProfiles
 /Delicacy/Upload/Images
+*.suo
