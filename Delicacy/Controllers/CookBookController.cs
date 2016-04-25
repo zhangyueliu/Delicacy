@@ -47,9 +47,9 @@ namespace Delicacy.Controllers
             return View();
         }
 
-        public ActionResult GetPageBySort(string sortId,string pageIndex,string pageSize)
+        public ActionResult GetPageBySort(string sortId, string pageIndex, string pageSize)
         {
-            return Content(new CookBookManager().GetCookBookBySort(sortId,pageIndex,pageSize));
+            return Content(new CookBookManager().GetCookBookBySort(sortId, pageIndex, pageSize));
         }
 
 
@@ -60,16 +60,18 @@ namespace Delicacy.Controllers
             ViewBag.IsSort = false;
             return View("List");
         }
-        public ActionResult Get(string cookBookId)
+        /// <summary>
+        /// 显示菜谱详情页面
+        /// </summary>
+        /// <returns></returns>
+        public ActionResult ShowDetail(string cookBookId, string isSort)
         {
-            if (string.IsNullOrEmpty(cookBookId))
-                return RedirectHome();
-            return Content(new CookBookManager().GetCookBook(cookBookId));
-        }
-
-        public ActionResult GetPageByFoodMaterial(string foodMaterialId,string pageIndex,string pageSize)
-        {
-            return Content(new CookBookManager().GetPageByFoodMaterial(foodMaterialId, pageIndex, pageSize));
+            if (isSort == "href")
+                ViewBag.IsSort = true;
+            else
+                ViewBag.IsSort = false;
+            OutputModel model = new CookBookManager().GetCookBook(cookBookId);
+            return View(model.Data);
         }
     }
 }

@@ -40,14 +40,6 @@ namespace Delicacy.Controllers
             return Content(new CookBookManager().GetWaitCheckCookBook(user.UserId));
         }
 
-        /// <summary>
-        /// 显示菜谱详情页面
-        /// </summary>
-        /// <returns></returns>
-        public ActionResult ShowDetail(string cookBookId)
-        {
-            OutputModel model = new CookBookManager().GetCookBook(cookBookId);
-            return View(model.Data);
-        }
+        
     }
 }
