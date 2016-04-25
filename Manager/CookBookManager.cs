@@ -252,14 +252,17 @@ namespace Manager
             cookBook.ListMaterial = listMaterial;
             //获取口味
             TasteService tasteService = ObjectContainer.GetInstance<TasteService>();
-            TasteTsfer taste = tasteService.Get(cookBook.TasteId.Value);
+            TasteTsfer taste = tasteService.Get(cookBook.TasteId);
             if (taste != null)
                 cookBook.TasteName = taste.Name;
             //获取分类
             FoodSortService sortService = ObjectContainer.GetInstance<FoodSortService>();
-            FoodSortTsfer sort = sortService.Get(cookBook.FoodSortId.Value);
+            FoodSortTsfer sort = sortService.Get(cookBook.FoodSortId);
             if (sort != null)
                 cookBook.FoodSortName = sort.Name;
+            //获取用户姓名
+            UserInfoService user = ObjectContainer.GetInstance<UserInfoService>();
+            cookBook.UserName = user.Get(cookBook.UserId).Name;
         }
 
         public OutputModel GetPageByFoodMaterial(string foodMaterialId,string pageIndex,string pageSize)

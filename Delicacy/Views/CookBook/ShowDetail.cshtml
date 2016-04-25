@@ -75,7 +75,7 @@
         <div class="detial">
             <h1>@Model.Name</h1>
             <div style="color:#808080">
-                作者：@Model.UserId&nbsp;&nbsp;&nbsp;时间：@Model.DateTime.Value.ToString("yyyy-MM-DD")&nbsp;&nbsp;&nbsp;收藏&nbsp;<span style="font-size: 18px; cursor: pointer;" id="like">❤</span>
+                作者：@Model.UserName&nbsp;&nbsp;&nbsp;时间：@Model.DateTime.ToString("yyyy-MM-DD")&nbsp;&nbsp;&nbsp;收藏&nbsp;<span style="font-size: 18px; cursor: pointer;" id="like">❤</span>
             </div>
             <div style="width:99%;">
                 <img src="@Model.ImgUrl" id="imgRul" class="img-thumbnail" style="display:block; margin:auto;" />
