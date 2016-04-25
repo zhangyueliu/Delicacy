@@ -51,6 +51,9 @@
     <Compile Include="AdminUser.cs">
       <DependentUpon>Delicacy.tt</DependentUpon>
     </Compile>
+    <Compile Include="Collection.cs">
+      <DependentUpon>Delicacy.tt</DependentUpon>
+    </Compile>
     <Compile Include="CommentRecord.cs">
       <DependentUpon>Delicacy.tt</DependentUpon>
     </Compile>
@@ -88,9 +91,6 @@
     <Compile Include="FoodSort.cs">
       <DependentUpon>Delicacy.tt</DependentUpon>
     </Compile>
-    <Compile Include="LikeCookBook.cs">
-      <DependentUpon>Delicacy.tt</DependentUpon>
-    </Compile>
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="SubjectArticle.cs">
       <DependentUpon>Delicacy.tt</DependentUpon>
@@ -99,6 +99,9 @@
       <DependentUpon>Delicacy.tt</DependentUpon>
     </Compile>
     <Compile Include="SupportScanRecord.cs">
+      <DependentUpon>Delicacy.tt</DependentUpon>
+    </Compile>
+    <Compile Include="sysdiagrams.cs">
       <DependentUpon>Delicacy.tt</DependentUpon>
     </Compile>
     <Compile Include="Taste.cs">

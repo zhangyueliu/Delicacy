@@ -52,7 +52,7 @@
     <Compile Include="FoodMaterialTsfer.cs" />
     <Compile Include="FoodMaterial_CookBookTsfer.cs" />
     <Compile Include="FoodSortTsfer.cs" />
-    <Compile Include="LikeCookBookTsfer.cs" />
+    <Compile Include="CollectionTsfer.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="SubjectArticleTsfer.cs" />
     <Compile Include="SubjectSortTsfer.cs" />

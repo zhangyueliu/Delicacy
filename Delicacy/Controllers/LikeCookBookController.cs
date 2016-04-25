@@ -19,7 +19,7 @@ namespace Delicacy.Controllers
 
         public ContentResult GetList()
         {
-            LikeCookBookManager manager = new LikeCookBookManager();
+            CollectionManager manager = new CollectionManager();
            return Content(manager.GetList());
         }
 
@@ -32,7 +32,7 @@ namespace Delicacy.Controllers
         {
             if (!IsLogin())
                 return Content( OutputHelper.GetOutputResponse(ResultCode.NoLogin));
-            return Content(new LikeCookBookManager().Add(cookBookId, user.UserId));
+            return Content(new CollectionManager().Add(cookBookId, user.UserId));
         }
 	}
 }

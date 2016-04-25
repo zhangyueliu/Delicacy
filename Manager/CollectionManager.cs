@@ -9,15 +9,15 @@ using DataTransfer;
 
 namespace Manager
 {
-    public class LikeCookBookManager
+    public class CollectionManager
     {
-        private LikeCookBookService Service = new  LikeCookBookService();
+        private CollectionService Service = new  CollectionService();
         public OutputModel Add(string cookBookId,int userId)
         {
             if (string.IsNullOrEmpty(cookBookId)||userId==0)
                 return OutputHelper.GetOutputResponse(ResultCode.NoParameter);
             //判断是否关注过
-            LikeCookBookTsfer l = Service.Get(userId, cookBookId);
+            CollectionTsfer l = Service.Get(userId, cookBookId);
             if (l != null)
                 return Delete(l);
             
@@ -26,8 +26,8 @@ namespace Manager
             CookBookService cookService = new CookBookService();
             if(! cookService.IsExist(cookBookId))
                 return OutputHelper.GetOutputResponse(ResultCode.ConditionNotSatisfied,"菜谱不存在");
-            LikeCookBookTsfer like = new LikeCookBookTsfer { 
-            CookBookId=cookBookId,
+            CollectionTsfer like = new CollectionTsfer { 
+            OperateId=cookBookId,
             DateTime=DateTime.Now,
             UserId=userId,
             };
@@ -42,7 +42,7 @@ namespace Manager
                 return OutputHelper.GetOutputResponse(ResultCode.OK);
             return OutputHelper.GetOutputResponse(ResultCode.Error);
         }
-        public OutputModel Delete(LikeCookBookTsfer like)
+        public OutputModel Delete(CollectionTsfer like)
         {
             if (Service.Delete(like))
                 return OutputHelper.GetOutputResponse(ResultCode.OK);
@@ -55,7 +55,7 @@ namespace Manager
         /// <returns></returns>
         public OutputModel Get(int id)
         {
-            LikeCookBookTsfer like = Service.Get(id);
+            CollectionTsfer like = Service.Get(id);
             if (like == null)
                 return OutputHelper.GetOutputResponse(ResultCode.NoData);
             return OutputHelper.GetOutputResponse(ResultCode.OK, like);
@@ -68,14 +68,14 @@ namespace Manager
         /// <returns></returns>
         public OutputModel Get(int userid, string  cookbookid)
         {
-            LikeCookBookTsfer like = Service.Get(userid, cookbookid);
+            CollectionTsfer like = Service.Get(userid, cookbookid);
             if (like == null)
                 return OutputHelper.GetOutputResponse(ResultCode.NoData);
             return OutputHelper.GetOutputResponse(ResultCode.OK, like);
         }
         public OutputModel GetList()
         {
-            List<LikeCookBookTsfer> list = Service.GetList();
+            List<CollectionTsfer> list = Service.GetList();
             if (list.Count == 0)
                 return OutputHelper.GetOutputResponse(ResultCode.NoData);
             return OutputHelper.GetOutputResponse(ResultCode.OK, list);
@@ -87,7 +87,7 @@ namespace Manager
         /// <returns></returns>
         public OutputModel GetsUser(int userid)
         {
-            List<LikeCookBookTsfer> list = Service.GetsUser(userid);
+            List<CollectionTsfer> list = Service.GetsUser(userid);
             if (list.Count == 0)
                 return OutputHelper.GetOutputResponse(ResultCode.NoData);
             return OutputHelper.GetOutputResponse(ResultCode.OK, list);
@@ -99,7 +99,7 @@ namespace Manager
         /// <returns></returns>
         public OutputModel GetsCookbook(string  cookbookid)
         {
-            List<LikeCookBookTsfer> list = Service.GetsCookbook(cookbookid);
+            List<CollectionTsfer> list = Service.GetsCookbook(cookbookid);
             if (list.Count == 0)
                 return OutputHelper.GetOutputResponse(ResultCode.NoData);
             return OutputHelper.GetOutputResponse(ResultCode.OK, list);
