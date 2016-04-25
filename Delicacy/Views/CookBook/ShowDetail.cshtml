@@ -1,4 +1,4 @@
-﻿@model DataTransfer.CookBookTsfer
+﻿﻿@model DataTransfer.CookBookTsfer
 
 @{
     ViewBag.Title = "菜谱详情";
@@ -74,8 +74,8 @@
     <div class="col-lg-9">
         <div class="detial">
             <h1>@Model.Name</h1>
-            <div style="color:#808080;margin:auto;">
-                作者：@Model.UserId&nbsp;&nbsp;&nbsp;时间：@Model.DateTime.Value.ToString("yyyy-MM-dd")&nbsp;&nbsp;&nbsp;收藏&nbsp;<span style="font-size: 18px; cursor: pointer;" id="like">❤</span>
+            <div style="color:#808080">
+                作者：@Model.UserName&nbsp;&nbsp;&nbsp;时间：@Model.DateTime.ToString("yyyy-MM-dd")&nbsp;&nbsp;&nbsp;收藏&nbsp;<span style="font-size: 18px; cursor: pointer;" id="like">❤</span>
             </div>
             <div style="width:99%;">
                 <img src="@Model.ImgUrl" id="imgRul" class="img-thumbnail" style="display:block; margin:auto;" />
@@ -139,12 +139,9 @@
                         </div>*@
                     </div>
                 </div>
-                @if(!string.IsNullOrWhiteSpace(Model.Tips))
-                { 
                 <div style="color:#bbb9b9">
                     <b>小窍门：</b><p>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;@Model.Tips</p>
                 </div>
-                }
             </div>
         </div>
         <div class="detial" id="comment" style="margin-top:1em;">
@@ -195,10 +192,4 @@
     </div>
     <div class="clear"></div>
 </div>
-
-
-
-
-
-
 

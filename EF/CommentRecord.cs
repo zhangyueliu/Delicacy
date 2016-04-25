@@ -15,11 +15,12 @@ namespace EF
     public partial class CommentRecord
     {
         public int CommentId { get; set; }
-        public string CookBookId { get; set; }
-        public Nullable<int> UserId { get; set; }
+        public string OperateId { get; set; }
+        public int UserId { get; set; }
         public int PId { get; set; }
         public string Content { get; set; }
         public System.DateTime DateTime { get; set; }
+        public short Type { get; set; }
     
         public virtual UserInfo UserInfo { get; set; }
     }

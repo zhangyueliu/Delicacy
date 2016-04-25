@@ -21,7 +21,7 @@ namespace Service
             base.Update(TransferObject.ConvertObjectByEntity<CommentRecordTsfer, CommentRecord>(comment));
             return Save() > 0;
         }
-        public bool Delete(int id)
+        public new bool Delete(int id)
         {
             base.Delete(id);
             return Save() > 0;
@@ -46,7 +46,7 @@ namespace Service
         /// <returns></returns>
         public List<CommentRecordTsfer> GetListCookBook(string  cookbookid)
         {
-            return TransferObject.ConvertObjectByEntity<CommentRecord, CommentRecordTsfer>(base.Select(o => o.CookBookId == cookbookid).ToList());
+            return TransferObject.ConvertObjectByEntity<CommentRecord, CommentRecordTsfer>(base.Select(o => o.OperateId == cookbookid).ToList());
         }
         /// <summary>
         /// 获取某用户的所有评论
@@ -56,10 +56,6 @@ namespace Service
         public List<CommentRecordTsfer> GetListUser(int userid)
         {
             return TransferObject.ConvertObjectByEntity<CommentRecord, CommentRecordTsfer>(base.Select(o => o.UserId == userid).ToList());
-        }
-        public List<CommentRecordTsfer> GetList()
-        {
-            return TransferObject.ConvertObjectByEntity<CommentRecord, CommentRecordTsfer>(base.Select(o => true).ToList());
         }
     }
 }

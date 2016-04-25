@@ -14,8 +14,15 @@ namespace EF
     
     public partial class FoodMaterial
     {
+        public FoodMaterial()
+        {
+            this.FoodMaterial_CookBook = new HashSet<FoodMaterial_CookBook>();
+        }
+    
         public int FoodMaterialId { get; set; }
         public string Name { get; set; }
         public int Priority { get; set; }
+    
+        public virtual ICollection<FoodMaterial_CookBook> FoodMaterial_CookBook { get; set; }
     }
 }

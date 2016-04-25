@@ -11,13 +11,14 @@ namespace DataTransfer
 
         public string CookBookId { get; set; }
         [JsonIgnore]
-        public Nullable<int> TasteId { get; set; }
+        public int TasteId { get; set; }
         public string TasteName { get; set; }
         [JsonIgnore]
-        public Nullable<int> FoodSortId { get; set; }
+        public int FoodSortId { get; set; }
         public string FoodSortName { get; set; }
         [JsonIgnore]
-        public Nullable<int> UserId { get; set; }
+        public int UserId { get; set; }
+        public string UserName { get; set; }
         public string Name { get; set; }
         public string ImgUrl { get; set; }
         public string Description { get; set; }
@@ -29,7 +30,7 @@ namespace DataTransfer
 
         
 
-        public Nullable<System.DateTime> DateTime { get; set; }
+        public System.DateTime DateTime { get; set; }
 
         public List<CookProcessTsfer> ListProcess { get; set; }
         public List<CookMaterialTsfer> ListMaterial { get; set; }

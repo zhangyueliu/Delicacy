@@ -20,4 +20,3 @@ E:\Important\Delicacy\Delicacy\Tool\bin\Debug\Newtonsoft.Json.dll
 E:\Important\Delicacy\Delicacy\Tool\obj\Debug\Tool.csprojResolveAssemblyReference.cache
 E:\Important\Delicacy\Delicacy\Tool\obj\Debug\Tool.dll
 E:\Important\Delicacy\Delicacy\Tool\obj\Debug\Tool.pdb
-F:\GraduationProject\Yueyue\Delicacy\Tool\obj\Debug\Tool.csprojResolveAssemblyReference.cache

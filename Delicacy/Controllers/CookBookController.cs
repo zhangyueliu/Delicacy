@@ -74,6 +74,8 @@ namespace Delicacy.Controllers
         /// <returns></returns>
         public ActionResult ShowDetail(string cookBookId, string isSort)
         {
+            if (string.IsNullOrWhiteSpace(isSort))
+                return RedirectHome();
             if (isSort == "href")
                 ViewBag.IsSort = true;
             else
