@@ -296,6 +296,35 @@
     <Content Include="Scripts\ueditor\ueditor.config.js" />
     <Content Include="Scripts\UserCenter\WaitCheck.js" />
     <Content Include="Scripts\_references.js" />
+    <Content Include="Upload\Images\059165dee11743398829a38524ff0291.jpg" />
+    <Content Include="Upload\Images\08f3595da5194d9eadd07dd7aba7c611.png" />
+    <Content Include="Upload\Images\15cea4e3e2cc4354b1c454981027c9ec.jpg" />
+    <Content Include="Upload\Images\2442a4f288f947818f1e55dfa0642fa4.jpg" />
+    <Content Include="Upload\Images\32a277d0e82f4438909cffc9fe1074d6.jpg" />
+    <Content Include="Upload\Images\3e2d04e8eb6042ca9aeec728bc4b70b2.jpg" />
+    <Content Include="Upload\Images\4a147aaccb3d480695d70bc76917048c.jpg" />
+    <Content Include="Upload\Images\4c4ded6c27ad49f9bf2619f73e69ddc8.jpg" />
+    <Content Include="Upload\Images\4f32bb3fcfb648c18f6af887ff739310.jpg" />
+    <Content Include="Upload\Images\7177d40cd32544a49fdd63b866767b25.jpg" />
+    <Content Include="Upload\Images\7b1bd9dac27645069cbd272b250ea182.jpg" />
+    <Content Include="Upload\Images\81d0e8b4c00749aeb3d07b5d43d4909d.jpg" />
+    <Content Include="Upload\Images\87e98cedd15549b0bde6385415df4519.gif" />
+    <Content Include="Upload\Images\97b6b31010354fd3bbb4ebc853049128.jpg" />
+    <Content Include="Upload\Images\9ef1d2a7565f4d9c9f62d968bd6c7384.jpg" />
+    <Content Include="Upload\Images\9feb63ac16584478bb8dbbd70b9fd9c5.png" />
+    <Content Include="Upload\Images\a404d92ab2644380ac6722a4a5d774f0.jpg" />
+    <Content Include="Upload\Images\a81ba5b012034cf5aaab24afe6bd9f9d.jpg" />
+    <Content Include="Upload\Images\adcf855d229c411d8affb9b9afa6b047.jpg" />
+    <Content Include="Upload\Images\aea355f158ad4b0badd9d65d871b4d3f.jpg" />
+    <Content Include="Upload\Images\aedf5c4c85df40d0b1325f38b29d327c.jpg" />
+    <Content Include="Upload\Images\bc921a27d2d64acaa2a17b9dc9037a4e.jpg" />
+    <Content Include="Upload\Images\c2c87b3c8ddd4bfbb8a03d077a5589bf.jpg" />
+    <Content Include="Upload\Images\c2fac243e7ce41b9b64e237af142c66e.png" />
+    <Content Include="Upload\Images\d1769104c0194322a1216d1dce758394.jpg" />
+    <Content Include="Upload\Images\d97494dd2ee44f3f98846f2f2306c4f2.gif" />
+    <Content Include="Upload\Images\eb2e71fc0d54454e82928244acfabaf1.png" />
+    <Content Include="Upload\Images\f7f20a86d652488e9ce853266fab7fce.jpg" />
+    <Content Include="Upload\Images\fc9bbc5ed19d428a8bdade4c9d806578.png" />
     <Content Include="Web.config">
       <SubType>Designer</SubType>
     </Content>
@@ -338,16 +367,16 @@
     <Content Include="Views\Upload\UploadImgOne.cshtml" />
     <Content Include="Views\UserCenter\WaitCheck.cshtml" />
     <Content Include="Views\AdminUser\Login.cshtml" />
-    <Content Include="Views\AdminCenter\Index.cshtml" />
     <Content Include="Views\Shared\_AdminLayout.cshtml" />
     <Content Include="Views\AdminSubjectArticle\Index.cshtml" />
     <Content Include="Views\AdminUser\UserManager.cshtml" />
     <Content Include="Views\CookBook\ShowDetail.cshtml" />
+    <Content Include="Views\AdminCenter\Index.cshtml" />
+    <Content Include="Views\AdminSubjectArticle\Manager.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
     <Folder Include="Scripts\Admin\" />
-    <Folder Include="Upload\Images\" />
     <Folder Include="Views\Base\" />
     <Folder Include="Views\CookProcess\" />
     <Folder Include="Views\Search\" />

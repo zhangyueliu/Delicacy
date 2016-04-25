@@ -17,9 +17,11 @@ namespace Manager
         {
             return service.GetList();
         }
-        public FoodMaterialTsfer Get(int id)
+        public FoodMaterialTsfer Get(string id)
         {
-            return service.Get(id);
+            int i;
+            CheckParameter.PageCheck(id, out i);
+            return service.Get(i);
         }
     }
 }

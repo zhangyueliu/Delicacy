@@ -99,12 +99,10 @@ namespace Manager
             return OutputHelper.GetOutputResponse(ResultCode.OK, list);
         }
 
-        public OutputModel GetList()
+        public List<SubjectArticleTsfer> GetList()
         {
             List<SubjectArticleTsfer> list = service.GetList();
-            if (list == null)
-                return OutputHelper.GetOutputResponse(ResultCode.NoData);
-            return OutputHelper.GetOutputResponse(ResultCode.OK, list);
+                return list;
         }
 
         //public 

@@ -1,29 +1,11 @@
 ﻿
 @{
-    Layout = null;
+    ViewBag.Title = "Index";
+    Layout = "~/Views/Shared/_AdminLayout.cshtml";
 }
 
-<!DOCTYPE html>
 
-<html>
-<head>
-    <meta name="viewport" content="width=device-width" />
-    <title>后台中心</title>
-    <script src="~/Scripts/jquery-1.10.2.min.js"></script>
-    <script type="text/javascript"> 
-        function subjectArticle() {
-            window.location.href = '/AdminSubjectArticle/Index';
-        }
+<div class="page-header" style="border:none;">
+    <h2>欢迎光临</h2>
+</div>
 
-        function userManager() {
-            window.location.href = '/AdminUser/UserManager';
-        }
-    </script>
-</head>
-<body>
-    <div> 
-        <input type="button" id="subjectArticle" onclick="subjectArticle()" value="饮食专题管理" />
-        <input type="button" id="userManager" onclick="userManager()" value="用户管理"/> 
-    </div>
-</body>
-</html>
