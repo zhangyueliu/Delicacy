@@ -1,5 +1,4 @@
-﻿
-@{
+﻿@{
     Layout = "~/Views/Shared/_Layout.cshtml";
 }
 
@@ -11,16 +10,8 @@
             <a href="javascript:;" class="on">@ViewBag.sort</a>
         </div>
     </div>
-<<<<<<< HEAD
     <div id="cookBookList" class="prod">
-       
-=======
-
-    <div id="cookBookList" class="prod">
->>>>>>> 22b6981bee3a91f568ec93fe78bc981454410913
-
         <div class="clear"></div>
-
     </div>
     <div class="tcdPageCode">
     </div>
@@ -30,7 +21,7 @@
     var id = getParamValue('id');
     var type = getParamValue('type');
     var size = 9;
-    
+
     $(document).ready(function () {
         if ("@ViewBag.IsSort" == "True") {
             $("#secondli").addClass("active");
@@ -42,30 +33,29 @@
             loadCookBooks(1, size, true);
         else
             loadCookBooksByShiCai(1, size, true);
-        
+
     });
 
-    function  loadCookBooks(pageIndex,pageSize,isFirst) {
+    function loadCookBooks(pageIndex, pageSize, isFirst) {
         $.ajax({
             url: '/CookBook/GetPageBySort',
             type: 'post',
             data: { sortId: id, pageIndex: pageIndex, pageSize: pageSize },
             success: function (data) {
-                if (data.StatusCode == 1)
-                {
+                if (data.StatusCode == 1) {
                     var pageCount = data.Data.PageCount;
                     if (isFirst) {
                         $(".tcdPageCode").createPage({
                             pageCount: pageCount,
                             current: 1,
                             backFn: function (p) {
-                                loadCookBooks(p,size,false);
+                                loadCookBooks(p, size, false);
                             }
                         });
                     }
                     initCookBooks(data.Data.List);
-                }else
-                return layer.msg(data.Message);
+                } else
+                    return layer.msg(data.Message);
             }
         });
     }
@@ -100,7 +90,7 @@
             str += '<div class="col_1_of_3 span_1_of_3" style="height:300px;text-align:center;"><div class="view effect"><img src="' + this.ImgUrl + '" alt="' + this.Name + '" class="imagess" onloadstart="image();" /></div><a href="/CookBook/ShowDetail/?cookBookId=' + this.CookBookId + '&isSort=@ViewBag.IsSort"><h3>' + this.Name + '</h3></a></div>';
         });
         var cooklist = $('#cookBookList');
-        
+
         cooklist.find('div:not(:last)').remove();
         cooklist.prepend(str);
     }
