@@ -30,7 +30,12 @@ namespace Service
             base.Delete(id);
             return Save() > 0;
         }
-        public CookBookTsfer Get(string  cookBookId)
+        public CookBookTsfer Get(string  cookBookId,int status)
+        {
+            return TransferObject.ConvertObjectByEntity<CookBook, CookBookTsfer>(base.Select(o => o.CookBookId == cookBookId && o.Status ==status).FirstOrDefault());
+        }
+
+        public CookBookTsfer Get(string cookBookId)
         {
             return TransferObject.ConvertObjectByEntity<CookBook, CookBookTsfer>(base.Select(o => o.CookBookId == cookBookId).FirstOrDefault());
         }
@@ -40,19 +45,28 @@ namespace Service
         /// </summary>
         /// <param name="name"></param>
         /// <returns></returns>
-        public List<CookBookTsfer>  GetByName(string name)
+        public List<CookBookTsfer> GetByName(string name, int status)
         {
-            return TransferObject.ConvertObjectByEntity<CookBook, CookBookTsfer>(Select(o => o.Name.Contains(name)).ToList());
+            return TransferObject.ConvertObjectByEntity<CookBook, CookBookTsfer>(Select(o => o.Name.Contains(name) && o.Status == status).ToList());
         }
 
         public List<CookBookTsfer> GetList(int userId,int status)
         {
             return TransferObject.ConvertObjectByEntity<CookBook, CookBookTsfer>(Select(o => o.UserId == userId&&o.Status==status).OrderByDescending(o => o.DateTime).ToList());
         }
-        public List<CookBookTsfer> GetCookBookBysort(int sort, int pageIndex, int pageSize, out int rowCount)
+
+        public List<CookBookTsfer> GetPageBySort(int sort, int pageIndex, int pageSize,int status, out int rowCount)
         {
-            return TransferObject.ConvertObjectByEntity<CookBook, CookBookTsfer>(SelectDesc(pageIndex, pageSize,o => o.FoodSortId == sort,o=>o.DateTime,out rowCount).ToList());
+            return TransferObject.ConvertObjectByEntity<CookBook, CookBookTsfer>(SelectDesc(pageIndex, pageSize, o => o.FoodSortId == sort && o.Status == status, o => o.DateTime, out rowCount).ToList());
         }
+
+        public List<CookBookTsfer> GetPageByFoodMaterial(int foodMaterialId,int pageIndex, int pageSize,int status, out int rowCount)
+        {
+            IQueryable<string> queryCookBookId = new FoodMaterial_CookBookTsferService().GetIQueryCookBookId(foodMaterialId);
+            List<CookBook> list = SelectDesc(pageIndex, pageSize, o => queryCookBookId.Contains(o.CookBookId) && o.Status == status, o => o.DateTime, out rowCount).ToList();
+           return TransferObject.ConvertObjectByEntity<CookBook, CookBookTsfer>(list);
+        }
+
         public bool IsExist(string cookBookId)
         {
             return  Select(o => o.CookBookId == cookBookId).Any();

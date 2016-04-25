@@ -21,7 +21,8 @@
 </div>
 <script src="http://www.lanrenzhijia.com/ajaxjs/jquery.page.js"></script>
 <script>
-    var sortId = getParamValue('id');
+    var id = getParamValue('id');
+    var type = getParamValue('type');
     var size = 9;
     
     $(document).ready(function () {
@@ -31,9 +32,10 @@
         else {
             $("#thirdli").addClass("active");
         }
-
-        loadCookBooks(1, size,true);
-        
+        if (type == null)
+            loadCookBooks(1, size, true);
+        else
+            loadCookBooksByShiCai(1, size, true);
         
     });
 
@@ -41,7 +43,7 @@
         $.ajax({
             url: '/CookBook/GetPageBySort',
             type: 'post',
-            data: { sortId: sortId, pageIndex: pageIndex, pageSize: pageSize },
+            data: { sortId: id, pageIndex: pageIndex, pageSize: pageSize },
             success: function (data) {
                 if (data.StatusCode == 1)
                 {
@@ -58,6 +60,30 @@
                     initCookBooks(data.Data.List);
                 }else
                 return layer.msg(data.Message);
+            }
+        });
+    }
+
+    function loadCookBooksByShiCai(pageIndex, pageSize, isFirst) {
+        $.ajax({
+            url: '/CookBook/GetPageByFoodMaterial',
+            type: 'get',
+            data: { foodMaterialId: id, pageIndex: pageIndex, pageSize: pageSize },
+            success: function (data) {
+                if (data.StatusCode == 1) {
+                    var pageCount = data.Data.PageCount;
+                    if (isFirst) {
+                        $(".tcdPageCode").createPage({
+                            pageCount: pageCount,
+                            current: 1,
+                            backFn: function (p) {
+                                loadCookBooksByShiCai(p, size, false);
+                            }
+                        });
+                    }
+                    initCookBooks(data.Data.List);
+                } else
+                    return layer.msg(data.Message);
             }
         });
     }

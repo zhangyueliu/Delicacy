@@ -44,57 +44,52 @@ namespace Delicacy.Controllers
         {
             if (string.IsNullOrEmpty(id))
                 return RedirectHome();
-            //int count;//总条数
-            //int pagecount;//总页数
-            //int sort=1; int pageindex; int pagesize = 9;
-            //int.TryParse(id, out sort);
-            //CheckParameter.PageCheck(pageIndex, out pageindex);
-            //CookBookManager manager = new CookBookManager();
-            //FoodSortManager sortmanager = new FoodSortManager();
-            //FoodSortTsfer f = (FoodSortTsfer)sortmanager.Get(sort).Data;
-            //ViewBag.sort = f.Name;
-            //ViewBag.cookbookList = manager.GetCookBookBysort(sort, pageindex, pagesize, out count,out pagecount);
-            //ViewBag.pageCount = pagecount;
-            //ViewBag.pageIndex = pageindex;
-            //ViewBag.pageSize = pagesize;
             ViewBag.IsSort = true;
             return View();
         }
 
         public ActionResult GetPageBySort(string sortId,string pageIndex,string pageSize)
         {
-            return Content(new CookBookManager().GetCookBookBysort(sortId,pageIndex,pageSize));
+            return Content(new CookBookManager().GetCookBookBySort(sortId,pageIndex,pageSize));
         }
 
 
-        public ActionResult ListShicai(string id)
+        public ActionResult ListShiCai(string id)
         {
-            int i = int.Parse(id);
-            CookBookManager manager = new CookBookManager();
-            FoodMaterial_CookBookTsferManager fmcbmanager = new FoodMaterial_CookBookTsferManager();
-            FoodMaterialManager fmmanager = new FoodMaterialManager();
-            FoodMaterialTsfer f = fmmanager.Get(i);
-            if (f != null)
-            {
-                ViewBag.sort = f.Name;
-            }
-            List<FoodMaterial_CookBookTsfer> list = fmcbmanager.GetListByFoodMaterialId(i);
-            List<string> strs = new List<string>();
-            foreach (FoodMaterial_CookBookTsfer item in list)
-            {
-                strs.Add(item.CookBookId);
-            }
-            OutputModel o = manager.GetListByIds(strs);
-            if (o.StatusCode == 1)
-                ViewBag.cookbookList = (List<CookBookTsfer>)o.Data;
+            if (string.IsNullOrWhiteSpace(id))
+                return RedirectHome();
+            //int i = int.Parse(id);
+            //CookBookManager manager = new CookBookManager();
+            //FoodMaterial_CookBookTsferManager fmcbmanager = new FoodMaterial_CookBookTsferManager();
+            //FoodMaterialManager fmmanager = new FoodMaterialManager();
+            //FoodMaterialTsfer f = fmmanager.Get(i);
+            //if (f != null)
+            //{
+            //    ViewBag.sort = f.Name;
+            //}
+            //List<FoodMaterial_CookBookTsfer> list = fmcbmanager.GetListByFoodMaterialId(i);
+            //List<string> strs = new List<string>();
+            //foreach (FoodMaterial_CookBookTsfer item in list)
+            //{
+            //    strs.Add(item.CookBookId);
+            //}
+            //OutputModel o = manager.GetListByIds(strs);
+            //if (o.StatusCode == 1)
+            //    ViewBag.cookbookList = (List<CookBookTsfer>)o.Data;
+
             ViewBag.IsSort = false;
             return View("List");
         }
-        public ContentResult Get(string cookBookId)
+        public ActionResult Get(string cookBookId)
         {
+            if (string.IsNullOrEmpty(cookBookId))
+                return RedirectHome();
             return Content(new CookBookManager().GetCookBook(cookBookId));
         }
 
-
+        public ActionResult GetPageByFoodMaterial(string foodMaterialId,string pageIndex,string pageSize)
+        {
+            return Content(new CookBookManager().GetPageByFoodMaterial(foodMaterialId, pageIndex, pageSize));
+        }
     }
 }
