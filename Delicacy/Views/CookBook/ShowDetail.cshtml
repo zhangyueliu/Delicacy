@@ -1,0 +1,201 @@
+﻿@model DataTransfer.CookBookTsfer
+
+@{
+    ViewBag.Title = "菜谱详情";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+<link href="~/Content/bootstrap.css" rel="stylesheet" />
+<script>
+    $(document).ready(function () {
+        if ("@ViewBag.IsSort" == "True") {
+            $("#secondli").addClass("active");
+        }
+        else {
+            $("#thirdli").addClass("active");
+        }
+    });
+    function image() {
+        var height = $(".imagess").height;
+        var width = $(".imagess").width;
+        if (height >= width) {
+            $(".imagess").attr("height", "100%");
+        }
+        if (height < width) {
+            $(".imagess").attr("width", "100%");
+        }
+    }
+</script>
+
+<style>
+    .main {
+        margin: auto;
+    }
+
+    .detial {
+        margin: auto;
+        width: 99%;
+    }
+
+
+    .imgs img {
+        display: inline-block;
+        cursor: pointer;
+    }
+
+    .imgs div {
+        width: 48%;
+        height: 7em;
+        display: inline-block;
+        margin-bottom: 2px;
+        overflow: hidden;
+    }
+
+    .mainborder {
+        padding: 4px;
+        border: 1px solid #ddd;
+        border-radius: 4px;
+        margin-top: 1em;
+    }
+
+    .imgs {
+        position: relative;
+    }
+
+    b {
+        color: #99261F;
+    }
+
+    span {
+        color: gray;
+    }
+</style>
+
+<div class="main">
+    <div class="col-lg-9">
+        <div class="detial">
+            <h1>@Model.Name</h1>
+            <div style="color:#808080">
+                作者：@Model.UserId&nbsp;&nbsp;&nbsp;时间：@Model.DateTime.Value.ToString("yyyy-MM-DD")&nbsp;&nbsp;&nbsp;收藏&nbsp;<span style="font-size: 18px; cursor: pointer;" id="like">❤</span>
+            </div>
+            <div style="width:99%;">
+                <img src="@Model.ImgUrl" id="imgRul" class="img-thumbnail" style="display:block; margin:auto;" />
+            </div>
+            <div class="mainborder" style="margin-top:1em;">
+                <div><b>总描述：</b><p>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;@Model.Description</p></div>
+                <div>
+                    <b>食材</b>
+                    <div>
+                        &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span>主料：</span>@foreach (var item in Model.ListMaterial)
+                        {
+                            if (item.Type == 1)
+                            {
+                                <a style="text-decoration:none;color:black;">@item.FoodMaterialName@item.Amount &nbsp;&nbsp;&nbsp;</a>
+                            }
+                        }
+                        <br />&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span>辅料：</span>@foreach (var item in Model.ListMaterial)
+                        {
+                            if (item.Type == 2)
+                            {
+                                <a style="text-decoration:none;color:black;">@item.FoodMaterialName@item.Amount &nbsp;&nbsp;&nbsp;</a>
+                            }
+                        }
+                    </div>
+                    <b>口味：</b>@Model.TasteName
+                </div>
+                <div>
+                    <b>步骤：</b>
+                    <div>
+                        @foreach (var item in @Model.ListProcess)
+                        {
+                            <div class="mainborder">
+                            <div style="width:49%; position: relative; float: left; display: inline-block;">
+                                <img src="@item.ImgUrl" class="imagess img-thumbnail" onloadstart="image();" style="width:320px;" />
+                            </div>
+                            <div style="width: 50%; position: relative; float: right;" class="buzhou">
+                                <span>步骤 @item.Sort：</span><p>@item.Description</p>
+                            </div>
+                            <div class="clear"></div>
+                        </div>
+                        }
+                        
+                        @*<div class="mainborder">
+                            <div style="width: 49%; position: relative; float: left; display: inline-block;">
+
+                                <img src="~/Upload/Images/32a277d0e82f4438909cffc9fe1074d6.jpg" class="img-thumbnail" style="width:320px;" />
+                            </div>
+                            <div style="width: 50%; position: relative; float: right; " class="buzhou">
+                                <span>步骤2：</span><p>然后怎样怎样怎样怎样怎样怎</p>
+                            </div>
+                            <div class="clear"></div>
+                        </div>
+                        <div class="mainborder">
+                            <div style="width: 49%; position: relative; float: left; display: inline-block;">
+                                <img src="~/Upload/Images/9feb63ac16584478bb8dbbd70b9fd9c5.png" class="img-thumbnail" style="width:320px;" />
+                            </div>
+                            <div style="width: 50%; position: relative; float: right; " class="buzhou">
+                                <span>步骤3：</span><p>最后怎样怎样怎样怎样怎样怎样怎样怎样怎样怎样怎样怎样怎样怎样怎样怎样怎样怎样怎样怎样怎样怎样</p>
+                            </div>
+                            <div class="clear"></div>
+                        </div>*@
+                    </div>
+                </div>
+                <div style="color:#bbb9b9">
+                    <b>小窍门：</b><p>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;@Model.Tips</p>
+                </div>
+            </div>
+        </div>
+        <div class="detial" id="comment" style="margin-top:1em;">
+            <div class="media mainborder">
+                <a class="pull-left" href="#">
+                    <img class="media-object" src="~/images/touxiang.png" style="width:50px;height:50px;" alt="作者">
+                </a>
+                <div class="media-body">
+                    <h4 class="media-heading">作者姓名<a style="position: relative; float: right; font-size: 10px; cursor: pointer;">回复</a></h4>
+                    这张图很有逼格。这张图很有逼格。
+                    <div class="media mainborder">
+                        <a class="pull-left" href="#">
+                            <img class="media-object" src="~/images/touxiang.png" style="width:50px;height:50px;"
+                                 alt="作者">
+                        </a>
+                        <div class="media-body">
+                            <h4 class="media-heading">作者姓名<a style="position: relative; float: right; font-size: 10px; cursor: pointer;">回复</a></h4>
+                            这张图很有逼格。这张图很有逼格。
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="media mainborder">
+                <a class="pull-left" href="#">
+                    <img class="media-object" src="~/images/touxiang.png" style="width:50px;height:50px;"
+                         alt="作者">
+                </a>
+                <div class="media-body">
+                    <h4 class="media-heading">作者姓名<a style="position: relative; float: right; font-size: 10px; cursor: pointer;">回复</a></h4>
+                    这张图很有逼格。这张图很有逼格。
+                </div>
+            </div>
+        </div>
+        <div class="detial mainborder">
+            <textarea class="mainborder" id="content" style="margin:auto;width:100%;"></textarea>
+            <input type="button" onclick="submit()" value="评论" class="btn-default" style="position:relative;float:right;" />
+            <div class="clear"></div>
+        </div>
+    </div>
+    <div class="col-lg-3" style="padding: 4px; border: 1px solid #ddd; border-radius: 4px;">
+
+        <div style="margin-bottom:1em;margin-top:1em;"><span id="userName"></span></div>
+        <div class="imgs" id="lastPhotos">
+
+            <div class="clear"></div>
+        </div>
+
+    </div>
+    <div class="clear"></div>
+</div>
+
+
+
+
+
+
+

@@ -11,8 +11,8 @@
             data:{id:id},
             success:function (o) {
                 if(o.StatusCode==1){
-                    layer.alert("成功");
-                    setTimeout(function () { location.reload(); }, 2000);
+                    layer.msg("成功");
+                    setTimeout(function () { location.reload(); }, 1000);
                     
                 } else {
                     layer.alert("失败");
@@ -20,7 +20,6 @@
             }
         })
     }
-
 </script>
 <h2>UserManager</h2>
 

@@ -112,7 +112,7 @@ body {
 }
 
 .wrap {
-    width: 68%;
+    width: 60%;
     margin: 0 auto;
     -moz-transition: all .2s linear;
     -webkit-transition: all .2s linear;

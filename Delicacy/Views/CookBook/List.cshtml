@@ -57,7 +57,7 @@
                         <img src="@cook.ImgUrl" alt="@cook.Name" class="imagess" onloadstart="image();" />
 
                     </div>
-                    <a href="/CookBook/Get/?cookBookId=@cook.CookBookId"><h3>@cook.Name</h3></a>
+                    <a href="/CookBook/ShowDetail?cookBookId=@cook.CookBookId&isSort=@ViewBag.IsSort"><h3>@cook.Name</h3></a>
                 </div>
             }
         }

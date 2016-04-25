@@ -55,7 +55,7 @@ namespace Delicacy.Controllers
             ViewBag.pageCount = pagecount;
             ViewBag.pageIndex = pageindex;
             ViewBag.pageSize = pagesize;
-            ViewBag.IsSort = true;
+            ViewBag.IsSort = true;//标识是分类还是食材
             return View();
         }
         public ActionResult ListShicai(string id)
@@ -78,7 +78,7 @@ namespace Delicacy.Controllers
             OutputModel o = manager.GetListByIds(strs);
             if (o.StatusCode == 1)
                 ViewBag.cookbookList = (List<CookBookTsfer>)o.Data;
-            ViewBag.IsSort = false;
+            ViewBag.IsSort = false;//标识是分类还是食材
             return View("List");
         }
         public ContentResult Get(string cookBookId)
@@ -86,6 +86,19 @@ namespace Delicacy.Controllers
             return Content(new CookBookManager().GetCookBook(cookBookId));
         }
 
+        /// <summary>
+        /// 显示菜谱详情页面
+        /// </summary>
+        /// <returns></returns>
+        public ActionResult ShowDetail(string cookBookId,string isSort)
+        {
+            if (isSort == "href")
+                ViewBag.IsSort = true;
+            else
+                ViewBag.IsSort = false;
+            OutputModel model = new CookBookManager().GetCookBook(cookBookId);
+            return View(model.Data);
+        }
 
     }
 }

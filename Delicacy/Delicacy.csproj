@@ -333,12 +333,12 @@
     <Content Include="Views\LikeCookBook\Index.cshtml" />
     <Content Include="Views\Upload\UploadImgOne.cshtml" />
     <Content Include="Views\UserCenter\WaitCheck.cshtml" />
-    <Content Include="Views\UserCenter\ShowDetail.cshtml" />
     <Content Include="Views\AdminUser\Login.cshtml" />
     <Content Include="Views\AdminCenter\Index.cshtml" />
     <Content Include="Views\Shared\_AdminLayout.cshtml" />
     <Content Include="Views\AdminSubjectArticle\Index.cshtml" />
     <Content Include="Views\AdminUser\UserManager.cshtml" />
+    <Content Include="Views\CookBook\ShowDetail.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
