@@ -263,6 +263,7 @@ namespace Manager
             //获取用户姓名
             UserInfoService user = ObjectContainer.GetInstance<UserInfoService>();
             cookBook.UserName = user.Get(cookBook.UserId).Name;
+
         }
 
         public OutputModel GetPageByFoodMaterial(string foodMaterialId,string pageIndex,string pageSize)

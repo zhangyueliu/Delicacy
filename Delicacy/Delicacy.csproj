@@ -206,6 +206,7 @@
     <Content Include="fonts\glyphicons-halflings-regular.svg" />
     <Content Include="Global.asax" />
     <Content Include="Content\Site.css" />
+    <Content Include="images\like.png" />
     <Content Include="images\Admin\1.jpg" />
     <Content Include="images\arrow.png" />
     <Content Include="images\banner1.jpg" />
@@ -219,6 +220,7 @@
     <Content Include="images\googleplus.png" />
     <Content Include="images\icecream.png" />
     <Content Include="images\leaf.png" />
+    <Content Include="images\liked.png" />
     <Content Include="images\logo.png" />
     <Content Include="images\p-but.png" />
     <Content Include="images\pic.jpg" />
@@ -242,12 +244,12 @@
     <Content Include="images\pic9.jpg" />
     <Content Include="images\pinterest.png" />
     <Content Include="images\plate.png" />
+    <Content Include="images\R7Z8ZN`LI_GPOEW}}84~`KT.png" />
     <Content Include="images\search-icon.png" />
     <Content Include="images\tw.png" />
     <Content Include="images\twitter-icon.png" />
     <Content Include="Scripts\bootstrap.js" />
     <Content Include="Scripts\bootstrap.min.js" />
-    <Content Include="images\logo.psd" />
     <Content Include="fonts\Amble-Light-webfont.ttf" />
     <None Include="Properties\PublishProfiles\Delicacy.pubxml" />
     <None Include="Scripts\jquery-1.10.2.intellisense.js" />

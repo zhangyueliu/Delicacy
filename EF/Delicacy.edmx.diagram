@@ -5,31 +5,6 @@
     <!-- Diagram content (shape and connector positions) -->
     <edmx:Diagrams>
       <Diagram DiagramId="471de8a3afb148daa67d53e23f810cba" Name="Diagram1">
-        <EntityTypeShape EntityType="DelicacyModel.AdminUser" Width="1.5" PointX="0.75" PointY="0.75" />
-        <EntityTypeShape EntityType="DelicacyModel.CommentRecord" Width="1.5" PointX="3" PointY="17.375" />
-        <EntityTypeShape EntityType="DelicacyModel.CookBook" Width="1.5" PointX="6" PointY="8" />
-        <EntityTypeShape EntityType="DelicacyModel.CookMaterial" Width="1.5" PointX="8.25" PointY="7.5" />
-        <EntityTypeShape EntityType="DelicacyModel.CookProcess" Width="1.5" PointX="8.25" PointY="13.125" />
-        <EntityTypeShape EntityType="DelicacyModel.FoodMaterial" Width="1.5" PointX="9" PointY="4.125" />
-        <EntityTypeShape EntityType="DelicacyModel.FoodMaterial_CookBook" Width="1.5" PointX="11.25" PointY="9" />
-        <EntityTypeShape EntityType="DelicacyModel.FoodSort" Width="1.5" PointX="3.75" PointY="12" />
-        <EntityTypeShape EntityType="DelicacyModel.LikeCookBook" Width="1.5" PointX="3" PointY="8.875" />
-        <EntityTypeShape EntityType="DelicacyModel.SubjectArticle" Width="1.5" PointX="2.75" PointY="0.75" />
-        <EntityTypeShape EntityType="DelicacyModel.SubjectSort" Width="1.5" PointX="4.75" PointY="0.75" />
-        <EntityTypeShape EntityType="DelicacyModel.SupportScanRecord" Width="1.5" PointX="3" PointY="5.875" />
-        <EntityTypeShape EntityType="DelicacyModel.Taste" Width="1.5" PointX="3.75" PointY="14.25" />
-        <EntityTypeShape EntityType="DelicacyModel.UserInfo" Width="1.5" PointX="0.75" PointY="8.5" />
-        <EntityTypeShape EntityType="DelicacyModel.VerifyRegister" Width="1.5" PointX="5.75" PointY="3.75" />
-        <AssociationConnector Association="DelicacyModel.FK_COMMENTR_REFERENCE_USERINFO" />
-        <AssociationConnector Association="DelicacyModel.FK_COOKBOOK_REFERENCE_FOODSORT" />
-        <AssociationConnector Association="DelicacyModel.FK_COOKBOOK_REFERENCE_TASTE" />
-        <AssociationConnector Association="DelicacyModel.FK_COOKBOOK_REFERENCE_USERINFO" />
-        <AssociationConnector Association="DelicacyModel.FK_COOKMATE_REFERENCE_COOKBOOK" />
-        <AssociationConnector Association="DelicacyModel.FK_COOKPROC_REFERENCE_COOKBOOK" />
-        <AssociationConnector Association="DelicacyModel.FK_FoodMaterial_CookBook_CookBook" />
-        <AssociationConnector Association="DelicacyModel.FK_FoodMaterial_CookBook_FoodMaterial" />
-        <AssociationConnector Association="DelicacyModel.FK_LIKECOOK_REFERENCE_USERINFO" />
-        <AssociationConnector Association="DelicacyModel.FK_SUPPORTS_REFERENCE_USERINFO" />
       </Diagram>
     </edmx:Diagrams>
   </edmx:Designer>

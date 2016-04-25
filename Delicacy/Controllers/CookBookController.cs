@@ -78,6 +78,8 @@ namespace Delicacy.Controllers
             else
                 ViewBag.IsSort = false;
             OutputModel model = new CookBookManager().GetCookBook(cookBookId);
+            if (model.Data == null)
+                return RedirectHome();
             return View(model.Data);
         }
     }
