@@ -11,9 +11,9 @@ namespace Service
 {
     public class CollectionService : BaseService<Collection>
     {
-        public bool Add(CollectionTsfer like)
+        public bool Add(CollectionTsfer collection)
         {
-            base.Add(TransferObject.ConvertObjectByEntity<CollectionTsfer, Collection>(like));
+            base.Add(TransferObject.ConvertObjectByEntity<CollectionTsfer, Collection>(collection));
             return Save() > 0;
         }
         public new bool Delete(int id)
@@ -43,7 +43,7 @@ namespace Service
         /// <returns></returns>
         public CollectionTsfer Get(int userid, string  cookbookid)
         {
-            return TransferObject.ConvertObjectByEntity<Collection, CollectionTsfer>(base.Select(o => o.UserId == userid && o.OperateId == cookbookid).FirstOrDefault());
+            return TransferObject.ConvertObjectByEntity<Collection, CollectionTsfer>(base.Select(o => o.UserId == userid && o.OperateId == cookbookid&&o.Type==1).FirstOrDefault());
         }
         /// <summary>
         /// 获取某用户的收藏
@@ -67,6 +67,17 @@ namespace Service
         public List<CollectionTsfer> GetList()
         {
             return TransferObject.ConvertObjectByEntity<Collection, CollectionTsfer>(base.Select(o => true).ToList());
+        }
+
+        /// <summary>
+        /// 判断某人是否收藏过菜谱
+        /// </summary>
+        /// <param name="userId"></param>
+        /// <param name="cookBookId"></param>
+        /// <returns></returns>
+        public bool IsExist(int userId,string cookBookId)
+        {
+            return Select(o => o.UserId == userId && o.OperateId == cookBookId && o.Type == 1).Any();
         }
     }
 }

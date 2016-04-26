@@ -26,7 +26,6 @@ namespace EF
         }
     
         public virtual DbSet<AdminUser> AdminUser { get; set; }
-        public virtual DbSet<Collection> Collection { get; set; }
         public virtual DbSet<CommentRecord> CommentRecord { get; set; }
         public virtual DbSet<CookBook> CookBook { get; set; }
         public virtual DbSet<CookMaterial> CookMaterial { get; set; }
@@ -41,5 +40,6 @@ namespace EF
         public virtual DbSet<Taste> Taste { get; set; }
         public virtual DbSet<UserInfo> UserInfo { get; set; }
         public virtual DbSet<VerifyRegister> VerifyRegister { get; set; }
+        public virtual DbSet<Collection> Collection { get; set; }
     }
 }

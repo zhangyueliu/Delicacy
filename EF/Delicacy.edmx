@@ -15,9 +15,9 @@
         </EntityType>
         <EntityType Name="Collection">
           <Key>
-            <PropertyRef Name="LikeId" />
+            <PropertyRef Name="CollectionId" />
           </Key>
-          <Property Name="LikeId" Type="int" Nullable="false" />
+          <Property Name="CollectionId" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
           <Property Name="OperateId" Type="varchar" MaxLength="100" Nullable="false" />
           <Property Name="UserId" Type="int" Nullable="false" />
           <Property Name="DateTime" Type="datetime" Nullable="false" />
@@ -365,7 +365,6 @@
       <Schema Namespace="DelicacyModel" Alias="Self" annotation:UseStrongSpatialTypes="false" xmlns:annotation="http://schemas.microsoft.com/ado/2009/02/edm/annotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm">
         <EntityContainer Name="Entities" annotation:LazyLoadingEnabled="true">
           <EntitySet Name="AdminUser" EntityType="DelicacyModel.AdminUser" />
-          <EntitySet Name="Collection" EntityType="DelicacyModel.Collection" />
           <EntitySet Name="CommentRecord" EntityType="DelicacyModel.CommentRecord" />
           <EntitySet Name="CookBook" EntityType="DelicacyModel.CookBook" />
           <EntitySet Name="CookMaterial" EntityType="DelicacyModel.CookMaterial" />
@@ -380,10 +379,6 @@
           <EntitySet Name="Taste" EntityType="DelicacyModel.Taste" />
           <EntitySet Name="UserInfo" EntityType="DelicacyModel.UserInfo" />
           <EntitySet Name="VerifyRegister" EntityType="DelicacyModel.VerifyRegister" />
-          <AssociationSet Name="FK_LIKECOOK_REFERENCE_USERINFO" Association="DelicacyModel.FK_LIKECOOK_REFERENCE_USERINFO">
-            <End Role="UserInfo" EntitySet="UserInfo" />
-            <End Role="Collection" EntitySet="Collection" />
-          </AssociationSet>
           <AssociationSet Name="FK_COMMENTR_REFERENCE_USERINFO" Association="DelicacyModel.FK_COMMENTR_REFERENCE_USERINFO">
             <End Role="UserInfo" EntitySet="UserInfo" />
             <End Role="CommentRecord" EntitySet="CommentRecord" />
@@ -420,6 +415,11 @@
             <End Role="UserInfo" EntitySet="UserInfo" />
             <End Role="SupportScanRecord" EntitySet="SupportScanRecord" />
           </AssociationSet>
+          <EntitySet Name="Collection" EntityType="DelicacyModel.Collection" />
+          <AssociationSet Name="FK_LIKECOOK_REFERENCE_USERINFO" Association="DelicacyModel.FK_LIKECOOK_REFERENCE_USERINFO">
+            <End Role="UserInfo" EntitySet="UserInfo" />
+            <End Role="Collection" EntitySet="Collection" />
+          </AssociationSet>
         </EntityContainer>
         <EntityType Name="AdminUser">
           <Key>
@@ -428,17 +428,6 @@
           <Property Name="UserId" Type="String" Nullable="false" MaxLength="50" FixedLength="false" Unicode="false" />
           <Property Name="pwd" Type="String" Nullable="false" MaxLength="100" FixedLength="false" Unicode="false" />
           <Property Name="RegDate" Type="DateTime" Nullable="false" Precision="3" />
-        </EntityType>
-        <EntityType Name="Collection">
-          <Key>
-            <PropertyRef Name="LikeId" />
-          </Key>
-          <Property Name="LikeId" Type="Int32" Nullable="false" />
-          <Property Name="OperateId" Type="String" Nullable="false" MaxLength="100" FixedLength="false" Unicode="false" />
-          <Property Name="UserId" Type="Int32" Nullable="false" />
-          <Property Name="DateTime" Type="DateTime" Nullable="false" Precision="3" />
-          <Property Name="Type" Type="Int16" Nullable="false" />
-          <NavigationProperty Name="UserInfo" Relationship="DelicacyModel.FK_LIKECOOK_REFERENCE_USERINFO" FromRole="Collection" ToRole="UserInfo" />
         </EntityType>
         <EntityType Name="CommentRecord">
           <Key>
@@ -582,10 +571,10 @@
           <Property Name="Name" Type="String" Nullable="false" MaxLength="50" FixedLength="false" Unicode="true" />
           <Property Name="Status" Type="Int16" Nullable="false" />
           <Property Name="RegisterDate" Type="DateTime" Nullable="false" Precision="3" />
-          <NavigationProperty Name="Collection" Relationship="DelicacyModel.FK_LIKECOOK_REFERENCE_USERINFO" FromRole="UserInfo" ToRole="Collection" />
           <NavigationProperty Name="CommentRecord" Relationship="DelicacyModel.FK_COMMENTR_REFERENCE_USERINFO" FromRole="UserInfo" ToRole="CommentRecord" />
           <NavigationProperty Name="CookBook" Relationship="DelicacyModel.FK_COOKBOOK_REFERENCE_USERINFO" FromRole="UserInfo" ToRole="CookBook" />
           <NavigationProperty Name="SupportScanRecord" Relationship="DelicacyModel.FK_SUPPORTS_REFERENCE_USERINFO" FromRole="UserInfo" ToRole="SupportScanRecord" />
+          <NavigationProperty Name="Collection" Relationship="DelicacyModel.FK_LIKECOOK_REFERENCE_USERINFO" FromRole="UserInfo" ToRole="Collection" />
         </EntityType>
         <EntityType Name="VerifyRegister">
           <Key>
@@ -597,20 +586,6 @@
           <Property Name="OutDate" Type="DateTime" Nullable="false" Precision="3" />
           <Property Name="Type" Type="Int32" Nullable="false" />
         </EntityType>
-        <Association Name="FK_LIKECOOK_REFERENCE_USERINFO">
-          <End Type="DelicacyModel.UserInfo" Role="UserInfo" Multiplicity="1">
-            <OnDelete Action="Cascade" />
-          </End>
-          <End Type="DelicacyModel.Collection" Role="Collection" Multiplicity="*" />
-          <ReferentialConstraint>
-            <Principal Role="UserInfo">
-              <PropertyRef Name="UserId" />
-            </Principal>
-            <Dependent Role="Collection">
-              <PropertyRef Name="UserId" />
-            </Dependent>
-          </ReferentialConstraint>
-        </Association>
         <Association Name="FK_COMMENTR_REFERENCE_USERINFO">
           <End Type="DelicacyModel.UserInfo" Role="UserInfo" Multiplicity="1">
             <OnDelete Action="Cascade" />
@@ -737,6 +712,31 @@
             </Dependent>
           </ReferentialConstraint>
         </Association>
+        <EntityType Name="Collection">
+          <Key>
+            <PropertyRef Name="CollectionId" />
+          </Key>
+          <Property Name="CollectionId" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="OperateId" Type="String" Nullable="false" MaxLength="100" FixedLength="false" Unicode="false" />
+          <Property Name="UserId" Type="Int32" Nullable="false" />
+          <Property Name="DateTime" Type="DateTime" Nullable="false" Precision="3" />
+          <Property Name="Type" Type="Int16" Nullable="false" />
+          <NavigationProperty Name="UserInfo" Relationship="DelicacyModel.FK_LIKECOOK_REFERENCE_USERINFO" FromRole="Collection" ToRole="UserInfo" />
+        </EntityType>
+        <Association Name="FK_LIKECOOK_REFERENCE_USERINFO">
+          <End Type="DelicacyModel.UserInfo" Role="UserInfo" Multiplicity="1">
+            <OnDelete Action="Cascade" />
+          </End>
+          <End Type="DelicacyModel.Collection" Role="Collection" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="UserInfo">
+              <PropertyRef Name="UserId" />
+            </Principal>
+            <Dependent Role="Collection">
+              <PropertyRef Name="UserId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
         </Schema>
     </edmx:ConceptualModels>
     <!-- C-S mapping content -->
@@ -749,17 +749,6 @@
                 <ScalarProperty Name="RegDate" ColumnName="RegDate" />
                 <ScalarProperty Name="pwd" ColumnName="pwd" />
                 <ScalarProperty Name="UserId" ColumnName="UserId" />
-              </MappingFragment>
-            </EntityTypeMapping>
-          </EntitySetMapping>
-          <EntitySetMapping Name="Collection">
-            <EntityTypeMapping TypeName="DelicacyModel.Collection">
-              <MappingFragment StoreEntitySet="Collection">
-                <ScalarProperty Name="Type" ColumnName="Type" />
-                <ScalarProperty Name="DateTime" ColumnName="DateTime" />
-                <ScalarProperty Name="UserId" ColumnName="UserId" />
-                <ScalarProperty Name="OperateId" ColumnName="OperateId" />
-                <ScalarProperty Name="LikeId" ColumnName="LikeId" />
               </MappingFragment>
             </EntityTypeMapping>
           </EntitySetMapping>
@@ -912,6 +901,17 @@
                 <ScalarProperty Name="IsUsed" ColumnName="IsUsed" />
                 <ScalarProperty Name="LoginId" ColumnName="LoginId" />
                 <ScalarProperty Name="GUID" ColumnName="GUID" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Collection">
+            <EntityTypeMapping TypeName="DelicacyModel.Collection">
+              <MappingFragment StoreEntitySet="Collection">
+                <ScalarProperty Name="Type" ColumnName="Type" />
+                <ScalarProperty Name="DateTime" ColumnName="DateTime" />
+                <ScalarProperty Name="UserId" ColumnName="UserId" />
+                <ScalarProperty Name="OperateId" ColumnName="OperateId" />
+                <ScalarProperty Name="CollectionId" ColumnName="CollectionId" />
               </MappingFragment>
             </EntityTypeMapping>
           </EntitySetMapping>

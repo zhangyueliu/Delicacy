@@ -6,7 +6,6 @@
     <edmx:Diagrams>
       <Diagram DiagramId="471de8a3afb148daa67d53e23f810cba" Name="Diagram1">
         <EntityTypeShape EntityType="DelicacyModel.AdminUser" Width="1.5" PointX="0.75" PointY="0.75" />
-        <EntityTypeShape EntityType="DelicacyModel.Collection" Width="1.5" PointX="3" PointY="15" />
         <EntityTypeShape EntityType="DelicacyModel.CommentRecord" Width="1.5" PointX="3" PointY="6" />
         <EntityTypeShape EntityType="DelicacyModel.CookBook" Width="1.5" PointX="3" PointY="10.125" />
         <EntityTypeShape EntityType="DelicacyModel.CookMaterial" Width="1.5" PointX="5.25" PointY="9.625" />
@@ -21,7 +20,6 @@
         <EntityTypeShape EntityType="DelicacyModel.Taste" Width="1.5" PointX="0.75" PointY="15.375" />
         <EntityTypeShape EntityType="DelicacyModel.UserInfo" Width="1.5" PointX="0.75" PointY="8.625" />
         <EntityTypeShape EntityType="DelicacyModel.VerifyRegister" Width="1.5" PointX="8.75" PointY="0.75" />
-        <AssociationConnector Association="DelicacyModel.FK_LIKECOOK_REFERENCE_USERINFO" />
         <AssociationConnector Association="DelicacyModel.FK_COMMENTR_REFERENCE_USERINFO" />
         <AssociationConnector Association="DelicacyModel.FK_COOKBOOK_REFERENCE_FOODSORT" />
         <AssociationConnector Association="DelicacyModel.FK_COOKBOOK_REFERENCE_TASTE" />
@@ -31,6 +29,8 @@
         <AssociationConnector Association="DelicacyModel.FK_FoodMaterial_CookBook_CookBook" />
         <AssociationConnector Association="DelicacyModel.FK_FoodMaterial_CookBook_FoodMaterial" />
         <AssociationConnector Association="DelicacyModel.FK_SUPPORTS_REFERENCE_USERINFO" />
+        <EntityTypeShape EntityType="DelicacyModel.Collection" Width="1.5" PointX="3" PointY="15" />
+        <AssociationConnector Association="DelicacyModel.FK_LIKECOOK_REFERENCE_USERINFO" />
       </Diagram>
     </edmx:Diagrams>
   </edmx:Designer>

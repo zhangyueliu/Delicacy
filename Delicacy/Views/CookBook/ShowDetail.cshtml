@@ -24,6 +24,29 @@
             $(".imagess").attr("width", "100%");
         }
     }
+
+    function addCollection(cookBookId) {
+        if (!cookBookId)
+            return layer.msg('未知错误');
+        $.ajax({
+            url: '/Collection/AddOrCancleCookBook',
+            type: 'post',
+            data: { cookBookId: cookBookId },
+            success: function (data) {
+                layer.msg(data.Message);
+                if(data.StatusCode==1)
+                {
+                    var img=$('#collect');
+                    var src=img.attr('src');
+                    if (src.indexOf('liked') > 0)
+                        img.attr('src', '/images/like.png');
+                    else
+                        img.attr('src', '/images/liked.png');
+                }
+            }
+        });
+    }
+
 </script>
 
 <style>
@@ -76,8 +99,8 @@
             <h1>@Model.Name</h1>
             <div style="color:#808080">
 
-                作者：@Model.UserName&nbsp;&nbsp;&nbsp;时间：@Model.DateTime.ToString("yyyy-MM-dd")&nbsp;&nbsp;&nbsp;收藏&nbsp;<span style="font-size: 18px; cursor: pointer;" id="like">
-                @if (Model.Collect)
+                作者：@Model.UserName&nbsp;&nbsp;&nbsp;时间：@Model.DateTime.ToString("yyyy-MM-dd")&nbsp;&nbsp;&nbsp;收藏&nbsp;<span onclick="addCollection('@Model.CookBookId')" style="font-size: 18px; cursor: pointer;" id="like">
+                @if (Model.IsCollection)
                 {
                     <img width="20" height="20" id="collect" src="~/images/liked.png" />
                 }
@@ -154,6 +177,10 @@
                 </div>
                 <div style="color:#bbb9b9">
                     <b>小窍门：</b><p>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;@Model.Tips</p>
+                </div>
+                <div>
+                    <a href="javascript:;">赞</a>
+                    <span id="supportCount"></span>
                 </div>
             </div>
         </div>

@@ -14,7 +14,7 @@ namespace EF
     
     public partial class Collection
     {
-        public int LikeId { get; set; }
+        public int CollectionId { get; set; }
         public string OperateId { get; set; }
         public int UserId { get; set; }
         public System.DateTime DateTime { get; set; }

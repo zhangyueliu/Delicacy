@@ -16,10 +16,10 @@ namespace EF
     {
         public UserInfo()
         {
-            this.Collection = new HashSet<Collection>();
             this.CommentRecord = new HashSet<CommentRecord>();
             this.CookBook = new HashSet<CookBook>();
             this.SupportScanRecord = new HashSet<SupportScanRecord>();
+            this.Collection = new HashSet<Collection>();
         }
     
         public int UserId { get; set; }
@@ -29,9 +29,9 @@ namespace EF
         public short Status { get; set; }
         public System.DateTime RegisterDate { get; set; }
     
-        public virtual ICollection<Collection> Collection { get; set; }
         public virtual ICollection<CommentRecord> CommentRecord { get; set; }
         public virtual ICollection<CookBook> CookBook { get; set; }
         public virtual ICollection<SupportScanRecord> SupportScanRecord { get; set; }
+        public virtual ICollection<Collection> Collection { get; set; }
     }
 }

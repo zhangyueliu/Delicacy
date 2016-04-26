@@ -6,7 +6,7 @@ using System.Threading.Tasks;
 using Newtonsoft.Json;
 namespace DataTransfer
 {
-    public  class CookBookTsfer
+    public class CookBookTsfer
     {
 
         public string CookBookId { get; set; }
@@ -28,17 +28,29 @@ namespace DataTransfer
         /// </summary>
         public int Status { get; set; }
 
-        
+
 
         public System.DateTime DateTime { get; set; }
 
         public List<CookProcessTsfer> ListProcess { get; set; }
         public List<CookMaterialTsfer> ListMaterial { get; set; }
 
+
+        public bool isCollection = false;
+
         /// <summary>
         /// 是否收藏 
         /// </summary>
-        public bool Collect = false;
+        public bool IsCollection
+        {
+            get { return isCollection; }
+            set { this.isCollection = value; }
+        }
+
+        /// <summary>
+        /// 点赞数量
+        /// </summary>
+        public int SupportCount { get; set; }
     }
 }
 
