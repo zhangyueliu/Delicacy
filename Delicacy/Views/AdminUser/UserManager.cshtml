@@ -15,10 +15,10 @@
                     setTimeout(function () { location.reload(); }, 1000);
                     
                 } else {
-                    layer.alert("失败");
+                    layer.msg("失败");
                 }
             }
-        })
+        });
     }
 </script>
 <h2>UserManager</h2>
@@ -45,8 +45,10 @@
         </th>
         <th></th>
     </tr>
-
-@foreach (var item in Model) {
+    
+@if(Model!=null)
+{ 
+    foreach (var item in Model) {
     <tr>
         <td>
             @Html.DisplayFor(modelItem => item.UserId)
@@ -67,6 +69,7 @@
             <a href="javascript:;" onclick="deleteUser(@item.UserId)">Delete</a>
         </td>
     </tr>
+    }
 }
 
 </table>

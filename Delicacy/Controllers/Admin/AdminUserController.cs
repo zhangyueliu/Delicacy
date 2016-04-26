@@ -22,7 +22,11 @@ namespace Delicacy.Controllers.Admin
         {
             return Content(new AdminUserManager().Login(userId, pwd));
         }
-
+        public ActionResult LogOut()
+        {
+            Session["adminuser"] = null;
+            return RedirectToAction("Login", "AdminUser");
+        }
 
         [HttpGet]
         public ActionResult Add()

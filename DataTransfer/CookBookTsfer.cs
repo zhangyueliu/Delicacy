@@ -4,27 +4,33 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using Newtonsoft.Json;
+using System.ComponentModel.DataAnnotations;
 namespace DataTransfer
 {
     public  class CookBookTsfer
     {
 
         public string CookBookId { get; set; }
-        [JsonIgnore]
         public int TasteId { get; set; }
+        [Display(Name = "口味")]
         public string TasteName { get; set; }
-        [JsonIgnore]
         public int FoodSortId { get; set; }
+        [Display(Name = "分类")]
         public string FoodSortName { get; set; }
-        [JsonIgnore]
         public int UserId { get; set; }
+        [Display(Name = "用户")]
         public string UserName { get; set; }
+        [Display(Name = "菜谱名称")]
         public string Name { get; set; }
+        [Display(Name = "成品图")]
         public string ImgUrl { get; set; }
+        [Display(Name = "描述")]
         public string Description { get; set; }
+        [Display(Name = "小窍门")]
         public string Tips { get; set; }
+        [Display(Name = "审核状态")]
         /// <summary>
-        /// -1未通过 0待审核  1已通过 2存草稿   
+        /// -1未通过 0待审核  1已通过   
         /// </summary>
         public int Status { get; set; }
 

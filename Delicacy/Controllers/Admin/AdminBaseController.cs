@@ -19,6 +19,7 @@ namespace Delicacy.Controllers.Admin
         public AdminBaseController()
         {
             adminUser = System.Web.HttpContext.Current.Session["adminUser"] as AdminUserTsfer;
+            ViewBag.user = adminUser;
         }
 
         /// <summary>

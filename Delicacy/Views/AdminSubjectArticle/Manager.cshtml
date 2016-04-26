@@ -4,12 +4,45 @@
     ViewBag.Title = "Manager";
     Layout = "~/Views/Shared/_AdminLayout.cshtml";
 }
+<script type="text/javascript">
+    function deleteSubject(id) {
+        $.ajax({
+            type: "post",
+            url: "/AdminSubjectArticle/Delete",
+            data: { id: id },
+            success: function (o) {
+                if (o.StatusCode == 1) {
+                    layer.msg("成功");
+                    setTimeout(function () { location.reload(); }, 1000);
 
-<h2>Manager</h2>
-
+                } else {
+                    layer.msg("失败");
+                }
+            }
+        });
+    }
+    $(document).ready(function () {
+        $(".tcdPageCode").createPage({
+            pageCount: parseInt('@ViewBag.pageCount'),
+            current: parseInt('@ViewBag.pageIndex'),
+            backFn: function (p) {
+                window.location.href = '/AdminSubjectArticle/Manager?pageindex='+p;
+            }
+        });
+    });
+    
+    function subjectArticle() {
+        window.location.href = '/AdminSubjectArticle/Index';
+    }
+</script>
+<style>
+    
+</style>
+<div class="page-header">
+    <h2>饮食专题管理</h2>
+</div>
 <p>
-    @Html.ActionLink("Create New", "Create")
-    <input type="button" class="btn-default" id="subjectArticle" onclick="subjectArticle()" value="饮食专题发表"/>
+    <input type="button" class="btn-link" onclick="subjectArticle()" value="饮食专题发表" />
 </p>
 <table class="table">
     <tr>
@@ -17,16 +50,10 @@
             @Html.DisplayNameFor(model => model.SubjectArticleId)
         </th>
         <th>
-            @Html.DisplayNameFor(model => model.SubjectSortId)
-        </th>
-        <th>
             @Html.DisplayNameFor(model => model.UserId)
         </th>
         <th>
             @Html.DisplayNameFor(model => model.Title)
-        </th>
-        <th>
-            @Html.DisplayNameFor(model => model.Brief)
         </th>
         <th>
             @Html.DisplayNameFor(model => model.Content)
@@ -37,40 +64,34 @@
         <th></th>
     </tr>
 
-@if(Model!=null)
-{ 
-    foreach (var item in Model) {
-    <tr style="line-height:20px;">
-        <td>
-            @Html.DisplayFor(modelItem => item.SubjectArticleId)
-        </td>
-        <td>
-            @Html.DisplayFor(modelItem => item.SubjectSortId)
-        </td>
-        <td>
-            @Html.DisplayFor(modelItem => item.UserId)
-        </td>
-        <td>
-            @Html.DisplayFor(modelItem => item.Title)
-        </td>
-        <td>
-            @Html.DisplayFor(modelItem => item.Brief)
-        </td>
-        <td>
-            <div>
-                @Html.DisplayFor(modelItem => item.Content)
-            </div>
-        </td>
-        <td>
-            @Html.DisplayFor(modelItem => item.Datetime)
-        </td>
-        <td>
-            @Html.ActionLink("Edit", "Edit", new { /* id=item.PrimaryKey */ }) |
-            @Html.ActionLink("Details", "Details", new { /* id=item.PrimaryKey */ }) |
-            @Html.ActionLink("Delete", "Delete", new { /* id=item.PrimaryKey */ })
-        </td>
-    </tr>
+    @if (Model != null)
+    {
+        foreach (var item in Model)
+        {
+            <tr>
+                <td>
+                    @Html.DisplayFor(modelItem => item.SubjectArticleId)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.UserId)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.Title)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.Brief)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.Datetime)
+                </td>
+                <td>
+                    @Html.ActionLink("Edit", "Edit", new { /* id=item.PrimaryKey */ })
+                    <a href="javascript:;" onclick="deleteSubject(@item.SubjectArticleId)">Delete</a>
+                </td>
+            </tr>
+        }
     }
-}
 
 </table>
+<div class="tcdPageCode">
+</div>

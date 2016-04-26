@@ -160,6 +160,7 @@
     <Compile Include="App_Start\Startup.Auth.cs" />
     <Compile Include="Controllers\AccountController.cs" />
     <Compile Include="Controllers\Admin\AdminCenterController.cs" />
+    <Compile Include="Controllers\Admin\AdminCookBookController.cs" />
     <Compile Include="Controllers\Admin\AdminSubjectArticleController.cs" />
     <Compile Include="Controllers\Admin\AdminUserController.cs" />
     <Compile Include="Controllers\Admin\AdminBaseController.cs" />
@@ -290,8 +291,6 @@
     <Content Include="Scripts\respond.js" />
     <Content Include="Scripts\respond.min.js" />
     <Content Include="Scripts\Tool.js" />
-    <Content Include="Scripts\ueditor\ueditor.all.min.js" />
-    <Content Include="Scripts\ueditor\ueditor.config.js" />
     <Content Include="Scripts\UserCenter\WaitCheck.js" />
     <Content Include="Scripts\_references.js" />
     <Content Include="Upload\Images\059165dee11743398829a38524ff0291.jpg" />
@@ -371,6 +370,7 @@
     <Content Include="Views\CookBook\ShowDetail.cshtml" />
     <Content Include="Views\AdminCenter\Index.cshtml" />
     <Content Include="Views\AdminSubjectArticle\Manager.cshtml" />
+    <Content Include="Views\AdminCookBook\Index.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
