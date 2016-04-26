@@ -29,5 +29,11 @@ namespace DataTransfer
         /// 1菜谱评论  2专题评论
         /// </summary>
         public short Type { get; set; }
+
+        private List<CommentRecordTsfer> sonComment = new List<CommentRecordTsfer>();
+        /// <summary>
+        /// 当前评论下的子评论
+        /// </summary>
+        public List<CommentRecordTsfer> SonComment { get { return sonComment; } set { this.sonComment = value; } }
     }
 }
