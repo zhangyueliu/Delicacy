@@ -378,6 +378,7 @@
     <Content Include="Views\AdminCenter\Index.cshtml" />
     <Content Include="Views\AdminSubjectArticle\Manager.cshtml" />
     <Content Include="Views\AdminCookBook\Index.cshtml" />
+    <Content Include="Views\AdminCookBook\Details.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />

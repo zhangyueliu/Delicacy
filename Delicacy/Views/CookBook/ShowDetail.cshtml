@@ -34,9 +34,9 @@
             url: '/Collection/AddOrCancleCookBook',
             type: 'post',
             data: { cookBookId: cookBookId },
-            success: function (data) {
-                layer.msg(data.Message);
-                if (data.StatusCode == 1) {
+            success: function (o) {
+                layer.msg(o.Message, {time:2000});
+                if (o.StatusCode == 1) {
                     var img = $('#collect');
                     var src = img.attr('src');
                     if (src.indexOf('liked') > 0)

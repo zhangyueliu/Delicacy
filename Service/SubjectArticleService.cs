@@ -70,5 +70,9 @@ namespace Service
         {
             return TransferObject.ConvertObjectByEntity<SubjectArticle,SubjectArticleTsfer>( SelectDesc(pageIndex, pageSize, o => true, o => o.Datetime,out rowCount).ToList());
         }
+        public bool IsExist(int id)
+        {
+            return Select(o => o.SubjectArticleId == id).Any();
+        }
     }
 }

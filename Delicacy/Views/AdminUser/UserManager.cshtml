@@ -60,7 +60,14 @@
             @Html.DisplayFor(modelItem => item.Name)
         </td>
         <td>
-            @Html.DisplayFor(modelItem => item.Status)
+            @if(item.Status==1)
+            {
+                <p>已验证</p>
+            }
+            else
+            {
+                <p>未验证</p>
+            }
         </td>
         <td>
             @Html.DisplayFor(modelItem => item.RegisterDate)

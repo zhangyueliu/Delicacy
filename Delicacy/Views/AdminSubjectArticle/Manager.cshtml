@@ -14,9 +14,8 @@
                 if (o.StatusCode == 1) {
                     layer.msg("成功");
                     setTimeout(function () { location.reload(); }, 1000);
-
                 } else {
-                    layer.msg("失败");
+                    layer.msg(o.Message);
                 }
             }
         });

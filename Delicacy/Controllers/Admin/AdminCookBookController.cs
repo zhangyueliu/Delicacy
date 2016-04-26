@@ -31,5 +31,12 @@ namespace Delicacy.Controllers.Admin
 
             return Content(new CookBookManager().UpdateStaus( ids,status));
         }
+        public ActionResult Details(string id)
+        {
+            OutputModel model = new CookBookManager().GetCookBook(id);
+            if (model.Data == null)
+                return RedirectHome();
+            return View(model.Data);
+        }
     }
 }

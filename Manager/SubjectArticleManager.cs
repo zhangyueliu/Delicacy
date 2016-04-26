@@ -44,6 +44,8 @@ namespace Manager
         {
             int i;
             CheckParameter.PageCheck(id, out i);
+            if (!service.IsExist(i))
+                return OutputHelper.GetOutputResponse(ResultCode.NoData);
             if (service.Delete(i))
                 return OutputHelper.GetOutputResponse(ResultCode.OK);
             return OutputHelper.GetOutputResponse(ResultCode.Error);
