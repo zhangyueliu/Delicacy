@@ -13,6 +13,8 @@
         else {
             $("#thirdli").addClass("active");
         }
+
+        loadComment();
     });
     function image() {
         var height = $(".imagess").height;
@@ -64,6 +66,51 @@
             }
         });
 
+    }
+
+    function submit() {
+        var content = $('#content').val();
+        if (!content) {
+            layer.msg('评论内容不能为空');
+            $('#content').focus();
+            return;
+        }
+        $.ajax({
+            url: '/CommentRecord/AddCookBookComment',
+            type: 'post',
+            data: { content: content, cookBookId: '@Model.CookBookId', pId: 0 },
+            success: function (data) {
+                if (data.StatusCode == 1) {
+                    $('#content').val('');
+                    loadComment();
+                    
+                } else
+                    layer.msg(data.Message);
+            }
+        });
+    }
+
+    function loadComment() {
+        $.ajax({
+            url: '/CommentRecord/GetComments',
+            type: 'post',
+            data: { cookBookId: '@Model.CookBookId'},
+            success: function (data) {
+                if (data.StatusCode == 1) {
+                    initComment(data.Data);
+                } else if (data.StatusCode != 4)
+                    layer.msg(data.Message);
+            }
+        });
+    }
+
+    function initComment(json) {
+        var comment = '';
+        $.each(json, function () {
+            comment += '<div class="media mainborder"><a class="pull-left" href="#"><img class="media-object" src="/images/touxiang.png" style="width:50px;height:50px;" alt="作者"></a><div class="media-body"><h4 class="media-heading"><lable>' + this.User.Name + '</lable><a style="position: relative; float: right; font-size: 10px; cursor: pointer;">回复</a></h4>' + this.Content + '</div></div>';
+        });
+
+        $('#comment').html(comment);
     }
 </script>
 
@@ -182,26 +229,7 @@
                                 <div class="clear"></div>
                             </div>
                         }
-
-                        @*<div class="mainborder">
-                                <div style="width: 49%; position: relative; float: left; display: inline-block;">
-
-                                    <img src="~/Upload/Images/32a277d0e82f4438909cffc9fe1074d6.jpg" class="img-thumbnail" style="width:320px;" />
-                                </div>
-                                <div style="width: 50%; position: relative; float: right; " class="buzhou">
-                                    <span>步骤2：</span><p>然后怎样怎样怎样怎样怎样怎</p>
-                                </div>
-                                <div class="clear"></div>
-                            </div>
-                            <div class="mainborder">
-                                <div style="width: 49%; position: relative; float: left; display: inline-block;">
-                                    <img src="~/Upload/Images/9feb63ac16584478bb8dbbd70b9fd9c5.png" class="img-thumbnail" style="width:320px;" />
-                                </div>
-                                <div style="width: 50%; position: relative; float: right; " class="buzhou">
-                                    <span>步骤3：</span><p>最后怎样怎样怎样怎样怎样怎样怎样怎样怎样怎样怎样怎样怎样怎样怎样怎样怎样怎样怎样怎样怎样怎样</p>
-                                </div>
-                                <div class="clear"></div>
-                            </div>*@
+                        
                     </div>
                 </div>
                 <div style="color:#bbb9b9">
@@ -211,7 +239,7 @@
             </div>
         </div>
         <div class="detial" id="comment" style="margin-top:1em;">
-            <div class="media mainborder">
+            @*<div class="media mainborder">
                 <a class="pull-left" href="#">
                     <img class="media-object" src="~/images/touxiang.png" style="width:50px;height:50px;" alt="作者">
                 </a>
@@ -229,8 +257,8 @@
                         </div>
                     </div>
                 </div>
-            </div>
-            <div class="media mainborder">
+            </div>*@
+            @*<div class="media mainborder">
                 <a class="pull-left" href="#">
                     <img class="media-object" src="~/images/touxiang.png" style="width:50px;height:50px;"
                          alt="作者">
@@ -239,7 +267,7 @@
                     <h4 class="media-heading">作者姓名<a style="position: relative; float: right; font-size: 10px; cursor: pointer;">回复</a></h4>
                     这张图很有逼格。这张图很有逼格。
                 </div>
-            </div>
+            </div>*@
         </div>
         <div class="detial mainborder">
             <textarea class="mainborder" id="content" style="margin:auto;width:100%;"></textarea>

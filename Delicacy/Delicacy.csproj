@@ -165,6 +165,7 @@
     <Compile Include="Controllers\Admin\AdminBaseController.cs" />
     <Compile Include="Controllers\BaseController.cs" />
     <Compile Include="Controllers\CollectionController.cs" />
+    <Compile Include="Controllers\CommentRecordController.cs" />
     <Compile Include="Controllers\CookBookController.cs" />
     <Compile Include="Controllers\CookProcessController.cs" />
     <Compile Include="Controllers\FoodMaterialController.cs" />
@@ -383,6 +384,7 @@
     <Folder Include="Scripts\Admin\" />
     <Folder Include="Views\Base\" />
     <Folder Include="Views\Collection\" />
+    <Folder Include="Views\CommentRecord\" />
     <Folder Include="Views\CookProcess\" />
     <Folder Include="Views\Search\" />
     <Folder Include="Views\SubjectSort\" />

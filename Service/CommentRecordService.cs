@@ -46,7 +46,7 @@ namespace Service
         /// <returns></returns>
         public List<CommentRecordTsfer> GetListCookBook(string  cookbookid)
         {
-            return TransferObject.ConvertObjectByEntity<CommentRecord, CommentRecordTsfer>(base.Select(o => o.OperateId == cookbookid).ToList());
+            return TransferObject.ConvertObjectByEntity<CommentRecord, CommentRecordTsfer>(base.Select(o => o.OperateId == cookbookid&&o.Type==1).ToList());
         }
         /// <summary>
         /// 获取某用户的所有评论
@@ -56,6 +56,11 @@ namespace Service
         public List<CommentRecordTsfer> GetListUser(int userid)
         {
             return TransferObject.ConvertObjectByEntity<CommentRecord, CommentRecordTsfer>(base.Select(o => o.UserId == userid).ToList());
+        }
+
+        public bool IsExist(int commentId)
+        {
+            return Select(o => o.CommentId == commentId).Any();
         }
     }
 }

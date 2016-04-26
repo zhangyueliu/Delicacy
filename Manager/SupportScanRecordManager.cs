@@ -22,7 +22,7 @@ namespace Manager
                 return OutputHelper.GetOutputResponse(ResultCode.NoData,"菜谱不存在");
             SupportScanRecordTsfer s = Service.Get(cookBookId, userId);
             if (s != null)
-                return OutputHelper.GetOutputResponse(ResultCode.ConditionNotSatisfied, "您已赞过次菜谱");
+                return OutputHelper.GetOutputResponse(ResultCode.ConditionNotSatisfied, "您已赞过此菜谱");
             SupportScanRecordTsfer ssr = new SupportScanRecordTsfer { 
             CookBookId=cookBookId,
             DateTime=DateTime.Now,
