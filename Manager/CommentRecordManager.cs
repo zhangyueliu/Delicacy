@@ -11,29 +11,33 @@ namespace Manager
 {
     public class CommentRecordManager
     {
-        private CommentRecordService Service = ObjectContainer.GetInstance<CommentRecordService>();
+        private CommentRecordService service = ObjectContainer.GetInstance<CommentRecordService>();
         
-        public OutputModel AddCookBookComment(string cookBookId,string content,string pId,int userId)
+        public OutputModel AddCookBookComment(string cookBookId,string content,string pId,int userId,string rootId)
         {
-            if (CheckParameter.IsNullOrWhiteSpace(cookBookId,content,pId))
+            if (CheckParameter.IsNullOrWhiteSpace(cookBookId, content, pId, rootId))
                 return OutputHelper.GetOutputResponse(ResultCode.NoParameter);
-            int iPId;
-            if(!int.TryParse(pId,out iPId))
+            int iPId,iRootId;
+            if(!int.TryParse(pId,out iPId)||!int.TryParse(rootId,out  iRootId))
                 return OutputHelper.GetOutputResponse(ResultCode.ErrorParameter);
-            if (iPId != 0 && !Service.IsExist(iPId))
+            CommentRecordTsfer pComment=null;
+            if (iPId != 0 && (pComment= service.Get(iPId))==null)
             {
                 return OutputHelper.GetOutputResponse(ResultCode.ConditionNotSatisfied);
             }
+            if(iRootId!=0&&!service.IsExist(iRootId))
+                return OutputHelper.GetOutputResponse(ResultCode.ConditionNotSatisfied);
             CommentRecordTsfer comment = new CommentRecordTsfer { 
             Content=content,
             DateTime=DateTime.Now,
             OperateId=cookBookId,
             PId = iPId,
             Type=1,
-            UserId=userId
+            UserId=userId,
+            RootId = iRootId,
             };
 
-            if (Service.Add(comment))
+            if (service.Add(comment))
                 return OutputHelper.GetOutputResponse(ResultCode.OK,"评论成功");
             return OutputHelper.GetOutputResponse(ResultCode.Error);
         }
@@ -41,19 +45,19 @@ namespace Manager
         {
             if (comment == null)
                 return OutputHelper.GetOutputResponse(ResultCode.NoParameter);
-            if (Service.Update(comment))
+            if (service.Update(comment))
                 return OutputHelper.GetOutputResponse(ResultCode.OK);
             return OutputHelper.GetOutputResponse(ResultCode.Error);
         }
         public OutputModel Delete(int id)
         {
-            if (Service.Delete(id))
+            if (service.Delete(id))
                 return OutputHelper.GetOutputResponse(ResultCode.OK);
             return OutputHelper.GetOutputResponse(ResultCode.Error);
         }
          public OutputModel Get(int id)
         {
-            CommentRecordTsfer c = Service.Get(id);
+            CommentRecordTsfer c = service.Get(id);
             if (c == null)
                 return OutputHelper.GetOutputResponse(ResultCode.NoData);
             return OutputHelper.GetOutputResponse(ResultCode.OK, c);
@@ -66,7 +70,7 @@ namespace Manager
         /// <returns></returns>
         public OutputModel Gets(int id)
         {
-            List<CommentRecordTsfer> list = Service.Gets(id);
+            List<CommentRecordTsfer> list = service.Gets(id);
             if (list == null)
                 return OutputHelper.GetOutputResponse(ResultCode.NoData);
             return OutputHelper.GetOutputResponse(ResultCode.OK, list);
@@ -80,15 +84,35 @@ namespace Manager
         {
             if(string.IsNullOrWhiteSpace(cookbookid))
                 return OutputHelper.GetOutputResponse(ResultCode.NoParameter);
-            List<CommentRecordTsfer> list = Service.GetListCookBook(cookbookid);
+            List<CommentRecordTsfer> list = service.GetListCookBook(cookbookid);
             if (list.Count == 0)
                 return OutputHelper.GetOutputResponse(ResultCode.NoData);
-            UserInfoService userService=new UserInfoService();
-            foreach (CommentRecordTsfer  item in list)
+
+            List<CommentRecordTsfer> result = new List<CommentRecordTsfer>();
+            //List<CommentRecordTsfer> temp = list.Where(o => o.PId == 0).ToList();
+            //找出所有的root评论
+            result.AddRange(list.Where(o => o.PId == 0));
+            //从数据库返回的结果集中移除root评论
+            list.RemoveAll(o => o.PId == 0);
+            //遍历root评论
+            UserInfoService userService = new UserInfoService();
+            foreach (CommentRecordTsfer item in result)
             {
                 item.User = userService.Get(item.UserId);
+
+                item.SonComment = list.Where(o => o.RootId == item.CommentId).ToList();
+                item.SonComment.ForEach(o => {
+                    o.User = userService.Get(o.UserId);
+                });
+                list.RemoveAll(o => o.RootId == item.CommentId);
             }
-            return OutputHelper.GetOutputResponse(ResultCode.OK, list);
+            
+            //UserInfoService userService=new UserInfoService();
+            //foreach (CommentRecordTsfer  item in list)
+            //{
+            //    item.User = userService.Get(item.UserId);
+            //}
+            return OutputHelper.GetOutputResponse(ResultCode.OK, result);
         }
         /// <summary>
         /// 获取某用户的所有评论
@@ -97,7 +121,7 @@ namespace Manager
         /// <returns></returns>
         public OutputModel GetListUser(int userid)
         {
-            List<CommentRecordTsfer> list = Service.GetListUser(userid);
+            List<CommentRecordTsfer> list = service.GetListUser(userid);
             if (list == null)
                 return OutputHelper.GetOutputResponse(ResultCode.NoData);
             return OutputHelper.GetOutputResponse(ResultCode.OK,list);

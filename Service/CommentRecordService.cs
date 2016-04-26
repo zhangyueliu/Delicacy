@@ -26,9 +26,10 @@ namespace Service
             base.Delete(id);
             return Save() > 0;
         }
-        public CommentRecordTsfer Get(int id)
+
+        public CommentRecordTsfer Get(int commentId)
         {
-            return TransferObject.ConvertObjectByEntity<CommentRecord,CommentRecordTsfer>(base.Select(id));
+            return TransferObject.ConvertObjectByEntity<CommentRecord,CommentRecordTsfer>(base.Select(o=>o.CommentId==commentId).FirstOrDefault());
         }
         /// <summary>
         /// 获取子评论

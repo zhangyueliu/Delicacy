@@ -10,11 +10,11 @@ namespace Delicacy.Controllers
 {
     public class CommentRecordController : BaseController
     {
-        public ActionResult AddCookBookComment(string cookBookId,string pId,string content)
+        public ActionResult AddCookBookComment(string cookBookId,string pId,string content,string rootId)
         {
             if (!IsLogin())
                 return Content(OutputHelper.GetOutputResponse(ResultCode.NoLogin));
-            return Content(new CommentRecordManager().AddCookBookComment(cookBookId, content, pId, user.UserId));
+            return Content(new CommentRecordManager().AddCookBookComment(cookBookId, content, pId, user.UserId, rootId));
         }
 
         /// <summary>
