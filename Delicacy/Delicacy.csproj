@@ -161,6 +161,7 @@
     <Compile Include="Controllers\AccountController.cs" />
     <Compile Include="Controllers\Admin\AdminCenterController.cs" />
     <Compile Include="Controllers\Admin\AdminCookBookController.cs" />
+    <Compile Include="Controllers\Admin\AdminFoodSortController.cs" />
     <Compile Include="Controllers\Admin\AdminSubjectArticleController.cs" />
     <Compile Include="Controllers\Admin\AdminUserController.cs" />
     <Compile Include="Controllers\Admin\AdminBaseController.cs" />
@@ -379,6 +380,7 @@
     <Content Include="Views\AdminSubjectArticle\Manager.cshtml" />
     <Content Include="Views\AdminCookBook\Index.cshtml" />
     <Content Include="Views\AdminCookBook\Details.cshtml" />
+    <Content Include="Views\AdminFoodSort\Index.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />

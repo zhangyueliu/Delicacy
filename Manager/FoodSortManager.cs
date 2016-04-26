@@ -31,19 +31,26 @@ namespace Manager
                 return OutputHelper.GetOutputResponse(ResultCode.Error);
             }
         }
-        public OutputModel Update(FoodSortTsfer foodsort)
+        public OutputModel Update(string id, string name)
         {
+            int i;
+            if (!int.TryParse(id, out i))
+                return OutputHelper.GetOutputResponse(ResultCode.ErrorParameter);
+            FoodSortTsfer foodsort = Service.Get(i);
             if (foodsort == null)
             {
-                return OutputHelper.GetOutputResponse(ResultCode.NoParameter);
+                return OutputHelper.GetOutputResponse(ResultCode.NoData);
             }
+            foodsort.Name = name;
             if (Service.Update(foodsort))
                 return OutputHelper.GetOutputResponse(ResultCode.OK);
             return OutputHelper.GetOutputResponse(ResultCode.Error);
         }
-        public OutputModel Delete(int id)
+        public OutputModel Delete(string id)
         {
-            if (Service.Delete(id))
+            int i;
+            CheckParameter.PageCheck(id, out i);
+            if (Service.Delete(i))
             {
                 return OutputHelper.GetOutputResponse(ResultCode.OK);
             }
@@ -59,10 +66,19 @@ namespace Manager
 
         public OutputModel GetList()
         {
-          List<FoodSortTsfer>list=  Service.GetList();
-          if (list.Count == 0)
-              return OutputHelper.GetOutputResponse(ResultCode.NoData);
-          return OutputHelper.GetOutputResponse(ResultCode.OK,list);
+            List<FoodSortTsfer> list = Service.GetList();
+            if (list.Count == 0)
+                return OutputHelper.GetOutputResponse(ResultCode.NoData);
+            return OutputHelper.GetOutputResponse(ResultCode.OK, list);
+        }
+        public List<FoodSortTsfer> GetPage(string pageindex, int pagesize, out int pagecount)
+        {
+            int pageIndex;
+            int rowcount;
+            CheckParameter.PageCheck(pageindex, out pageIndex);
+            List<FoodSortTsfer> list = Service.GetPage(pageIndex, pagesize, out rowcount);
+            pagecount = (int)Math.Ceiling(rowcount * 1.0 / pagesize);
+            return list; ;
         }
     }
 }
