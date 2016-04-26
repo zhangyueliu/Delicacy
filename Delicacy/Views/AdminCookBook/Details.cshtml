@@ -1,0 +1,150 @@
+﻿@model DataTransfer.CookBookTsfer
+
+@{
+    ViewBag.Title = "Details";
+    Layout = "~/Views/Shared/_AdminLayout.cshtml";
+}
+<script>    
+    //审核
+    function yes(sign,id) {
+        id="'"+id+"'";
+        $.ajax({
+            type: 'post',
+            url: '/AdminCookBook/ShenHe',
+            data: { ids:id, status: sign },
+            success: function (o) {
+                if (o.StatusCode == 1) {
+                    layer.msg("成功");
+                    setTimeout(function () { history.go(-1); }, 1000);
+                }
+                else {
+                    layer.msg("失败");
+                }
+            }
+        });
+    }
+</script>
+<style>
+    .main {
+        margin: auto;
+    }
+
+    .detial {
+        margin: auto;
+        width: 99%;
+    }
+
+
+    .imgs img {
+        display: inline-block;
+        cursor: pointer;
+    }
+
+    .imgs div {
+        width: 48%;
+        height: 7em;
+        display: inline-block;
+        margin-bottom: 2px;
+        overflow: hidden;
+    }
+
+    .mainborder {
+        padding: 4px;
+        border: 1px solid #ddd;
+        border-radius: 4px;
+        margin-top: 1em;
+    }
+
+    .imgs {
+        position: relative;
+    }
+
+    b {
+        color: #99261F;
+    }
+
+    span {
+        color: gray;
+    }
+</style>
+<div class="page-header">
+    <h2>菜谱审核</h2>
+</div>
+
+<div class="main">
+    <div class="detial">
+        <h3>@Model.Name</h3>
+        <div style="color:#808080">
+
+            作者：@Model.UserName&nbsp;&nbsp;&nbsp;时间：@Model.DateTime.ToString("yyyy-MM-dd")
+        </div>
+        <div style="width:99%;">
+            <img src="@Model.ImgUrl" id="imgRul" class="img-thumbnail" style="display:block; margin:auto;" />
+        </div>
+        <div class="mainborder" style="margin-top:1em;">
+            <div><b>总描述：</b><p>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;@Model.Description</p></div>
+            <div>
+                <b>食材</b>
+                <div>
+                    &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span>主料：</span>@foreach (var item in Model.ListMaterial)
+                    {
+                        if (item.Type == 1)
+                        {
+                            <a style="text-decoration:none;color:black;">@item.FoodMaterialName@item.Amount &nbsp;&nbsp;&nbsp;</a>
+                        }
+                    }
+                    <br />&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span>辅料：</span>@foreach (var item in Model.ListMaterial)
+                    {
+                        if (item.Type == 2)
+                        {
+                            <a style="text-decoration:none;color:black;">@item.FoodMaterialName@item.Amount &nbsp;&nbsp;&nbsp;</a>
+                        }
+                    }
+                </div>
+                <b>口味：</b>@Model.TasteName
+            </div>
+            <div>
+                <b>步骤：</b>
+                <div>
+                    @foreach (var item in @Model.ListProcess)
+                    {
+                        <div class="mainborder">
+                            <div style="width:49%; position: relative; display: inline-block;">
+                                <img src="@item.ImgUrl" class="imagess img-thumbnail" onloadstart="image();" style="width:320px;" />
+                            </div>
+                            <div style="width: 50%; position: relative; float: right;" class="buzhou">
+                                <span class="J_step_num" style="position:initial;left:0px;">@item.Sort、</span><p>@item.Description</p>
+                            </div>
+                            <div class="clear"></div>
+                        </div>
+                    }
+
+                </div>
+            </div>
+            <div style="color:#bbb9b9">
+                <b>小窍门：</b><p>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;@Model.Tips</p>
+            </div>
+
+        </div>
+    </div>
+</div>
+<div style="margin-top:1em;">
+    <div style="display:inline-block;">
+        @if (Model.Status == 1)
+        {
+            <input type="button" onclick="yes(-1,'@Model.CookBookId');" value="审核不通过" class="btn btn-default" />
+        }
+        else if (Model.Status == 0)
+        {
+            <input type="button" onclick="yes(1,'@Model.CookBookId');" value="审核通过" class="btn btn-default" /><input type="button" onclick="yes(-1,'@Model.CookBookId');" value="审核不通过" class="btn btn-default" />
+        }
+        else if (Model.Status == -1)
+        {
+            <input type="button" onclick="yes(1,'@Model.CookBookId');" value="审核通过" class="btn btn-default" />
+        }
+        
+    </div>
+    <div style="position:relative;float:right;">
+        <a href="javascript:history.go(-1);">返回列表</a>
+    </div>
+</div>

@@ -1,4 +1,3 @@
-﻿
 ﻿using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -14,17 +13,18 @@ namespace Manager
     {
         private SubjectArticleService service = new SubjectArticleService();
 
-        public OutputModel Add(string  content,string userId,string title,string brief)
+        public OutputModel Add(string content, string userId, string title, string brief)
         {
             if (CheckParameter.IsNullOrWhiteSpace(content, title, brief))
                 return OutputHelper.GetOutputResponse(ResultCode.NoParameter);
-            SubjectArticleTsfer article = new SubjectArticleTsfer {
-            Content=content,
-            Datetime=DateTime.Now,
-            SubjectSortId=-1,
-            UserId=userId,
-            Title=title,
-            Brief=brief
+            SubjectArticleTsfer article = new SubjectArticleTsfer
+            {
+                Content = content,
+                Datetime = DateTime.Now,
+                SubjectSortId = -1,
+                UserId = userId,
+                Title = title,
+                Brief = brief
             };
             if (service.Add(article))
                 return OutputHelper.GetOutputResponse(ResultCode.OK);
@@ -40,9 +40,13 @@ namespace Manager
             return OutputHelper.GetOutputResponse(ResultCode.Error);
         }
 
-        public OutputModel Delete(int id)
+        public OutputModel Delete(string id)
         {
-            if (service.Delete(id))
+            int i;
+            CheckParameter.PageCheck(id, out i);
+            if (!service.IsExist(i))
+                return OutputHelper.GetOutputResponse(ResultCode.NoData);
+            if (service.Delete(i))
                 return OutputHelper.GetOutputResponse(ResultCode.OK);
             return OutputHelper.GetOutputResponse(ResultCode.Error);
         }
@@ -55,9 +59,9 @@ namespace Manager
         public OutputModel DeleteList(int sortid)
         {
             OutputModel outputmodel = GetSubSort(sortid);
-            if(outputmodel.StatusCode==1)
+            if (outputmodel.StatusCode == 1)
             {
-                List<SubjectArticleTsfer> list =(List <SubjectArticleTsfer>)outputmodel.Data;
+                List<SubjectArticleTsfer> list = (List<SubjectArticleTsfer>)outputmodel.Data;
                 if (service.DeleteList(list))
                     return OutputHelper.GetOutputResponse(ResultCode.OK);
                 return OutputHelper.GetOutputResponse(ResultCode.Error);
@@ -102,9 +106,15 @@ namespace Manager
         public List<SubjectArticleTsfer> GetList()
         {
             List<SubjectArticleTsfer> list = service.GetList();
-                return list;
+            return list;
         }
 
-        //public 
+        public List<SubjectArticleTsfer> GetPage(int pageIndex, int pageSize, out int pageCount)
+        {
+            int count;
+            List<SubjectArticleTsfer> list = service.GetPage(pageIndex, pageSize, out count);
+            pageCount = (int)Math.Ceiling(count * 1.0 / pageSize);
+            return list;
+        }
     }
 }

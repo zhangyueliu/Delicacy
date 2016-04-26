@@ -34,13 +34,15 @@
             url: '/AdminSubjectArticle/Add',
             dataType: 'json',
             data:{content:content,title:title,brief:brief},
-            success: function (data) {
-                
-                layer.alert(data.Message);
+            success: function (data) {                
                 if(data.StatusCode===1)
                 {
-                    $('#title').val('');
-                    $('#brief').val('');
+                    layer.msg("成功");
+                    setTimeout(function () { window.location.href = '/AdminSubjectArticle/Manager?pageindex=1'; }, 1000);
+                }
+                else
+                {
+                    layer.alert(data.Message);
                 }
             }
         });

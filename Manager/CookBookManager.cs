@@ -293,5 +293,44 @@ namespace Manager
             int pageCount = (int)Math.Ceiling(rowCount * 1.0 / size);
             return OutputHelper.GetOutputResponse(ResultCode.OK, new { List = list, PageCount = pageCount });
         }
+         public List<CookBookTsfer> GetPage(int pageindex, int pagesize, string status, out int pagecount)
+        {
+            int rowCount;
+            List<CookBookTsfer> list = new List<CookBookTsfer>();
+            if (!string.IsNullOrWhiteSpace(status))
+            {
+                int Status;
+                CheckParameter.PageCheck(status, out Status);
+                list = service.GetPage(pageindex, pagesize, Status, out rowCount);
+            }
+            else
+                list = service.GetPage(pageindex, pagesize, out rowCount);
+            pagecount = (int)Math.Ceiling(rowCount * 1.0 / pagesize);
+            foreach (CookBookTsfer item in list)
+            {
+                //获取口味
+                TasteService tasteService = ObjectContainer.GetInstance<TasteService>();
+                TasteTsfer taste = tasteService.Get(item.TasteId);
+                if (taste != null)
+                    item.TasteName = taste.Name;
+                //获取分类
+                FoodSortService sortService = ObjectContainer.GetInstance<FoodSortService>();
+                FoodSortTsfer sort = sortService.Get(item.FoodSortId);
+                if (sort != null)
+                    item.FoodSortName = sort.Name;
+                //获取用户姓名
+                UserInfoService user = ObjectContainer.GetInstance<UserInfoService>();
+                item.UserName = user.Get(item.UserId).Name;
+            }
+            return list;
+        }
+
+        public OutputModel UpdateStaus(string ids,string status)
+        {
+            ids = ids.Trim(',');
+            if (service.UpdateStaus(ids, status))
+                return OutputHelper.GetOutputResponse(ResultCode.OK);
+            return OutputHelper.GetOutputResponse(ResultCode.Error);
+        }
     }
 }
