@@ -6,6 +6,7 @@
 }
 <link href="~/Content/bootstrap.css" rel="stylesheet" />
 <script>
+    var pId = 0;
     $(document).ready(function () {
         if ("@ViewBag.IsSort" == "True") {
             $("#secondli").addClass("active");
@@ -78,7 +79,7 @@
         $.ajax({
             url: '/CommentRecord/AddCookBookComment',
             type: 'post',
-            data: { content: content, cookBookId: '@Model.CookBookId', pId: 0 },
+            data: { content: content, cookBookId: '@Model.CookBookId', pId: pId },
             success: function (data) {
                 if (data.StatusCode == 1) {
                     $('#content').val('');
@@ -107,10 +108,16 @@
     function initComment(json) {
         var comment = '';
         $.each(json, function () {
-            comment += '<div class="media mainborder"><a class="pull-left" href="#"><img class="media-object" src="/images/touxiang.png" style="width:50px;height:50px;" alt="作者"></a><div class="media-body"><h4 class="media-heading"><lable>' + this.User.Name + '</lable><a style="position: relative; float: right; font-size: 10px; cursor: pointer;">回复</a></h4>' + this.Content + '</div></div>';
+            comment += '<div class="media mainborder"><a class="pull-left" href="#"><img class="media-object" src="/images/touxiang.png" style="width:50px;height:50px;" alt="作者"></a><div class="media-body"><h4 class="media-heading"><lable>' + this.User.Name + '</lable><a style="position: relative; float: right; font-size: 10px; cursor: pointer;" onclick="reply(' + this.CommentId + ')">回复</a></h4><p>' + this.Content + '</p></div></div>';
         });
 
         $('#comment').html(comment);
+    }
+
+    function reply(commentId) {
+        //alert(commentId);
+        //var content = '回复 '+this.;
+
     }
 </script>
 
@@ -239,7 +246,7 @@
             </div>
         </div>
         <div class="detial" id="comment" style="margin-top:1em;">
-            @*<div class="media mainborder">
+            <div class="media mainborder">
                 <a class="pull-left" href="#">
                     <img class="media-object" src="~/images/touxiang.png" style="width:50px;height:50px;" alt="作者">
                 </a>
@@ -257,7 +264,7 @@
                         </div>
                     </div>
                 </div>
-            </div>*@
+            </div>
             @*<div class="media mainborder">
                 <a class="pull-left" href="#">
                     <img class="media-object" src="~/images/touxiang.png" style="width:50px;height:50px;"

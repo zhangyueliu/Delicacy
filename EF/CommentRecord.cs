@@ -18,9 +18,10 @@ namespace EF
         public string OperateId { get; set; }
         public int UserId { get; set; }
         public int PId { get; set; }
+        public int RootId { get; set; }
         public string Content { get; set; }
-        public System.DateTime DateTime { get; set; }
         public short Type { get; set; }
+        public System.DateTime DateTime { get; set; }
     
         public virtual UserInfo UserInfo { get; set; }
     }

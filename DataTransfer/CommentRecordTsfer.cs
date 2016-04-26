@@ -19,6 +19,10 @@ namespace DataTransfer
         /// </summary>
         public UserInfoTsfer User { get; set; }
         public int PId { get; set; }
+        /// <summary>
+        /// 评论的根ID
+        /// </summary>
+        public int RootId { get; set; }
         public string Content { get; set; }
         public System.DateTime DateTime { get; set; }
         /// <summary>
