@@ -35,11 +35,11 @@ namespace EF
         public virtual DbSet<FoodSort> FoodSort { get; set; }
         public virtual DbSet<SubjectArticle> SubjectArticle { get; set; }
         public virtual DbSet<SubjectSort> SubjectSort { get; set; }
-        public virtual DbSet<SupportScanRecord> SupportScanRecord { get; set; }
         public virtual DbSet<sysdiagrams> sysdiagrams { get; set; }
         public virtual DbSet<Taste> Taste { get; set; }
         public virtual DbSet<UserInfo> UserInfo { get; set; }
         public virtual DbSet<VerifyRegister> VerifyRegister { get; set; }
         public virtual DbSet<Collection> Collection { get; set; }
+        public virtual DbSet<SupportScanRecord> SupportScanRecord { get; set; }
     }
 }

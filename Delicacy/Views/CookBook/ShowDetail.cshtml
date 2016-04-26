@@ -47,6 +47,23 @@
         });
     }
 
+    function supportCookBook(cookBookId) {
+        if (!cookBookId)
+            return layer.msg('未知错误');
+        $.ajax({
+            url: '/SupportScanRecord/AddSupport',
+            type: 'post',
+            data: { cookBookId: cookBookId },
+            success: function (data) {
+                layer.msg(data.Message);
+                if (data.StatusCode == 1) {
+                    var count = $('#supportCount');
+                    count.text( parseInt( count.text())+1);
+                }
+            }
+        });
+
+    }
 </script>
 
 <style>
@@ -179,8 +196,8 @@
                     <b>小窍门：</b><p>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;@Model.Tips</p>
                 </div>
                 <div>
-                    <a href="javascript:;">赞</a>
-                    <span id="supportCount"></span>
+                    <a href="javascript:;" onclick="supportCookBook('@Model.CookBookId')">赞</a>
+                    <span id="supportCount">@Model.SupportCount</span>
                 </div>
             </div>
         </div>

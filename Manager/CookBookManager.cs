@@ -271,7 +271,7 @@ namespace Manager
                 cookBook.IsCollection = collService.IsExist(loginUser.UserId, cookBook.CookBookId);
             }
             SupportScanRecordService ssrService = ObjectContainer.GetInstance<SupportScanRecordService>();
-
+            cookBook.SupportCount = ssrService.GetSupportCount(cookBook.CookBookId);
         }
 
         public OutputModel GetPageByFoodMaterial(string foodMaterialId,string pageIndex,string pageSize)

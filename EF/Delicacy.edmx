@@ -116,7 +116,7 @@
           <Key>
             <PropertyRef Name="SSRId" />
           </Key>
-          <Property Name="SSRId" Type="int" Nullable="false" />
+          <Property Name="SSRId" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
           <Property Name="CookBookId" Type="varchar" MaxLength="100" Nullable="false" />
           <Property Name="UserId" Type="int" />
           <Property Name="Type" Type="int" Nullable="false" />
@@ -374,7 +374,6 @@
           <EntitySet Name="FoodSort" EntityType="DelicacyModel.FoodSort" />
           <EntitySet Name="SubjectArticle" EntityType="DelicacyModel.SubjectArticle" />
           <EntitySet Name="SubjectSort" EntityType="DelicacyModel.SubjectSort" />
-          <EntitySet Name="SupportScanRecord" EntityType="DelicacyModel.SupportScanRecord" />
           <EntitySet Name="sysdiagrams" EntityType="DelicacyModel.sysdiagrams" />
           <EntitySet Name="Taste" EntityType="DelicacyModel.Taste" />
           <EntitySet Name="UserInfo" EntityType="DelicacyModel.UserInfo" />
@@ -411,14 +410,15 @@
             <End Role="FoodMaterial" EntitySet="FoodMaterial" />
             <End Role="FoodMaterial_CookBook" EntitySet="FoodMaterial_CookBook" />
           </AssociationSet>
-          <AssociationSet Name="FK_SUPPORTS_REFERENCE_USERINFO" Association="DelicacyModel.FK_SUPPORTS_REFERENCE_USERINFO">
-            <End Role="UserInfo" EntitySet="UserInfo" />
-            <End Role="SupportScanRecord" EntitySet="SupportScanRecord" />
-          </AssociationSet>
           <EntitySet Name="Collection" EntityType="DelicacyModel.Collection" />
           <AssociationSet Name="FK_LIKECOOK_REFERENCE_USERINFO" Association="DelicacyModel.FK_LIKECOOK_REFERENCE_USERINFO">
             <End Role="UserInfo" EntitySet="UserInfo" />
             <End Role="Collection" EntitySet="Collection" />
+          </AssociationSet>
+          <EntitySet Name="SupportScanRecord" EntityType="DelicacyModel.SupportScanRecord" />
+          <AssociationSet Name="FK_SUPPORTS_REFERENCE_USERINFO" Association="DelicacyModel.FK_SUPPORTS_REFERENCE_USERINFO">
+            <End Role="UserInfo" EntitySet="UserInfo" />
+            <End Role="SupportScanRecord" EntitySet="SupportScanRecord" />
           </AssociationSet>
         </EntityContainer>
         <EntityType Name="AdminUser">
@@ -531,17 +531,6 @@
           <Property Name="SubjectSortId" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
           <Property Name="Name" Type="String" Nullable="false" MaxLength="50" FixedLength="false" Unicode="true" />
         </EntityType>
-        <EntityType Name="SupportScanRecord">
-          <Key>
-            <PropertyRef Name="SSRId" />
-          </Key>
-          <Property Name="SSRId" Type="Int32" Nullable="false" />
-          <Property Name="CookBookId" Type="String" Nullable="false" MaxLength="100" FixedLength="false" Unicode="false" />
-          <Property Name="UserId" Type="Int32" />
-          <Property Name="Type" Type="Int32" Nullable="false" />
-          <Property Name="DateTime" Type="DateTime" Nullable="false" Precision="3" />
-          <NavigationProperty Name="UserInfo" Relationship="DelicacyModel.FK_SUPPORTS_REFERENCE_USERINFO" FromRole="SupportScanRecord" ToRole="UserInfo" />
-        </EntityType>
         <EntityType Name="sysdiagrams">
           <Key>
             <PropertyRef Name="diagram_id" />
@@ -573,8 +562,8 @@
           <Property Name="RegisterDate" Type="DateTime" Nullable="false" Precision="3" />
           <NavigationProperty Name="CommentRecord" Relationship="DelicacyModel.FK_COMMENTR_REFERENCE_USERINFO" FromRole="UserInfo" ToRole="CommentRecord" />
           <NavigationProperty Name="CookBook" Relationship="DelicacyModel.FK_COOKBOOK_REFERENCE_USERINFO" FromRole="UserInfo" ToRole="CookBook" />
-          <NavigationProperty Name="SupportScanRecord" Relationship="DelicacyModel.FK_SUPPORTS_REFERENCE_USERINFO" FromRole="UserInfo" ToRole="SupportScanRecord" />
           <NavigationProperty Name="Collection" Relationship="DelicacyModel.FK_LIKECOOK_REFERENCE_USERINFO" FromRole="UserInfo" ToRole="Collection" />
+          <NavigationProperty Name="SupportScanRecord" Relationship="DelicacyModel.FK_SUPPORTS_REFERENCE_USERINFO" FromRole="UserInfo" ToRole="SupportScanRecord" />
         </EntityType>
         <EntityType Name="VerifyRegister">
           <Key>
@@ -698,20 +687,6 @@
             </Dependent>
           </ReferentialConstraint>
         </Association>
-        <Association Name="FK_SUPPORTS_REFERENCE_USERINFO">
-          <End Type="DelicacyModel.UserInfo" Role="UserInfo" Multiplicity="0..1">
-            <OnDelete Action="Cascade" />
-          </End>
-          <End Type="DelicacyModel.SupportScanRecord" Role="SupportScanRecord" Multiplicity="*" />
-          <ReferentialConstraint>
-            <Principal Role="UserInfo">
-              <PropertyRef Name="UserId" />
-            </Principal>
-            <Dependent Role="SupportScanRecord">
-              <PropertyRef Name="UserId" />
-            </Dependent>
-          </ReferentialConstraint>
-        </Association>
         <EntityType Name="Collection">
           <Key>
             <PropertyRef Name="CollectionId" />
@@ -733,6 +708,31 @@
               <PropertyRef Name="UserId" />
             </Principal>
             <Dependent Role="Collection">
+              <PropertyRef Name="UserId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <EntityType Name="SupportScanRecord">
+          <Key>
+            <PropertyRef Name="SSRId" />
+          </Key>
+          <Property Name="SSRId" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="CookBookId" Type="String" Nullable="false" MaxLength="100" FixedLength="false" Unicode="false" />
+          <Property Name="UserId" Type="Int32" />
+          <Property Name="Type" Type="Int32" Nullable="false" />
+          <Property Name="DateTime" Type="DateTime" Nullable="false" Precision="3" />
+          <NavigationProperty Name="UserInfo" Relationship="DelicacyModel.FK_SUPPORTS_REFERENCE_USERINFO" FromRole="SupportScanRecord" ToRole="UserInfo" />
+        </EntityType>
+        <Association Name="FK_SUPPORTS_REFERENCE_USERINFO">
+          <End Type="DelicacyModel.UserInfo" Role="UserInfo" Multiplicity="0..1">
+            <OnDelete Action="Cascade" />
+          </End>
+          <End Type="DelicacyModel.SupportScanRecord" Role="SupportScanRecord" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="UserInfo">
+              <PropertyRef Name="UserId" />
+            </Principal>
+            <Dependent Role="SupportScanRecord">
               <PropertyRef Name="UserId" />
             </Dependent>
           </ReferentialConstraint>
@@ -850,17 +850,6 @@
               </MappingFragment>
             </EntityTypeMapping>
           </EntitySetMapping>
-          <EntitySetMapping Name="SupportScanRecord">
-            <EntityTypeMapping TypeName="DelicacyModel.SupportScanRecord">
-              <MappingFragment StoreEntitySet="SupportScanRecord">
-                <ScalarProperty Name="DateTime" ColumnName="DateTime" />
-                <ScalarProperty Name="Type" ColumnName="Type" />
-                <ScalarProperty Name="UserId" ColumnName="UserId" />
-                <ScalarProperty Name="CookBookId" ColumnName="CookBookId" />
-                <ScalarProperty Name="SSRId" ColumnName="SSRId" />
-              </MappingFragment>
-            </EntityTypeMapping>
-          </EntitySetMapping>
           <EntitySetMapping Name="sysdiagrams">
             <EntityTypeMapping TypeName="DelicacyModel.sysdiagrams">
               <MappingFragment StoreEntitySet="sysdiagrams">
@@ -912,6 +901,17 @@
                 <ScalarProperty Name="UserId" ColumnName="UserId" />
                 <ScalarProperty Name="OperateId" ColumnName="OperateId" />
                 <ScalarProperty Name="CollectionId" ColumnName="CollectionId" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="SupportScanRecord">
+            <EntityTypeMapping TypeName="DelicacyModel.SupportScanRecord">
+              <MappingFragment StoreEntitySet="SupportScanRecord">
+                <ScalarProperty Name="DateTime" ColumnName="DateTime" />
+                <ScalarProperty Name="Type" ColumnName="Type" />
+                <ScalarProperty Name="UserId" ColumnName="UserId" />
+                <ScalarProperty Name="CookBookId" ColumnName="CookBookId" />
+                <ScalarProperty Name="SSRId" ColumnName="SSRId" />
               </MappingFragment>
             </EntityTypeMapping>
           </EntitySetMapping>
