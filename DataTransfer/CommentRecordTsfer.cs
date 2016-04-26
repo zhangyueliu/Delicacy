@@ -14,6 +14,10 @@ namespace DataTransfer
         /// </summary>
         public string OperateId { get; set; }
         public int UserId { get; set; }
+        /// <summary>
+        /// 评论人的信息
+        /// </summary>
+        public UserInfoTsfer User { get; set; }
         public int PId { get; set; }
         public string Content { get; set; }
         public System.DateTime DateTime { get; set; }

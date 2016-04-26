@@ -70,5 +70,21 @@ namespace Service
         {
             return TransferObject.ConvertObjectByEntity<SupportScanRecord, SupportScanRecordTsfer>(base.Select(o => true).ToList());
         }
+
+        /// <summary>
+        /// 获取点赞数量
+        /// </summary>
+        /// <param name="cookBookId"></param>
+        /// <returns></returns>
+        public int GetSupportCount(string cookBookId)
+        {
+            return Select(o => o.CookBookId == cookBookId).Count();
+        }
+
+        
+        public bool IsExist(string cookBookId,int userId,int type)
+        {
+            return Select(o => o.CookBookId == cookBookId && o.UserId == userId && o.Type == type).Any();
+        }
     }
 }

@@ -65,6 +65,7 @@
             url: '/CookBook/GetPageByFoodMaterial',
             type: 'get',
             data: { foodMaterialId: id, pageIndex: pageIndex, pageSize: pageSize },
+            dataType:'json',
             success: function (data) {
                 if (data.StatusCode == 1) {
                     var pageCount = data.Data.PageCount;

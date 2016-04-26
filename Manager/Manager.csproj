@@ -59,7 +59,7 @@
     <Compile Include="FoodMaterialManager.cs" />
     <Compile Include="FoodMaterial_CookBookTsferManager.cs" />
     <Compile Include="FoodSortManager.cs" />
-    <Compile Include="LikeCookBookManager.cs" />
+    <Compile Include="CollectionManager.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="SubjectArticleManager.cs" />
     <Compile Include="SubjectSortManager.cs" />

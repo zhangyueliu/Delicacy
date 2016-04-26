@@ -12,13 +12,12 @@ namespace EF
     using System;
     using System.Collections.Generic;
     
-    public partial class LikeCookBook
+    public partial class sysdiagrams
     {
-        public int LikeId { get; set; }
-        public string CookBookId { get; set; }
-        public int UserId { get; set; }
-        public System.DateTime DateTime { get; set; }
-    
-        public virtual UserInfo UserInfo { get; set; }
+        public string name { get; set; }
+        public int principal_id { get; set; }
+        public int diagram_id { get; set; }
+        public Nullable<int> version { get; set; }
+        public byte[] definition { get; set; }
     }
 }

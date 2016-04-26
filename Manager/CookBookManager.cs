@@ -201,7 +201,7 @@ namespace Manager
             List<CookBookTsfer> list = new List<CookBookTsfer>();
             foreach (string id in cookBookIds)
             {
-                list.Add(service.Get(id, 1));
+                list.Add(service.Get(id,1));
             }
             if (list.Count <= 0)
                 return OutputHelper.GetOutputResponse(ResultCode.NoData);
@@ -209,27 +209,27 @@ namespace Manager
         }
 
 
-        public OutputModel GetCookBookBySort(string sort, string pageIndex, string pageSize)
+        public OutputModel GetCookBookBySort(string  sort, string pageIndex, string pageSize)
         {
-            int iSort, rowCount, index, size;
-
+            int iSort,rowCount, index, size;
+            
             CheckParameter.PageCheck(pageIndex, pageSize, out index, out size);
             if (!int.TryParse(sort, out iSort))
                 return OutputHelper.GetOutputResponse(ResultCode.ErrorParameter);
 
-            List<CookBookTsfer> list = service.GetPageBySort(iSort, index, size, 1, out rowCount);//这里没有判断sortId是否存在
-            if (list.Count == 0)
+            List<CookBookTsfer> list = service.GetPageBySort(iSort, index, size,1, out rowCount);//这里没有判断sortId是否存在
+            if(list.Count==0)
                 return OutputHelper.GetOutputResponse(ResultCode.NoData);
-            int pageCount = (int)Math.Ceiling(rowCount * 1.0 / size);
+           int pageCount = (int)Math.Ceiling(rowCount * 1.0 / size);
 
-            return OutputHelper.GetOutputResponse(ResultCode.OK, new { List = list, PageCount = pageCount });
+            return OutputHelper.GetOutputResponse(ResultCode.OK, new { List=list,PageCount=pageCount});
         }
 
         public OutputModel SearchByName(string name)
         {
             if (string.IsNullOrWhiteSpace(name))
                 return OutputHelper.GetOutputResponse(ResultCode.NoParameter);
-            List<CookBookTsfer> listCookBook = service.GetByName(name, 1);
+            List<CookBookTsfer> listCookBook = service.GetByName(name,1);
             if (listCookBook.Count == 0)
                 return OutputHelper.GetOutputResponse(ResultCode.NoData);
             foreach (CookBookTsfer cookBook in listCookBook)
@@ -263,22 +263,37 @@ namespace Manager
             //获取用户姓名
             UserInfoService user = ObjectContainer.GetInstance<UserInfoService>();
             cookBook.UserName = user.Get(cookBook.UserId).Name;
+            
+            UserInfoTsfer loginUser = System.Web.HttpContext.Current.Session["user"] as UserInfoTsfer;
+            if (loginUser != null)
+            {
+                //判断是否收藏
+                CollectionService collService = ObjectContainer.GetInstance<CollectionService>();
+                cookBook.IsCollection = collService.IsExist(loginUser.UserId, cookBook.CookBookId);
+                //是否点赞
+                SupportScanRecordService ssService = ObjectContainer.GetInstance<SupportScanRecordService>();
+                cookBook.IsSupport = ssService.IsExist(cookBook.CookBookId, loginUser.UserId, 1);
+            }
+            
+
+            //获取点赞数量
+            SupportScanRecordService ssrService = ObjectContainer.GetInstance<SupportScanRecordService>();
+            cookBook.SupportCount = ssrService.GetSupportCount(cookBook.CookBookId);
         }
 
-        public OutputModel GetPageByFoodMaterial(string foodMaterialId, string pageIndex, string pageSize)
+        public OutputModel GetPageByFoodMaterial(string foodMaterialId,string pageIndex,string pageSize)
         {
-            int iFoodMaterialId, index, size, rowCount;
+            int iFoodMaterialId, index, size,rowCount;
             if (!int.TryParse(foodMaterialId, out iFoodMaterialId))
                 return OutputHelper.GetOutputResponse(ResultCode.ErrorParameter);
             CheckParameter.PageCheck(pageIndex, pageSize, out index, out size);
-            List<CookBookTsfer> list = service.GetPageByFoodMaterial(iFoodMaterialId, index, size, 1, out rowCount);
-            if (list.Count == 0)
+            List<CookBookTsfer> list = service.GetPageByFoodMaterial(iFoodMaterialId, index, size,1, out rowCount);
+            if(list.Count==0)
                 return OutputHelper.GetOutputResponse(ResultCode.NoData);
             int pageCount = (int)Math.Ceiling(rowCount * 1.0 / size);
             return OutputHelper.GetOutputResponse(ResultCode.OK, new { List = list, PageCount = pageCount });
         }
-
-        public List<CookBookTsfer> GetPage(int pageindex, int pagesize, string status, out int pagecount)
+         public List<CookBookTsfer> GetPage(int pageindex, int pagesize, string status, out int pagecount)
         {
             int rowCount;
             List<CookBookTsfer> list = new List<CookBookTsfer>();

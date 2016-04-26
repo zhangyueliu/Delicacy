@@ -18,7 +18,7 @@ namespace EF
         {
             this.CommentRecord = new HashSet<CommentRecord>();
             this.CookBook = new HashSet<CookBook>();
-            this.LikeCookBook = new HashSet<LikeCookBook>();
+            this.Collection = new HashSet<Collection>();
             this.SupportScanRecord = new HashSet<SupportScanRecord>();
         }
     
@@ -31,7 +31,7 @@ namespace EF
     
         public virtual ICollection<CommentRecord> CommentRecord { get; set; }
         public virtual ICollection<CookBook> CookBook { get; set; }
-        public virtual ICollection<LikeCookBook> LikeCookBook { get; set; }
+        public virtual ICollection<Collection> Collection { get; set; }
         public virtual ICollection<SupportScanRecord> SupportScanRecord { get; set; }
     }
 }

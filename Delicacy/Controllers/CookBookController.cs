@@ -76,11 +76,13 @@ namespace Delicacy.Controllers
         {
             if (string.IsNullOrWhiteSpace(isSort))
                 return RedirectHome();
-            if (isSort == "href")
+            if (isSort == "True")
                 ViewBag.IsSort = true;
             else
                 ViewBag.IsSort = false;
             OutputModel model = new CookBookManager().GetCookBook(cookBookId);
+            if (model.Data == null)
+                return RedirectHome();
             return View(model.Data);
         }
     }
