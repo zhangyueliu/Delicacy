@@ -76,7 +76,7 @@ namespace Delicacy.Controllers
         {
             if (string.IsNullOrWhiteSpace(isSort))
                 return RedirectHome();
-            if (isSort == "href")
+            if (isSort == "True")
                 ViewBag.IsSort = true;
             else
                 ViewBag.IsSort = false;

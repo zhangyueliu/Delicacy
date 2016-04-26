@@ -245,8 +245,10 @@
     <Content Include="images\pic8.jpg" />
     <Content Include="images\pic9.jpg" />
     <Content Include="images\pinterest.png" />
+    <Content Include="images\placeholder.jpg" />
     <Content Include="images\plate.png" />
-    <Content Include="images\R7Z8ZN`LI_GPOEW}}84~`KT.png" />
+    <Content Include="images\praise.png" />
+    <Content Include="images\praised.png" />
     <Content Include="images\search-icon.png" />
     <Content Include="images\tw.png" />
     <Content Include="images\twitter-icon.png" />

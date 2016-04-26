@@ -80,5 +80,11 @@ namespace Service
         {
             return Select(o => o.CookBookId == cookBookId).Count();
         }
+
+        
+        public bool IsExist(string cookBookId,int userId,int type)
+        {
+            return Select(o => o.CookBookId == cookBookId && o.UserId == userId && o.Type == type).Any();
+        }
     }
 }

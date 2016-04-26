@@ -263,13 +263,20 @@ namespace Manager
             //获取用户姓名
             UserInfoService user = ObjectContainer.GetInstance<UserInfoService>();
             cookBook.UserName = user.Get(cookBook.UserId).Name;
-            //判断是否收藏
+            
             UserInfoTsfer loginUser = System.Web.HttpContext.Current.Session["user"] as UserInfoTsfer;
             if (loginUser != null)
             {
+                //判断是否收藏
                 CollectionService collService = ObjectContainer.GetInstance<CollectionService>();
                 cookBook.IsCollection = collService.IsExist(loginUser.UserId, cookBook.CookBookId);
+                //是否点赞
+                SupportScanRecordService ssService = ObjectContainer.GetInstance<SupportScanRecordService>();
+                cookBook.IsSupport = ssService.IsExist(cookBook.CookBookId, loginUser.UserId, 1);
             }
+            
+
+            //获取点赞数量
             SupportScanRecordService ssrService = ObjectContainer.GetInstance<SupportScanRecordService>();
             cookBook.SupportCount = ssrService.GetSupportCount(cookBook.CookBookId);
         }

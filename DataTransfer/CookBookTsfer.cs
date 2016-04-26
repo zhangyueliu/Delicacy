@@ -48,6 +48,12 @@ namespace DataTransfer
         }
 
         /// <summary>
+        /// 是否点赞
+        /// </summary>
+        public bool IsSupport { get; set; }
+
+
+        /// <summary>
         /// 点赞数量
         /// </summary>
         public int SupportCount { get; set; }
