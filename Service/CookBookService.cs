@@ -1,4 +1,5 @@
-﻿﻿﻿using System;
+﻿using System.Data.SqlClient;
+﻿﻿using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
@@ -85,6 +86,12 @@ namespace Service
         {
             string sql = "update CookBook set status=" + status + " where CookBookId in (" + ids + ")";
             return ExecuteCUD(sql) > 0;
+        }
+
+        public List<CookBookTsfer> GetListByHottest(int topNum)
+        {
+            string sql="select top @topNum rank=((select count (cookbookid) from supportscanrecord where cookbookid= a.cookbookid )+(select count(operateid) from commentrecord where operateid= a.cookbookid  and type=1)) ,* from cookbook as a  order by rank desc ";
+            return SqlQuery<CookBookTsfer>(sql, new SqlParameter("@topNum", topNum));
         }
     }
 }

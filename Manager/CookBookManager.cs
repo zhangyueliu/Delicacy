@@ -332,5 +332,11 @@ namespace Manager
                 return OutputHelper.GetOutputResponse(ResultCode.OK);
             return OutputHelper.GetOutputResponse(ResultCode.Error);
         }
+
+        public List<CookBookTsfer> GetHottest(int topNum)
+        {
+            return  service.GetListByHottest(topNum);
+        }
+
     }
 }
