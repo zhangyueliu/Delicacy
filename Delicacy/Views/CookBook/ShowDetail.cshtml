@@ -111,6 +111,7 @@
     }
 
     function initComment(json) {
+        console.log(json);
         var comment = '';
         $.each(json, function (index,value) {
             comment += '<div class="media mainborder"><a class="pull-left" href="#"><img class="media-object" src="/images/touxiang.png" style="width:50px;height:50px;" alt="作者"></a><div class="media-body"><h4 class="media-heading"><lable>' + value.User.Name + '</lable><a style="position: relative; float: right; font-size: 10px; cursor: pointer;" onclick="reply(' + value.CommentId + ',' + value.CommentId + ',&quot;' + value.User.Name + '&quot;)">回复</a></h4><p>' + value.Content + '</p> ';
