@@ -51,9 +51,17 @@ namespace Service
             return TransferObject.ConvertObjectByEntity<CookBook, CookBookTsfer>(Select(o => o.Name.Contains(name) && o.Status == status).ToList());
         }
 
-        public List<CookBookTsfer> GetList(int userId, int status)
+        /// <summary>
+        /// 根据菜谱状态获取某人的菜谱
+        /// </summary>
+        /// <param name="pageIndex"></param>
+        /// <param name="pageSize"></param>
+        /// <param name="userId"></param>
+        /// <param name="status"></param>
+        /// <returns></returns>
+        public List<CookBookTsfer> GetPage(int pageIndex,int pageSize,int userId, int status)
         {
-            return TransferObject.ConvertObjectByEntity<CookBook, CookBookTsfer>(Select(o => o.UserId == userId && o.Status == status).OrderByDescending(o => o.DateTime).ToList());
+            return TransferObject.ConvertObjectByEntity<CookBook, CookBookTsfer>(SelectDesc(pageIndex,pageSize,o => o.UserId == userId && o.Status == status,o=>o.DateTime).ToList());
         }
 
         public List<CookBookTsfer> GetPageBySort(int sort, int pageIndex, int pageSize, int status, out int rowCount)
