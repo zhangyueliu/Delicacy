@@ -88,10 +88,26 @@ namespace Service
             return ExecuteCUD(sql) > 0;
         }
 
+        /// <summary>
+        /// 获取最火菜谱
+        /// </summary>
+        /// <param name="topNum"></param>
+        /// <returns></returns>
         public List<CookBookTsfer> GetListByHottest(int topNum)
         {
-            string sql="select top @topNum rank=((select count (cookbookid) from supportscanrecord where cookbookid= a.cookbookid )+(select count(operateid) from commentrecord where operateid= a.cookbookid  and type=1)) ,* from cookbook as a  order by rank desc ";
+            string sql="select top "+topNum+" rank=((select count (cookbookid) from supportscanrecord where cookbookid= a.cookbookid )+ (select count(operateid) from commentrecord where operateid= a.cookbookid  and type=1)) ,* from cookbook as a  order by rank desc ";
             return SqlQuery<CookBookTsfer>(sql, new SqlParameter("@topNum", topNum));
+        }
+
+        /// <summary>
+        /// 获取最近菜谱
+        /// </summary>
+        /// <param name="num"></param>
+        /// <returns></returns>
+        public List<CookBookTsfer> GetListRecent(int num)
+        {
+            List<CookBook> list= Select(o => true).OrderByDescending(o => o.DateTime).Take(num).ToList();
+            return TransferObject.ConvertObjectByEntity<CookBook, CookBookTsfer>(list);
         }
     }
 }

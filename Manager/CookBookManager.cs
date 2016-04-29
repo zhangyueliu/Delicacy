@@ -338,5 +338,10 @@ namespace Manager
             return  service.GetListByHottest(topNum);
         }
 
+        public List<CookBookTsfer> GetRecent(int num)
+        {
+            return service.GetListRecent(num);
+        }
+
     }
 }

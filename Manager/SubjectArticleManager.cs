@@ -117,5 +117,10 @@ namespace Manager
             pageCount = (int)Math.Ceiling(count * 1.0 / pageSize);
             return list;
         }
+
+        public List<SubjectArticleTsfer> GetRecent(int num)
+        {
+            return  service.GetListRecent(num);
+        }
     }
 }
