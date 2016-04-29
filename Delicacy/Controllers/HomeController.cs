@@ -12,7 +12,7 @@ namespace Delicacy.Controllers
         public ActionResult Index()
         {
             CookBookManager manager = new CookBookManager();
-            ViewBag.Hottest = manager.GetHottest(5);
+            ViewBag.Hottest = manager.GetHottest(3);
             ViewBag.RecentCook = manager.GetRecent(3);
             ViewBag.RecentArticle = new SubjectArticleManager().GetRecent(4);
             return View();

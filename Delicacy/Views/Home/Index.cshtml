@@ -3,8 +3,7 @@
     ViewBag.Title = "美食网";
 }
 <script type="text/javascript">
-    $(function () {
-    });
+    
     $(window).load(function () {
         $('.flexslider').flexslider({
             animation: "slide",
@@ -14,6 +13,10 @@
         });
         $("#daohang li:first").addClass("active");
     });
+
+    function redirectToDetails(cookbookId) {
+        window.location.href = '/cookbook/ShowDetail?cookBookId='+cookbookId+'&isSort=True';
+    }
 </script>
 <style>
     .ellipsis {
@@ -50,9 +53,17 @@
         {
             foreach (CookBookTsfer item in ViewBag.Hottest)
             {
-                <div class="col_1_of_5 span_1_of_5" style="height:150px;overflow:hidden;">
+                @*<div class="col_1_of_5 span_1_of_5" style="height:150px;overflow:hidden;">
                     <div class="hover_img">
-                        <a href="#"><img src="@item.ImgUrl" alt="" /></a>
+                        <a href="/cookbook/ShowDetail?cookBookId=@item.CookBookId&isSort=True"><img src="@item.ImgUrl" alt="" /></a>
+                    </div>
+                </div>*@
+            
+            <div class="col_1_of_3 span_1_of_3">
+                    <div style="height: 200px; overflow: hidden;"><img src="@item.ImgUrl" alt="" style="width:100%;" /></div>
+                    <div class="bottom-head"><h5>@item.Name</h5></div>
+                    <div class="but">
+                        <a href="javascript:;"><button class="btn1 btn-8 btn-8a" onclick="redirectToDetails('@item.CookBookId')">Read More</button></a>
                     </div>
                 </div>
             }
@@ -102,7 +113,7 @@
                     <div style="height: 200px; overflow: hidden;"><img src="@item.ImgUrl" alt="" style="width:100%;" /></div>
                     <div class="bottom-head"><h5>@item.Name</h5></div>
                     <div class="but">
-                        <a href="#"><button class="btn1 btn-8 btn-8a">Read More</button></a>
+                        <a href="javascript:;"><button class="btn1 btn-8 btn-8a" onclick="redirectToDetails('@item.CookBookId')">Read More</button></a>
                     </div>
                 </div>
             }
