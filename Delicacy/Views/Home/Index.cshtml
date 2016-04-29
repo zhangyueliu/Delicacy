@@ -3,7 +3,6 @@
 }
 <script type="text/javascript">
     $(function () {
-        //SyntaxHighlighter.all();
     });
     $(window).load(function () {
         $('.flexslider').flexslider({
@@ -15,6 +14,15 @@
         $("#daohang li:first").addClass("active");
     });
 </script>
+<style>
+    .ellipsis {
+        overflow: hidden;
+        text-overflow: ellipsis;
+        display: -webkit-box;
+        -webkit-line-clamp: 2;
+        -webkit-box-orient: vertical;
+    }
+</style>
 <div class="banner">
     <div class="flexslider">
         <ul class="slides">
@@ -27,14 +35,15 @@
 </div>
 <div class="main">
     <div class="content-top">
+        <div style="border-bottom: 1px solid #EBE4D6;"><h3><span class="red" style="border-bottom:2px solid">最火菜谱</span>@*<span class="black" style="position: relative;float: right;right:1em;">More</span>*@</h3></div>
         <div class="col_1_of_5 span_1_of_5">
             <div class="hover_img">
-                <img src="/images/pic.jpg" alt="" />
+                <a href="#"><img src="/images/pic.jpg" alt="" /></a>
             </div>
         </div>
         <div class="col_1_of_5 span_1_of_5">
             <div class="hover_img">
-                <img src="/images/pic1.jpg" alt="" />
+                <a href="#"><img src="/images/pic1.jpg" alt="" /></a>
             </div>
         </div>
         <div class="col_1_of_5 span_1_of_5">
@@ -47,41 +56,20 @@
                 <img src="/images/pic3.jpg" alt="" />
             </div>
         </div>
-        <div class="col_1_of_last span_1_of_5">
-            <h3><span class="red">Our Four</span><br><span class="black"> Food Types</span></h3>
-            <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad.</p>
+        <div class="col_1_of_5 span_1_of_5">
+            <div class="hover_img">
+                <img src="/images/pic3.jpg" alt="" />
+            </div>
         </div>
         <div class="clear"></div>
     </div>
     <div class="content-middle">
-        <div class="col_1_of_2 span_1_of_2">
-            <h3><span class="red">Lorem ipsum </span><br><span class="black">consectetuer</span></h3>
-            <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam.</p>
-            <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur.</p>
-            <button class="btn1 btn-8 btn-8a">Read More</button>
-        </div>
-        <div class="col_1_of_2 span_1_of_2">
-            <div class="grid_img">
-                <div class="hover_img">
-                    <img src="/images/pic4.jpg" alt="" />
-                </div>
-            </div>
-            <div class="banner2">
-                <a href="#">
-                    <div class="price">$50</div>
-                    <strong>Free Shipping</strong>
-                    *eiusmod tempor incididunt ut labore
-                </a>
-            </div>
-        </div>
-        <div class="clear"></div>
-    </div>
-    <div class="content-bottom">
+        <div style="border-bottom: 1px solid #EBE4D6;"><h3><span class="red" style="border-bottom:2px solid">最新菜谱</span>@*<span class="black" style="position: relative;float: right;right:1em;">More</span>*@</h3></div>
         <div class="col_1_of_3 span_1_of_3">
-            <img src="/images/pic5.jpg" alt="" />
-            <div class="bottom-head"><h5>Lorem ipsum dolor sit amet, consectetuer</h5></div>
+            <div style="height: 200px; overflow: hidden;"><img src="~/Upload/Images/381203c0ab054432af25a145aadc3594.jpg" alt="" style="width:100%;" /></div>
+            <div class="bottom-head"><h5>菜谱名称</h5></div>
             <div class="but">
-                <button class="btn1 btn-8 btn-8a">Read More</button>
+                <a href="#"><button class="btn1 btn-8 btn-8a">Read More</button></a>
             </div>
         </div>
         <div class="col_1_of_3 span_1_of_3">
@@ -98,32 +86,34 @@
                 <button class="btn1 btn-8 btn-8a">Read More</button>
             </div>
         </div>
+
         <div class="clear"></div>
     </div>
     <div class="content-last">
         <div class="col_1_of_4 span_1_of_4">
             <img src="/images/glass.png" alt="" />
-            <h3>Lorem Ipsum is simply</h3>
-            <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur.</p>
-            <button class="btn1 btn-8 btn-8a">Read More</button>
+            <h3 style="height:2.4em;">孕妇不能吃什么？能吃什么？你知道吗？</h3>
+            <p class="ellipsis" style="padding:0;">气血不足是中医的概念，气和血都是生命的载体，共同滋润身体，使身体正常协调地运作。春季气候多变，人体容易血虚，机体失调，使身体气血不畅，常会出现失眠多梦等不适的症状，要解决这些毛病，就要经常补血安神了，那么有什么食物帮助我们补血安神呢？下面推荐十种补血安神的好食物，一起来看一下吧。</p>
+            <a href="#"><button class="btn1 btn-8 btn-8a">Read More</button></a>
         </div>
+
         <div class="col_1_of_4 span_1_of_4">
             <img src="/images/plate.png" alt="" />
-            <h3>Lorem Ipsum is simply</h3>
-            <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur.</p>
-            <button class="btn1 btn-8 btn-8a">Read More</button>
+            <h3 style="height:2.4em;">孕妇不能吃什么？能吃什么？</h3>
+            <p class="ellipsis" style="padding:0;">气血不足是中医的概念，气和血都是生命的载体，共同滋润身体，使身体正常协调地运作。春季气候多变，人体容易血虚，机体失调，使身体气血不畅，常会出现失眠多梦等不适的症状，要解决这些毛病，就要经常补血安神了，那么有什么食物帮助我们补血安神呢？下面推荐十种补血安神的好食物，一起来看一下吧。气血不足是中医的概念，气和血都是生命的载体，共同滋润身体，使身体正常协调地运作。春季气候多变，人体容易血虚，机体失调，使身体气血不畅，常会出现失眠多梦等不适的症状，要解决这些毛病，就要经常补血安神了，那么有什么食物帮助我们补血安神呢？下面推荐十种补血安神的好食物，一起来看一下吧。</p>
+            <a href="#"><button class="btn1 btn-8 btn-8a">Read More</button></a>
         </div>
         <div class="col_1_of_4 span_1_of_4">
             <img src="/images/icecream.png" alt="" />
-            <h3>Lorem Ipsum is simply</h3>
-            <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur.</p>
-            <button class="btn1 btn-8 btn-8a">Read More</button>
+            <h3 style="height:2.4em;">孕妇不能吃什么？能吃什么？你知道吗？你知道吗？</h3>
+            <p class="ellipsis" style="padding:0;">气血不足是中医的概念，气和血都是生命的载体，共同滋润身体，使身体正常协调地运作。春季气候多变，人体容易血虚，机体失调，使身体气血不畅，常会出现失眠多梦等不适的症状，要解决这些毛病，就要经常补血安神。</p>
+            <a href="#"><button class="btn1 btn-8 btn-8a">Read More</button></a>
         </div>
         <div class="col_1_of_4 span_1_of_4">
             <img src="/images/leaf.png" alt="" />
-            <h3>Lorem Ipsum is simply</h3>
-            <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur.</p>
-            <button class="btn1 btn-8 btn-8a">Read More</button>
+            <h3 style="height:2.4em;">孕妇不能吃什么？</h3>
+            <p class="ellipsis" style="padding:0;">Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur.</p>
+            <a href="#"><button class="btn1 btn-8 btn-8a">Read More</button></a>
         </div>
         <div class="clear"></div>
     </div>
