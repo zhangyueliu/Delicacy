@@ -1,4 +1,5 @@
-﻿﻿﻿using System;
+﻿using System.Data.SqlClient;
+﻿﻿using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
@@ -50,9 +51,17 @@ namespace Service
             return TransferObject.ConvertObjectByEntity<CookBook, CookBookTsfer>(Select(o => o.Name.Contains(name) && o.Status == status).ToList());
         }
 
-        public List<CookBookTsfer> GetList(int userId, int status)
+        /// <summary>
+        /// 根据菜谱状态获取某人的菜谱
+        /// </summary>
+        /// <param name="pageIndex"></param>
+        /// <param name="pageSize"></param>
+        /// <param name="userId"></param>
+        /// <param name="status"></param>
+        /// <returns></returns>
+        public List<CookBookTsfer> GetPage(int pageIndex,int pageSize,int userId, int status)
         {
-            return TransferObject.ConvertObjectByEntity<CookBook, CookBookTsfer>(Select(o => o.UserId == userId && o.Status == status).OrderByDescending(o => o.DateTime).ToList());
+            return TransferObject.ConvertObjectByEntity<CookBook, CookBookTsfer>(SelectDesc(pageIndex,pageSize,o => o.UserId == userId && o.Status == status,o=>o.DateTime).ToList());
         }
 
         public List<CookBookTsfer> GetPageBySort(int sort, int pageIndex, int pageSize, int status, out int rowCount)
@@ -85,6 +94,28 @@ namespace Service
         {
             string sql = "update CookBook set status=" + status + " where CookBookId in (" + ids + ")";
             return ExecuteCUD(sql) > 0;
+        }
+
+        /// <summary>
+        /// 获取最火菜谱
+        /// </summary>
+        /// <param name="topNum"></param>
+        /// <returns></returns>
+        public List<CookBookTsfer> GetListByHottest(int topNum)
+        {
+            string sql="select top "+topNum+" rank=((select count (cookbookid) from supportscanrecord where cookbookid= a.cookbookid )+ (select count(operateid) from commentrecord where operateid= a.cookbookid  and type=1)) ,* from cookbook as a  order by rank desc ";
+            return SqlQuery<CookBookTsfer>(sql, new SqlParameter("@topNum", topNum));
+        }
+
+        /// <summary>
+        /// 获取最近菜谱
+        /// </summary>
+        /// <param name="num"></param>
+        /// <returns></returns>
+        public List<CookBookTsfer> GetListRecent(int num)
+        {
+            List<CookBook> list= Select(o => o.Status==1).OrderByDescending(o => o.DateTime).Take(num).ToList();
+            return TransferObject.ConvertObjectByEntity<CookBook, CookBookTsfer>(list);
         }
     }
 }

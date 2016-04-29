@@ -16,6 +16,8 @@ namespace Delicacy.Controllers
         // GET: /CookBook/
         public ActionResult Index()
         {
+            
+
             return View();
         }
 

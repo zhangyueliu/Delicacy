@@ -458,7 +458,7 @@ body,button, input, select, textarea {
     }
 
 span.red {
-    color: #C94848;
+    color: #fc7c00;
     font-size: 1.5em;
 }
 
@@ -704,7 +704,7 @@ span.black {
 .col_1_of_4 {
     display: block;
     float: left;
-    margin: 1% 0 1% 1.6%;
+    margin: 1% 0 1% 1%;
 }
 
     .col_1_of_4:first-child {

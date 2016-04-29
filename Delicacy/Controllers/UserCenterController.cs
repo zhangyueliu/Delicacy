@@ -33,11 +33,11 @@ namespace Delicacy.Controllers
         /// 获取待审核菜谱
         /// </summary>
         /// <returns></returns>
-        public ActionResult GetWaitCheckCookBook()
+        public ActionResult GetaPageCookBookByStatus(string pageIndex, string pageSize, string status)
         {//这里没有分页
             if (user == null)
                 return Content(OutputHelper.GetOutputResponse(ResultCode.NoLogin));
-            return Content(new CookBookManager().GetWaitCheckCookBook(user.UserId));
+            return Content(new CookBookManager().GetaPageCookBookByStatus(pageIndex, pageSize, user.UserId,status));
         }
 
         
