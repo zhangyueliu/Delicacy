@@ -43,7 +43,8 @@ namespace Manager
         public OutputModel Delete(string id)
         {
             int i;
-            CheckParameter.PageCheck(id, out i);
+            if (!int.TryParse(id, out i))
+                return OutputHelper.GetOutputResponse(ResultCode.ErrorParameter);
             if (!service.IsExist(i))
                 return OutputHelper.GetOutputResponse(ResultCode.NoData);
             if (service.Delete(i))
