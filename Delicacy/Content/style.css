@@ -416,7 +416,7 @@ body,button, input, select, textarea {
 }
 
 .content-top {
-    border-bottom: 1px solid #EBE4D6;
+    /*border-bottom: 1px solid #EBE4D6;*/
     padding-bottom: 20px;
 }
 
@@ -617,14 +617,14 @@ span.black {
 }
 
 .content-middle {
-    border-bottom: 1px solid #EBE4D6;
+    /*border-bottom: 1px solid #EBE4D6;*/
     padding: 20px 0;
 }
 /*--content-bottom--*/
 /*  GRID OF THREE   ============================================================================= */
 .content-bottom {
     padding: 20px 0;
-    border-bottom: 1px solid #EBE4D6;
+    /*border-bottom: 1px solid #EBE4D6;*/
 }
 
 .col_1_of_3 {
