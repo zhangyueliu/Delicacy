@@ -14,6 +14,6 @@ namespace DataTransfer
         /// <summary>
         /// 1系统添加 0用户添加
         /// </summary>
-        public int Status { get; set; }
+        public short Status { get; set; }
     }
 }

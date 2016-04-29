@@ -1,0 +1,139 @@
+﻿@model IEnumerable<DataTransfer.FoodMaterialTsfer>
+
+@{
+    ViewBag.Title = "Index";
+    Layout = "~/Views/Shared/_AdminLayout.cshtml";
+}
+<script type="text/javascript">
+    function deleteSort(id) {
+        $.ajax({
+            type: "post",
+            url: "/AdminFoodMaterial/Delete",
+            data: { id: id },
+            success: function (o) {
+                if (o.StatusCode == 1) {
+                    layer.msg("成功");
+                    setTimeout(function () { location.reload(); }, 1000);
+                } else {
+                    layer.msg("失败");
+                }
+            }
+        });
+    }
+    $(document).ready(function () {
+        $(".tcdPageCode").createPage({
+            pageCount: parseInt('@ViewBag.pageCount'),
+            current: parseInt('@ViewBag.pageIndex'),
+            backFn: function (p) {
+                window.location.href = '/AdminFoodMaterial/Index?pageindex=' + p;
+            }
+        });
+    });
+    function addSort() {
+        layer.open({
+            title: "添加食材",
+            type: 1,
+            shadeClose: true,
+            area: ['300px', '200px'],
+            content: ' <div style="margin:9%"><div>食材名称：<input type="text" id="name" class="inputstyle" /><br /></div><div style="position:relative;float:right;margin:1em;"><input type="button" value="添加" class="btn btn-default" onclick="add();" /></div></div>'
+        });
+    }
+    function add() {
+        var name = $("#name").val();
+        if (name.trim() == "")
+        {
+            layer.msg("名称不能为空", { time: 1000 });
+            return;
+        }
+        $.ajax({
+            type: "post",
+            url: '/AdminFoodMaterial/Add',
+            data: { name: name.trim() },
+            success: function (o) {
+                if(o.StatusCode==1)
+                {
+                    layer.msg("成功");
+                    setTimeout(function () {
+                        location.reload();
+                    }, 1000);
+                }
+                else
+                {
+                    layer.msg("失败");
+                }
+            }
+        });
+    }
+    function edit(id,name) {
+        layer.open({
+            title: "编辑食材",
+            type: 1,
+            shadeClose: true,
+            area: ['300px', '200px'],
+            content: ' <div style="margin:9%"><div>食材名称：<input type="text" id="name" class="inputstyle" value="'+name+'" /><br /></div><div style="position:relative;float:right;margin:1em;"><input type="button" value="修改" class="btn btn-default" onclick="editPost('+id+');" /></div></div>'
+        });
+    }
+    function editPost(id) {
+        var name = $("#name").val();
+        if (name.trim() == "")
+        {
+            layer.msg("名称不能为空", { time: 1000 });
+            return;
+        }
+        $.ajax({
+            type: "post",
+            url: '/AdminFoodMaterial/Edit',
+            data: {id:id,name: name.trim() },
+            success: function (o) {
+                if(o.StatusCode==1)
+                {
+                    layer.msg("成功");
+                    setTimeout(function () {
+                        location.reload();
+                    }, 1000);
+                }
+                else
+                {
+                    layer.msg("失败");
+                }
+            }
+        });
+    }
+</script>
+<div class="page-header">
+    <h2>分类管理</h2>
+</div>
+
+
+<p>
+    <a href="javascirpt:;" onclick="addSort();">添加食材</a>
+</p>
+<table class="table">
+    <tr>
+        <th>
+            @Html.DisplayNameFor(model => model.FoodMaterialId)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.Name)
+        </th>
+        <th></th>
+    </tr>
+
+@foreach (var item in Model) {
+    <tr>
+        <td>
+            @Html.DisplayFor(modelItem => item.FoodMaterialId)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.Name)
+        </td>
+        <td>
+            <a href="javacript:;" onclick="edit(@item.FoodMaterialId,'@item.Name')">Edit</a>|
+            <a href="javascript:;" onclick="deleteSort(@item.FoodMaterialId)">Delete</a>
+        </td>
+    </tr>
+}
+
+</table>
+<div class="tcdPageCode">
+</div>

@@ -161,8 +161,10 @@
     <Compile Include="Controllers\AccountController.cs" />
     <Compile Include="Controllers\Admin\AdminCenterController.cs" />
     <Compile Include="Controllers\Admin\AdminCookBookController.cs" />
+    <Compile Include="Controllers\Admin\AdminFoodMaterialController.cs" />
     <Compile Include="Controllers\Admin\AdminFoodSortController.cs" />
     <Compile Include="Controllers\Admin\AdminSubjectArticleController.cs" />
+    <Compile Include="Controllers\Admin\AdminTasteController.cs" />
     <Compile Include="Controllers\Admin\AdminUserController.cs" />
     <Compile Include="Controllers\Admin\AdminBaseController.cs" />
     <Compile Include="Controllers\BaseController.cs" />
@@ -253,6 +255,7 @@
     <Content Include="images\praise.png" />
     <Content Include="images\praised.png" />
     <Content Include="images\search-icon.png" />
+    <Content Include="images\touxiang.png" />
     <Content Include="images\tw.png" />
     <Content Include="images\twitter-icon.png" />
     <Content Include="Scripts\bootstrap.js" />
@@ -394,6 +397,8 @@
     <Content Include="Views\AdminCookBook\Index.cshtml" />
     <Content Include="Views\AdminCookBook\Details.cshtml" />
     <Content Include="Views\AdminFoodSort\Index.cshtml" />
+    <Content Include="Views\AdminFoodMaterial\Index.cshtml" />
+    <Content Include="Views\AdminTaste\Index.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
