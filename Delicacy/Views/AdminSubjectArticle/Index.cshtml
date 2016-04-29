@@ -1,5 +1,4 @@
-﻿
-@{
+﻿@{
     ViewBag.Title = "添加";
     Layout = "~/Views/Shared/_AdminLayout.cshtml";
 }
@@ -54,13 +53,16 @@
     }
 </script>
 
-<h2>添加专题文章</h2>
+<div class="page-header">
+    <h2>添加专题文章</h2>
+</div>
 
 <script src="http://shianyun-oss.oss-cn-beijing.aliyuncs.com/statics/DP/JsLib/ckeditor/ckeditor.js"></script>
 
-<label>标题</label><input type="text" id="title" />
+<label>标题</label>&nbsp;<input type="text" id="title" style="width:60%"/>
 <br />
-<label>简介</label><textarea rows="10" cols="80" id="brief"></textarea>
+<label>简介</label>&nbsp;<textarea rows="8" cols="80" id="brief"></textarea>
+
 <br />
 <label>正文</label><input type="text" id="content" />
  
@@ -71,8 +73,9 @@
 </script>
 
 
-<input type="button" value="确定添加" onclick="sure()" id="sure" />
-<input type="button" value="预览" id="preview" onclick="preview()" />
+<input type="button" value="确定添加" onclick="sure()" id="sure" class="btn btn-default" />
+<input type="button" value="预览" id="preview" onclick="preview()" class="btn btn-default" />
+
 <div id="divPreview" style="border:1px solid red;display:none;">
 
 </div>

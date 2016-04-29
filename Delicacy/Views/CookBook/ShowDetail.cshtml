@@ -111,7 +111,6 @@
     }
 
     function initComment(json) {
-        console.log(json);
         var comment = '';
         $.each(json, function (index,value) {
             comment += '<div class="media mainborder"><a class="pull-left" href="#"><img class="media-object" src="/images/touxiang.png" style="width:50px;height:50px;" alt="作者"></a><div class="media-body"><h4 class="media-heading"><lable>' + value.User.Name + '</lable><a style="position: relative; float: right; font-size: 10px; cursor: pointer;" onclick="reply(' + value.CommentId + ',' + value.CommentId + ',&quot;' + value.User.Name + '&quot;)">回复</a></h4><p>' + value.Content + '</p> ';
@@ -261,30 +260,7 @@
             </div>
         </div>
         <div class="detial" id="comment" style="margin-top:1em;">
-            @*<div class="media mainborder">
-                <a class="pull-left" href="#">
-                    <img class="media-object" src="~/images/touxiang.png" style="width:50px;height:50px;" alt="作者">
-                </a>
-                <div class="media-body">
-                    <h4 class="media-heading">作者姓名<a style="position: relative; float: right; font-size: 10px; cursor: pointer;">回复</a></h4>
-                    这张图很有逼格。这张图很有逼格。
-                    <div class="media mainborder">
-                        <a class="pull-left" href="#">
-                            <img class="media-object" src="~/images/touxiang.png" style="width:50px;height:50px;"
-                                 alt="作者">
-                        </a>
-                        <div class="media-body">
-                            <h4 class="media-heading">作者姓名<a style="position: relative; float: right; font-size: 10px; cursor: pointer;" >回复</a></h4>
-                            这张图很有逼格。这张图很有逼格。
-                        </div>
-                    </div>
-                    <div class="detial mainborder"  >
-                        <textarea class="mainborder" id="content" style="margin:auto;width:100%;"></textarea>
-                        <input type="button" onclick="submit()" value="评论" class="btn-default" style="position:relative;float:right;" />
-                        <div class="clear"></div>
-                    </div>
-                </div>
-            </div>*@
+            
             @*<div class="media mainborder">
                 <a class="pull-left" href="#">
                     <img class="media-object" src="~/images/touxiang.png" style="width:50px;height:50px;"

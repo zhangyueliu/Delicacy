@@ -76,9 +76,9 @@
 <table class="table">
     <tr>
         <th></th>
-        <th>
+        @*<th>
             @Html.DisplayNameFor(model => model.TasteName)
-        </th>
+        </th>*@
         <th>
             @Html.DisplayNameFor(model => model.FoodSortName)
         </th>
@@ -106,9 +106,9 @@
         {
             <tr>
                 <td><input type="checkbox" name="checked" value="@item.CookBookId" /></td>
-                <td>
+                @*<td>
                     @Html.DisplayFor(modelItem => item.TasteName)
-                </td>
+                </td>*@
                 <td>
                     @Html.DisplayFor(modelItem => item.FoodSortName)
                 </td>
