@@ -1,5 +1,4 @@
 ﻿﻿@model DataTransfer.CookBookTsfer
-
 @{
     ViewBag.Title = "菜谱详情";
     Layout = "~/Views/Shared/_Layout.cshtml";
@@ -64,8 +63,10 @@
         var content = $('#' + id.toString()).val();
         $('#' + temp + '1').val('');
         $('#' + temp).css('display', 'none');
+        if (pId == 0) {
+            $(".showhidden").css("display", "none");
+        }
         if (!content) {
-
             layer.msg('评论内容不能为空');
             $('#' + id).focus();
             return;
@@ -101,26 +102,31 @@
 
     function initComment(json) {
         var comment = '';
-        $.each(json, function (index, value) {
-            comment += '<div class="media mainborder"><a class="pull-left" href="#"><img class="media-object" src="/images/touxiang.png" style="width:50px;height:50px;" alt="作者"></a><div class="media-body"><h4 class="media-heading"><lable>' + value.User.Name + '</lable><a style="position: relative; float: right; font-size: 10px; cursor: pointer;" onclick="reply(' + value.CommentId + ',' + value.CommentId + ',&quot;' + value.User.Name + '&quot;)">回复</a></h4><p>' + value.Content + '</p> ';
+        $.each(json, function (index,value) {
+comment += '<div class="media mainborder"><a class="pull-left" href="#"><img class="media-object" src="/images/touxiang.png" style="width:50px;height:50px;" alt="作者"></a><div class="media-body"><h4 class="media-heading"><lable>' + value.User.Name + '</lable><a style="position: relative; float: right; font-size: 10px; cursor: pointer;" onclick="reply(' + value.CommentId + ',' + value.CommentId + ',&quot;' + value.User.Name + '&quot;)">回复</a></h4><p>' + value.Content + '</p> ';
             //判断有没有二级评论
             if (value.SonComment.length > 0) {
-                $.each(value.SonComment, function (key, item) {
-
+                $.each(value.SonComment, function (key, item) {                    
                     comment += '<div class="media mainborder"><a class="pull-left" href="#"><img class="media-object" src="/images/touxiang.png" style="width:50px;height:50px;" alt="作者"></a><div class="media-body"><h4 class="media-heading"><lable>' + item.User.Name + '</lable><a style="position: relative; float: right; font-size: 10px; cursor: pointer;" onclick="reply(' + value.CommentId + ',' + item.CommentId + ',&quot;' + item.User.Name + '&quot;)" >回复</a></h4><p>' + item.Content + '</p></div></div>';
                 })
             }
-            comment += '<div class="detial mainborder" id="' + value.CommentId + '" style="display:none" ><textarea id="' + value.CommentId + '1" class="mainborder"  style="margin:auto;width:100%;"></textarea><input type="button" onclick="submit(' + value.CommentId + '1,' + value.CommentId + ')" value="评论" class="btn-default" style="position:relative;float:right;" /><div class="clear"></div></div></div></div>';
+            comment += '<div class="detial mainborder showhidden" id="' + value.CommentId + '" style="display:none" ><textarea id="' + value.CommentId + '1" class="mainborder"  style="margin:auto;width:100%;"></textarea><input type="button" onclick="submit(' + value.CommentId + '1,' + value.CommentId + ')" value="评论" class="btn-default" style="position:relative;float:right;" /><div class="clear"></div></div></div></div>';
+
         });
         $('#comment').html(comment);
     }
 
-    var temp = '';//存储临时代开的回复框
+
+    var temp='';//存储临时代开的回复框
     function reply(commentId, pid, name) {
+
+        $(".showhidden").css("display", "none");
         $('#' + commentId.toString()).css('display', 'block');
         pId = pid;
         temp = commentId;
         $('#' + temp + '1').val('回复 ' + name + ' ：');
+
+        $('#' + temp + '1').focus();
     }
 </script>
 
@@ -280,6 +286,93 @@
     <div class="detial" id="comment" style="margin-top:1em;">
 
         @*<div class="media mainborder">
+=======
+</style>
+
+<div class="main">
+    <div class="col-lg-9">
+        <div class="detial">
+            <h1>@Model.Name</h1>
+            <div style="color:#808080">
+
+                作者：@Model.UserName&nbsp;&nbsp;&nbsp;时间：@Model.DateTime.ToString("yyyy-MM-dd")&nbsp;&nbsp;&nbsp;<a href="javascript:;" onclick="addCollection('@Model.CookBookId')" style="text-decoration:none;">收藏</a><span onclick="addCollection('@Model.CookBookId')" style="font-size: 18px; cursor: pointer;" id="like">
+
+                    @if (Model.IsCollection)
+                    {
+                        <img width="20" height="20" id="collect" src="~/images/liked.png" />
+                    }
+                    else
+                    {
+                        <img width="20" height="20" id="collect" src="~/images/like.png" />
+                    }
+
+                </span>&nbsp;&nbsp;&nbsp;
+                <a href="javascript:;" onclick="supportCookBook('@Model.CookBookId')" style="text-decoration:none;">
+                    @if (Model.IsSupport)
+                    {
+                        <img width="25" height="25" src="~/images/praised.png" id="supportImg" />
+                    }
+                    else
+                    {
+                        <img width="25" height="25" src="~/images/praise.png" id="supportImg" />
+                    }
+                </a>
+                <span id="supportCount">@Model.SupportCount</span>
+
+            </div>
+            <div style="width:99%;">
+                <img src="@Model.ImgUrl" id="imgRul" class="img-thumbnail" style="display:block; margin:auto;" />
+            </div>
+            <div class="mainborder" style="margin-top:1em;">
+                <div><b>总描述：</b><p>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;@Model.Description</p></div>
+                <div>
+                    <b>食材</b>
+                    <div>
+                        &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span>主料：</span>@foreach (var item in Model.ListMaterial)
+                        {
+                            if (item.Type == 1)
+                            {
+                                <a style="text-decoration:none;color:black;">@item.FoodMaterialName@item.Amount &nbsp;&nbsp;&nbsp;</a>
+                            }
+                        }
+                        <br />&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span>辅料：</span>@foreach (var item in Model.ListMaterial)
+                        {
+                            if (item.Type == 2)
+                            {
+                                <a style="text-decoration:none;color:black;">@item.FoodMaterialName@item.Amount &nbsp;&nbsp;&nbsp;</a>
+                            }
+                        }
+                    </div>
+                    <b>口味：</b>@Model.TasteName
+                </div>
+                <div>
+                    <b>步骤：</b>
+                    <div>
+                        @foreach (var item in @Model.ListProcess)
+                        {
+                            <div class="mainborder">
+                                <div style="width:49%; position: relative; float: left; display: inline-block;">
+                                    <img src="@item.ImgUrl" class="imagess img-thumbnail" onloadstart="image();" style="width:320px;" />
+                                </div>
+                                <div style="width: 50%; position: relative; float: right;" class="buzhou">
+                                    <span class="J_step_num" style="position:initial;left:0px;">@item.Sort、</span><p>@item.Description</p>
+                                </div>
+                                <div class="clear"></div>
+                            </div>
+                        }
+                        
+                    </div>
+                </div>
+                <div style="color:#bbb9b9">
+                    <b>小窍门：</b><p>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;@Model.Tips</p>
+                </div>
+
+            </div>
+        </div>
+        <div class="detial" id="comment" style="margin-top:1em;">
+            
+            @*<div class="media mainborder">
+>>>>>>> c84be9ca6fcf28e164fc63f68dc1aa8f383d80a4
                 <a class="pull-left" href="#">
                     <img class="media-object" src="~/images/touxiang.png" style="width:50px;height:50px;"
                          alt="作者">
@@ -289,11 +382,13 @@
                     这张图很有逼格。这张图很有逼格。
                 </div>
             </div>*@
+
     </div>
     <div class="detial mainborder">
         <textarea class="mainborder" id="content" style="margin:auto;width:100%;"></textarea>
         <input type="button" onclick="submit('content',0,0)" value="评论" class="btn btn-default" style="position:relative;float:right;" />
         <div class="clear"></div>
+
     </div>
     <div class="clear"></div>
 </div>
