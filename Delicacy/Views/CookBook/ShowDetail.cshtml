@@ -75,6 +75,9 @@
         var content = $('#' + id.toString()).val();
         $('#' + temp + '1').val('');
         $('#' + temp).css('display', 'none');
+        if (pId == 0) {
+            $(".showhidden").css("display", "none");
+        }
         if (!content) {
             
             layer.msg('评论内容不能为空');
@@ -121,17 +124,20 @@
                     comment += '<div class="media mainborder"><a class="pull-left" href="#"><img class="media-object" src="/images/touxiang.png" style="width:50px;height:50px;" alt="作者"></a><div class="media-body"><h4 class="media-heading"><lable>' + item.User.Name + '</lable><a style="position: relative; float: right; font-size: 10px; cursor: pointer;" onclick="reply(' + value.CommentId + ',' + item.CommentId + ',&quot;' + item.User.Name + '&quot;)" >回复</a></h4><p>' + item.Content + '</p></div></div>';
                 })
             }
-            comment += '<div class="detial mainborder" id="' + value.CommentId + '" style="display:none" ><textarea id="' + value.CommentId + '1" class="mainborder"  style="margin:auto;width:100%;"></textarea><input type="button" onclick="submit(' + value.CommentId + '1,' + value.CommentId + ')" value="评论" class="btn-default" style="position:relative;float:right;" /><div class="clear"></div></div></div></div>';
+            comment += '<div class="detial mainborder showhidden" id="' + value.CommentId + '" style="display:none" ><textarea id="' + value.CommentId + '1" class="mainborder"  style="margin:auto;width:100%;"></textarea><input type="button" onclick="submit(' + value.CommentId + '1,' + value.CommentId + ')" value="评论" class="btn-default" style="position:relative;float:right;" /><div class="clear"></div></div></div></div>';
         });
         $('#comment').html(comment);
     }
 
     var temp='';//存储临时代开的回复框
-    function reply(commentId,pid,name) {
+    function reply(commentId, pid, name) {
+
+        $(".showhidden").css("display", "none");
         $('#' + commentId.toString()).css('display', 'block');
         pId = pid;
         temp = commentId;
-        $('#'+temp+'1').val('回复 '+name+' ：');
+        $('#' + temp + '1').val('回复 ' + name + ' ：');
+        $('#' + temp + '1').focus();
     }
 </script>
 
