@@ -46,5 +46,24 @@ namespace Delicacy.Controllers.Admin
         {
             return Content(new SubjectArticleManager().Delete(id));
         }
+
+        public ActionResult Edit(string id)
+        {
+            if (!IsLogin())
+                return RedirectHome();
+            int iId;
+            if(!int.TryParse(id,out iId))
+                return RedirectHome();
+             //ViewBag.Article = ;
+            return View(new SubjectArticleManager().GetArticle(iId));
+        }
+        [ValidateInput(false)]
+        public ActionResult Update(SubjectArticleTsfer article)
+        {
+            if (!IsLogin())
+                return RedirectHome();
+            return Content(new SubjectArticleManager().Update(article));
+        }
+
     }
 }

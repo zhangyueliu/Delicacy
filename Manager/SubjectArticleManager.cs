@@ -35,7 +35,15 @@ namespace Manager
         {
             if (subarticle == null)
                 return OutputHelper.GetOutputResponse(ResultCode.NoParameter);
-            if (service.Update(subarticle))
+
+            SubjectArticleTsfer article = service.Get(subarticle.SubjectArticleId);
+            if(article==null)
+                return OutputHelper.GetOutputResponse(ResultCode.ConditionNotSatisfied);
+            article.Brief = subarticle.Brief;
+            article.Content = subarticle.Content;
+            article.Title = subarticle.Title;
+            article.Datetime = DateTime.Now;
+            if (service.Update(article))
                 return OutputHelper.GetOutputResponse(ResultCode.OK);
             return OutputHelper.GetOutputResponse(ResultCode.Error);
         }
@@ -76,6 +84,13 @@ namespace Manager
             if (s == null)
                 return OutputHelper.GetOutputResponse(ResultCode.NoData);
             return OutputHelper.GetOutputResponse(ResultCode.OK, s);
+        }
+
+        public SubjectArticleTsfer GetArticle(int  id)
+         {
+            SubjectArticleTsfer article=  service.Get(id);
+            //article.Content = System.Web.HttpUtility.HtmlDecode(article.Content); //System.Web.HttpUtility.HtmlEncode(article.Content);
+            return article;
         }
 
         ///// <summary>

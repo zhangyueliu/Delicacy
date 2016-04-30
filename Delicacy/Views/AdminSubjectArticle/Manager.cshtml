@@ -84,7 +84,7 @@
                     @Html.DisplayFor(modelItem => item.Datetime)
                 </td>
                 <td>
-                    @Html.ActionLink("Edit", "Edit", new { /* id=item.PrimaryKey */ })
+                    @Html.ActionLink("Edit", "Edit", new { id = @item.SubjectArticleId })
                     <a href="javascript:;" onclick="deleteSubject(@item.SubjectArticleId)">Delete</a>
                 </td>
             </tr>
