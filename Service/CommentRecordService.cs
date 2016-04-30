@@ -63,5 +63,19 @@ namespace Service
         {
             return Select(o => o.CommentId == commentId).Any();
         }
+        public List<CommentRecordTsfer> GetPage(short type,int pageindex, int pagesize, out int rowcount)
+        {
+            List<CommentRecord> list = SelectDesc(pageindex, pagesize, o => o.Type==type, o => o.DateTime, out rowcount).ToList();
+            return TransferObject.ConvertObjectByEntity<CommentRecord, CommentRecordTsfer>(list);
+        }
+        /// <summary>
+        /// 获取子评论
+        /// </summary>
+        /// <param name="id"></param>
+        /// <returns></returns>
+        public List<CommentRecordTsfer> GetSon(int id)
+        {
+            return TransferObject.ConvertObjectByEntity<CommentRecord, CommentRecordTsfer>(base.Select(o => o.PId == id).ToList());
+        }
     }
 }
