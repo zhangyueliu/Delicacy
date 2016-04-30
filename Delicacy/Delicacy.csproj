@@ -402,9 +402,9 @@
     <Content Include="Views\AdminTaste\Index.cshtml" />
     <Content Include="Views\AdminCommentCookBook\Index.cshtml" />
     <Content Include="Views\SubjectArticle\Get.cshtml" />
-    <Content Include="Views\UserCenter\WaitCheckDetail.cshtml" />
-    <Content Include="Views\UserCenter\NotPass.cshtml" />
     <Content Include="Views\AdminSubjectArticle\Edit.cshtml" />
+    <Content Include="Views\UserCenter\NotPass.cshtml" />
+    <Content Include="Views\UserCenter\WaitCheckDetail.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
