@@ -17,10 +17,10 @@ namespace Delicacy.Controllers
             return View();
         }
 
-        //public ActionResult GetPage(string pageIndex, string pageSize)
-        //{
-
-        //}
+        public ActionResult GetPage(string pageIndex, string pageSize)
+        {
+           return Content(new SubjectArticleManager().GetPage(pageIndex, pageSize));
+        }
 
 
         public ActionResult Get(string id)
