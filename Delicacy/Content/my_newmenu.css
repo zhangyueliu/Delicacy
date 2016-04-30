@@ -7,7 +7,7 @@ blockquote{ margin:0; padding: 0; text-indent:0;}
 .content dl dt{ width:95px; text-align: right; padding-right:20px;padding-top:4px; font-size:14px;}
 .content dl dd { width:620px; }
 .content dl dd .btn37{ padding:3px 5px; height:22px; line-height:22px}
-.content dl dt .x{color:#ff003b; vertical-align:middle;}
+.content dl dt .x{color:#fc7c00; vertical-align:middle;}
 .content dl dd input,.content dl dd textarea{border:#ccc solid 1px;  }
 .ui-select-tit a,.content dl dd input,.content dl dd textarea{color:#ccc}
 .content dl dd .addicon{ overflow: hidden; position: relative;top:0;left:0; z-index:70;background:url(http://static.meishichina.com/v6/img/mycenter/images/add_25.png) no-repeat center 40px;border:#ccc solid 1px; width:208px; height:156px; background-color:#f7f7f7; text-align: center; margin-right:10px; cursor:pointer;}
@@ -71,7 +71,7 @@ blockquote{ margin:0; padding: 0; text-indent:0;}
 .content dl.selectcheckBox dd p input{ margin-right:10px; vertical-align: middle;}
 .content dl.selectcheckBox dd .submitdiv{ margin-top:30px}
 .content dl.selectcheckBox dd .submitdiv input{ margin-right:40px; width:144px; font-size:16px; height:40px; font-weight:bold; border-radius:3px; border: none; cursor:pointer;}
-.content dl.selectcheckBox dd .submitdiv input.postbtn{ background:#ba2020; border:#ba2020 solid 1px; color:#fff;}
+.content dl.selectcheckBox dd .submitdiv input.postbtn{ background:#fc7c00; border:#fc7c00 solid 1px; color:#fff;}
 .content dl.selectcheckBox dd .submitdiv input.savebtn{ background:#f2f2f2; border: #d2d2d2 solid 1px; color:#333}
 
 

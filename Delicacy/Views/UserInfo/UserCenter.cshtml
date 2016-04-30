@@ -5,7 +5,7 @@
 <link href="~/Content/PublishCookBook.css" rel="stylesheet" />
 <script>
     var index = 1, size = 10, status = 1;
-    var flag=true
+    var flag = true
     $(document).ready(function () {
         $("#daohang li:last").addClass("active");
         getAccessCookBook(index, size, status);
@@ -33,7 +33,7 @@
         var str = '';
         $.each(json, function () {
 
-            str += '<li ><div class="pic"> <a target="_blank" href="#" title="'+this.Name+'"> <img width="120" height="90" class="imgLoad" src="'+this.ImgUrl+'" alt="'+this.Name+'" style="display: block;"></a></div><div class="detail"><h4><a target="_blank" href="#">'+this.Name+'</a></h4><p class="subline"><a href="javascript:;">'+this.UserName+'</a>发表于'+this.DateTime+'</p><div class="substatus clear"><div class="left"><span>收藏</span></div><div class="right"></div></div></div></li>';
+            str += '<li ><div class="pic" style="overflow:hidden;"> <a target="_blank" href="/CookBook/ShowDetail/?cookBookId=' + this.CookBookId + '&isSort=True" title="' + this.Name + '"> <img width="100%" class="imgLoad" src="' + this.ImgUrl + '" alt="' + this.Name + '" style="display: block;"></a></div><div class="detail"><h4><a target="_blank" href="/CookBook/ShowDetail/?cookBookId=' + this.CookBookId + '&isSort=True">' + this.Name + '</a></h4><p class="subline"><a href="javascript:;">' + this.UserName + '</a>发表于' + this.DateTime + '</p><div class="substatus clear"><div class="left"><a href="javascript:;" onclick="deletethis(&quot;' + this.CookBookId + '&quot;)">删除</a></div><div class="right"></div></div></div></li>';
 
         })
         $('#ulAccessCook').append(str);
@@ -46,6 +46,26 @@
                 getAccessCookBook(index, size, status);
             }
         };
+    }
+
+    function deletethis(id) {
+        $.ajax({
+            type: "post",
+            url: "/UserCenter/DeleteCookBook",
+            data: { id: id },
+            success: function (o) {
+                if(o.StatusCode==1)
+                {
+                    layer.msg("成功");
+                    setTimeout(function () {
+                        location.reload();
+                    },500);
+                }
+                else {
+                    layer.msg(o.Data.Message);
+                }
+            }
+        });
     }
 </script>
 <div class="mod_left">
@@ -69,8 +89,7 @@
         <div class="ui_title_wrap">
             <a href="/UserInfo/UserCenter" class="on">我的菜谱</a>
             <a href="/UserCenter/WaitCheck">待审核</a>
-            <a href="#">审核未通过</a>
-            <a href="#">草稿箱</a>
+            <a href="/UserCenter/NotPass">审核未通过</a>
         </div>
         <div class="ui_title_right">
             <a href="/CookBook/PublishCookBook" class="ui_btn_blue on">发布新菜谱</a>

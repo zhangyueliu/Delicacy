@@ -179,7 +179,7 @@
         .menu_wrap a:hover, .menu_wrap a.on {
             text-decoration: none;
             background-color: #EFDFC1;
-            color: #ff8800;
+            color: #fc7c00;
             outline: none;
         }
 
@@ -220,7 +220,7 @@
     }
 
         .ui_title_wrap a:hover, .ui_title_wrap a.on, .ui_title_wrap h3, .ui_title_wrap h2, .ui_title_wrap h1 {
-            border-bottom: 1px solid #ff0000;
+            border-bottom: 1px solid #fc7c00;
             text-decoration: none;
             color: #333;
             _top: 1px;
@@ -268,10 +268,12 @@
     }
 
 .ui_list_1 li:hover {
-    background-color: #f7f7f7;
+    /*background-color: #f7f7f7;*/
 }
 
 .ui_list_1 li {
+    float:left;
+    width:50%;
     padding: 20px 0;
     overflow: hidden;
     vertical-align: top;

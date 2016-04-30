@@ -26,9 +26,9 @@ namespace Service
             base.Update(TransferObject.ConvertObjectByEntity<CookBookTsfer, CookBook>(cookBook));
             return Save() > 0;
         }
-        public bool Delete(int id)
+        public bool Delete(CookBookTsfer c)
         {
-            base.Delete(id);
+            base.Delete(TransferObject.ConvertObjectByEntity<CookBookTsfer,CookBook>(c));
             return Save() > 0;
         }
         public CookBookTsfer Get(string cookBookId, int status)

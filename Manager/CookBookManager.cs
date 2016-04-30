@@ -1,4 +1,4 @@
-﻿﻿﻿using System;
+﻿﻿﻿﻿using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
@@ -353,5 +353,15 @@ namespace Manager
             return service.GetListRecent(num);
         }
 
+        public OutputModel Delete(string id)
+        {
+          CookBookTsfer c=  service.Get(id);
+          if (c == null)
+              return OutputHelper.GetOutputResponse(ResultCode.NoData);
+            if (service.Delete(c))
+                return OutputHelper.GetOutputResponse(ResultCode.OK);
+            return OutputHelper.GetOutputResponse(ResultCode.Error);
+        }
     }
+
 }

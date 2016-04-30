@@ -6,6 +6,7 @@ using System.Threading.Tasks;
 using EF;
 using DataTransfer;
 using Tool;
+using System.Data.SqlClient;
 
 namespace Service
 {
@@ -21,10 +22,14 @@ namespace Service
             base.Delete(id);
             return Save() > 0;
         }
-        public bool Delete(CollectionTsfer like)
+        public bool Delete(string cookbookid,int userid)
         {
-            base.Delete(TransferObject.ConvertObjectByEntity<CollectionTsfer, Collection>(like));
-            return Save() > 0;
+            string sql="delete from [Collection] where userid=@userid and operateid=@operateid";
+            SqlParameter[] param = { 
+                                   new SqlParameter( "@userid", userid ),
+                                   new SqlParameter( "@operateid", cookbookid )
+                                   };
+            return ExecuteCUD(sql,param) > 0;
         }
         /// <summary>
         /// 获取某收藏数据
@@ -50,9 +55,9 @@ namespace Service
         /// </summary>
         /// <param name="userid">用户id</param>
         /// <returns></returns>
-        public List<CollectionTsfer> GetsUser(int userid)
+        public List<CollectionTsfer> GetsUser(int pageIndex,int pageSize,int userid)
         {
-            return TransferObject.ConvertObjectByEntity<Collection, CollectionTsfer>(base.Select(o => o.UserId == userid).ToList());
+            return TransferObject.ConvertObjectByEntity<Collection, CollectionTsfer>(base.SelectDesc(pageIndex,pageSize, o => o.UserId == userid,o=>o.DateTime).ToList());
         }
 
         /// <summary>

@@ -34,5 +34,19 @@ namespace Delicacy.Controllers
                 return Content( OutputHelper.GetOutputResponse(ResultCode.NoLogin));
             return Content(new CollectionManager().Add(cookBookId, user.UserId));
         }
+
+
+        public ActionResult GetPage(string pageIndex, string pageSize)
+        {
+            if (user == null)
+                return Content(OutputHelper.GetOutputResponse(ResultCode.NoLogin));
+            return Content(new CollectionManager().GetsUser(pageIndex, pageSize,user.UserId));
+        }
+        public ActionResult Delete(string id)
+        {
+            if (user == null)
+                return Content(OutputHelper.GetOutputResponse(ResultCode.NoLogin));
+           return Content(new CollectionManager().Delete(id, user.UserId));
+        }
 	}
 }

@@ -3,7 +3,7 @@
     ViewBag.Title = "美食网";
 }
 <script type="text/javascript">
-    
+
     $(window).load(function () {
         $('.flexslider').flexslider({
             animation: "slide",
@@ -15,7 +15,7 @@
     });
 
     function redirectToDetails(cookbookId) {
-        window.location.href = '/cookbook/ShowDetail?cookBookId='+cookbookId+'&isSort=True';
+        window.location.href = '/cookbook/ShowDetail?cookBookId=' + cookbookId + '&isSort=True';
     }
 </script>
 <style>
@@ -40,7 +40,7 @@
 <div class="main">
     <div class="content-top">
         <div style="border-bottom: 1px solid #EBE4D6;"><h3><span class="red" style="border-bottom:2px solid">最火菜谱</span>@*<span class="black" style="position: relative;float: right;right:1em;">More</span>*@</h3></div>
-       
+
         @if (ViewBag.Hottest.Count == 0)
         {
             <span>暂时无数据</span>
@@ -49,9 +49,9 @@
         {
             foreach (CookBookTsfer item in ViewBag.Hottest)
             {
-               
-            
-            <div class="col_1_of_3 span_1_of_3">
+
+
+                <div class="col_1_of_3 span_1_of_3">
                     <div style="height: 200px; overflow: hidden;"><img src="@item.ImgUrl" alt="" style="width:100%;" /></div>
                     <div class="bottom-head"><h5>@item.Name</h5></div>
                     <div class="but">
@@ -61,12 +61,12 @@
             }
         }
 
-        
+
         <div class="clear"></div>
     </div>
     <div class="content-middle">
         <div style="border-bottom: 1px solid #EBE4D6;"><h3><span class="red" style="border-bottom:2px solid">最新菜谱</span>@*<span class="black" style="position: relative;float: right;right:1em;">More</span>*@</h3></div>
-       
+
 
         @if (ViewBag.RecentCook.Count == 0)
         {
@@ -87,7 +87,7 @@
 
         }
 
-        
+
 
         <div class="clear"></div>
     </div>
@@ -110,11 +110,12 @@
                     <img src="/images/plate.png" alt="" />
                     <h3 style="height:2.4em;">@item.Title</h3>
                     <p class="ellipsis" style="padding:0;">@item.Brief</p>
-                    <a href="javascript:;"><button class="btn1 btn-8 btn-8a">Read More</button></a>
+                    <a href="/SubjectArticle/Get?id=@item.SubjectArticleId" target="_blank"><button class="btn1 btn-8 btn-8a">Read More</button></a>
                 </div>
             }
         }
         <div class="clear"></div>
     </div>
 
-    </div>
+
+</div>
