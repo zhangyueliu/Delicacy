@@ -80,9 +80,19 @@
 
 
                 <dd>
-                    <div class="multiselect select_0" style="width: 103px;"><a tar="foodSort" href="javascript:;" check="false" class="multi_txt multi_1" title="口味">菜谱类别</a><ul class="" style=""><li><a href="javascript:;"><label class="J_radio"><input type="radio" name="foodSort" value="1">热菜</label></a></li><li><a href="javascript:;"><label class="J_radio"><input type="radio" name="foodSort" value="2">凉菜</label></a></li><li><a href="javascript:;"><label class="J_radio"><input type="radio" name="foodSort" value="3">主食</label></a></li><li><a href="javascript:;"><label class="J_radio"><input type="radio" name="foodSort" value="4">其它</label></a></li></ul></div>
+                    <div class="multiselect select_0" style="width: 103px;"><a tar="foodSort" href="javascript:;" check="false" class="multi_txt multi_1" title="口味">菜谱类别</a><ul class="" style="">
+                        @foreach(FoodSortTsfer foodSort in ViewBag.FoodSort)
+                        {
+                            <li><a href="javascript:;"><label class="J_radio"><input type="radio" name="foodSort" value="@foodSort.FoodSortId">@foodSort.Name</label></a></li>
+                        }
+                        </ul></div>
 
-                    <div class="multiselect select_1" style="width: 103px;"><a tar="cuisine" href="javascript:;" check="false" class="multi_txt multi_1" title="口味">口味</a><ul class="" style=""><li><a href="javascript:;"><label class="J_radio"><input type="radio" name="cuisine" value="1">酸</label></a></li><li><a href="javascript:;"><label class="J_radio"><input type="radio" name="cuisine" value="2" />甜</label></a></li><li><a href="javascript:;"><label class="J_radio"><input type="radio" name="cuisine" value="3">苦</label></a></li><li><a href="javascript:;"><label class="J_radio"><input type="radio" name="cuisine" value="4">辣</label></a></li><li><a href="javascript:;"><label class="J_radio"><input type="radio" name="cuisine" value="5">腥</label></a></li><li><a href="javascript:;"><label class="J_radio"><input type="radio" name="cuisine" value="6">其他</label></a></li></ul></div>
+                    <div class="multiselect select_1" style="width: 103px;"><a tar="cuisine" href="javascript:;" check="false" class="multi_txt multi_1" title="口味">口味</a><ul class="" style="">
+                        @foreach (TasteTsfer taste in ViewBag.Taste)
+                        {
+                            <li><a href="javascript:;"><label class="J_radio"><input type="radio" name="cuisine" value="@taste.TasteId">@taste.Name</label></a></li>
+                        }
+                        </ul></div>
 
                     <div class="multiselect select_4" style="width: 103px;">
                         <input type="hidden" name="foodMaterial" id="J_foodMaterial" value="">
