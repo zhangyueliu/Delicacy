@@ -16,8 +16,6 @@ namespace Delicacy.Controllers
         // GET: /CookBook/
         public ActionResult Index()
         {
-            
-
             return View();
         }
 
@@ -89,5 +87,31 @@ namespace Delicacy.Controllers
                 return RedirectHome();
             return View(model.Data);
         }
+
+        public ActionResult GetDetail(string cookBookId)
+        {
+            return Content(new CookBookManager().GetCookBook(cookBookId));
+        }
+
+        [HttpGet]
+        public ActionResult Edit(string id)
+        {
+            if (string.IsNullOrEmpty(id))
+                return RedirectHome();
+            if (!IsLogin())
+                return Redirect("/UserInfo/Login");
+            ViewBag.FoodMaterial = new FoodMaterialManager().GetList();
+            ViewBag.Taste = new TasteManager().GetListByStatus(1);
+            ViewBag.FoodSort = new FoodSortManager().GetAll();
+            return View();
+        }
+
+        [HttpPost]
+        public ActionResult Edit(CookBookModel  model)
+        {
+            return View();
+        }
+
+
     }
 }
