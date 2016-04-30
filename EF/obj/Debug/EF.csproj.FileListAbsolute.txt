@@ -30,6 +30,5 @@ E:\Important\Delicacy\Delicacy\EF\bin\Debug\EntityFramework.xml
 E:\Important\Delicacy\Delicacy\EF\bin\Debug\EntityFramework.SqlServer.xml
 E:\Important\Delicacy\Delicacy\EF\bin\Debug\zh-Hans\EntityFramework.resources.dll
 E:\Important\Delicacy\Delicacy\EF\bin\Debug\zh-Hans\EntityFramework.SqlServer.resources.dll
-E:\Important\Delicacy\Delicacy\EF\obj\Debug\EF.csprojResolveAssemblyReference.cache
 E:\Important\Delicacy\Delicacy\EF\obj\Debug\EF.dll
 E:\Important\Delicacy\Delicacy\EF\obj\Debug\EF.pdb

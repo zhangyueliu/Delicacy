@@ -114,7 +114,7 @@ namespace Service
         /// <returns></returns>
         public List<CookBookTsfer> GetListRecent(int num)
         {
-            List<CookBook> list= Select(o => true).OrderByDescending(o => o.DateTime).Take(num).ToList();
+            List<CookBook> list= Select(o => o.Status==1).OrderByDescending(o => o.DateTime).Take(num).ToList();
             return TransferObject.ConvertObjectByEntity<CookBook, CookBookTsfer>(list);
         }
     }

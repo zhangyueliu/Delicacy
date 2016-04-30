@@ -36,10 +36,15 @@ namespace Manager
             }
         }
 
-        public OutputModel Update(TasteTsfer taste)
+        public OutputModel Update(string id, string name)
         {
+            int i;
+            if (!int.TryParse(id, out i))
+                return OutputHelper.GetOutputResponse(ResultCode.ErrorParameter);
+            TasteTsfer taste = Service.Get(i);
             if (taste != null)
             {
+                taste.Name = name;
                 if (Service.Update(taste))
                 {
                     return OutputHelper.GetOutputResponse(ResultCode.OK);
@@ -49,9 +54,12 @@ namespace Manager
             return OutputHelper.GetOutputResponse(ResultCode.NoParameter);
         }
 
-        public OutputModel Delete(int id)
+        public OutputModel Delete(string id)
         {
-            if (Service.Delete(id))
+            int i;
+            if (!int.TryParse(id, out i))
+                return OutputHelper.GetOutputResponse(ResultCode.ErrorParameter);
+            if (Service.Delete(i))
             {
                 return OutputHelper.GetOutputResponse(ResultCode.OK);
             }
@@ -84,6 +92,15 @@ namespace Manager
             if (list.Count == 0)
                 return OutputHelper.GetOutputResponse(ResultCode.NoData);
             return OutputHelper.GetOutputResponse(ResultCode.OK, list);
+        }
+        public List<TasteTsfer> GetPage(string pageindex, int pagesize, out int pagecount)
+        {
+            int pageIndex;
+            int rowcount;
+            CheckParameter.PageCheck(pageindex, out pageIndex);
+            List<TasteTsfer> list = Service.GetPage(pageIndex, pagesize, out rowcount);
+            pagecount = (int)Math.Ceiling(rowcount * 1.0 / pagesize);
+            return list; ;
         }
     }
 }

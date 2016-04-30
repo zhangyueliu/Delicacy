@@ -51,7 +51,21 @@ namespace Manager
         }
         public OutputModel Delete(int id)
         {
-            if (service.Delete(id))
+            bool b = false;
+            List<CommentRecordTsfer> list = service.GetSon(id);
+            if (list.Count <= 0)
+                b = true;
+            else
+            {
+                foreach (CommentRecordTsfer c in list)
+                {
+                    if (Delete(c.CommentId).StatusCode != 1)
+                        return OutputHelper.GetOutputResponse(ResultCode.Error);
+                    else
+                        b = true;
+                }
+            }
+            if (service.Delete(id) && b)
                 return OutputHelper.GetOutputResponse(ResultCode.OK);
             return OutputHelper.GetOutputResponse(ResultCode.Error);
         }
@@ -126,7 +140,25 @@ namespace Manager
                 return OutputHelper.GetOutputResponse(ResultCode.NoData);
             return OutputHelper.GetOutputResponse(ResultCode.OK,list);
         }
-
+        public List<CommentRecordTsfer> GetPage(short type,string pageindex, int pagesize, out int pagecount)
+        {
+            
+            int p;
+            int rowcount;
+            CheckParameter.PageCheck(pageindex, out p);
+            List<CommentRecordTsfer> list = service.GetPage(type,p, pagesize, out rowcount);
+            pagecount = (int)Math.Ceiling(rowcount * 1.0 / pagesize);
+            CookBookManager manager = new CookBookManager();
+            foreach (CommentRecordTsfer item in list)
+            {
+                OutputModel o=manager.GetCookBook(item.OperateId);
+                if (o.StatusCode == 1){
+                    CookBookTsfer c=(CookBookTsfer)o.Data;
+                    item.OperateName = c.Name;
+                }   
+            }
+            return list;
+        }
         
     }
 }

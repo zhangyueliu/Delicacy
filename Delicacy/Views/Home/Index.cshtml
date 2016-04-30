@@ -92,23 +92,29 @@
         <div class="clear"></div>
     </div>
     <div class="content-last">
-        
+        <div style="border-bottom: 1px solid #EBE4D6;">
+            <h3>
+                <span class="red" style="border-bottom:2px solid">饮食专题</span>
+            </h3>
+        </div>
 
-        @if(ViewBag.RecentArticle.Count==0)
+        @if (ViewBag.RecentArticle.Count == 0)
         {
             <span>暂时无数据</span>
-        }else
+        }
+        else
         {
             foreach (SubjectArticleTsfer item in ViewBag.RecentArticle)
             {
                 <div class="col_1_of_4 span_1_of_4">
-            <img src="/images/glass.png" alt="" />
-            <h3 style="height:2.4em;">@item.Title</h3>
-            <p class="ellipsis" style="padding:0;">@item.Brief</p>
-            <a href="javascript:;"><button class="btn1 btn-8 btn-8a">Read More</button></a>
-        </div>
+                    <img src="/images/plate.png" alt="" />
+                    <h3 style="height:2.4em;">@item.Title</h3>
+                    <p class="ellipsis" style="padding:0;">@item.Brief</p>
+                    <a href="javascript:;"><button class="btn1 btn-8 btn-8a">Read More</button></a>
+                </div>
             }
         }
         <div class="clear"></div>
     </div>
-</div>
+
+    </div>
