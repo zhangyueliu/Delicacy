@@ -39,6 +39,8 @@ namespace Delicacy.Controllers
             if (!IsLogin())
                 return Redirect("/");
             ViewBag.FoodMaterial = new FoodMaterialManager().GetList();
+            ViewBag.Taste= new TasteManager().GetListByStatus(1);
+            ViewBag.FoodSort = new FoodSortManager().GetAll();
             return View();
         }
         public ActionResult List(string id)
