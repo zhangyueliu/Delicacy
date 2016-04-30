@@ -405,6 +405,7 @@
     <Content Include="Views\AdminSubjectArticle\Edit.cshtml" />
     <Content Include="Views\UserCenter\NotPass.cshtml" />
     <Content Include="Views\UserCenter\WaitCheckDetail.cshtml" />
+    <Content Include="Views\CookBook\Edit.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
