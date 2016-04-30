@@ -1,0 +1,122 @@
+﻿@model DataTransfer.SubjectArticleTsfer
+
+@{
+    ViewBag.Title = "Edit";
+    Layout = "~/Views/Shared/_AdminLayout.cshtml";
+}
+<script src="http://shianyun-oss.oss-cn-beijing.aliyuncs.com/statics/DP/JsLib/ckeditor/ckeditor.js"></script>
+
+
+<h2>Edit</h2>
+
+@using (Html.BeginForm())
+{
+    @Html.AntiForgeryToken()
+    
+    <div class="form-horizontal">
+        <h4>SubjectArticleTsfer</h4>
+        <hr />
+        @Html.ValidationSummary(true)
+        @*<div class="form-group">
+            @Html.LabelFor(model => model.SubjectArticleId, new { @class = "control-label col-md-2" })
+            <div class="col-md-10">
+                @Html.EditorFor(model => model.SubjectArticleId)
+                @Html.ValidationMessageFor(model => model.SubjectArticleId)
+            </div>
+        </div>*@
+
+        <div class="form-group">
+            @Html.LabelFor(model => model.Title, new { @class = "control-label col-md-2" })
+            <div class="col-md-10">
+                @*@Html.EditorFor(model => model.Title)*@
+                <input type="text" value="@Model.Title" id="title"  size="70"/>
+                @Html.ValidationMessageFor(model => model.Title)
+            </div>
+        </div>
+
+        <div class="form-group">
+            @Html.LabelFor(model => model.Brief, new { @class = "control-label col-md-2" })
+            <div class="col-md-10">
+                @*@Html.EditorFor(model => model.Brief)*@
+                <textarea cols="70" rows="6" id="brief">@Model.Brief</textarea>
+                @Html.ValidationMessageFor(model => model.Brief)
+            </div>
+        </div>
+
+        <div class="form-group">
+            @Html.LabelFor(model => model.Content, new { @class = "control-label col-md-2" })
+            <div class="col-md-10">
+                @*@Html.EditorFor(model => model.Content)*@
+
+                <input type="text"  id="content" value="" />
+                @Html.ValidationMessageFor(model => model.Content)
+            </div>
+        </div>
+
+        @*<div class="form-group">
+            @Html.LabelFor(model => model.Datetime, new { @class = "control-label col-md-2" })
+            <div class="col-md-10">
+                @Html.EditorFor(model => model.Datetime)
+                @Html.ValidationMessageFor(model => model.Datetime)
+            </div>
+        </div>*@
+        <div id="divContent" style="display:none">@Html.Raw(Model.Content)
+        </div>
+        <div class="form-group">
+            <div class="col-md-offset-2 col-md-10">
+                <input type="button" value="Save" onclick="sure()" class="btn btn-default" />
+            </div>
+        </div>
+    </div>
+}
+
+<div>
+    @Html.ActionLink("Back to List", "Index")
+</div>
+<script type="text/javascript">
+    $(function () {
+        var myCk = CKEDITOR.replace('content', { height: '1000px' });
+        myCk.setData($('#divContent').html());
+    });
+
+    function sure() {
+        //CKEDITOR.instances.content.getData();
+        var content = CKEDITOR.instances.content.getData();
+        //alert(content);
+        var title = $('#title').val();
+        if (!title) {
+            layer.msg('标题不能为空')
+            $('#title').focus();
+            return;
+        }
+        var brief = $('#brief').val();
+        if (!brief) {
+            layer.msg('简介不能为空')
+            $('#brief').focus();
+            return;
+        }
+
+        if (!content) {
+            layer.msg('正文不能为空')
+            $('#content').focus();
+            return;
+        }
+
+        $.ajax({
+            type: 'post',
+            url: '/AdminSubjectArticle/Update',
+            dataType: 'json',
+            data: { content: content, title: title, brief: brief,SubjectArticleId:'@Model.SubjectArticleId' },
+            success: function (data) {
+                if (data.StatusCode === 1) {
+                    layer.msg("成功");
+                    setTimeout(function () { window.location.href = '/AdminSubjectArticle/Manager?pageindex=1'; }, 1000);
+                }
+                else {
+                    layer.alert(data.Message);
+                }
+            }
+        });
+    }
+    
+</script>
