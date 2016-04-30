@@ -401,6 +401,7 @@
     <Content Include="Views\AdminFoodMaterial\Index.cshtml" />
     <Content Include="Views\AdminTaste\Index.cshtml" />
     <Content Include="Views\AdminCommentCookBook\Index.cshtml" />
+    <Content Include="Views\SubjectArticle\Get.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
