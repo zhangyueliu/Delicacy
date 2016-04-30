@@ -194,7 +194,7 @@ body {
         }
 
             .header_top_right ul li a:hover {
-                color: #99261F;
+                color: #fc7c00;
             }
 /*--menu--*/
 .menu {
@@ -603,7 +603,7 @@ span.black {
 }
 
 .btn-8 {
-    background: #ff801a;
+    background: #fc7c00;
     -webkit-transform-style: preserve-20d;
     -moz-transform-style: preserve-20d;
     transform-style: preserve-20d;

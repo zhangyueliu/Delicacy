@@ -1,18 +1,20 @@
 ﻿@{
-    ViewBag.Title = "个人中心";
+    ViewBag.Title = "审核未通过";
     Layout = "~/Views/Shared/_Layout.cshtml";
 }
+
 <link href="~/Content/PublishCookBook.css" rel="stylesheet" />
 <script>
-    var index = 1, size = 10, status = 1;
-    var flag = true
-    $(document).ready(function () {
-        $("#daohang li:last").addClass("active");
-        getAccessCookBook(index, size, status);
-    });
+    var index = 1, size = 10;
 
-    //获取审核通过的菜谱
-    function getAccessCookBook(pageIndex, pageSize, status) {
+    $(function () {
+        getWaitCheck(1, size, -1);
+    });
+    var flag = true;
+
+
+    //获取等待审核的菜谱
+    function getWaitCheck(pageIndex, pageSize, status) {
         $.ajax({
             type: 'get',
             url: '/UserCenter/GetaPageCookBookByStatus',
@@ -29,23 +31,26 @@
             }
         });
     }
+
     function initList(json) {
         var str = '';
         $.each(json, function () {
-
-            str += '<li ><div class="pic" style="overflow:hidden;"> <a target="_blank" href="/CookBook/ShowDetail/?cookBookId=' + this.CookBookId + '&isSort=True" title="' + this.Name + '"> <img width="100%" class="imgLoad" src="' + this.ImgUrl + '" alt="' + this.Name + '" style="display: block;"></a></div><div class="detail"><h4><a target="_blank" href="/CookBook/ShowDetail/?cookBookId=' + this.CookBookId + '&isSort=True">' + this.Name + '</a></h4><p class="subline"><a href="javascript:;">' + this.UserName + '</a>发表于' + this.DateTime + '</p><div class="substatus clear"><div class="left"><a href="javascript:;" onclick="deletethis(&quot;' + this.CookBookId + '&quot;)">删除</a></div><div class="right"></div></div></div></li>';
-
+            str += '<li onclick="getDetail(&quot;' + this.CookBookId + '&quot;) "><div class="pic"><a href="#" ><img class="imgLoad" src="' + this.ImgUrl + '" alt="' + this.Name + '" width="120" height="90" /></a></div><div class="detail"><h4><a href="#">' + this.Name + '</a></h4><div class="substatus clear"><div class="left"><a href="#">编辑</a> <a href="javascript:;" onclick="deletethis(&quot;' + this.CookBookId + '&quot;)">删除</a>>删除</a></div></div></div></li>';
         })
-        $('#ulAccessCook').append(str);
+        $('#ulCookBook').append(str);
         window.onscroll = function () {
             var scrollTop = document.body.scrollTop;
             var offsetHeight = document.body.offsetHeight;
             var scrollHeight = document.body.scrollHeight;
             if (scrollTop == scrollHeight - offsetHeight && flag) {
                 index++;
-                getAccessCookBook(index, size, status);
+                getWaitCheck(index, size, 0);
             }
         };
+    }
+
+    function getDetail(cookbookId) {
+        window.location.href = "/UserCenter/WaitCheckDetail?id=" + cookbookId;
     }
 
     function deletethis(id) {
@@ -54,12 +59,11 @@
             url: "/UserCenter/DeleteCookBook",
             data: { id: id },
             success: function (o) {
-                if(o.StatusCode==1)
-                {
+                if (o.StatusCode == 1) {
                     layer.msg("成功");
                     setTimeout(function () {
                         location.reload();
-                    },500);
+                    }, 500);
                 }
                 else {
                     layer.msg(o.Data.Message);
@@ -68,6 +72,12 @@
         });
     }
 </script>
+<script>
+    $(document).ready(function () {
+        $("#daohang li:last").addClass("active");
+    });
+</script>
+
 <div class="mod_left">
     <div class="menu_wrap">
         <ul>
@@ -87,36 +97,18 @@
 <div class="mod_right">
     <div class="ui_title mt20">
         <div class="ui_title_wrap">
-            <a href="/UserInfo/UserCenter" class="on">我的菜谱</a>
+            <a href="/UserInfo/UserCenter">我的菜谱</a>
             <a href="/UserCenter/WaitCheck">待审核</a>
-            <a href="/UserCenter/NotPass">审核未通过</a>
+            <a href="/UserCenter/NotPass" class="on">审核未通过</a>
         </div>
         <div class="ui_title_right">
             <a href="/CookBook/PublishCookBook" class="ui_btn_blue on">发布新菜谱</a>
         </div>
     </div>
     <div id="J_list" class="ui_list_1 space_box_home get_num">
-        <ul class="ui_list_1" id="ulAccessCook">
-            
-            @*<li data-id="255631">
-                <div class="pic"> <a target="_blank" href="#" title="梅花慕斯"> <img width="120" height="90" class="imgLoad" src="http://i3.meishichina.com/attachment/recipe/2016/03/06/p120_20160306145724080942213.jpg" alt="梅花慕斯" style="display: block;"></a></div>
-                <div class="detail">
-                    <h4><a target="_blank" href="#">梅花慕斯</a></h4>
-                    <p class="subline"><a href="#">孟子72</a>发表于2016-3-6</p>
-                    <div class="substatus clear">
-                        <div class="left"><span>阅读（15845）</span><span>收藏（769）</span></div>
-                        <div class="right">
-                        </div>
-                    </div>
-                </div>
-            </li>*@
-
-        </ul>
-
+        <ul id="ulCookBook"></ul>
     </div>
 </div>
-
 <div class="clear"></div>
-
 
 
