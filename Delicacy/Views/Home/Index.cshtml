@@ -23,8 +23,23 @@
         overflow: hidden;
         text-overflow: ellipsis;
         display: -webkit-box;
-        -webkit-line-clamp: 2;
+        -webkit-line-clamp: 3;
         -webkit-box-orient: vertical;
+    }
+    .homea div:last-child{
+        color:black;
+    }
+     .homea:hover div:last-child {
+        background-color: #ff8a00;
+        color: white;
+    }
+    .homea:hover div:first-child{
+    }
+    .articlea h3{
+        color:#ff8a00;
+    }
+    .articlea:hover h3 {
+        text-decoration:solid #ff8a00;
     }
 </style>
 <div class="banner">
@@ -51,12 +66,15 @@
             {
 
 
-                <div class="col_1_of_3 span_1_of_3">
-                    <div style="height: 200px; overflow: hidden;"><img src="@item.ImgUrl" alt="" style="width:100%;" /></div>
-                    <div class="bottom-head"><h5>@item.Name</h5></div>
-                    <div class="but">
-                        <a href="javascript:;"><button class="btn1 btn-8 btn-8a" onclick="redirectToDetails('@item.CookBookId')">Read More</button></a>
-                    </div>
+                <div class="col_1_of_3 span_1_of_3 homea">
+                    <a href="javascript:;" onclick="redirectToDetails('@item.CookBookId')">
+                        <div style="height: 200px; overflow: hidden;"><img src="@item.ImgUrl" alt="" style="width:100%;" /></div>
+                        @*<div class="bottom-head"><h5>@item.Name</h5></div>*@
+                        @*<div class="but">
+                                <a href="javascript:;"><button class="btn1 btn-8 btn-8a" onclick="redirectToDetails('@item.CookBookId')">Read More</button></a>
+                            </div>*@
+                        <div style="text-align:center;font-size:18px;padding:5px;">@item.Name</div>
+                    </a>
                 </div>
             }
         }
@@ -76,12 +94,15 @@
         {
             foreach (CookBookTsfer item in ViewBag.RecentCook)
             {
-                <div class="col_1_of_3 span_1_of_3">
-                    <div style="height: 200px; overflow: hidden;"><img src="@item.ImgUrl" alt="" style="width:100%;" /></div>
-                    <div class="bottom-head"><h5>@item.Name</h5></div>
-                    <div class="but">
-                        <a href="javascript:;"><button class="btn1 btn-8 btn-8a" onclick="redirectToDetails('@item.CookBookId')">Read More</button></a>
-                    </div>
+                <div class="col_1_of_3 span_1_of_3 homea">
+                    <a href="javascript:;" onclick="redirectToDetails('@item.CookBookId')">
+                        <div style="height: 200px; overflow: hidden;"><img src="@item.ImgUrl" alt="" style="width:100%;" /></div>
+                        @*<div class="bottom-head"><h5>@item.Name</h5></div>*@
+                        @*<div class="but">
+                                <a href="javascript:;"><button class="btn1 btn-8 btn-8a" onclick="redirectToDetails('@item.CookBookId')">Read More</button></a>
+                            </div>*@
+                        <div style="text-align:center;font-size:18px;padding:5px;">@item.Name</div>
+                    </a>
                 </div>
             }
 
@@ -106,11 +127,13 @@
         {
             foreach (SubjectArticleTsfer item in ViewBag.RecentArticle)
             {
-                <div class="col_1_of_4 span_1_of_4">
-                    <img src="/images/plate.png" alt="" />
-                    <h3 style="height:2.4em;">@item.Title</h3>
-                    <p class="ellipsis" style="padding:0;">@item.Brief</p>
-                    <a href="/SubjectArticle/Get?id=@item.SubjectArticleId" target="_blank"><button class="btn1 btn-8 btn-8a">Read More</button></a>
+                <div class="col_1_of_4 span_1_of_4 articlea" style="margin-top:40px;">
+                    <a href="/SubjectArticle/Get?id=@item.SubjectArticleId">
+                        @*<img src="/images/plate.png" alt="" />*@
+                        <h3 style="height:2.4em;">@item.Title</h3>
+                        <p class="ellipsis" style="padding:0;">@item.Brief</p>
+                    </a>
+                    @*<a href="/SubjectArticle/Get?id=@item.SubjectArticleId" target="_blank"><button class="btn1 btn-8 btn-8a">Read More</button></a>*@
                 </div>
             }
         }
