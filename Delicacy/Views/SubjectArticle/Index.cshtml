@@ -67,11 +67,13 @@
         $('#article').append(str);
             window.onscroll = function () {
                 var scrollTop = document.body.scrollTop;
-                var offsetHeight = document.body.offsetHeight;
+                var offsetHeight = document.documentElement.clientHeight;
                 var scrollHeight = document.body.scrollHeight;
                 //alert(scrollTop+"|"+offsetHeight+"|"+scrollHeight);
-                if (scrollTop == scrollHeight - offsetHeight && flag) {
+                //alert(scrollHeight - offsetHeight - scrollTop);
+                if (0 >= scrollHeight - offsetHeight - scrollTop && flag) {
                     index++;
+                    //alert(index);
                     getWaitCheck(index, size);
                 }
             };
