@@ -1,5 +1,5 @@
 ﻿@{
-    ViewBag.Title ="饮食专题";
+    ViewBag.Title = "饮食专题";
     Layout = "~/Views/Shared/_Layout.cshtml";
 }
 
@@ -28,76 +28,94 @@
     $(document).ready(function () {
         $("#forthli").addClass("active");
     });
+    var index = 1, size = 7;
+
+    $(function () {
+        getWaitCheck(1, size);
+    });
+    var flag = true;
+
+
+    //获取饮食专题
+    function getWaitCheck(pageIndex, pageSize) {
+        $.ajax({
+            type: 'get',
+            url: '/SubjectArticle/GetPage',
+            dataType: 'json',
+            data: { pageIndex: pageIndex, pageSize: pageSize },
+            success: function (data) {
+                if (data.StatusCode == 1) {
+                    initList(data.Data);
+                } else {
+                    flag = false;
+                    return layer.msg(data.Message);
+                }
+
+            }
+        });
+    }
+    function initList(json) {
+        var str = '';
+        $.each(json, function (index, value) {
+            if (index % 2 == 0) {
+                str += '<div class="mainborder" style="height:auto;border-bottom:1px solid;"><div style="width:50%;text-align:center;position:relative;float:left;top:20px;"><div><a href="/SubjectArticle/Get?id=' + value.SubjectArticleId + '" style="height: 2.4em; font-size: 20px; color: #ff801a;">' + value.Title + '</a></div></div><div style="width: 50%; position: relative; float: right; text-align: center;" class="buzhou"><p style="margin: auto;padding:20px 40px;line-height:2;font-size:14px;" class="ellipsis">' + value.Brief + '</p></div><div class="clear"></div></div>';
+            }
+            if (index % 2 == 1) {
+                str += '<div class="mainborder" style="height:auto;border-bottom:1px solid;"><div style="width: 50%; position: relative; float: left; text-align: center;" class="buzhou"><p style="margin: auto; padding: 20px 40px; line-height: 2; font-size: 14px;" class="ellipsis">' + value.Brief + '</p></div><div style="width:50%;text-align:center;position:relative;float:right;top:20px;"><div><a href="/SubjectArticle/Get?id=' + value.SubjectArticleId + '"style="height: 2.4em; font-size: 20px; color: #ff801a;">' + value.Title + '</a></div></div><div class="clear"></div></div>';
+            }
+        })
+        $('#article').append(str);
+            window.onscroll = function () {
+                var scrollTop = document.body.scrollTop;
+                var offsetHeight = document.body.offsetHeight;
+                var scrollHeight = document.body.scrollHeight;
+                //alert(scrollTop+"|"+offsetHeight+"|"+scrollHeight);
+                if (scrollTop == scrollHeight - offsetHeight && flag) {
+                    index++;
+                    getWaitCheck(index, size);
+                }
+            };
+    }
 </script>
 
-<div class="main" style="width:90%;margin:auto;">
+<div class="main" style="width:90%;margin:auto;" id="article">
     @*循环开始*@
-    <div class="mainborder" style="height:auto;border-bottom:1px solid;">
-        <div style="width:50%;text-align:center;position:relative;float:left;top:20px;">
-            <div>
-                <a href="/SubjectArticle/Get?id=" style="height: 2.4em; font-size: 20px; color: #ff801a;">孕妇不能吃什么？能吃什么？你知道吗？你知道吗？</a>
+    @*<div class="mainborder" style="height:auto;border-bottom:1px solid;">
+            <div style="width:50%;text-align:center;position:relative;float:left;top:20px;">
+                <div>
+                    <a href="/SubjectArticle/Get?id=" style="height: 2.4em; font-size: 20px; color: #ff801a;">孕妇不能吃什么？能吃什么？你知道吗？你知道吗？</a>
+                </div>
             </div>
-        </div>
-        <div style="width: 50%; position: relative; float: right; text-align: center;" class="buzhou">
-            <p style="margin: auto;padding:20px 40px;line-height:2;font-size:14px;" class="ellipsis">气血不足是中医的概念，气和血都是生命的载体，共同滋润身体，使身体正常协调地运作。春季气候多变，人体容易血虚，机体失调，使身体气血不畅，常会出现失眠多梦等不适的症状，要解决这些毛病，就要经常补血安神了，那么有什么食物帮助我们补血安神呢？下面推荐十种补血安神的好食物，一起来看一下吧。</p>
-        </div>
-
-        <div class="clear"></div>
-    </div>
-    <div class="mainborder" style="height:auto;border-bottom:1px solid;">
-        <div style="width: 50%; position: relative; float: left; text-align: center;" class="buzhou">
-            <p style="margin: auto; padding: 20px 40px; line-height: 2; font-size: 14px;" class="ellipsis">气血不足是中医的概念，气和血都是生命的载体，共同滋润身体，使身体正常协调地运作。春季气候多变，人体容易血虚，机体失调，使身体气血不畅，常会出现失眠多梦等不适的症状。</p>
-        </div>
-
-        <div style="width:50%;text-align:center;position:relative;float:right;top:20px;">
-            <div>
-                <a href="#"style="height: 2.4em; font-size: 20px; color: #ff801a;">孕妇不能吃什么？能吃什么？你知道吗？你知道吗？</a>
+            <div style="width: 50%; position: relative; float: right; text-align: center;" class="buzhou">
+                <p style="margin: auto;padding:20px 40px;line-height:2;font-size:14px;" class="ellipsis">气血不足是中医的概念，气和血都是生命的载体，共同滋润身体，使身体正常协调地运作。春季气候多变，人体容易血虚，机体失调，使身体气血不畅，常会出现失眠多梦等不适的症状，要解决这些毛病，就要经常补血安神了，那么有什么食物帮助我们补血安神呢？下面推荐十种补血安神的好食物，一起来看一下吧。</p>
+            </div><div class="clear"></div></div>
+        <div class="mainborder" style="height:auto;border-bottom:1px solid;">
+            <div style="width: 50%; position: relative; float: left; text-align: center;" class="buzhou">
+                <p style="margin: auto; padding: 20px 40px; line-height: 2; font-size: 14px;" class="ellipsis">气血不足是中医的概念，气和血都是生命的载体，共同滋润身体，使身体正常协调地运作。春季气候多变，人体容易血虚，机体失调，使身体气血不畅，常会出现失眠多梦等不适的症状。</p>
             </div>
-        </div>
-        
 
-        <div class="clear"></div>
-    </div>
+            <div style="width:50%;text-align:center;position:relative;float:right;top:20px;">
+                <div>
+                    <a href="#"style="height: 2.4em; font-size: 20px; color: #ff801a;">孕妇不能吃什么？能吃什么？你知道吗？你知道吗？</a>
+                </div>
+            </div>
+            <div class="clear"></div>
+        </div>*@
     @*循环结束*@
-    <div class="mainborder" style="height:auto;border-bottom:1px solid;">
-        <div style="width:50%;text-align:center;position:relative;float:left;top:20px;">
-            <div>
-                <a href="#" style="height: 2.4em; font-size: 20px; color: #ff801a;">孕妇不能吃什么？</a>
-            </div>
-        </div>
-        <div style="width: 50%; position: relative; float: right; text-align: center;" class="buzhou">
-            <p style="margin: auto;padding:20px 40px;line-height:2;font-size:14px;" class="ellipsis">气血不足是中医的概念，气和血都是生命的载体，共同滋润身体，使身体正常协调地运作。</p>
-        </div>
 
-        <div class="clear"></div>
-    </div>
-    <div class="mainborder" style="height:auto;border-bottom:1px solid;">
-        <div style="width: 50%; position: relative; float: left; text-align: center;" class="buzhou">
-            <p style="margin: auto; padding: 20px 40px; line-height: 2; font-size: 14px;" class="ellipsis">气血不足是中医的概念，气和血都是生命的载体，共同滋润身体，使身体正常协调地运作。春季气候多变，人体容易血虚，机体失调，使身体气血不畅，常会出现失眠多梦等不适的症状。</p>
-        </div>
-
-        <div style="width:50%;text-align:center;position:relative;float:right;top:20px;">
-            <div>
-                <a href="#" style="height: 2.4em; font-size: 20px; color: #ff801a;">孕妇不能吃什么？能吃什么？</a>
-            </div>
-        </div>
-
-
-        <div class="clear"></div>
-    </div>
 
 
 
 
     @*<div class="content-last">
-        <div class="col_1_of_4 span_1_of_4">
-            <h3 style="height:2.4em;">孕妇不能吃什么？能吃什么？你知道吗？</h3>
-            <p class="ellipsis" style="padding:0;">气血不足是中医的概念，气和血都是生命的载体，共同滋润身体，使身体正常协调地运作。春季气候多变，人体容易血虚，机体失调，使身体气血不畅，常会出现失眠多梦等不适的症状，要解决这些毛病，就要经常补血安神了，那么有什么食物帮助我们补血安神呢？下面推荐十种补血安神的好食物，一起来看一下吧。</p>
-            <a href="#" class="btn1 btn-8 btn-8a">Read More</a>
-        </div>
+            <div class="col_1_of_4 span_1_of_4">
+                <h3 style="height:2.4em;">孕妇不能吃什么？能吃什么？你知道吗？</h3>
+                <p class="ellipsis" style="padding:0;">气血不足是中医的概念，气和血都是生命的载体，共同滋润身体，使身体正常协调地运作。春季气候多变，人体容易血虚，机体失调，使身体气血不畅，常会出现失眠多梦等不适的症状，要解决这些毛病，就要经常补血安神了，那么有什么食物帮助我们补血安神呢？下面推荐十种补血安神的好食物，一起来看一下吧。</p>
+                <a href="#" class="btn1 btn-8 btn-8a">Read More</a>
+            </div>
 
-        <div class="clear"></div>
-    </div>*@
+            <div class="clear"></div>
+        </div>*@
 
 </div>
 

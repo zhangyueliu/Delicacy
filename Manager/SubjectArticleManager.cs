@@ -137,5 +137,15 @@ namespace Manager
         {
             return  service.GetListRecent(num);
         }
+        public OutputModel GetPage(string pageIndex, string pageSize)
+        {
+            int count;
+            int index, size;
+            CheckParameter.PageCheck(pageIndex, pageSize, out index, out size);
+            List<SubjectArticleTsfer> list = service.GetPage(index, size, out count);
+            if (list.Count <= 0)
+                return OutputHelper.GetOutputResponse(ResultCode.NoData);
+            return OutputHelper.GetOutputResponse(ResultCode.OK, list);
+        }
     }
 }
