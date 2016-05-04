@@ -21,10 +21,14 @@ namespace Manager
                 return false;
             //验证通过
             UserInfoService userServer = ObjectContainer.GetInstance<UserInfoService>();
-            UserInfoTsfer userDt = userServer.Get(verifyDt.LoginId);
+            UserInfoTsfer userDt = userServer.GetByLoginId(verifyDt.LoginId);
             if (userDt == null)
                 return false;
-
+            if(userDt.Status==1)
+            {
+                System.Web.HttpContext.Current.Session["user"] = userDt;
+                return true;
+            }
             userDt.Status = 1;
             verifyDt.IsUsed = true;
 

@@ -29,9 +29,36 @@ namespace Manager
             if (!RegExVerify.VerifyEmail(loginId))
                 return OutputHelper.GetOutputResponse(ResultCode.ErrorParameter, "邮箱格式不正确");
             //判断邮箱是否被注册
-            UserInfoTsfer uTsfer = service.Get(loginId);
+            UserInfoTsfer uTsfer = service.GetByLoginId(loginId);
+            VerifyRegisterTsfer verifyDt = new VerifyRegisterTsfer
+            {
+                GUID = Guid.NewGuid().ToString().Replace("-", ""),
+                IsUsed = false,
+                OutDate = DateTime.Now.AddDays(7.0),
+                LoginId = loginId,
+                Type = 1
+            };
+            
             if (uTsfer != null)
-                return OutputHelper.GetOutputResponse(ResultCode.ConditionNotSatisfied, "此邮箱已被注册，可以直接登录");
+            {
+                if (uTsfer.Status == 1)
+                {
+                    return OutputHelper.GetOutputResponse(ResultCode.ConditionNotSatisfied, "此邮箱已被注册，可以直接登录");
+                }else
+                {
+                   
+                    //添加到验证表中
+                    VerifyRegisterServer verifyServer = new VerifyRegisterServer();
+                    if (verifyServer.Add(verifyDt))
+                    {
+                        EmailHelper.SendEmail("[食谱网]感谢注册食谱网,请验证邮箱" + loginId, loginId.Substring(0, loginId.IndexOf('@')) + "：您好，感谢您注册食谱网，请点击下面的链接验证您的邮箱：<a href='http://121.42.58.78:8888/UserInfo/VerifyEmail?guid=" + verifyDt.GUID + "'>http://121.42.58.78:8888/UserInfo/VerifyEmail?guid=" + verifyDt.GUID + "</a>该链接7天后失效。", loginId);
+                        return OutputHelper.GetOutputResponse(ResultCode.OK);
+                    }else
+                        return OutputHelper.GetOutputResponse(ResultCode.Error);
+                }
+                    
+            }
+            
             //进行注册
             UserInfoTsfer newUser = new UserInfoTsfer { 
             LoginId=loginId,
@@ -40,16 +67,6 @@ namespace Manager
             RegisterDate=DateTime.Now,
             Status=0
             };
-
-            VerifyRegisterTsfer verifyDt = new VerifyRegisterTsfer
-            {
-                GUID = Guid.NewGuid().ToString().Replace("-", ""),
-                IsUsed = false,
-                OutDate = DateTime.Now.AddDays(7.0),
-                LoginId = loginId,
-                Type=1
-            };
-
             if (service.Add(newUser, verifyDt))
             {
                 //发邮件
