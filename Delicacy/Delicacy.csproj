@@ -263,6 +263,7 @@
     <Content Include="Scripts\bootstrap.min.js" />
     <Content Include="fonts\Amble-Light-webfont.ttf" />
     <None Include="Properties\PublishProfiles\Delicacy.pubxml" />
+    <None Include="Properties\PublishProfiles\xuexiao.pubxml" />
     <None Include="Scripts\jquery-1.10.2.intellisense.js" />
     <Content Include="Scripts\formatVerify.js" />
     <Content Include="Scripts\jqPaginator.js" />
