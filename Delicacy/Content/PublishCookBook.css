@@ -181,9 +181,9 @@ body {
 	background-position: 0 -112px
 }
 
-.header {
+/*.header {
 	margin-top: 40px
-}
+}*/
 
 .top-bar {
 	height: 40px;
@@ -1544,11 +1544,11 @@ a.myadmin:hover {
 }
 
 .ui_btn_blue {
-	background-color: #703B1A
+	background-color: #fc7c00
 }
 
 .ui_btn_blue:hover {
-	background-color: #703B1A;
+	background-color: #fc7c00;
 	text-decoration: none;
 	color: #fff
 }

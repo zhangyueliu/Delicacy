@@ -1,27 +1,25 @@
 ﻿@{
-    ViewBag.Title = "Index";
+    ViewBag.Title = "审核未通过";
     Layout = "~/Views/Shared/_Layout.cshtml";
 }
+
 <link href="~/Content/PublishCookBook.css" rel="stylesheet" />
 <script>
-    $(document).ready(function () {
-        $("#daohang li:last").addClass("active");
-    });
     var index = 1, size = 10;
 
     $(function () {
-        getCollection(1, size);
+        getWaitCheck(1, size, -1);
     });
     var flag = true;
 
 
-    //获取收藏
-    function getCollection(pageIndex, pageSize) {
+    //获取等待审核的菜谱
+    function getWaitCheck(pageIndex, pageSize, status) {
         $.ajax({
             type: 'get',
-            url: '/LikeCookBook/GetPage',
+            url: '/UserCenter/GetaPageCookBookByStatus',
             dataType: 'json',
-            data: { pageIndex: pageIndex, pageSize: pageSize },
+            data: { pageIndex: pageIndex, pageSize: pageSize, status: status },
             success: function (data) {
                 if (data.StatusCode == 1) {
                     initList(data.Data);
@@ -37,7 +35,7 @@
     function initList(json) {
         var str = '';
         $.each(json, function () {
-            str += '<li><div class="pic"><a href="/CookBook/ShowDetail/?cookBookId=' + this.CookBookId + '&isSort=True" target="_blank"><img class="imgLoad" src="' + this.ImgUrl + '" alt="' + this.Name + '" width="120" height="90" /></a></div><div class="detail"><h4><a href="/CookBook/ShowDetail/?cookBookId=' + this.CookBookId + '&isSort=True">' + this.Name + '</a></h4><div class="substatus clear"><div class="left"><a href="javascript:;" onclick="deletethis(&quot;' + this.CookBookId + '&quot;)">取消收藏</a></div></div></div></li>';
+            str += '<li onclick="getDetail(&quot;' + this.CookBookId + '&quot;) "><div class="pic"><a href="#" ><img class="imgLoad" src="' + this.ImgUrl + '" alt="' + this.Name + '" width="120" height="90" /></a></div><div class="detail"><h4><a href="#">' + this.Name + '</a></h4><div class="substatus clear"><div class="left"><a href="#">编辑</a> <a href="javascript:;" onclick="deletethis(&quot;' + this.CookBookId + '&quot;)">删除</a>>删除</a></div></div></div></li>';
         })
         $('#ulCookBook').append(str);
         window.onscroll = function () {
@@ -46,21 +44,23 @@
             var scrollHeight = document.body.scrollHeight;
             if (scrollTop == scrollHeight - offsetHeight && flag) {
                 index++;
-                getCollection(index, size, 0);
+                getWaitCheck(index, size, -1);
             }
         };
     }
 
-
+    function getDetail(cookbookId) {
+        window.location.href = "/UserCenter/WaitCheckDetail?id=" + cookbookId;
+    }
 
     function deletethis(id) {
         $.ajax({
             type: "post",
-            url: "/LikeCookBook/Delete",
+            url: "/UserCenter/DeleteCookBook",
             data: { id: id },
             success: function (o) {
                 if (o.StatusCode == 1) {
-                    layer.msg("您已取消收藏");
+                    layer.msg("成功");
                     setTimeout(function () {
                         location.reload();
                     }, 500);
@@ -71,9 +71,13 @@
             }
         });
     }
-
-
 </script>
+<script>
+    $(document).ready(function () {
+        $("#daohang li:last").addClass("active");
+    });
+</script>
+
 <div class="mod_left">
     <div class="menu_wrap">
         <ul>
@@ -81,20 +85,24 @@
                 <h2>食谱网</h2>
             </li>
             <li>
-                <a href="/UserInfo/UserCenter">菜谱</a>
+                <a class="on" href="/UserInfo/UserCenter">菜谱</a>
             </li>
 
             <li>
-                <a class="on" href="/LikeCookBook/Index">收藏</a>
+                <a href="/LikeCookBook/Index">收藏</a>
             </li>
         </ul>
     </div>
-    <!-- 左侧分类导航结束 -->
 </div>
 <div class="mod_right">
     <div class="ui_title mt20">
         <div class="ui_title_wrap">
-            <a href="#" class="on">我的收藏</a>
+            <a href="/UserInfo/UserCenter">我的菜谱</a>
+            <a href="/UserCenter/WaitCheck">待审核</a>
+            <a href="/UserCenter/NotPass" class="on">审核未通过</a>
+        </div>
+        <div class="ui_title_right">
+            <a href="/CookBook/PublishCookBook" class="ui_btn_blue on">发布新菜谱</a>
         </div>
     </div>
     <div id="J_list" class="ui_list_1 space_box_home get_num">

@@ -29,17 +29,37 @@ namespace Delicacy.Controllers
             return View();
         }
 
+        public ActionResult WaitCheckDetail(string id)
+        {
+            if (!IsLogin())
+                return Redirect("/");
+            OutputModel model = new CookBookManager().GetCookBook(id);
+            if (model.Data == null)
+                return RedirectHome();
+            return View(model.Data);
+        }
+
         /// <summary>
         /// 获取待审核菜谱
         /// </summary>
         /// <returns></returns>
-        public ActionResult GetWaitCheckCookBook()
+        public ActionResult GetaPageCookBookByStatus(string pageIndex, string pageSize, string status)
         {//这里没有分页
             if (user == null)
                 return Content(OutputHelper.GetOutputResponse(ResultCode.NoLogin));
-            return Content(new CookBookManager().GetWaitCheckCookBook(user.UserId));
+            return Content(new CookBookManager().GetaPageCookBookByStatus(pageIndex, pageSize, user.UserId,status));
         }
 
+        public ActionResult DeleteCookBook(string id)
+        {
+            return Content(new CookBookManager().Delete(id));
+        }
+        public ActionResult NotPass()
+        {
+            if (!IsLogin())
+                return Redirect("/");
+            return View();
+        }
+    }
         
     }
-}

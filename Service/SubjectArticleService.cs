@@ -74,5 +74,12 @@ namespace Service
         {
             return Select(o => o.SubjectArticleId == id).Any();
         }
+
+        public List<SubjectArticleTsfer> GetListRecent(int num)
+        {
+            List<SubjectArticle> list = Select(o => true).OrderByDescending(o => o.Datetime).Take(num).ToList();
+            return TransferObject.ConvertObjectByEntity<SubjectArticle, SubjectArticleTsfer>(list);
+        }
+        
     }
 }

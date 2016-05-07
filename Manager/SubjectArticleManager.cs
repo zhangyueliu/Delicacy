@@ -35,7 +35,15 @@ namespace Manager
         {
             if (subarticle == null)
                 return OutputHelper.GetOutputResponse(ResultCode.NoParameter);
-            if (service.Update(subarticle))
+
+            SubjectArticleTsfer article = service.Get(subarticle.SubjectArticleId);
+            if(article==null)
+                return OutputHelper.GetOutputResponse(ResultCode.ConditionNotSatisfied);
+            article.Brief = subarticle.Brief;
+            article.Content = subarticle.Content;
+            article.Title = subarticle.Title;
+            article.Datetime = DateTime.Now;
+            if (service.Update(article))
                 return OutputHelper.GetOutputResponse(ResultCode.OK);
             return OutputHelper.GetOutputResponse(ResultCode.Error);
         }
@@ -43,7 +51,8 @@ namespace Manager
         public OutputModel Delete(string id)
         {
             int i;
-            CheckParameter.PageCheck(id, out i);
+            if (!int.TryParse(id, out i))
+                return OutputHelper.GetOutputResponse(ResultCode.ErrorParameter);
             if (!service.IsExist(i))
                 return OutputHelper.GetOutputResponse(ResultCode.NoData);
             if (service.Delete(i))
@@ -75,6 +84,13 @@ namespace Manager
             if (s == null)
                 return OutputHelper.GetOutputResponse(ResultCode.NoData);
             return OutputHelper.GetOutputResponse(ResultCode.OK, s);
+        }
+
+        public SubjectArticleTsfer GetArticle(int  id)
+         {
+            SubjectArticleTsfer article=  service.Get(id);
+            //article.Content = System.Web.HttpUtility.HtmlDecode(article.Content); //System.Web.HttpUtility.HtmlEncode(article.Content);
+            return article;
         }
 
         ///// <summary>
@@ -115,6 +131,21 @@ namespace Manager
             List<SubjectArticleTsfer> list = service.GetPage(pageIndex, pageSize, out count);
             pageCount = (int)Math.Ceiling(count * 1.0 / pageSize);
             return list;
+        }
+
+        public List<SubjectArticleTsfer> GetRecent(int num)
+        {
+            return  service.GetListRecent(num);
+        }
+        public OutputModel GetPage(string pageIndex, string pageSize)
+        {
+            int count;
+            int index, size;
+            CheckParameter.PageCheck(pageIndex, pageSize, out index, out size);
+            List<SubjectArticleTsfer> list = service.GetPage(index, size, out count);
+            if (list.Count <= 0)
+                return OutputHelper.GetOutputResponse(ResultCode.NoData);
+            return OutputHelper.GetOutputResponse(ResultCode.OK, list);
         }
     }
 }

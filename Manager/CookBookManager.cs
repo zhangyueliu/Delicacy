@@ -1,4 +1,4 @@
-﻿﻿﻿using System;
+﻿﻿﻿﻿using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
@@ -165,13 +165,23 @@ namespace Manager
         /// </summary>
         /// <param name="userId"></param>
         /// <returns></returns>
-        public OutputModel GetWaitCheckCookBook(int userId)
+        public OutputModel GetaPageCookBookByStatus(string pageIndex,string pageSize,int userId,string status)
         {
-            List<CookBookTsfer> list = service.GetList(userId, 0);
+            int index, size,iStatus;
+            CheckParameter.PageCheck(pageIndex, pageSize, out index, out size);
+            if(!int.TryParse(status,out iStatus))
+                return OutputHelper.GetOutputResponse(ResultCode.ErrorParameter);
+            List<CookBookTsfer> list = service.GetPage(index, size, userId, iStatus);
             if (list.Count == 0)
                 return OutputHelper.GetOutputResponse(ResultCode.NoData);
+            UserInfoService userService = new UserInfoService();
+            list.ForEach(o=>o.UserName=userService.Get(o.UserId).Name);
+
             return OutputHelper.GetOutputResponse(ResultCode.OK, list);
         }
+
+
+
 
         /// <summary>
         /// 根据cookbookId获取菜谱详情
@@ -332,5 +342,26 @@ namespace Manager
                 return OutputHelper.GetOutputResponse(ResultCode.OK);
             return OutputHelper.GetOutputResponse(ResultCode.Error);
         }
+
+        public List<CookBookTsfer> GetHottest(int topNum)
+        {
+            return  service.GetListByHottest(topNum);
+        }
+
+        public List<CookBookTsfer> GetRecent(int num)
+        {
+            return service.GetListRecent(num);
+        }
+
+        public OutputModel Delete(string id)
+        {
+          CookBookTsfer c=  service.Get(id);
+          if (c == null)
+              return OutputHelper.GetOutputResponse(ResultCode.NoData);
+            if (service.Delete(c))
+                return OutputHelper.GetOutputResponse(ResultCode.OK);
+            return OutputHelper.GetOutputResponse(ResultCode.Error);
+        }
     }
+
 }

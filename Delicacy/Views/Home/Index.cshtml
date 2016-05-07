@@ -1,10 +1,9 @@
-﻿@{
+﻿@using DataTransfer
+@{
     ViewBag.Title = "美食网";
 }
 <script type="text/javascript">
-    $(function () {
-        //SyntaxHighlighter.all();
-    });
+
     $(window).load(function () {
         $('.flexslider').flexslider({
             animation: "slide",
@@ -14,9 +13,35 @@
         });
         $("#daohang li:first").addClass("active");
     });
+
+    function redirectToDetails(cookbookId) {
+        window.location.href = '/cookbook/ShowDetail?cookBookId=' + cookbookId + '&isSort=True';
+    }
 </script>
-
-
+<style>
+    .ellipsis {
+        overflow: hidden;
+        text-overflow: ellipsis;
+        display: -webkit-box;
+        -webkit-line-clamp: 3;
+        -webkit-box-orient: vertical;
+    }
+    .homea div:last-child{
+        color:black;
+    }
+     .homea:hover div:last-child {
+        background-color: #ff8a00;
+        color: white;
+    }
+    .homea:hover div:first-child{
+    }
+    .articlea h3{
+        color:#ff8a00;
+    }
+    .articlea:hover h3 {
+        text-decoration:solid #ff8a00;
+    }
+</style>
 <div class="banner">
     <div class="flexslider">
         <ul class="slides">
@@ -29,104 +54,91 @@
 </div>
 <div class="main">
     <div class="content-top">
-        <div class="col_1_of_5 span_1_of_5">
-            <div class="hover_img">
-                <img src="/images/pic.jpg" alt="" />
-            </div>
-        </div>
-        <div class="col_1_of_5 span_1_of_5">
-            <div class="hover_img">
-                <img src="/images/pic1.jpg" alt="" />
-            </div>
-        </div>
-        <div class="col_1_of_5 span_1_of_5">
-            <div class="hover_img">
-                <img src="/images/pic2.jpg" alt="" />
-            </div>
-        </div>
-        <div class="col_1_of_5 span_1_of_5">
-            <div class="hover_img">
-                <img src="/images/pic3.jpg" alt="" />
-            </div>
-        </div>
-        <div class="col_1_of_last span_1_of_5">
-            <h3><span class="red">Our Four</span><br><span class="black"> Food Types</span></h3>
-            <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad.</p>
-        </div>
+        <div style="border-bottom: 1px solid #EBE4D6;"><h3><span class="red" style="border-bottom:2px solid">最火菜谱</span>@*<span class="black" style="position: relative;float: right;right:1em;">More</span>*@</h3></div>
+
+        @if (ViewBag.Hottest.Count == 0)
+        {
+            <span>暂时无数据</span>
+        }
+        else
+        {
+            foreach (CookBookTsfer item in ViewBag.Hottest)
+            {
+
+
+                <div class="col_1_of_3 span_1_of_3 homea">
+                    <a href="javascript:;" onclick="redirectToDetails('@item.CookBookId')">
+                        <div style="height: 200px; overflow: hidden;"><img src="@item.ImgUrl" alt="" style="width:100%;" /></div>
+                        @*<div class="bottom-head"><h5>@item.Name</h5></div>*@
+                        @*<div class="but">
+                                <a href="javascript:;"><button class="btn1 btn-8 btn-8a" onclick="redirectToDetails('@item.CookBookId')">Read More</button></a>
+                            </div>*@
+                        <div style="text-align:center;font-size:18px;padding:5px;">@item.Name</div>
+                    </a>
+                </div>
+            }
+        }
+
+
         <div class="clear"></div>
     </div>
     <div class="content-middle">
-        <div class="col_1_of_2 span_1_of_2">
-            <h3><span class="red">Lorem ipsum </span><br><span class="black">consectetuer</span></h3>
-            <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam.</p>
-            <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur.</p>
-            <button class="btn1 btn-8 btn-8a">Read More</button>
-        </div>
-        <div class="col_1_of_2 span_1_of_2">
-            <div class="grid_img">
-                <div class="hover_img">
-                    <img src="/images/pic4.jpg" alt="" />
+        <div style="border-bottom: 1px solid #EBE4D6;"><h3><span class="red" style="border-bottom:2px solid">最新菜谱</span>@*<span class="black" style="position: relative;float: right;right:1em;">More</span>*@</h3></div>
+
+
+        @if (ViewBag.RecentCook.Count == 0)
+        {
+            <span>暂时无数据</span>
+        }
+        else
+        {
+            foreach (CookBookTsfer item in ViewBag.RecentCook)
+            {
+                <div class="col_1_of_3 span_1_of_3 homea">
+                    <a href="javascript:;" onclick="redirectToDetails('@item.CookBookId')">
+                        <div style="height: 200px; overflow: hidden;"><img src="@item.ImgUrl" alt="" style="width:100%;" /></div>
+                        @*<div class="bottom-head"><h5>@item.Name</h5></div>*@
+                        @*<div class="but">
+                                <a href="javascript:;"><button class="btn1 btn-8 btn-8a" onclick="redirectToDetails('@item.CookBookId')">Read More</button></a>
+                            </div>*@
+                        <div style="text-align:center;font-size:18px;padding:5px;">@item.Name</div>
+                    </a>
                 </div>
-            </div>
-            <div class="banner2">
-                <a href="#">
-                    <div class="price">$50</div>
-                    <strong>Free Shipping</strong>
-                    *eiusmod tempor incididunt ut labore
-                </a>
-            </div>
-        </div>
-        <div class="clear"></div>
-    </div>
-    <div class="content-bottom">
-        <div class="col_1_of_3 span_1_of_3">
-            <img src="/images/pic5.jpg" alt="" />
-            <div class="bottom-head"><h5>Lorem ipsum dolor sit amet, consectetuer</h5></div>
-            <div class="but">
-                <button class="btn1 btn-8 btn-8a">Read More</button>
-            </div>
-        </div>
-        <div class="col_1_of_3 span_1_of_3">
-            <img src="/images/pic6.jpg" alt="" />
-            <div class="bottom-head"><h5>Lorem ipsum dolor sit amet, consectetuer</h5></div>
-            <div class="but">
-                <button class="btn1 btn-8 btn-8a">Read More</button>
-            </div>
-        </div>
-        <div class="col_1_of_3 span_1_of_3">
-            <img src="/images/pic7.jpg" alt="" />
-            <div class="bottom-head"><h5>Lorem ipsum dolor sit amet, consectetuer</h5></div>
-            <div class="but">
-                <button class="btn1 btn-8 btn-8a">Read More</button>
-            </div>
-        </div>
+            }
+
+        }
+
+
+
         <div class="clear"></div>
     </div>
     <div class="content-last">
-        <div class="col_1_of_4 span_1_of_4">
-            <img src="/images/glass.png" alt="" />
-            <h3>Lorem Ipsum is simply</h3>
-            <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur.</p>
-            <button class="btn1 btn-8 btn-8a">Read More</button>
+        <div style="border-bottom: 1px solid #EBE4D6;">
+            <h3>
+                <span class="red" style="border-bottom:2px solid">饮食专题</span>
+            </h3>
         </div>
-        <div class="col_1_of_4 span_1_of_4">
-            <img src="/images/plate.png" alt="" />
-            <h3>Lorem Ipsum is simply</h3>
-            <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur.</p>
-            <button class="btn1 btn-8 btn-8a">Read More</button>
-        </div>
-        <div class="col_1_of_4 span_1_of_4">
-            <img src="/images/icecream.png" alt="" />
-            <h3>Lorem Ipsum is simply</h3>
-            <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur.</p>
-            <button class="btn1 btn-8 btn-8a">Read More</button>
-        </div>
-        <div class="col_1_of_4 span_1_of_4">
-            <img src="/images/leaf.png" alt="" />
-            <h3>Lorem Ipsum is simply</h3>
-            <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur.</p>
-            <button class="btn1 btn-8 btn-8a">Read More</button>
-        </div>
+
+        @if (ViewBag.RecentArticle.Count == 0)
+        {
+            <span>暂时无数据</span>
+        }
+        else
+        {
+            foreach (SubjectArticleTsfer item in ViewBag.RecentArticle)
+            {
+                <div class="col_1_of_4 span_1_of_4 articlea" style="margin-top:40px;">
+                    <a href="/SubjectArticle/Get?id=@item.SubjectArticleId">
+                        @*<img src="/images/plate.png" alt="" />*@
+                        <h3 style="height:2.4em;">@item.Title</h3>
+                        <p class="ellipsis" style="padding:0;">@item.Brief</p>
+                    </a>
+                    @*<a href="/SubjectArticle/Get?id=@item.SubjectArticleId" target="_blank"><button class="btn1 btn-8 btn-8a">Read More</button></a>*@
+                </div>
+            }
+        }
         <div class="clear"></div>
     </div>
+
+
 </div>

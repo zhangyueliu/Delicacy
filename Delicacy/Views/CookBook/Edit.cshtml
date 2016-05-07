@@ -1,11 +1,12 @@
 ﻿@using DataTransfer
 @{
-    ViewBag.Title = "上传菜谱-美食网";
+    ViewBag.Title = "修改菜谱-美食网";
     Layout = "~/Views/Shared/_Layout.cshtml";
 }
 <link href="~/Content/PublishCookBook.css" rel="stylesheet" />
-<script src="~/Scripts/publishCookBook/hm.js"></script>
-<script src="~/Scripts/publishCookBook/ga.js"></script>
+<script src="~/Scripts/Tool.js"></script>
+@*<script src="~/Scripts/publishCookBook/hm.js"></script>
+<script src="~/Scripts/publishCookBook/ga.js"></script>*@
 <script>
     $(document).ready(function () {
         $("#daohang li:last").addClass("active");
@@ -64,7 +65,7 @@
                         <input type="file" name="file" id="userfile_0" value="" style="opacity: 0; display: block; left: -5.5px; top: -35px;">
                         <p class="p1">点击上传成品图</p>
                         <p class="p3">（必填）</p>
-
+                        <div class="div_file_img" style="background-image: none;"><img class="file_img" src="/Upload/Images/a79438dd79324269bda401d79ff027c9.jpg" width="100%"></div>
                     </div>
                     <div class="left">
                         <textarea class="textAreaMain J_input J_swfDisc" id="message" name="message">请输入菜谱描述</textarea>
@@ -80,19 +81,23 @@
 
 
                 <dd>
-                    <div class="multiselect select_0" style="width: 103px;"><a tar="foodSort" href="javascript:;" check="false" class="multi_txt multi_1" title="口味">菜谱类别</a><ul class="" style="">
-                        @foreach(FoodSortTsfer foodSort in ViewBag.FoodSort)
-                        {
-                            <li><a href="javascript:;"><label class="J_radio"><input type="radio" name="foodSort" value="@foodSort.FoodSortId">@foodSort.Name</label></a></li>
-                        }
-                        </ul></div>
+                    <div class="multiselect select_0" style="width: 103px;">
+                        <a tar="foodSort" href="javascript:;" check="false" class="multi_txt multi_1" title="口味">菜谱类别</a><ul class="" style="">
+                            @foreach (FoodSortTsfer foodSort in ViewBag.FoodSort)
+                            {
+                                <li><a href="javascript:;"><label class="J_radio"><input type="radio" name="foodSort" value="@foodSort.FoodSortId">@foodSort.Name</label></a></li>
+                            }
+                        </ul>
+                    </div>
 
-                    <div class="multiselect select_1" style="width: 103px;"><a tar="cuisine" href="javascript:;" check="false" class="multi_txt multi_1" title="口味">口味</a><ul class="" style="">
-                        @foreach (TasteTsfer taste in ViewBag.Taste)
-                        {
-                            <li><a href="javascript:;"><label class="J_radio"><input type="radio" name="cuisine" value="@taste.TasteId">@taste.Name</label></a></li>
-                        }
-                        </ul></div>
+                    <div class="multiselect select_1" style="width: 103px;">
+                        <a tar="cuisine" href="javascript:;" check="false" class="multi_txt multi_1" title="口味">口味</a><ul class="" style="">
+                            @foreach (TasteTsfer taste in ViewBag.Taste)
+                            {
+                                <li><a href="javascript:;"><label class="J_radio"><input type="radio" name="cuisine" value="@taste.TasteId">@taste.Name</label></a></li>
+                            }
+                        </ul>
+                    </div>
 
                     <div class="multiselect select_4" style="width: 103px;">
                         <input type="hidden" name="foodMaterial" id="J_foodMaterial" value="">
@@ -100,7 +105,7 @@
                         <ul class="" style="">
                             @{
                                 List<FoodMaterialTsfer> list = ViewBag.FoodMaterial;
-                                for (int i = 0; i < list.Count;i++ )
+                                for (int i = 0; i < list.Count; i++)
                                 {
                                     <li>
                                         <a href="javascript:;">
@@ -243,7 +248,7 @@
                 </dt>
                 <dd>
                     <div class="submitdiv" style="text-align:center;">
-                        <input class="postbtn" id="postbtn" name="submit" type="button" value="发布菜谱">
+                        <input class="postbtn" id="postbtn" name="submit" type="button" value="确定修改">
                     </div>
                 </dd>
             </dl>
@@ -329,7 +334,8 @@
                                 ifbtn = 1;
                                 $(this).val("提交中...");
                                 //$(this).attr("id", "");
-                                publishCookBook(0);//0待审核
+                                //publishCookBook(0);//0待审核
+
                             }
                         }
                     }
