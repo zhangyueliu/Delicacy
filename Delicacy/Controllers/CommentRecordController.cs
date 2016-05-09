@@ -10,11 +10,11 @@ namespace Delicacy.Controllers
 {
     public class CommentRecordController : BaseController
     {
-        public ActionResult AddCookBookComment(string cookBookId,string pId,string content,string rootId)
+        public ActionResult AddCookBookComment(string cookBookId,string pId,string content,string rootId,short type=1)
         {
             if (!IsLogin())
                 return Content(OutputHelper.GetOutputResponse(ResultCode.NoLogin));
-            return Content(new CommentRecordManager().AddCookBookComment(cookBookId, content, pId, user.UserId, rootId));
+            return Content(new CommentRecordManager().AddCookBookComment(cookBookId, content, pId, user.UserId, rootId,type));
         }
 
         /// <summary>
@@ -22,9 +22,9 @@ namespace Delicacy.Controllers
         /// </summary>
         /// <param name="cookBookId"></param>
         /// <returns></returns>
-        public ActionResult GetComments(string cookBookId)
+        public ActionResult GetComments(string cookBookId,short type)
         {
-            return Content(new CommentRecordManager().GetListCookBook(cookBookId));
+            return Content(new CommentRecordManager().GetListCookBook(cookBookId,type));
         }
 	}
 }

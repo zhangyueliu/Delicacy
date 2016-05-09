@@ -13,7 +13,7 @@ namespace Manager
     {
         private CommentRecordService service = ObjectContainer.GetInstance<CommentRecordService>();
         
-        public OutputModel AddCookBookComment(string cookBookId,string content,string pId,int userId,string rootId)
+        public OutputModel AddCookBookComment(string cookBookId,string content,string pId,int userId,string rootId,short type)
         {
             if (CheckParameter.IsNullOrWhiteSpace(cookBookId, content, pId, rootId))
                 return OutputHelper.GetOutputResponse(ResultCode.NoParameter);
@@ -32,7 +32,7 @@ namespace Manager
             DateTime=DateTime.Now,
             OperateId=cookBookId,
             PId = iPId,
-            Type=1,
+            Type=type,
             UserId=userId,
             RootId = iRootId,
             };
@@ -94,11 +94,11 @@ namespace Manager
         /// </summary>
         /// <param name="cookbookid"></param>
         /// <returns></returns>
-        public OutputModel GetListCookBook(string  cookbookid)
+        public OutputModel GetListCookBook(string  cookbookid,short type)
         {
             if(string.IsNullOrWhiteSpace(cookbookid))
                 return OutputHelper.GetOutputResponse(ResultCode.NoParameter);
-            List<CommentRecordTsfer> list = service.GetListCookBook(cookbookid);
+            List<CommentRecordTsfer> list = service.GetListCookBook(cookbookid,type);
             if (list.Count == 0)
                 return OutputHelper.GetOutputResponse(ResultCode.NoData);
 

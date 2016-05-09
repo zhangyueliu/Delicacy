@@ -4,10 +4,85 @@
     ViewBag.Title = @Model.Title ;
     Layout = "~/Views/Shared/_Layout.cshtml";
 }
+<link href="~/Content/bootstrap.css" rel="stylesheet" />
 <script>
+    var pId = 0;
     $(document).ready(function () {
         $("#forthli").addClass("active");
+        loadComment();
     });
+    function submit(id, rootId, pid) {
+        if (pid == 0)
+            pId = 0;
+        var content = $('#' + id.toString()).val();
+        $('#' + temp + '1').val('');
+        $('#' + temp).css('display', 'none');
+        if (pId == 0) {
+            $(".showhidden").css("display", "none");
+        }
+        if (!content) {
+            layer.msg('评论内容不能为空');
+            $('#' + id).focus();
+            return;
+        }
+
+        $.ajax({
+            url: '/CommentRecord/AddCookBookComment',
+            type: 'post',
+            data: { content: content, cookBookId: '@Model.SubjectArticleId', pId: pId, rootId: rootId,type:2 },
+            success: function (data) {
+                layer.msg(data.Message);
+                if (data.StatusCode == 1) {
+                    $('#content').val('');
+                    loadComment();
+                }
+            }
+        });
+    }
+
+    function loadComment() {
+        $.ajax({
+            url: '/CommentRecord/GetComments',
+            type: 'post',
+            data: { cookBookId: '@Model.SubjectArticleId',type:2 },
+            success: function (data) {
+                if (data.StatusCode == 1) {
+                    initComment(data.Data);
+                } else if (data.StatusCode != 4)
+                    layer.msg(data.Message);
+            }
+        });
+    }
+
+    function initComment(json) {
+        var comment = '';
+        $.each(json, function (index, value) {
+            comment += '<div class="media mainborder"><a class="pull-left" href="#"><img class="media-object" src="/images/touxiang.png" style="width:50px;height:50px;" alt="作者"></a><div class="media-body"><h4 class="media-heading"><lable>' + value.User.Name + '</lable><a style="position: relative; float: right; font-size: 10px; cursor: pointer;" onclick="reply(' + value.CommentId + ',' + value.CommentId + ',&quot;' + value.User.Name + '&quot;)">回复</a></h4><p>' + value.Content + '</p> ';
+            //判断有没有二级评论
+            if (value.SonComment.length > 0) {
+                $.each(value.SonComment, function (key, item) {
+                    comment += '<div class="media mainborder"><a class="pull-left" href="#"><img class="media-object" src="/images/touxiang.png" style="width:50px;height:50px;" alt="作者"></a><div class="media-body"><h4 class="media-heading"><lable>' + item.User.Name + '</lable><a style="position: relative; float: right; font-size: 10px; cursor: pointer;" onclick="reply(' + value.CommentId + ',' + item.CommentId + ',&quot;' + item.User.Name + '&quot;)" >回复</a></h4><p>' + item.Content + '</p></div></div>';
+                })
+            }
+            comment += '<div class="mainborder showhidden" id="' + value.CommentId + '" style="display:none" ><textarea id="' + value.CommentId + '1" class="mainborder"  style="margin:auto;width:100%;" rows="3"></textarea><input type="button" onclick="submit(' + value.CommentId + '1,' + value.CommentId + ')" value="评论" class="btn-default" style="position:relative;float:right;" /><div class="clear"></div></div></div></div>';
+
+
+        });
+        $('#comment').html(comment);
+    }
+
+
+    var temp = '';//存储临时代开的回复框
+    function reply(commentId, pid, name) {
+
+        $(".showhidden").css("display", "none");
+        $('#' + commentId.toString()).css('display', 'block');
+        pId = pid;
+        temp = commentId;
+        $('#' + temp + '1').val('回复 ' + name + ' ：');
+
+        $('#' + temp + '1').focus();
+    }
 </script>
 
 <div class="main" style="width:80%;margin:auto;margin-bottom:1%;">
@@ -16,6 +91,14 @@
         <div style="font-size:12px;">@Model.Datetime.ToShortDateString()</div>
     </div>
     <div class="detial" style="margin: 1%; line-height: 2; font-size: 130%; padding: 1%;">@Html.Raw(@Model.Content)</div>
+    <div class="detial" id="comment" style="margin-top:1em;">
+    </div>
+<div class="detial mainborder">
+    <textarea class="mainborder" id="content" style="margin:auto;width:100%;" rows="3"></textarea>
+    <input type="button" onclick="submit('content',0,0)" value="评论" class="btn btn-default" style="position:relative;float:right;" />
+    <div class="clear"></div>
+
+</div>
 </div>
 
 
