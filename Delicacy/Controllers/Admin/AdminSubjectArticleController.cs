@@ -65,5 +65,23 @@ namespace Delicacy.Controllers.Admin
             return Content(new SubjectArticleManager().Update(article));
         }
 
+        public ActionResult comments(string pageindex)
+        {
+            int pagesize = 10;
+            int pagecount;
+            List<CommentRecordTsfer> list = new CommentRecordManager().GetPage(2, pageindex, pagesize, out pagecount);
+            ViewBag.pageIndex = pageindex;
+            ViewBag.pageCount = pagecount;
+            return View(list);
+        }
+        public ActionResult DeleteComment(string id)
+        {
+            int i;
+            if (!int.TryParse(id, out i))
+            {
+                return Content(new OutputModel { StatusCode = 3 });//3是错误参数
+            }
+            return Content(new CommentRecordManager().Delete(i));
+        }
     }
 }

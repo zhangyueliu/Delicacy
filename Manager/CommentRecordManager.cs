@@ -12,33 +12,34 @@ namespace Manager
     public class CommentRecordManager
     {
         private CommentRecordService service = ObjectContainer.GetInstance<CommentRecordService>();
-        
-        public OutputModel AddCookBookComment(string cookBookId,string content,string pId,int userId,string rootId,short type)
+
+        public OutputModel AddCookBookComment(string cookBookId, string content, string pId, int userId, string rootId, short type)
         {
             if (CheckParameter.IsNullOrWhiteSpace(cookBookId, content, pId, rootId))
                 return OutputHelper.GetOutputResponse(ResultCode.NoParameter);
-            int iPId,iRootId;
-            if(!int.TryParse(pId,out iPId)||!int.TryParse(rootId,out  iRootId))
+            int iPId, iRootId;
+            if (!int.TryParse(pId, out iPId) || !int.TryParse(rootId, out  iRootId))
                 return OutputHelper.GetOutputResponse(ResultCode.ErrorParameter);
-            CommentRecordTsfer pComment=null;
-            if (iPId != 0 && (pComment= service.Get(iPId))==null)
+            CommentRecordTsfer pComment = null;
+            if (iPId != 0 && (pComment = service.Get(iPId)) == null)
             {
                 return OutputHelper.GetOutputResponse(ResultCode.ConditionNotSatisfied);
             }
-            if(iRootId!=0&&!service.IsExist(iRootId))
+            if (iRootId != 0 && !service.IsExist(iRootId))
                 return OutputHelper.GetOutputResponse(ResultCode.ConditionNotSatisfied);
-            CommentRecordTsfer comment = new CommentRecordTsfer { 
-            Content=content,
-            DateTime=DateTime.Now,
-            OperateId=cookBookId,
-            PId = iPId,
-            Type=type,
-            UserId=userId,
-            RootId = iRootId,
+            CommentRecordTsfer comment = new CommentRecordTsfer
+            {
+                Content = content,
+                DateTime = DateTime.Now,
+                OperateId = cookBookId,
+                PId = iPId,
+                Type = type,
+                UserId = userId,
+                RootId = iRootId,
             };
 
             if (service.Add(comment))
-                return OutputHelper.GetOutputResponse(ResultCode.OK,"评论成功");
+                return OutputHelper.GetOutputResponse(ResultCode.OK, "评论成功");
             return OutputHelper.GetOutputResponse(ResultCode.Error);
         }
         public OutputModel Update(CommentRecordTsfer comment)
@@ -69,7 +70,7 @@ namespace Manager
                 return OutputHelper.GetOutputResponse(ResultCode.OK);
             return OutputHelper.GetOutputResponse(ResultCode.Error);
         }
-         public OutputModel Get(int id)
+        public OutputModel Get(int id)
         {
             CommentRecordTsfer c = service.Get(id);
             if (c == null)
@@ -94,11 +95,11 @@ namespace Manager
         /// </summary>
         /// <param name="cookbookid"></param>
         /// <returns></returns>
-        public OutputModel GetListCookBook(string  cookbookid,short type)
+        public OutputModel GetListCookBook(string cookbookid, short type)
         {
-            if(string.IsNullOrWhiteSpace(cookbookid))
+            if (string.IsNullOrWhiteSpace(cookbookid))
                 return OutputHelper.GetOutputResponse(ResultCode.NoParameter);
-            List<CommentRecordTsfer> list = service.GetListCookBook(cookbookid,type);
+            List<CommentRecordTsfer> list = service.GetListCookBook(cookbookid, type);
             if (list.Count == 0)
                 return OutputHelper.GetOutputResponse(ResultCode.NoData);
 
@@ -115,12 +116,13 @@ namespace Manager
                 item.User = userService.Get(item.UserId);
 
                 item.SonComment = list.Where(o => o.RootId == item.CommentId).ToList();
-                item.SonComment.ForEach(o => {
+                item.SonComment.ForEach(o =>
+                {
                     o.User = userService.Get(o.UserId);
                 });
                 list.RemoveAll(o => o.RootId == item.CommentId);
             }
-            
+
             //UserInfoService userService=new UserInfoService();
             //foreach (CommentRecordTsfer  item in list)
             //{
@@ -138,27 +140,44 @@ namespace Manager
             List<CommentRecordTsfer> list = service.GetListUser(userid);
             if (list == null)
                 return OutputHelper.GetOutputResponse(ResultCode.NoData);
-            return OutputHelper.GetOutputResponse(ResultCode.OK,list);
+            return OutputHelper.GetOutputResponse(ResultCode.OK, list);
         }
-        public List<CommentRecordTsfer> GetPage(short type,string pageindex, int pagesize, out int pagecount)
+        public List<CommentRecordTsfer> GetPage(short type, string pageindex, int pagesize, out int pagecount)
         {
-            
+
             int p;
             int rowcount;
             CheckParameter.PageCheck(pageindex, out p);
-            List<CommentRecordTsfer> list = service.GetPage(type,p, pagesize, out rowcount);
+            List<CommentRecordTsfer> list = service.GetPage(type, p, pagesize, out rowcount);
             pagecount = (int)Math.Ceiling(rowcount * 1.0 / pagesize);
             CookBookManager manager = new CookBookManager();
-            foreach (CommentRecordTsfer item in list)
+            SubjectArticleManager managersub = new SubjectArticleManager();
+            if (type == 1)
             {
-                OutputModel o=manager.GetCookBook(item.OperateId);
-                if (o.StatusCode == 1){
-                    CookBookTsfer c=(CookBookTsfer)o.Data;
-                    item.OperateName = c.Name;
-                }   
+                foreach (CommentRecordTsfer item in list)
+                {
+                    OutputModel o = manager.GetCookBook(item.OperateId);
+                    if (o.StatusCode == 1)
+                    {
+                        CookBookTsfer c = (CookBookTsfer)o.Data;
+                        item.OperateName = c.Name;
+                    }
+                }
+            }
+            else if (type == 2)
+            {
+                foreach (CommentRecordTsfer item in list)
+                {
+                    OutputModel o = managersub.Get(item.OperateId);
+                    if (o.StatusCode == 1)
+                    {
+                        SubjectArticleTsfer c = (SubjectArticleTsfer)o.Data;
+                        item.OperateName = c.Title;
+                    }
+                }
             }
             return list;
         }
-        
+
     }
 }

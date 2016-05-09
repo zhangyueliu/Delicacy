@@ -78,9 +78,12 @@ namespace Manager
             return outputmodel;
         }
 
-        public OutputModel Get(int id)
+        public OutputModel Get(string id)
         {
-            SubjectArticleTsfer s = service.Get(id);
+            int i;
+            if (!int.TryParse(id, out i))
+                return OutputHelper.GetOutputResponse(ResultCode.ErrorParameter);
+            SubjectArticleTsfer s = service.Get(i);
             if (s == null)
                 return OutputHelper.GetOutputResponse(ResultCode.NoData);
             return OutputHelper.GetOutputResponse(ResultCode.OK, s);

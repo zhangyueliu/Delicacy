@@ -25,9 +25,7 @@ namespace Delicacy.Controllers
 
         public ActionResult Get(string id)
         {
-            int subjectArticleId;
-            int.TryParse(id, out subjectArticleId);
-            SubjectArticleTsfer s = (SubjectArticleTsfer)new SubjectArticleManager().Get(subjectArticleId).Data;
+            SubjectArticleTsfer s = (SubjectArticleTsfer)new SubjectArticleManager().Get(id).Data;
             return View(s);
         }
 	}
