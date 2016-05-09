@@ -47,6 +47,16 @@ namespace Service
             return TransferObject.ConvertObjectByEntity<UserInfo, UserInfoTsfer>(base.Select(o => o.LoginId == loginId&&o.Status==1).FirstOrDefault());
         }
 
+        public UserInfoTsfer GetByLoginId(string loginId)
+        {
+            return TransferObject.ConvertObjectByEntity<UserInfo, UserInfoTsfer>(base.Select(o => o.LoginId == loginId ).FirstOrDefault());
+        }
+
+        //public UserInfoTsfer Get(string loginId,short status)
+        //{
+        //    return TransferObject.ConvertObjectByEntity<UserInfo, UserInfoTsfer>(base.Select(o => o.LoginId == loginId && o.Status == status).FirstOrDefault());
+        //}
+
         public UserInfoTsfer Get(int userId)
         {
             return TransferObject.ConvertObjectByEntity<UserInfo, UserInfoTsfer>(base.Select(o => o.UserId == userId).FirstOrDefault());
