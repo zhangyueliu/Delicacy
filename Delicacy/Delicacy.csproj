@@ -409,6 +409,7 @@
     <Content Include="Views\UserCenter\NotPass.cshtml" />
     <Content Include="Views\UserCenter\WaitCheckDetail.cshtml" />
     <Content Include="Views\CookBook\Edit.cshtml" />
+    <Content Include="Views\AdminSubjectArticle\comments.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />

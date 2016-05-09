@@ -45,9 +45,9 @@ namespace Service
         /// </summary>
         /// <param name="cookbookid"></param>
         /// <returns></returns>
-        public List<CommentRecordTsfer> GetListCookBook(string  cookbookid)
+        public List<CommentRecordTsfer> GetListCookBook(string  cookbookid,short type)
         {
-            return TransferObject.ConvertObjectByEntity<CommentRecord, CommentRecordTsfer>(base.Select(o => o.OperateId == cookbookid&&o.Type==1).ToList());
+            return TransferObject.ConvertObjectByEntity<CommentRecord, CommentRecordTsfer>(base.Select(o => o.OperateId == cookbookid&&o.Type==type).ToList());
         }
         /// <summary>
         /// 获取某用户的所有评论

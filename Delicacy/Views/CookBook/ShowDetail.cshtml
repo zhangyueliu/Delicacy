@@ -90,7 +90,7 @@
         $.ajax({
             url: '/CommentRecord/GetComments',
             type: 'post',
-            data: { cookBookId: '@Model.CookBookId' },
+            data: { cookBookId: '@Model.CookBookId',type:1 },
             success: function (data) {
                 if (data.StatusCode == 1) {
                     initComment(data.Data);
@@ -110,11 +110,8 @@ comment += '<div class="media mainborder"><a class="pull-left" href="#"><img cla
                     comment += '<div class="media mainborder"><a class="pull-left" href="#"><img class="media-object" src="/images/touxiang.png" style="width:50px;height:50px;" alt="作者"></a><div class="media-body"><h4 class="media-heading"><lable>' + item.User.Name + '</lable><a style="position: relative; float: right; font-size: 10px; cursor: pointer;" onclick="reply(' + value.CommentId + ',' + item.CommentId + ',&quot;' + item.User.Name + '&quot;)" >回复</a></h4><p>' + item.Content + '</p></div></div>';
                 })
             }
-<<<<<<< HEAD
-            comment += '<div class="mainborder showhidden" id="' + value.CommentId + '" style="display:none" ><textarea id="' + value.CommentId + '1" class="mainborder"  style="margin:auto;width:100%;"></textarea><input type="button" onclick="submit(' + value.CommentId + '1,' + value.CommentId + ')" value="评论" class="btn-default" style="position:relative;float:right;" /><div class="clear"></div></div></div></div>';
-=======
-            comment += '<div class="detial mainborder showhidden" id="' + value.CommentId + '" style="display:none" ><textarea id="' + value.CommentId + '1" class="mainborder"  style="margin:auto;width:100%;"></textarea><input type="button" onclick="submit(' + value.CommentId + '1,' + value.CommentId + ')" value="评论" class="btn-default" style="position:relative;float:right;" /><div class="clear"></div></div></div></div>';
->>>>>>> bc547d220918fb301dd339c16fdf9a0a06513f59
+            comment += '<div class="mainborder showhidden" id="' + value.CommentId + '" style="display:none" ><textarea id="' + value.CommentId + '1" class="mainborder"  style="margin:auto;width:100%;" rows="3"></textarea><input type="button" onclick="submit(' + value.CommentId + '1,' + value.CommentId + ')" value="评论" class="btn-default" style="position:relative;float:right;" /><div class="clear"></div></div></div></div>';
+
 
         });
         $('#comment').html(comment);
@@ -389,7 +386,7 @@ comment += '<div class="media mainborder"><a class="pull-left" href="#"><img cla
 
     </div>
     <div class="detial mainborder">
-        <textarea class="mainborder" id="content" style="margin:auto;width:100%;"></textarea>
+        <textarea class="mainborder" id="content" style="margin:auto;width:100%;" rows="3"></textarea>
         <input type="button" onclick="submit('content',0,0)" value="评论" class="btn btn-default" style="position:relative;float:right;" />
         <div class="clear"></div>
 
