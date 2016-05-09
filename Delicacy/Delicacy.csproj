@@ -210,6 +210,7 @@
     <Content Include="Content\register.css" />
     <Content Include="Content\style.css" />
     <Content Include="Content\user.css" />
+    <Content Include="crossdomain.xml" />
     <Content Include="favicon.ico" />
     <Content Include="fonts\glyphicons-halflings-regular.svg" />
     <Content Include="Global.asax" />
@@ -425,7 +426,6 @@
     <Content Include="fonts\glyphicons-halflings-regular.ttf" />
     <Content Include="fonts\glyphicons-halflings-regular.eot" />
     <Content Include="packages.config" />
-    <None Include="Project_Readme.html" />
   </ItemGroup>
   <ItemGroup>
     <ProjectReference Include="..\DataTransfer\DataTransfer.csproj">
