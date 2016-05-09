@@ -199,6 +199,15 @@ namespace Manager
             return OutputHelper.GetOutputResponse(ResultCode.OK, cookbook);
         }
 
+        public CookBookTsfer GetCookbookById(string cookBookId)
+        {
+            if (string.IsNullOrEmpty(cookBookId))
+                return null;
+            CookBookTsfer  cookbook= service.Get(cookBookId);
+             InitCookBook(cookbook);
+             return cookbook;
+        }
+
         /// <summary>
         /// 根据cookbookIds获取菜谱列表
         /// </summary>
