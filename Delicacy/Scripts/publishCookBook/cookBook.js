@@ -5,7 +5,7 @@
     var foodMaterial = $("input[name=foodMaterial]").val()
     var Description = $("#message").val();
     var Tips = $("#tips").val();//$("#").val();
-    var FinalImg = $("#final").val();
+    var FinalImg = $("#final").val().substring($("#final").val().indexOf('/U'));
     var ProcessImgDes = getSteps();
     var MainMaterial = getMainMaterial();//|||::
     var AssistMaterial = getAssistMaterial();
@@ -37,9 +37,12 @@
 function getSteps() {
     //abc.jpg::过程描述|||def.jpg::过程描述
     var steps = '';
-     $("#dragsort blockquote").each(function () {
-         steps += $(this).find('input[name="step_img[]"] ').val() + '::' + $(this).find('textarea[name="note[]"] ').val() + '|||';
-     });
+    $("#dragsort blockquote").each(function () {
+        var imgpath = $(this).find('input[name="step_img[]"] ').val();
+        imgpath = imgpath.substring(imgpath.indexOf('/U'))
+
+        steps += imgpath + '::' + $(this).find('textarea[name="note[]"] ').val() + '|||';
+    });
    return steps.substr(0, steps.length - 3);
 }
 
