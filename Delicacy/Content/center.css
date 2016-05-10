@@ -1293,7 +1293,7 @@ h6.space_autoTitle {
     .multiselect a.multi_txt {
         color: #999;
         font-size: 12px;
-        background: url(http://static.meishichina.com/v6/img/publick/btn_05.png) no-repeat right center;
+        background: url(/images/btn_05.png) no-repeat right center;
         display: block;
         padding: 0 21px 0 3px;
         overflow: hidden;

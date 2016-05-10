@@ -8,9 +8,39 @@
 <script src="~/Scripts/Tool.js"></script>
 @*<script src="~/Scripts/publishCookBook/hm.js"></script>
 <script src="~/Scripts/publishCookBook/ga.js"></script>*@
-<script>
+<script type="text/javascript">
+    var sort = '@Model.FoodSortId';
+    var foodSortName = '@Model.FoodSortName';
+    var cuisine = '@Model.TasteId';
+    var cuisineName = '@Model.TasteName';
+    @{
+        string materialIds = "";
+        string materialNames = "";
+        foreach (FoodMaterialTsfer materi in ViewBag.ListMaterial)
+        {
+            materialNames += materi.Name + ",";
+            materialIds += materi.FoodMaterialId.ToString() + ",";
+        }
+    }
+    var materialNames='@materialNames';
+    var material = '@materialIds';
+    var arrMater = material.split(',');
     $(document).ready(function () {
         $("#daohang li:last").addClass("active");
+        //分类
+        $('input[type="radio"][name="foodSort"][value=' + sort + ']').attr("checked", "checked");
+        $('#aSort').attr('check', 'true').text(foodSortName);
+        //口味
+        $('input[type="radio"][name="cuisine"][value=' + cuisine + ']').attr("checked", "checked");
+        $('#aTaste').attr('check', 'true').text(cuisineName);
+        //食材aMaterial
+        $('#aMaterial').attr('check', 'true').text(materialNames);
+        //$('input[type="checkbox"]').each(function myfunction() {
+        for (var i = 0; i < arrMater.length; i++) {
+            //$('input[type="checkbox"]').
+            $("input:checkbox[value='" + arrMater[i]+ "']").attr('checked', 'true');
+        }
+        //});
     });
 </script>
 
@@ -92,16 +122,16 @@
 
                 <dd>
                     <div class="multiselect select_0" style="width: 103px;">
-                        <a tar="foodSort" href="javascript:;" check="false" class="multi_txt multi_1" title="菜谱类别">菜谱类别</a><ul class="" style="">
+                        <a tar="foodSort" href="javascript:;" id="aSort" check="false" class="multi_txt multi_1" title="菜谱类别">菜谱类别</a><ul class="" style="">
                             @foreach (FoodSortTsfer foodSort in ViewBag.FoodSort)
                             {
-                                <li><a href="javascript:;"><label class="J_radio"><input type="radio" name="foodSort" value="@foodSort.FoodSortId">@foodSort.Name</label></a></li>
+                                <li><a href="javascript:;"><label class="J_radio"><input type="radio" name="foodSort" value="@foodSort.FoodSortId" />@foodSort.Name</label></a></li>
                             }
                         </ul>
                     </div>
 
-                    <div class="multiselect select_1" style="width: 103px;">
-                        <a tar="cuisine" href="javascript:;" check="false" class="multi_txt multi_1" title="口味">口味</a><ul class="" style="">
+                    <div class="multiselect select_1" style="width:103px;">
+                        <a tar="cuisine" href="javascript:;" id="aTaste" check="false" class="multi_txt multi_1" title="口味">口味</a><ul class="" style="">
                             @foreach (TasteTsfer taste in ViewBag.Taste)
                             {
                                 <li><a href="javascript:;"><label class="J_radio"><input type="radio" name="cuisine" value="@taste.TasteId">@taste.Name</label></a></li>
@@ -111,7 +141,7 @@
 
                     <div class="multiselect select_4" style="width: 103px;">
                         <input type="hidden" name="foodMaterial" id="J_foodMaterial" value="">
-                        <a tar="foodMaterial" href="javascript:;" check="false" class="multi_txt multi_0" title="食材">食材</a>
+                        <a tar="foodMaterial" href="javascript:;" id="aMaterial" check="false" class="multi_txt multi_0" title="食材">食材</a>
                         <ul class="" style="">
                             @{
                                 List<FoodMaterialTsfer> list = ViewBag.FoodMaterial;
@@ -332,4 +362,7 @@
             }
         }
     });
+
+   
+    
 </script>

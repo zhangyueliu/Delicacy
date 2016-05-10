@@ -6,7 +6,7 @@ using System.Threading.Tasks;
 using EF;
 using DataTransfer;
 using Tool;
-
+using System.Data.SqlClient;
 namespace Service
 {
     public class FoodMaterialService : BaseService<FoodMaterial>
@@ -46,6 +46,12 @@ namespace Service
         {
             base.Delete(id);
             return Save() > 0;
+        }
+
+        public List<FoodMaterialTsfer> GetList(string cookBookId)
+        {
+            string sql = "select * from FoodMaterial_CookBook as a inner join FoodMaterial as b on a.FoodMaterialId=b.FoodMaterialId where a.CookBookId=@cookBookId";
+            return  SqlQuery<FoodMaterialTsfer>(sql, new SqlParameter("@cookBookId", cookBookId));
         }
     }
 }
