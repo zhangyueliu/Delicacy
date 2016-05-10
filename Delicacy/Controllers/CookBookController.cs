@@ -115,7 +115,15 @@ namespace Delicacy.Controllers
 
         public ActionResult SearchList(string name)
         {
+            if (string.IsNullOrWhiteSpace(name))
+                return RedirectHome();
+            ViewBag.name = name;
+            //ViewBag.IsSort = true;
             return View();
+        }
+        public ActionResult GetSearchList(string name)
+        {
+            return Content(new CookBookManager().SearchByName(name));
         }
 
     }
