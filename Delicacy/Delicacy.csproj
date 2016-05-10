@@ -276,6 +276,7 @@
     <None Include="Scripts\jquery.validate-vsdoc.js" />
     <Content Include="Scripts\jquery.fancybox.js" />
     <Content Include="Scripts\jquery.flexslider.js" />
+    <Content Include="Scripts\jquery.page.js" />
     <Content Include="Scripts\jquery.validate.js" />
     <Content Include="Scripts\jquery.validate.min.js" />
     <Content Include="Scripts\jquery.validate.unobtrusive.js" />
@@ -412,6 +413,7 @@
     <Content Include="Views\UserCenter\WaitCheckDetail.cshtml" />
     <Content Include="Views\CookBook\Edit.cshtml" />
     <Content Include="Views\AdminSubjectArticle\comments.cshtml" />
+    <Content Include="Views\CookBook\SearchList.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
