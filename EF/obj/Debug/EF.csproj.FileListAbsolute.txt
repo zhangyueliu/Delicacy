@@ -57,3 +57,4 @@ E:\GraduationProject\Yueyue\Delicacy\EF\bin\Debug\zh-Hans\EntityFramework.SqlSer
 E:\GraduationProject\Yueyue\Delicacy\EF\obj\Debug\EF.csprojResolveAssemblyReference.cache
 E:\GraduationProject\Yueyue\Delicacy\EF\obj\Debug\EF.dll
 E:\GraduationProject\Yueyue\Delicacy\EF\obj\Debug\EF.pdb
+E:\Important\Delicacy\Delicacy\EF\obj\Debug\EF.csprojResolveAssemblyReference.cache
