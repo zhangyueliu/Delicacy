@@ -45,3 +45,15 @@ E:\Delicacy\EF\bin\Debug\zh-Hans\EntityFramework.SqlServer.resources.dll
 E:\Delicacy\EF\obj\Debug\EF.csprojResolveAssemblyReference.cache
 E:\Delicacy\EF\obj\Debug\EF.dll
 E:\Delicacy\EF\obj\Debug\EF.pdb
+E:\GraduationProject\Yueyue\Delicacy\EF\bin\Debug\EF.dll.config
+E:\GraduationProject\Yueyue\Delicacy\EF\bin\Debug\EF.dll
+E:\GraduationProject\Yueyue\Delicacy\EF\bin\Debug\EF.pdb
+E:\GraduationProject\Yueyue\Delicacy\EF\bin\Debug\EntityFramework.dll
+E:\GraduationProject\Yueyue\Delicacy\EF\bin\Debug\EntityFramework.SqlServer.dll
+E:\GraduationProject\Yueyue\Delicacy\EF\bin\Debug\EntityFramework.xml
+E:\GraduationProject\Yueyue\Delicacy\EF\bin\Debug\EntityFramework.SqlServer.xml
+E:\GraduationProject\Yueyue\Delicacy\EF\bin\Debug\zh-Hans\EntityFramework.resources.dll
+E:\GraduationProject\Yueyue\Delicacy\EF\bin\Debug\zh-Hans\EntityFramework.SqlServer.resources.dll
+E:\GraduationProject\Yueyue\Delicacy\EF\obj\Debug\EF.csprojResolveAssemblyReference.cache
+E:\GraduationProject\Yueyue\Delicacy\EF\obj\Debug\EF.dll
+E:\GraduationProject\Yueyue\Delicacy\EF\obj\Debug\EF.pdb

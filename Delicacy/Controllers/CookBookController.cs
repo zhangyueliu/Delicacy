@@ -103,7 +103,8 @@ namespace Delicacy.Controllers
             ViewBag.FoodMaterial = new FoodMaterialManager().GetList();
             ViewBag.Taste = new TasteManager().GetListByStatus(1);
             ViewBag.FoodSort = new FoodSortManager().GetAll();
-            return View();
+            //获取菜谱详情
+            return View(new CookBookManager().GetCookbookById(id));
         }
 
         [HttpPost]
