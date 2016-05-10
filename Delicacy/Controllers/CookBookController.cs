@@ -112,6 +112,10 @@ namespace Delicacy.Controllers
             return View();
         }
 
+        public ActionResult SearchList(string name)
+        {
+            return View();
+        }
 
     }
 }
