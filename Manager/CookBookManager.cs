@@ -43,7 +43,7 @@ namespace Manager
             if (!foodService.IsExist(iFoodSort))
                 return OutputHelper.GetOutputResponse(ResultCode.ErrorParameter, "类别选择错误");
             //判断食材foodMaterial
-            string[] arrMaterial = foodMaterial.Split(new[] { "'," }, StringSplitOptions.RemoveEmptyEntries);
+            string[] arrMaterial = foodMaterial.Split(new[] { "," }, StringSplitOptions.RemoveEmptyEntries);
             int temp;
             FoodMaterialService materialService = new FoodMaterialService();
             List<FoodMaterial_CookBookTsfer> listMaterCook = new List<FoodMaterial_CookBookTsfer>();
@@ -132,7 +132,7 @@ namespace Manager
             if (!foodService.IsExist(iFoodSort))
                 return OutputHelper.GetOutputResponse(ResultCode.ErrorParameter, "类别选择错误");
             //判断食材foodMaterial
-            string[] arrMaterial = foodMaterial.Split(new[] { "'," }, StringSplitOptions.RemoveEmptyEntries);
+            string[] arrMaterial = foodMaterial.Split(new[] { "," }, StringSplitOptions.RemoveEmptyEntries);
             int temp;
             FoodMaterialService materialService = new FoodMaterialService();
             List<FoodMaterial_CookBookTsfer> listMaterCook = new List<FoodMaterial_CookBookTsfer>();
