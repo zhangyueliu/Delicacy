@@ -82,7 +82,13 @@
             <img src="@Model.ImgUrl" id="imgRul" class="img-thumbnail" style="display:block; margin:auto;" />
         </div>
         <div class="mainborder" style="margin-top:1em;">
-            <div><b>总描述：</b><p>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;@Model.Description</p></div>
+            @if (Model.Description != "请输入菜谱描述")
+{
+    <div>
+        <b>总描述：</b>
+
+        <p>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;@Model.Description</p>
+    </div>}
             <div>
                 <b>食材</b>
                 <div>

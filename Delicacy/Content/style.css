@@ -198,6 +198,7 @@ body {
 
             .header_top_right ul li a:hover {
                 color: #fc7c00;
+                text-decoration:none;
             }
 /*--menu--*/
 .menu {
