@@ -51,6 +51,7 @@ namespace Delicacy.Controllers
             return View();
         }
 
+        
         public ActionResult GetPageBySort(string sortId, string pageIndex, string pageSize)
         {
             return Content(new CookBookManager().GetCookBookBySort(sortId, pageIndex, pageSize));

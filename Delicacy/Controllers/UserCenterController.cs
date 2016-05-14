@@ -15,6 +15,7 @@ namespace Delicacy.Controllers
     {
         //
         // GET: /UserCenter/
+        [Authorize]
         public ActionResult Index()
         {
             if (!IsLogin())

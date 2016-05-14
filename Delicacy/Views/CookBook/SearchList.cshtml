@@ -1,0 +1,46 @@
+﻿@{
+    ViewBag.Title = "SearchList";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+<script src="~/Scripts/Tool.js"></script>
+<div class="main">
+    <div class="ui_title mt20">
+        <div class="ui_title_wrap">
+            <a href="javascript:;" class="on">搜索关于“@ViewBag.name”的菜谱</a>
+        </div>
+    </div>
+    <div id="cookBookList" class="prod">
+        <div class="clear"></div>
+    </div>
+</div>
+<script>
+    var name = getParamValue('name');
+    $(document).ready(function () {
+        name = decodeURI(name);
+        getList(name);
+        $("#searchname").val(name);
+    });
+    function getList(name) {
+        $.ajax({
+            url: "/CookBook/GetSearchList",
+            type: "post",
+            data: { name: name },
+            success: function (data) {
+                if (data.StatusCode == 1) {
+                    initCookBooks(data.Data);
+                } else
+                    return layer.msg(data.Message);
+            }
+        });
+    }
+    function initCookBooks(json) {
+        var str = '';
+        $.each(json, function () {
+            str += '<div class="col_1_of_3 span_1_of_3" style="height:300px;text-align:center;"><div class="view effect"><img src="' + this.ImgUrl + '" alt="' + this.Name + '" class="imagess" onloadstart="image();" /></div><div><a href="/CookBook/ShowDetail/?cookBookId=' + this.CookBookId + '&isSort=True"><h3>' + this.Name + '</h3></a></div></div>';
+        });
+        var cooklist = $('#cookBookList');
+
+        cooklist.find('div:not(:last)').remove();
+        cooklist.prepend(str);
+    }
+</script>
