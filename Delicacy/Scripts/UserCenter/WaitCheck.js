@@ -30,7 +30,7 @@ function getWaitCheck(pageIndex,pageSize,status) {
 function initList(json) {
     var str = '';
     $.each(json, function () {
-        str += '<li onclick="getDetail(&quot;' + this.CookBookId + '&quot;) "><div class="pic"><a href="#" ><img class="imgLoad" src="' + this.ImgUrl + '" alt="' + this.Name + '" width="120" height="90" /></a></div><div class="detail"><h4><a href="#">' + this.Name + '</a></h4><div class="substatus clear"><div class="left"><a href="#">编辑</a> <a href="javascript:;" onclick="deletethis(&quot;' + this.CookBookId + '&quot;)">删除</a></div></div></div></li>';
+        str += '<li onclick="getDetail(&quot;' + this.CookBookId + '&quot;) "><div class="pic"><a href="#" ><img class="imgLoad" src="' + this.ImgUrl + '" alt="' + this.Name + '" width="120" height="90" /></a></div><div class="detail"><h4><a href="#">' + this.Name + '</a></h4><div class="substatus clear"><div class="left"><a href="/cookbook/Edit/' + this.CookBookId + '">编辑</a> <a href="javascript:;" onclick="deletethis(&quot;' + this.CookBookId + '&quot;)">删除</a></div></div></div></li>';
     })
     $('#ulCookBook').append(str);
     window.onscroll = function () {

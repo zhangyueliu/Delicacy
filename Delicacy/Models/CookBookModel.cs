@@ -49,5 +49,9 @@ namespace Delicacy.Models
         /// 食材 格式:1,2,3
         /// </summary>
         public string FoodMaterial { get; set; }
+        /// <summary>
+        /// 菜谱的id,修改时使用
+        /// </summary>
+        public string CookBookId { get; set; }
     }
 }
