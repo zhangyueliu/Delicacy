@@ -3662,31 +3662,31 @@
         l = null;
         return a;
     };
-    f.log = function (k) {
-        var h = [],
-            i = new Image(),
-            j = "msc_log_" + f.random();
-        if ("string" === typeof (k)) {
-            k = {
-                content: k
-            };
-        }
-        k = k || {};
-        h.push(b.get("tid") || "");
-        h.push(b.get("uchome_loginuserid") || "");
-        h.push(k.type || "jsError");
-        h.push(encodeURIComponent(document.referrer));
-        h.push(k.content || "参数错误");
-        h.push(+new Date);
-        e[j] = i;
-        i.onload = i.onerror = i.onabort = function () {
-            i.onload = i.onerror = i.onabort = null;
-            e[j] = null;
-            i = null;
-        };
-        i.src = "http://hometest.meishichina.com/c.jpg?userdata=" + h.join("***");
-        h = null;
-    };
+    //f.log = function (k) {
+    //    var h = [],
+    //        i = new Image(),
+    //        j = "msc_log_" + f.random();
+    //    if ("string" === typeof (k)) {
+    //        k = {
+    //            content: k
+    //        };
+    //    }
+    //    k = k || {};
+    //    h.push(b.get("tid") || "");
+    //    h.push(b.get("uchome_loginuserid") || "");
+    //    h.push(k.type || "jsError");
+    //    h.push(encodeURIComponent(document.referrer));
+    //    h.push(k.content || "参数错误");
+    //    h.push(+new Date);
+    //    e[j] = i;
+    //    i.onload = i.onerror = i.onabort = function () {
+    //        i.onload = i.onerror = i.onabort = null;
+    //        e[j] = null;
+    //        i = null;
+    //    };
+    //    i.src = "http://hometest.meishichina.com/c.jpg?userdata=" + h.join("***");
+    //    h = null;
+    //};
     b.get = function (h) {
         if (h) {
             h = document.cookie.match(new RegExp("(^| )" + h + "=([^;]*)(;|$)"));
@@ -4993,25 +4993,25 @@ function RndNum(n) {
     for (var i = 0; i < n; i++) rnd += Math.floor(Math.random() * 10);
     return rnd;
 };
-(function () {
-    "use strict";
-    var arr = [],
-        timestamp = (new Date).getTime(),
-        tid = msc.tools.cookie.get("tid");
-    if (tid == '') {
-        var rndnum = RndNum(5);
-        tid = rndnum + "_" + timestamp, msc.tools.cookie.set("tid", tid, 666666);
-    }
-    arr.push(tid);
-    arr.push(msc.tools.cookie.get("uchome_loginuserid") || "");
-    arr.push(encodeURIComponent(document.referrer));
-    arr.push(encodeURIComponent(document.title));
-    arr.push("1000");
-    arr.push(timestamp);
-    var img = new Image();
-    img.src = "http://hometest.meishichina.com/c.jpg?userdata=" + arr.join("***");
-    arr = img = null;
-}());
+//(function () {
+//    "use strict";
+//    var arr = [],
+//        timestamp = (new Date).getTime(),
+//        tid = msc.tools.cookie.get("tid");
+//    if (tid == '') {
+//        var rndnum = RndNum(5);
+//        tid = rndnum + "_" + timestamp, msc.tools.cookie.set("tid", tid, 666666);
+//    }
+//    arr.push(tid);
+//    arr.push(msc.tools.cookie.get("uchome_loginuserid") || "");
+//    arr.push(encodeURIComponent(document.referrer));
+//    arr.push(encodeURIComponent(document.title));
+//    arr.push("1000");
+//    arr.push(timestamp);
+//    var img = new Image();
+//    img.src = "http://hometest.meishichina.com/c.jpg?userdata=" + arr.join("***");
+//    arr = img = null;
+//}());
 var _gaq = _gaq || [];
 _gaq.push(["_setAccount", "UA-348109-1"]);
 _gaq.push(["_addOrganic", "baidu", "word"]);
