@@ -119,8 +119,6 @@ namespace Delicacy.Controllers
             return View(new CookBookManager().GetCookbookById(id));
         }
 
-        
-
         public ActionResult SearchList(string name)
         {
             if (string.IsNullOrWhiteSpace(name))
