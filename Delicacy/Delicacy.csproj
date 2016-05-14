@@ -216,6 +216,8 @@
     <Content Include="Global.asax" />
     <Content Include="Content\Site.css" />
     <Content Include="images\add_25.png" />
+    <Content Include="images\btn_05.png" />
+    <Content Include="images\icon_08.png" />
     <Content Include="images\like.png" />
     <Content Include="images\Admin\1.jpg" />
     <Content Include="images\arrow.png" />
@@ -231,6 +233,7 @@
     <Content Include="images\icecream.png" />
     <Content Include="images\leaf.png" />
     <Content Include="images\liked.png" />
+    <Content Include="images\loading-32-32.gif" />
     <Content Include="images\logo.png" />
     <Content Include="images\p-but.png" />
     <Content Include="images\pic.jpg" />

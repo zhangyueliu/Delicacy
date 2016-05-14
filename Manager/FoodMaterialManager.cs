@@ -77,5 +77,10 @@ namespace Manager
             }
             return OutputHelper.GetOutputResponse(ResultCode.Error);
         }
+
+        public List<FoodMaterialTsfer> GetListByCookBookId(string cookBookId)
+        {
+            return  service.GetList(cookBookId);
+        }
     }
 }

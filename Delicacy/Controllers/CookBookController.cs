@@ -31,6 +31,17 @@ namespace Delicacy.Controllers
             return Content(outModel);
         }
 
+        [HttpPost]
+        public ActionResult Edit(CookBookModel  model)
+        {
+            if (!IsLogin())
+                return Content(OutputHelper.GetOutputResponse(ResultCode.NoLogin));
+            CookBookManager manager = new CookBookManager();
+            //这里可以用对象传入
+            OutputModel outModel = manager.EditCookBook(user.UserId, model.Taste, model.FoodSort, model.Name, model.Description, model.Tips, model.FinalImg, model.ProcessImgDes, model.MainMaterial, model.Status, model.AssistMaterial, model.FoodMaterial,model.CookBookId);
+            return Content(outModel);
+        }
+
         [HttpGet]
         public ActionResult PublishCookBook()
         {
@@ -104,14 +115,9 @@ namespace Delicacy.Controllers
             ViewBag.FoodMaterial = new FoodMaterialManager().GetList();
             ViewBag.Taste = new TasteManager().GetListByStatus(1);
             ViewBag.FoodSort = new FoodSortManager().GetAll();
+            ViewBag.ListMaterial = new FoodMaterialManager().GetListByCookBookId(id);
             //获取菜谱详情
             return View(new CookBookManager().GetCookbookById(id));
-        }
-
-        [HttpPost]
-        public ActionResult Edit(CookBookModel  model)
-        {
-            return View();
         }
 
         public ActionResult SearchList(string name)

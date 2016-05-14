@@ -85,6 +85,95 @@ namespace Manager
                 return OutputHelper.GetOutputResponse(ResultCode.Error);
         }
 
+        /// <summary>
+        /// 修改菜谱
+        /// </summary>
+        /// <param name="userId"></param>
+        /// <param name="taste"></param>
+        /// <param name="foodSort"></param>
+        /// <param name="name"></param>
+        /// <param name="description"></param>
+        /// <param name="tips"></param>
+        /// <param name="finalImg"></param>
+        /// <param name="processImgDes"></param>
+        /// <param name="mainMaterial"></param>
+        /// <param name="status"></param>
+        /// <param name="assistMaterial"></param>
+        /// <param name="foodMaterial"></param>
+        /// <param name="cookBookId"></param>
+        /// <returns></returns>
+        public OutputModel EditCookBook(int userId, string taste, string foodSort, string name, string description, string tips, string finalImg, string processImgDes, string mainMaterial, string status, string assistMaterial, string foodMaterial, string cookBookId)
+        {
+            int iTaste, iFoodSort, iStatus;
+            if (!int.TryParse(taste, out iTaste) || !int.TryParse(foodSort, out iFoodSort) || !int.TryParse(status, out iStatus))
+            {
+                return OutputHelper.GetOutputResponse(ResultCode.ErrorParameter);
+            }
+            //插入式菜谱的状态只能是0待审核  2存草稿
+            if (iStatus != 0 && iStatus != 2)
+                return OutputHelper.GetOutputResponse(ResultCode.Error);
+            if (CheckParameter.IsNullOrEmpty(name, finalImg, processImgDes, mainMaterial, assistMaterial))
+                return OutputHelper.GetOutputResponse(ResultCode.NoParameter);
+            //string cookBookId = Guid.NewGuid().ToString().Replace("-", "");
+            //检查过程图  listProcess中的CookBookId还没有赋值
+            List<CookProcessTsfer> listProcess = GetListProcess(processImgDes, cookBookId);
+            if (listProcess.Count == 0)
+                return OutputHelper.GetOutputResponse(ResultCode.ConditionNotSatisfied, "请插入菜谱过程");
+
+            //判断食材
+            List<CookMaterialTsfer> listMaterial = GetListMaterial(mainMaterial, assistMaterial, cookBookId);
+            if (listMaterial.Count == 0)
+                return OutputHelper.GetOutputResponse(ResultCode.ErrorParameter, "食材输入错误");
+            //判断口味 类别
+            TasteService tService = ObjectContainer.GetInstance<TasteService>();
+            if (!tService.IsExist(iTaste))
+                return OutputHelper.GetOutputResponse(ResultCode.ErrorParameter, "口味选择错误");
+            FoodSortService foodService = ObjectContainer.GetInstance<FoodSortService>();
+            if (!foodService.IsExist(iFoodSort))
+                return OutputHelper.GetOutputResponse(ResultCode.ErrorParameter, "类别选择错误");
+            //判断食材foodMaterial
+            string[] arrMaterial = foodMaterial.Split(new[] { "'," }, StringSplitOptions.RemoveEmptyEntries);
+            int temp;
+            FoodMaterialService materialService = new FoodMaterialService();
+            List<FoodMaterial_CookBookTsfer> listMaterCook = new List<FoodMaterial_CookBookTsfer>();
+            foreach (string material in arrMaterial)
+            {
+                if (!int.TryParse(material, out temp))
+                {
+                    return OutputHelper.GetOutputResponse(ResultCode.ErrorParameter, "食材选择错误");
+                }
+                if (!materialService.IsExist(temp))
+                    return OutputHelper.GetOutputResponse(ResultCode.ErrorParameter, "食材选择错误");
+                FoodMaterial_CookBookTsfer materCook = new FoodMaterial_CookBookTsfer
+                {
+                    CookBookId = cookBookId,
+                    FoodMaterialId = temp
+                };
+                listMaterCook.Add(materCook);
+            }
+            //进行插入
+            CookBookTsfer bookTsfer = new CookBookTsfer()
+            {
+                CookBookId = cookBookId,
+                Description = description,
+                FoodSortId = iFoodSort,
+                ImgUrl = finalImg,
+                Name = name,
+                Status = iStatus,
+                TasteId = iTaste,
+                Tips = tips,
+                UserId = userId,
+                ListProcess = listProcess,
+                ListMaterial = listMaterial,
+                DateTime = DateTime.Now
+
+            };
+            if (service.Edit(bookTsfer, listMaterCook))
+                return OutputHelper.GetOutputResponse(ResultCode.OK);
+            else
+                return OutputHelper.GetOutputResponse(ResultCode.Error);
+        }
+
         private List<CookProcessTsfer> GetListProcess(string processImgDes, string cookBookId)
         {
             List<CookProcessTsfer> listProcess = new List<CookProcessTsfer>();

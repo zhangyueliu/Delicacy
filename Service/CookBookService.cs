@@ -16,14 +16,34 @@ namespace Service
         {
             //这里增加菜过程的插入
             base.Add(TransferObject.ConvertObjectByEntity<CookBookTsfer, CookBook>(cookBook));
-            Save();
+            
             base.Add<CookProcess>(TransferObject.ConvertObjectByEntity<CookProcessTsfer, CookProcess>(cookBook.ListProcess));
-            Save();
+            
             base.Add<CookMaterial>(TransferObject.ConvertObjectByEntity<CookMaterialTsfer, CookMaterial>(cookBook.ListMaterial));
-            Save();
+           
             Add<FoodMaterial_CookBook>(TransferObject.ConvertObjectByEntity<FoodMaterial_CookBookTsfer, FoodMaterial_CookBook>(listMaterCook));
             return Save() > 0;
         }
+
+        public bool Edit(CookBookTsfer cookBook, List<FoodMaterial_CookBookTsfer> listMaterCook)
+        {
+            //先删除
+            string delSql = "begin try begin tran delete from  CookProcess where CookBookId=@cookbookId delete from CookMaterial where CookBookId=@cookbookId delete from FoodMaterial_CookBook where CookBookId=@cookbookId commit tran end try begin catch rollback tran end catch";
+           int i=  ExecuteCUD(delSql, new SqlParameter("@cookbookId", cookBook.CookBookId));
+           if (i > 0)
+           {//在插入
+               base.Add<CookProcess>(TransferObject.ConvertObjectByEntity<CookProcessTsfer, CookProcess>(cookBook.ListProcess));
+
+               base.Add<CookMaterial>(TransferObject.ConvertObjectByEntity<CookMaterialTsfer, CookMaterial>(cookBook.ListMaterial));
+
+               Add<FoodMaterial_CookBook>(TransferObject.ConvertObjectByEntity<FoodMaterial_CookBookTsfer, FoodMaterial_CookBook>(listMaterCook));
+               Update(TransferObject.ConvertObjectByEntity<CookBookTsfer, CookBook>(cookBook));
+               return Save() > 0;
+           }
+           else
+               return false;
+        }
+
         public bool Update(CookBookTsfer cookBook)
         {
             base.Update(TransferObject.ConvertObjectByEntity<CookBookTsfer, CookBook>(cookBook));
