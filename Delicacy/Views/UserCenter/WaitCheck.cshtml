@@ -1,0 +1,48 @@
+﻿@{
+    ViewBag.Title = "待审核";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<link href="~/Content/PublishCookBook.css" rel="stylesheet" />
+<script src="~/Scripts/UserCenter/WaitCheck.js"></script>
+<script>
+    $(document).ready(function () {
+        $("#daohang li:last").addClass("active");
+    });
+</script>
+
+<div class="mod_left">
+    <div class="menu_wrap">
+        <ul>
+            <li>
+                <h2>食谱网</h2>
+            </li>
+            <li>
+                <a class="on" href="/UserInfo/UserCenter">菜谱</a>
+            </li>
+
+            <li>
+                <a href="/LikeCookBook/Index">收藏</a>
+            </li>
+        </ul>
+    </div>
+</div>
+<div class="mod_right">
+    <div class="ui_title mt20">
+        <div class="ui_title_wrap">
+            <a href="/UserInfo/UserCenter">我的菜谱</a>
+            <a href="/UserCenter/WaitCheck" class="on">待审核</a>
+            <a href="/UserCenter/NotPass">审核未通过</a>
+        </div>
+        <div class="ui_title_right">
+            <a href="/CookBook/PublishCookBook" class="ui_btn_blue on">发布新菜谱</a>
+        </div>
+    </div>
+    <div id="J_list" class="ui_list_1 space_box_home get_num">
+        <ul id="ulCookBook"></ul>
+    </div>
+</div>
+<div class="clear"></div>
+
+
+

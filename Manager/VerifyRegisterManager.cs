@@ -21,10 +21,14 @@ namespace Manager
                 return false;
             //验证通过
             UserInfoService userServer = ObjectContainer.GetInstance<UserInfoService>();
-            UserInfoTsfer userDt = userServer.GetUserInfo(verifyDt.UserId);
+            UserInfoTsfer userDt = userServer.GetByLoginId(verifyDt.LoginId);
             if (userDt == null)
                 return false;
-
+            if(userDt.Status==1)
+            {
+                System.Web.HttpContext.Current.Session["user"] = userDt;
+                return true;
+            }
             userDt.Status = 1;
             verifyDt.IsUsed = true;
 
@@ -32,6 +36,28 @@ namespace Manager
                 return false;
             System.Web.HttpContext.Current.Session["user"] = userDt;
             return true;
+        }
+
+        /// <summary>
+        /// 忘记密码的验证邮箱
+        /// </summary>
+        /// <param name="guid"></param>
+        /// <param name="email"></param>
+        /// <returns></returns>
+        public bool VerifyEmailResetPwd(string guid, out string email)
+        {
+            email = "";
+            if (string.IsNullOrEmpty(guid))
+                return false;
+            VerifyRegisterTsfer verifyDt = verifyServer.Get(guid);
+            if (verifyDt == null || (verifyDt.OutDate < DateTime.Now) || verifyDt.IsUsed)
+                return false;
+            email = verifyDt.LoginId;
+            verifyDt.IsUsed = true;
+            if (verifyServer.Update(verifyDt))
+                return true;
+            else
+                return false;
         }
     }
 }

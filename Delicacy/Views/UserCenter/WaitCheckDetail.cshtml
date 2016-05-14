@@ -1,0 +1,124 @@
+﻿@model DataTransfer.CookBookTsfer
+
+@{
+    ViewBag.Title = "个人中心-菜谱详情";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+<link href="~/Content/PublishCookBook.css" rel="stylesheet" />
+<script>
+    $(document).ready(function () {
+        $("#daohang li:last").addClass("active");
+    });
+</script>
+<div class="mod_left">
+    <div class="menu_wrap">
+        <ul>
+            <li>
+                <h2>食谱网</h2>
+            </li>
+            <li>
+                <a class="on" href="/UserInfo/UserCenter">菜谱</a>
+            </li>
+
+            <li>
+                <a href="/LikeCookBook/Index">收藏</a>
+            </li>
+        </ul>
+    </div>
+</div>
+<div class="mod_right">
+    <div class="ui_title mt20">
+        <div class="ui_title_wrap">
+            <a href="/UserInfo/UserCenter">我的菜谱</a>
+            <a href="/UserCenter/WaitCheck" class="on">待审核</a>
+            <a href="#">审核未通过</a>
+        </div>
+        <div class="ui_title_right">
+            <a href="/CookBook/PublishCookBook" class="ui_btn_blue on">发布新菜谱</a>
+        </div>
+    </div>
+    <div class="detial" style="margin:2% 2%">
+        <div style="text-align:center;line-height:2;">
+            <h1 style="font-size:30px;">@Model.Name</h1>
+        </div>
+        <div style="width:99%;">
+            <img src="@Model.ImgUrl" id="imgRul" class="img-thumbnail" style="display:block; margin:auto;" />
+        </div>
+        <div class="mainborder" style="margin-top:1em;font-size:120%;">
+            <div><b>总描述：</b><p>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;@Model.Description</p></div>
+            <div>
+                <b>食材</b>
+                <div>
+                    &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span>主料：</span>@foreach (var item in Model.ListMaterial)
+                    {
+                        if (item.Type == 1)
+                        {
+                            <a style="text-decoration:none;color:black;">@item.FoodMaterialName@item.Amount &nbsp;&nbsp;&nbsp;</a>
+                        }
+                    }
+                    <br />&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span>辅料：</span>@foreach (var item in Model.ListMaterial)
+                    {
+                        if (item.Type == 2)
+                        {
+                            <a style="text-decoration:none;color:black;">@item.FoodMaterialName@item.Amount &nbsp;&nbsp;&nbsp;</a>
+                        }
+                    }
+                </div>
+                <b>口味：</b>@Model.TasteName
+            </div>
+            <div>
+                <b>步骤：</b>
+                <div>
+                    @foreach (var item in @Model.ListProcess)
+                    {
+                        //                        #outer {height: 100%; overflow: hidden; position: relative;width: 100%; background:ivory;}
+                        //#outer[id] {display: table; position: static;}
+                        //#middle {position: absolute; top: 50%;} /* for explorer only*/
+                        //#middle[id] {display: table-cell; vertical-align: middle; position: static;}
+                        //#inner {position: relative; top: -50%;width: 400px;margin: 0 auto;} /* for explorer only */
+
+                        <div class="mainborder" style="height:auto;background-color: #F8F8F8;margin:1%;">
+                            <img src="@item.ImgUrl" class="imagess" onloadstart="image();" style="width:50%;" />
+                            <div style="width: 50%; position: relative; float: right; text-align: center;" class="buzhou">
+                                <div style="vertical-align: middle; width: 100%; ">
+                                    <div style="width: 100%; ">
+                                        <span class="J_step_num" style="position:initial;font-size:30px;margin:auto;">@item.Sort、</span><p style="margin: auto;padding:0 20%;line-height:2;font-size:20px;">@item.Description</p>
+                                    </div>
+                                </div>
+                            </div>
+
+                            <div class="clear"></div>
+                        </div>
+
+
+                        @*<div class="mainborder" >
+                            <div style="width:50%;overflow:hidden; position: relative; float: left; display: inline-block;">
+                                <img src="@item.ImgUrl" class="imagess" onloadstart="image();" style="width:100%;" />
+                            </div>
+                            <div style="width: 50%;  position: relative; float: right; background-color: #F8F8F8; text-align: center;" class="buzhou">
+                                <div style="vertical-align: middle;width:100%;position:relative;top:50%">
+                                    <div style="width: 100%; position: relative; top: -50;">
+                                        <span class="J_step_num" style="position:initial;font-size:30px;margin:auto;">@item.Sort、</span><p style="margin: auto;padding:0 20%;line-height:2;font-size:20px;">@item.Description</p>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="clear"></div>
+                        </div>*@
+                    }
+
+                </div>
+            </div>
+            @if (!string.IsNullOrWhiteSpace(Model.Tips))
+            {
+                <div style="color:#bbb9b9">
+                    <b>小窍门：</b><p>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;@Model.Tips</p>
+                </div>
+            }
+        </div>
+
+    </div>
+</div>
+<div class="clear"></div>
+
+
+

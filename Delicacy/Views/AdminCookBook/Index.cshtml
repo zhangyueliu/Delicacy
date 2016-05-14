@@ -1,0 +1,149 @@
+﻿@model IEnumerable<DataTransfer.CookBookTsfer>
+
+@{
+    ViewBag.Title = "Index";
+    Layout = "~/Views/Shared/_AdminLayout.cshtml";
+}
+<script type="text/javascript">
+    function deleteSubject(id) {
+        $.ajax({
+            type: "post",
+            url: "/AdminSubjectArticle/Delete",
+            data: { id: id },
+            success: function (o) {
+                if (o.StatusCode == 1) {
+                    layer.msg("成功");
+                    setTimeout(function () { location.reload(); }, 1000);
+
+                } else {
+                    layer.msg("失败");
+                }
+            }
+        });
+    }
+    $(document).ready(function () {
+        $(".tcdPageCode").createPage({
+            pageCount: parseInt('@ViewBag.pageCount'),
+            current: parseInt('@ViewBag.pageIndex'),
+            backFn: function (p) {
+                window.location.href = '/AdminCookBook/Index?pageindex=' + p + '&status=@ViewBag.status';
+            }
+        });
+        $("#status").find('option[value=' + '@ViewBag.status' + ']').attr('selected', 'selected');
+    });
+    function submitStatus() {
+        var status = $("#status").val();
+        window.location.href = '/AdminCookBook/Index?pageindex=1&status=' + status;
+    }
+
+    //审核
+    function yes(sign) {
+        var str = "";
+        if ($("input[name='checked']:checked").length <= 0) {
+            layer.msg("请选中要审核的菜谱", { time: 2000 });
+            return;
+        }
+        $("input[name='checked']:checked").each(function () {
+
+            str += "'" + $(this).val() + "',";
+        });
+        $.ajax({
+            type: 'post',
+            url: '/AdminCookBook/ShenHe',
+            data: { ids: str, status: sign },
+            success: function (o) {
+                if (o.StatusCode == 1) {
+                    layer.msg("成功");
+                    setTimeout(function () { window.location.href = '/AdminCookBook/Index?pageindex=1&status=@ViewBag.status'; }, 1000);
+                }
+                else {
+                    layer.msg("失败");
+                }
+            }
+        });
+    }
+</script>
+<div class="page-header">
+    <h2>菜谱审核</h2>
+</div>
+<div style="position:relative;float:right;">
+    <select id="status" class="btn btn-default"><option selected="selected" value="">全部</option><option value="1">审核通过</option><option value="0">待审核</option><option value="-1">审核未通过</option></select>
+    <input type="button" onclick="submitStatus();" value="搜索" class="btn" />
+</div>
+<div style="margin-bottom:1em;">
+    <input type="button" onclick="yes(1);" value="审核通过" class="btn btn-default" />&nbsp;&nbsp;&nbsp;<input type="button" onclick="yes(-1);" value="审核不通过" class="btn btn-default" />
+</div>
+<table class="table">
+    <tr>
+        <th></th>
+        @*<th>
+            @Html.DisplayNameFor(model => model.TasteName)
+        </th>*@
+        <th>
+            @Html.DisplayNameFor(model => model.FoodSortName)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.UserName)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.Name)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.ImgUrl)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.Status)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.DateTime)
+        </th>
+        <th>操作</th>
+    </tr>
+
+    @if (Model != null)
+    {
+        foreach (var item in Model)
+        {
+            <tr>
+                <td><input type="checkbox" name="checked" value="@item.CookBookId" /></td>
+                @*<td>
+                    @Html.DisplayFor(modelItem => item.TasteName)
+                </td>*@
+                <td>
+                    @Html.DisplayFor(modelItem => item.FoodSortName)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.UserName)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.Name)
+                </td>
+                <td>
+                    <img src="@Html.DisplayFor(modelItem => item.ImgUrl)" style="width:100px;" />
+                </td>
+                <td>
+                    @if (item.Status == 1)
+                    {
+                        <p>审核通过</p>
+                    }
+                    else if (item.Status == 0)
+                    {
+                        <p>待审核</p>
+                    }
+                    else
+                    {
+                        <p>审核未通过</p>
+                    }
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.DateTime)
+                </td>
+                <td>
+                    @Html.ActionLink("Details", "Details", new { id=item.CookBookId })
+                </td>
+            </tr>
+        }
+    }
+</table>
+<div class="tcdPageCode">
+</div>

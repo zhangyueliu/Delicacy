@@ -11,18 +11,18 @@ namespace Manager
 {
     public class FoodSortManager
     {
-        private FoodSortService Service = ObjectContainer.GetInstance<FoodSortService>();
+        private FoodSortService service = ObjectContainer.GetInstance<FoodSortService>();
         public OutputModel Add(FoodSortTsfer foodsort)
         {
             if (foodsort == null)
             {
                 return OutputHelper.GetOutputResponse(ResultCode.NoParameter);
             }
-            if (Service.Get(foodsort.Name) != null)
+            if (service.Get(foodsort.Name) != null)
             {
                 return OutputHelper.GetOutputResponse(ResultCode.DataExisted);
             }
-            if (Service.Add(foodsort))
+            if (service.Add(foodsort))
             {
                 return OutputHelper.GetOutputResponse(ResultCode.OK);
             }
@@ -31,45 +31,61 @@ namespace Manager
                 return OutputHelper.GetOutputResponse(ResultCode.Error);
             }
         }
-        public OutputModel Update(FoodSortTsfer foodsort)
+        public OutputModel Update(string id, string name)
         {
+            int i;
+            if (!int.TryParse(id, out i))
+                return OutputHelper.GetOutputResponse(ResultCode.ErrorParameter);
+            FoodSortTsfer foodsort = service.Get(i);
             if (foodsort == null)
             {
-                return OutputHelper.GetOutputResponse(ResultCode.NoParameter);
+                return OutputHelper.GetOutputResponse(ResultCode.NoData);
             }
-            if (Service.Update(foodsort))
+            foodsort.Name = name;
+            if (service.Update(foodsort))
                 return OutputHelper.GetOutputResponse(ResultCode.OK);
             return OutputHelper.GetOutputResponse(ResultCode.Error);
         }
-        public OutputModel Delete(int id)
+        public OutputModel Delete(string id)
         {
-            if (Service.Delete(id))
+            int i;
+            if (!int.TryParse(id, out i))
+                return OutputHelper.GetOutputResponse(ResultCode.ErrorParameter);
+            if (service.Delete(i))
             {
                 return OutputHelper.GetOutputResponse(ResultCode.OK);
             }
             return OutputHelper.GetOutputResponse(ResultCode.Error);
         }
-        public OutputModel Get(int id)
+        public string Get(string id)
         {
-            FoodSortTsfer f = Service.Get(id);
-            if (f == null)
-                return OutputHelper.GetOutputResponse(ResultCode.NoData);
-            return OutputHelper.GetOutputResponse(ResultCode.OK, f);
-        }
-         public OutputModel Get(string name)
-        {
-            FoodSortTsfer f = Service.Get(name);
-            if (f == null)
-                return OutputHelper.GetOutputResponse(ResultCode.NoData);
-            return OutputHelper.GetOutputResponse(ResultCode.OK);
+            int i;
+            CheckParameter.PageCheck(id, out i);
+            FoodSortTsfer f = service.Get(i);
+            return f.Name;
         }
 
         public OutputModel GetList()
         {
-          List<FoodSortTsfer>list=  Service.GetList();
-          if (list.Count == 0)
-              return OutputHelper.GetOutputResponse(ResultCode.NoData);
-          return OutputHelper.GetOutputResponse(ResultCode.OK,list);
+            List<FoodSortTsfer> list = service.GetList();
+            if (list.Count == 0)
+                return OutputHelper.GetOutputResponse(ResultCode.NoData);
+            return OutputHelper.GetOutputResponse(ResultCode.OK, list);
+        }
+
+        public List<FoodSortTsfer> GetAll()
+        {
+            return service.GetList();
+        }
+
+        public List<FoodSortTsfer> GetPage(string pageindex, int pagesize, out int pagecount)
+        {
+            int pageIndex;
+            int rowcount;
+            CheckParameter.PageCheck(pageindex, out pageIndex);
+            List<FoodSortTsfer> list = service.GetPage(pageIndex, pagesize, out rowcount);
+            pagecount = (int)Math.Ceiling(rowcount * 1.0 / pagesize);
+            return list; ;
         }
     }
 }

@@ -36,7 +36,12 @@ namespace Service
         }
         public List<FoodSortTsfer> GetList()
         {
-            return TransferObject.ConvertObjectByEntity<FoodSort, FoodSortTsfer>(base.Select(o => true).ToList());
+            return TransferObject.ConvertObjectByEntity<FoodSort, FoodSortTsfer>(base.Select(o => true).OrderByDescending(o=>o.FoodSortId).ToList());
+        }
+        public List<FoodSortTsfer> GetPage(int pageindex,int pagesize,out int rowcount)
+        {
+            List<FoodSort> list = SelectDesc(pageindex, pagesize, o => true, o => o.FoodSortId, out rowcount).ToList();
+            return TransferObject.ConvertObjectByEntity<FoodSort, FoodSortTsfer>(list);
         }
 
         public bool IsExist(int foodSortId)

@@ -21,14 +21,15 @@ namespace Service
             base.Update(TransferObject.ConvertObjectByEntity<CommentRecordTsfer, CommentRecord>(comment));
             return Save() > 0;
         }
-        public bool Delete(int id)
+        public new bool Delete(int id)
         {
             base.Delete(id);
             return Save() > 0;
         }
-        public CommentRecordTsfer Get(int id)
+
+        public CommentRecordTsfer Get(int commentId)
         {
-            return TransferObject.ConvertObjectByEntity<CommentRecord,CommentRecordTsfer>(base.Select(id));
+            return TransferObject.ConvertObjectByEntity<CommentRecord,CommentRecordTsfer>(base.Select(o=>o.CommentId==commentId).FirstOrDefault());
         }
         /// <summary>
         /// 获取子评论
@@ -44,9 +45,9 @@ namespace Service
         /// </summary>
         /// <param name="cookbookid"></param>
         /// <returns></returns>
-        public List<CommentRecordTsfer> GetListCookBook(int cookbookid)
+        public List<CommentRecordTsfer> GetListCookBook(string  cookbookid,short type)
         {
-            return TransferObject.ConvertObjectByEntity<CommentRecord, CommentRecordTsfer>(base.Select(o => o.CookBookId == cookbookid).ToList());
+            return TransferObject.ConvertObjectByEntity<CommentRecord, CommentRecordTsfer>(base.Select(o => o.OperateId == cookbookid&&o.Type==type).ToList());
         }
         /// <summary>
         /// 获取某用户的所有评论
@@ -57,9 +58,24 @@ namespace Service
         {
             return TransferObject.ConvertObjectByEntity<CommentRecord, CommentRecordTsfer>(base.Select(o => o.UserId == userid).ToList());
         }
-        public List<CommentRecordTsfer> GetList()
+
+        public bool IsExist(int commentId)
         {
-            return TransferObject.ConvertObjectByEntity<CommentRecord, CommentRecordTsfer>(base.Select(o => true).ToList());
+            return Select(o => o.CommentId == commentId).Any();
+        }
+        public List<CommentRecordTsfer> GetPage(short type,int pageindex, int pagesize, out int rowcount)
+        {
+            List<CommentRecord> list = SelectDesc(pageindex, pagesize, o => o.Type==type, o => o.DateTime, out rowcount).ToList();
+            return TransferObject.ConvertObjectByEntity<CommentRecord, CommentRecordTsfer>(list);
+        }
+        /// <summary>
+        /// 获取子评论
+        /// </summary>
+        /// <param name="id"></param>
+        /// <returns></returns>
+        public List<CommentRecordTsfer> GetSon(int id)
+        {
+            return TransferObject.ConvertObjectByEntity<CommentRecord, CommentRecordTsfer>(base.Select(o => o.PId == id).ToList());
         }
     }
 }

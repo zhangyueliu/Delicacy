@@ -16,12 +16,13 @@ namespace EF
     {
         public FoodMaterial()
         {
-            this.CookBook = new HashSet<CookBook>();
+            this.FoodMaterial_CookBook = new HashSet<FoodMaterial_CookBook>();
         }
     
         public int FoodMaterialId { get; set; }
         public string Name { get; set; }
+        public int Priority { get; set; }
     
-        public virtual ICollection<CookBook> CookBook { get; set; }
+        public virtual ICollection<FoodMaterial_CookBook> FoodMaterial_CookBook { get; set; }
     }
 }

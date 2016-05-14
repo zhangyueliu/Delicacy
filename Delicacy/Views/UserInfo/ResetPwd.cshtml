@@ -1,0 +1,47 @@
+﻿
+@{
+    Layout = null;
+}
+
+<!DOCTYPE html>
+
+<html>
+<head>
+    <meta name="viewport" content="width=device-width" />
+    <title>重置密码-美食网</title>
+    <link href="~/Content/register.css" rel="stylesheet" />
+    <link href="~/Content/jquery.fancybox.css" rel="stylesheet" />
+    <script src="~/Scripts/jquery-1.10.2.min.js"></script>
+    <script src="~/Scripts/formatVerify.js"></script>
+    <script src="~/Scripts/md5.js"></script>
+    <script src="~/Scripts/layer9.1/layer.js"></script>
+    <script src="~/Scripts/jquery.fancybox.js"></script>
+    <script src="~/Scripts/register.js"></script>
+    <script type="text/javascript">
+        //异步加载的提示
+        $(document).ajaxStart(function () {
+            $.fancybox.showLoading();
+        })
+        $(document).ajaxStop(function () {
+            $.fancybox.hideLoading();
+        })
+    </script>
+</head>
+<body>
+    <div class="login">
+        <div class="login-top">
+            <h1>重置密码</h1>
+            <form>
+                <input type="hidden" id="email" value="@ViewBag.Email" />
+                <input type="password" id="pwd" value="" placeholder="输入新密码"/>
+            </form>
+            <div class="forgot">
+                <input type="submit" onclick="reset()" value="重置密码">
+            </div>
+        </div>
+        <div class="login-bottom">
+            <h3>Old User &nbsp;<a href="/UserInfo/Login">Login</a>&nbsp; Here</h3>
+        </div>
+    </div>
+</body>
+</html>

@@ -6,19 +6,40 @@ using System.Threading.Tasks;
 using EF;
 using DataTransfer;
 using Tool;
-
+using System.Data.SqlClient;
 namespace Service
 {
     public class FoodMaterialService : BaseService<FoodMaterial>
     {
-        public bool Add(FoodMaterialTsfer fMaterial)
+        public List<FoodMaterialTsfer> GetList()
         {
-            base.Add(TransferObject.ConvertObjectByEntity<FoodMaterialTsfer, FoodMaterial>(fMaterial));
+            return TransferObject.ConvertObjectByEntity<FoodMaterial, FoodMaterialTsfer>(Select(o => true).OrderByDescending(o => o.Priority).ToList());
+        }
+        public FoodMaterialTsfer Get(int id)
+        {
+            return TransferObject.ConvertObjectByEntity<FoodMaterial, FoodMaterialTsfer>(Select(o => o.FoodMaterialId == id).FirstOrDefault());
+        }
+        public FoodMaterialTsfer Get(string name)
+        {
+            return TransferObject.ConvertObjectByEntity<FoodMaterial, FoodMaterialTsfer>(base.Select(o => o.Name == name).FirstOrDefault());
+        }
+        public bool IsExist(int foodMaterialId)
+        {
+            return  Select(o => o.FoodMaterialId == foodMaterialId).Any();
+        }
+        public List<FoodMaterialTsfer> GetPage(int pageindex, int pagesize, out int rowcount)
+        {
+            List<FoodMaterial> list = SelectDesc(pageindex, pagesize, o => true, o => o.Priority, out rowcount).ToList();
+            return TransferObject.ConvertObjectByEntity<FoodMaterial, FoodMaterialTsfer>(list);
+        }
+        public bool Add(FoodMaterialTsfer fsort)
+        {
+            base.Add(TransferObject.ConvertObjectByEntity<FoodMaterialTsfer, FoodMaterial>(fsort));
             return Save() > 0;
         }
-        public bool Update(FoodMaterialTsfer fMaterial)
+        public bool Update(FoodMaterialTsfer fsort)
         {
-            base.Update(TransferObject.ConvertObjectByEntity<FoodMaterialTsfer, FoodMaterial>(fMaterial));
+            base.Update(TransferObject.ConvertObjectByEntity<FoodMaterialTsfer, FoodMaterial>(fsort));
             return Save() > 0;
         }
         public bool Delete(int id)
@@ -26,22 +47,11 @@ namespace Service
             base.Delete(id);
             return Save() > 0;
         }
-        public FoodMaterialTsfer Get(string name)
-        {
-            return TransferObject.ConvertObjectByEntity<FoodMaterial, FoodMaterialTsfer>(base.Select(o => o.Name == name).FirstOrDefault());
-        }
-        public FoodMaterialTsfer Get(int id)
-        {
-            return TransferObject.ConvertObjectByEntity<FoodMaterial, FoodMaterialTsfer>(base.Select(id));
-        }
-        public List<FoodMaterialTsfer> GetList()
-        {
-            return TransferObject.ConvertObjectByEntity<FoodMaterial, FoodMaterialTsfer>(base.Select(o => true).ToList());
-        }
 
-        public bool IsExist(List<int> ids)
+        public List<FoodMaterialTsfer> GetList(string cookBookId)
         {
-           return   Select(o => ids.Contains(o.FoodMaterialId)).Count() == ids.Count;
+            string sql = "select * from FoodMaterial_CookBook as a inner join FoodMaterial as b on a.FoodMaterialId=b.FoodMaterialId where a.CookBookId=@cookBookId";
+            return  SqlQuery<FoodMaterialTsfer>(sql, new SqlParameter("@cookBookId", cookBookId));
         }
     }
 }

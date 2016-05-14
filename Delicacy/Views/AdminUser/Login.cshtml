@@ -1,0 +1,102 @@
+﻿@{
+    Layout = null;
+}
+
+<!DOCTYPE html>
+
+<html>
+<head>
+    <meta name="viewport" content="width=device-width" />
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+    <link href="~/Content/Admin/login.css" rel="stylesheet" />
+    <title>Login</title>
+    <script src="~/Scripts/jquery-1.10.2.min.js"></script>
+    <script src="~/Scripts/layer9.1/layer.js"></script>
+    <script src="~/Scripts/md5.js"></script>
+    <script type="text/javascript">
+        function login() {
+            var userId = $('#u').val();
+            if (!userId) {
+                layer.msg('账号不能为空', {
+                    time: 2000
+                });
+                $("#u").focus();
+                return;
+            }
+
+            var pwd = $('#p').val();
+            if (!pwd) {
+                layer.msg('密码不能为空', {
+                    time: 2000
+                });
+                $("#p").focus();
+                return;
+            }
+            $('#btnLogin').val('登录中...');
+            $('#btnLogin').css('disabled');
+            $.ajax({
+                url: '/AdminUser/Login',
+                type: 'post',
+                data: { userId: userId, pwd: hex_md5(pwd) },
+                dataType: 'json',
+                success: function (data) {
+                    if (data.StatusCode === 1)
+                        window.location.href = '/AdminCenter';
+                    else
+                    {
+                        layer.msg(data.Message, {
+                            time: 2000
+                        });
+                        $('#btnLogin').val('登录');
+                        $('#btnLogin').removeAttr('disabled');
+                    }
+                        
+                }
+            });
+        }
+
+
+    </script>
+</head>
+<body>
+    <h1>美食网管理员登录</h1>
+    <div class="login" style="margin-top:50px;">
+        <div class="web_qr_login" id="web_qr_login" style="display: block; height: 235px;">
+
+            <!--登录-->
+            <div class="web_login" id="web_login">
+
+
+                <div class="login-box">
+
+
+                    <div class="login_form">
+                        <form action="" name="loginform" accept-charset="utf-8" id="login_form" class="loginForm" method="post">
+                            <input type="hidden" name="did" value="0" />
+                            <input type="hidden" name="to" value="log" />
+                            <div class="uinArea" id="uinArea">
+                                <label class="input-tips" for="u">帐号：</label>
+                                <div class="inputOuter" id="uArea">
+                                    <input type="text" id="u" name="username" class="inputstyle" />
+                                </div>
+                            </div>
+                            <div class="pwdArea" id="pwdArea">
+                                <label class="input-tips" for="p">密码：</label>
+                                <div class="inputOuter" id="pArea">
+
+                                    <input type="password" id="p" name="p" class="inputstyle" />
+                                </div>
+                            </div>
+
+                            <div style="padding-left:50px;margin-top:20px;"><input type="button"  id="btnLogin" onclick="login()" value="登 录" style="width:150px;" class="button_blue" /></div>
+                        </form>
+                    </div>
+
+                </div>
+
+            </div>
+            <!--登录end-->
+        </div>
+    </div>
+</body>
+</html>

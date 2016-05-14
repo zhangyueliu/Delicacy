@@ -1,0 +1,84 @@
+﻿@model IEnumerable<DataTransfer.UserInfoTsfer>
+@{
+    ViewBag.Title = "UserManager";
+    Layout = "~/Views/Shared/_AdminLayout.cshtml";
+}
+<script type="text/javascript">
+    function deleteUser(id){
+        $.ajax({
+            type:"post",
+            url:"/AdminUser/Delete",
+            data:{id:id},
+            success:function (o) {
+                if(o.StatusCode==1){
+                    layer.msg("成功");
+                    setTimeout(function () { location.reload(); }, 1000);
+                    
+                } else {
+                    layer.msg("失败");
+                }
+            }
+        });
+    }
+</script>
+<div class="page-header">
+    <h2>用户管理</h2>
+</div>
+
+@*<p>
+    @Html.ActionLink("Create New", "Create")
+</p>*@
+<table class="table">
+    <tr>
+        <th>
+            @Html.DisplayNameFor(model => model.UserId)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.LoginId)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.Name)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.Status)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.RegisterDate)
+        </th>
+        <th></th>
+    </tr>
+    
+@if(Model!=null)
+{ 
+    foreach (var item in Model) {
+    <tr>
+        <td>
+            @Html.DisplayFor(modelItem => item.UserId)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.LoginId)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.Name)
+        </td>
+        <td>
+            @if(item.Status==1)
+            {
+                <p>已验证</p>
+            }
+            else
+            {
+                <p>未验证</p>
+            }
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.RegisterDate)
+        </td>
+        <td>
+            <a href="javascript:;" onclick="deleteUser(@item.UserId)">Delete</a>
+        </td>
+    </tr>
+    }
+}
+
+</table>

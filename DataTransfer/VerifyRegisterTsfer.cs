@@ -9,8 +9,9 @@ namespace DataTransfer
     public class VerifyRegisterTsfer
     {
         public string GUID { get; set; }
-        public string UserId { get; set; }
+        public string LoginId { get; set; }
         public bool IsUsed { get; set; }
         public System.DateTime OutDate { get; set; }
+        public int Type { get; set; }
     }
 }

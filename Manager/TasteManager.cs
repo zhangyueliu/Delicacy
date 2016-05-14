@@ -11,17 +11,17 @@ namespace Manager
 {
     public class TasteManager
     {
-        private TasteService Service = ObjectContainer.GetInstance<TasteService>();
+        private TasteService service = ObjectContainer.GetInstance<TasteService>();
 
         public OutputModel Add(TasteTsfer taste)
         {
             if (taste != null)
             {
-                if (Service.Get(taste.Name) != null)
+                if (service.Get(taste.Name) != null)
                 {
                     return OutputHelper.GetOutputResponse(ResultCode.DataExisted, "口味已存在,请直接选择");
                 }
-                if (Service.Add(taste))
+                if (service.Add(taste))
                 {
                     return OutputHelper.GetOutputResponse(ResultCode.OK);
                 }
@@ -36,11 +36,16 @@ namespace Manager
             }
         }
 
-        public OutputModel Update(TasteTsfer taste)
+        public OutputModel Update(string id, string name)
         {
+            int i;
+            if (!int.TryParse(id, out i))
+                return OutputHelper.GetOutputResponse(ResultCode.ErrorParameter);
+            TasteTsfer taste = service.Get(i);
             if (taste != null)
             {
-                if (Service.Update(taste))
+                taste.Name = name;
+                if (service.Update(taste))
                 {
                     return OutputHelper.GetOutputResponse(ResultCode.OK);
                 }
@@ -49,9 +54,12 @@ namespace Manager
             return OutputHelper.GetOutputResponse(ResultCode.NoParameter);
         }
 
-        public OutputModel Delete(int id)
+        public OutputModel Delete(string id)
         {
-            if (Service.Delete(id))
+            int i;
+            if (!int.TryParse(id, out i))
+                return OutputHelper.GetOutputResponse(ResultCode.ErrorParameter);
+            if (service.Delete(i))
             {
                 return OutputHelper.GetOutputResponse(ResultCode.OK);
             }
@@ -59,31 +67,46 @@ namespace Manager
         }
         public OutputModel Get(int tasteId)
         {
-            TasteTsfer t = Service.Get(tasteId);
+            TasteTsfer t = service.Get(tasteId);
             if (t == null)
                 return OutputHelper.GetOutputResponse(ResultCode.NoData);
             return OutputHelper.GetOutputResponse(ResultCode.OK, t);
         }
         public OutputModel Get(string name)
         {
-            TasteTsfer t = Service.Get(name);
+            TasteTsfer t = service.Get(name);
             if (t == null)
                 return OutputHelper.GetOutputResponse(ResultCode.NoData);
             return OutputHelper.GetOutputResponse(ResultCode.OK, t);
         }
         public OutputModel GetList(int status)
         {
-            List<TasteTsfer> list = Service.GetList(status);
+            List<TasteTsfer> list = service.GetList(status);
             if (list.Count == 0)
                 return OutputHelper.GetOutputResponse(ResultCode.NoData);
             return OutputHelper.GetOutputResponse(ResultCode.OK, list);
         }
         public OutputModel GetList()
         {
-            List<TasteTsfer> list = Service.GetList();
+            List<TasteTsfer> list = service.GetList();
             if (list.Count == 0)
                 return OutputHelper.GetOutputResponse(ResultCode.NoData);
             return OutputHelper.GetOutputResponse(ResultCode.OK, list);
+        }
+
+        public List<TasteTsfer>  GetListByStatus(int status)
+        {
+            return  service.GetList(status);
+        }
+
+        public List<TasteTsfer> GetPage(string pageindex, int pagesize, out int pagecount)
+        {
+            int pageIndex;
+            int rowcount;
+            CheckParameter.PageCheck(pageindex, out pageIndex);
+            List<TasteTsfer> list = service.GetPage(pageIndex, pagesize, out rowcount);
+            pagecount = (int)Math.Ceiling(rowcount * 1.0 / pagesize);
+            return list; ;
         }
     }
 }

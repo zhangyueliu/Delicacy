@@ -1,0 +1,111 @@
+﻿@{
+    ViewBag.Title = @ViewBag.sort;
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<link href="~/Content/pager.css" rel="stylesheet" />
+<script src="~/Scripts/Tool.js"></script>
+<div class="main">
+    <div class="ui_title mt20">
+        <div class="ui_title_wrap">
+            <a href="javascript:;" class="on">@ViewBag.sort</a>
+        </div>
+    </div>
+    <div id="cookBookList" class="prod">
+        <div class="clear"></div>
+    </div>
+    <div class="tcdPageCode" style="">
+    </div>
+</div>
+@*<script src="http://www.lanrenzhijia.com/ajaxjs/jquery.page.js"></script>*@
+<script src="~/Scripts/jquery.page.js"></script>
+<script>
+    var id = getParamValue('id');
+    var type = getParamValue('type');
+    var size = 1;
+
+    $(document).ready(function () {
+        if ("@ViewBag.IsSort" == "True") {
+            $("#secondli").addClass("active");
+        }
+        else {
+            $("#thirdli").addClass("active");
+        }
+        if (type == null)
+            loadCookBooks(1, size, true);
+        else
+            loadCookBooksByShiCai(1, size, true);
+
+    });
+
+    function loadCookBooks(pageIndex, pageSize, isFirst) {
+        $.ajax({
+            url: '/CookBook/GetPageBySort',
+            type: 'post',
+            data: { sortId: id, pageIndex: pageIndex, pageSize: pageSize },
+            success: function (data) {
+                if (data.StatusCode == 1) {
+                    var pageCount = data.Data.PageCount;
+                    if (isFirst) {
+                        $(".tcdPageCode").createPage({
+                            pageCount: pageCount,
+                            current: 1,
+                            backFn: function (p) {
+                                loadCookBooks(p, size, false);
+                            }
+                        });
+                    }
+                    initCookBooks(data.Data.List);
+                } else
+                    return layer.msg(data.Message);
+            }
+        });
+    }
+
+    function loadCookBooksByShiCai(pageIndex, pageSize, isFirst) {
+        $.ajax({
+            url: '/CookBook/GetPageByFoodMaterial',
+            type: 'get',
+            data: { foodMaterialId: id, pageIndex: pageIndex, pageSize: pageSize },
+            dataType:'json',
+            success: function (data) {
+                if (data.StatusCode == 1) {
+                    var pageCount = data.Data.PageCount;
+                    if (isFirst) {
+                        $(".tcdPageCode").createPage({
+                            pageCount: pageCount,
+                            current: 1,
+                            backFn: function (p) {
+                                loadCookBooksByShiCai(p, size, false);
+                            }
+                        });
+                    }
+                    initCookBooks(data.Data.List);
+                } else
+                    return layer.msg(data.Message);
+            }
+        });
+    }
+
+    function initCookBooks(json) {
+        var str = '';
+        $.each(json, function () {
+            str += '<div class="col_1_of_3 span_1_of_3" style="height:300px;text-align:center;cursor:pointer;"><div class="view effect"><img src="' + this.ImgUrl + '" alt="' + this.Name + '" class="imagess" onloadstart="image();" /></div><a href="/CookBook/ShowDetail/?cookBookId=' + this.CookBookId + '&isSort=@ViewBag.IsSort"><div><h3>' + this.Name + '</h3></div></a></div>';
+        });
+        var cooklist = $('#cookBookList');
+
+        cooklist.find('div:not(:last)').remove();
+        cooklist.prepend(str);
+    }
+
+    function image() {
+        var height = $(".imagess").height;
+        var width = $(".imagess").width;
+        if (height >= width) {
+            $(".imagess").attr("height", "100%");
+        }
+        if (height < width) {
+            $(".imagess").attr("width", "100%");
+        }
+    }
+</script>

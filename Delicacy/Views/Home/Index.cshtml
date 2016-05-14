@@ -1,4 +1,144 @@
-﻿@{
+﻿@using DataTransfer
+@{
     ViewBag.Title = "美食网";
 }
+<script type="text/javascript">
 
+    $(window).load(function () {
+        $('.flexslider').flexslider({
+            animation: "slide",
+            start: function (slider) {
+                $('body').removeClass('loading');
+            }
+        });
+        $("#daohang li:first").addClass("active");
+    });
+
+    function redirectToDetails(cookbookId) {
+        window.location.href = '/cookbook/ShowDetail?cookBookId=' + cookbookId + '&isSort=True';
+    }
+</script>
+<style>
+    .ellipsis {
+        overflow: hidden;
+        text-overflow: ellipsis;
+        display: -webkit-box;
+        -webkit-line-clamp: 3;
+        -webkit-box-orient: vertical;
+    }
+    .homea div:last-child{
+        color:black;
+    }
+     .homea:hover div:last-child {
+        background-color: #ff8a00;
+        color: white;
+    }
+    .homea:hover div:first-child{
+    }
+    .articlea h3{
+        color:#ff8a00;
+    }
+    .articlea:hover h3 {
+        text-decoration:solid #ff8a00;
+    }
+</style>
+<div class="banner">
+    <div class="flexslider">
+        <ul class="slides">
+            <li><img src="/images/banner1.jpg" alt="" /></li>
+            <li><img src="/images/banner2.jpg" alt="" /></li>
+            <li><img src="/images/banner3.jpg" alt="" /></li>
+            <li><img src="/images/banner4.jpg" alt="" /></li>
+        </ul>
+    </div>
+</div>
+<div class="main">
+    <div class="content-top">
+        <div style="border-bottom: 1px solid #EBE4D6;"><h3><span class="red" style="border-bottom:2px solid">最火菜谱</span>@*<span class="black" style="position: relative;float: right;right:1em;">More</span>*@</h3></div>
+
+        @if (ViewBag.Hottest.Count == 0)
+        {
+            <span>暂时无数据</span>
+        }
+        else
+        {
+            foreach (CookBookTsfer item in ViewBag.Hottest)
+            {
+
+
+                <div class="col_1_of_3 span_1_of_3 homea">
+                    <a href="javascript:;" onclick="redirectToDetails('@item.CookBookId')">
+                        <div style="height: 200px; overflow: hidden;"><img src="@item.ImgUrl" alt="" style="width:100%;" /></div>
+                        @*<div class="bottom-head"><h5>@item.Name</h5></div>*@
+                        @*<div class="but">
+                                <a href="javascript:;"><button class="btn1 btn-8 btn-8a" onclick="redirectToDetails('@item.CookBookId')">Read More</button></a>
+                            </div>*@
+                        <div style="text-align:center;font-size:18px;padding:5px;">@item.Name</div>
+                    </a>
+                </div>
+            }
+        }
+
+
+        <div class="clear"></div>
+    </div>
+    <div class="content-middle">
+        <div style="border-bottom: 1px solid #EBE4D6;"><h3><span class="red" style="border-bottom:2px solid">最新菜谱</span>@*<span class="black" style="position: relative;float: right;right:1em;">More</span>*@</h3></div>
+
+
+        @if (ViewBag.RecentCook.Count == 0)
+        {
+            <span>暂时无数据</span>
+        }
+        else
+        {
+            foreach (CookBookTsfer item in ViewBag.RecentCook)
+            {
+                <div class="col_1_of_3 span_1_of_3 homea">
+                    <a href="javascript:;" onclick="redirectToDetails('@item.CookBookId')">
+                        <div style="height: 200px; overflow: hidden;"><img src="@item.ImgUrl" alt="" style="width:100%;" /></div>
+                        @*<div class="bottom-head"><h5>@item.Name</h5></div>*@
+                        @*<div class="but">
+                                <a href="javascript:;"><button class="btn1 btn-8 btn-8a" onclick="redirectToDetails('@item.CookBookId')">Read More</button></a>
+                            </div>*@
+                        <div style="text-align:center;font-size:18px;padding:5px;">@item.Name</div>
+                    </a>
+                </div>
+            }
+
+        }
+
+
+
+        <div class="clear"></div>
+    </div>
+    <div class="content-last">
+        <div style="border-bottom: 1px solid #EBE4D6;">
+            <h3>
+                <span class="red" style="border-bottom:2px solid">饮食专题</span>
+            </h3>
+        </div>
+
+        @if (ViewBag.RecentArticle.Count == 0)
+        {
+            <span>暂时无数据</span>
+        }
+        else
+        {
+            foreach (SubjectArticleTsfer item in ViewBag.RecentArticle)
+            {
+                <div class="col_1_of_4 span_1_of_4 articlea" style="margin-top:40px;">
+                    <a href="/SubjectArticle/Get?id=@item.SubjectArticleId">
+                        @*<img src="/images/plate.png" alt="" />*@
+                        <h3 style="height:2.4em;">@item.Title</h3>
+                        <p class="ellipsis" style="padding:0;">@item.Brief</p>
+                    </a>
+                    @*<a href="/SubjectArticle/Get?id=@item.SubjectArticleId" target="_blank"><button class="btn1 btn-8 btn-8a">Read More</button></a>*@
+                </div>
+            }
+        }
+        <div class="clear"></div>
+    </div>
+
+
+</div>

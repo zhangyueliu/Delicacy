@@ -48,10 +48,19 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="AdminUser.cs">
+      <DependentUpon>Delicacy.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Collection.cs">
+      <DependentUpon>Delicacy.tt</DependentUpon>
+    </Compile>
     <Compile Include="CommentRecord.cs">
       <DependentUpon>Delicacy.tt</DependentUpon>
     </Compile>
     <Compile Include="CookBook.cs">
+      <DependentUpon>Delicacy.tt</DependentUpon>
+    </Compile>
+    <Compile Include="CookMaterial.cs">
       <DependentUpon>Delicacy.tt</DependentUpon>
     </Compile>
     <Compile Include="CookProcess.cs">
@@ -76,10 +85,10 @@
     <Compile Include="FoodMaterial.cs">
       <DependentUpon>Delicacy.tt</DependentUpon>
     </Compile>
-    <Compile Include="FoodSort.cs">
+    <Compile Include="FoodMaterial_CookBook.cs">
       <DependentUpon>Delicacy.tt</DependentUpon>
     </Compile>
-    <Compile Include="LikeCookBook.cs">
+    <Compile Include="FoodSort.cs">
       <DependentUpon>Delicacy.tt</DependentUpon>
     </Compile>
     <Compile Include="Properties\AssemblyInfo.cs" />
@@ -106,13 +115,11 @@
     </Compile>
   </ItemGroup>
   <ItemGroup>
+    <None Include="App.Config" />
     <EntityDeploy Include="Delicacy.edmx">
       <Generator>EntityModelCodeGenerator</Generator>
       <LastGenOutput>Delicacy.Designer.cs</LastGenOutput>
     </EntityDeploy>
-  </ItemGroup>
-  <ItemGroup>
-    <None Include="App.Config" />
     <None Include="Delicacy.Context.tt">
       <Generator>TextTemplatingFileGenerator</Generator>
       <DependentUpon>Delicacy.edmx</DependentUpon>

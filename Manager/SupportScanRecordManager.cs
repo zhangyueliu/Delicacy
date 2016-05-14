@@ -12,14 +12,24 @@ namespace Manager
     public class SupportScanRecordManager
     {
         private SupportScanRecordService Service = ObjectContainer.GetInstance<SupportScanRecordService>();
-        public OutputModel Add(SupportScanRecordTsfer support)
+        
+        public OutputModel Add(string cookBookId,int userId)
         {
-            if (support == null)
+            if (string.IsNullOrEmpty(cookBookId))
                 return OutputHelper.GetOutputResponse(ResultCode.NoParameter);
-            SupportScanRecordTsfer s=Service.Get(support.CookBookId, support.UserId.Value);
-            if ( s!= null)
-               return Delete(s);
-            if (Service.Add(support))
+            CookBookService cookService = new CookBookService();
+            if(!cookService.IsExist(cookBookId))
+                return OutputHelper.GetOutputResponse(ResultCode.NoData,"菜谱不存在");
+            SupportScanRecordTsfer s = Service.Get(cookBookId, userId);
+            if (s != null)
+                return OutputHelper.GetOutputResponse(ResultCode.ConditionNotSatisfied, "您已赞过此菜谱");
+            SupportScanRecordTsfer ssr = new SupportScanRecordTsfer { 
+            CookBookId=cookBookId,
+            DateTime=DateTime.Now,
+            Type=1,
+            UserId=userId
+            };
+            if (Service.Add(ssr))
                 return OutputHelper.GetOutputResponse(ResultCode.OK);
             return OutputHelper.GetOutputResponse(ResultCode.Error);
         }
@@ -49,7 +59,7 @@ namespace Manager
         /// <param name="cookbookid">菜谱id</param>
         /// <param name="userid">用户id</param>
         /// <returns></returns>
-        public OutputModel Get(int cookbookid,int userid)
+        public OutputModel Get(string  cookbookid,int userid)
         {
             SupportScanRecordTsfer s = Service.Get(cookbookid, userid);
             if (s == null)
@@ -77,7 +87,7 @@ namespace Manager
         /// <param name="cookbookid"></param>
         /// <param name="type">1为点赞</param>
         /// <returns></returns>
-        public OutputModel GetListCookbook(int cookbookid)
+        public OutputModel GetListCookbook(string  cookbookid)
         {
             List<SupportScanRecordTsfer> list = Service.GetListCookbook(cookbookid);
             if (list == null)

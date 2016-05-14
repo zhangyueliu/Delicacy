@@ -18,7 +18,7 @@ namespace Delicacy.Tests.Controllers
             {
                 Description = "ceshi",
                 FinalImg = "abc.jpg",
-                FoodMaterial = "1",
+               // FoodMaterial = "1",
                 FoodSort = "1",
                 Name = "很好吃的菜",
                 ProcessImgDes = "abc.jpg::第一步",

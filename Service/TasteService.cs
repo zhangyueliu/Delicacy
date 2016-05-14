@@ -49,5 +49,10 @@ namespace Service
         {
             return TransferObject.ConvertObjectByEntity<Taste, TasteTsfer>(base.Select(o => true).ToList());
         }
+        public List<TasteTsfer> GetPage(int pageindex, int pagesize, out int rowcount)
+        {
+            List<Taste> list = SelectDesc(pageindex, pagesize, o => true, o => o.TasteId, out rowcount).ToList();
+            return TransferObject.ConvertObjectByEntity<Taste, TasteTsfer>(list);
+        }
     }
 }

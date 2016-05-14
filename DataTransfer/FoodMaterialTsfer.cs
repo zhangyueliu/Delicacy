@@ -6,9 +6,10 @@ using System.Threading.Tasks;
 
 namespace DataTransfer
 {
-    public class FoodMaterialTsfer
+    public  class FoodMaterialTsfer
     {
         public int FoodMaterialId { get; set; }
         public string Name { get; set; }
+        public int Priority { get; set; }
     }
 }

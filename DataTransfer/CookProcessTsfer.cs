@@ -9,8 +9,9 @@ namespace DataTransfer
     public class CookProcessTsfer
     {
         public int CookProcessId { get; set; }
-        public Nullable<int> CookBookId { get; set; }
+        public string  CookBookId { get; set; }
         public string ImgUrl { get; set; }
         public string Description { get; set; }
+        public int Sort { get; set; }
     }
 }

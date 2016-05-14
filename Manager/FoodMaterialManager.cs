@@ -11,54 +11,76 @@ namespace Manager
 {
     public class FoodMaterialManager
     {
-        private FoodMaterialService Service = ObjectContainer.GetInstance<FoodMaterialService>();
-        public OutputModel Add(FoodMaterialTsfer foodmaterial)
-        {
-            if (foodmaterial == null)
-                return OutputHelper.GetOutputResponse(ResultCode.NoParameter);
-            if (Service.Get(foodmaterial.Name) != null)
-                return OutputHelper.GetOutputResponse(ResultCode.DataExisted);
-            if (Service.Add(foodmaterial))
-                return OutputHelper.GetOutputResponse(ResultCode.OK);
-            return OutputHelper.GetOutputResponse(ResultCode.Error);
-        }
-        public OutputModel Update(FoodMaterialTsfer foodmaterial)
-        {
-            if (foodmaterial == null)
-                return OutputHelper.GetOutputResponse(ResultCode.NoParameter);
-            if (Service.Update(foodmaterial))
-                return OutputHelper.GetOutputResponse(ResultCode.OK);
-            return OutputHelper.GetOutputResponse(ResultCode.Error);
-        }
+        private FoodMaterialService service = new FoodMaterialService();
 
-        public OutputModel Delete(int id)
+        public List<FoodMaterialTsfer> GetList()
         {
-            if (Service.Delete(id))
+            return service.GetList();
+        }
+        public FoodMaterialTsfer Get(string id)
+        {
+            int i;
+            CheckParameter.PageCheck(id, out i);
+            return service.Get(i);
+        }
+        public List<FoodMaterialTsfer> GetPage(string pageindex, int pagesize, out int pagecount)
+        {
+            int pageIndex;
+            int rowcount;
+            CheckParameter.PageCheck(pageindex, out pageIndex);
+            List<FoodMaterialTsfer> list = service.GetPage(pageIndex, pagesize, out rowcount);
+            pagecount = (int)Math.Ceiling(rowcount * 1.0 / pagesize);
+            return list; ;
+        }
+        public OutputModel Add(FoodMaterialTsfer foodsort)
+        {
+            if (foodsort == null)
+            {
+                return OutputHelper.GetOutputResponse(ResultCode.NoParameter);
+            }
+            if (service.Get(foodsort.Name) != null)
+            {
+                return OutputHelper.GetOutputResponse(ResultCode.DataExisted);
+            }
+            if (service.Add(foodsort))
+            {
+                return OutputHelper.GetOutputResponse(ResultCode.OK);
+            }
+            else
+            {
+                return OutputHelper.GetOutputResponse(ResultCode.Error);
+            }
+        }
+        public OutputModel Update(string id, string name)
+        {
+            int i;
+            if (!int.TryParse(id, out i))
+                return OutputHelper.GetOutputResponse(ResultCode.ErrorParameter);
+            FoodMaterialTsfer foodsort = service.Get(i);
+            if (foodsort == null)
+            {
+                return OutputHelper.GetOutputResponse(ResultCode.NoData);
+            }
+            foodsort.Name = name;
+            if (service.Update(foodsort))
+                return OutputHelper.GetOutputResponse(ResultCode.OK);
+            return OutputHelper.GetOutputResponse(ResultCode.Error);
+        }
+        public OutputModel Delete(string id)
+        {
+            int i;
+            if (!int.TryParse(id, out i))
+                return OutputHelper.GetOutputResponse(ResultCode.ErrorParameter);
+            if (service.Delete(i))
             {
                 return OutputHelper.GetOutputResponse(ResultCode.OK);
             }
             return OutputHelper.GetOutputResponse(ResultCode.Error);
         }
-        public OutputModel Get(int id)
+
+        public List<FoodMaterialTsfer> GetListByCookBookId(string cookBookId)
         {
-           FoodMaterialTsfer f= Service.Get(id);
-           if (f == null)
-               return OutputHelper.GetOutputResponse(ResultCode.NoData);
-           return OutputHelper.GetOutputResponse(ResultCode.OK, f);
-        }
-         public OutputModel Get(string name)
-        {
-            FoodMaterialTsfer f = Service.Get(name);
-            if (f == null)
-                return OutputHelper.GetOutputResponse(ResultCode.NoData);
-            return OutputHelper.GetOutputResponse(ResultCode.OK,f);
-        }
-        public OutputModel GetList()
-        {
-           List<FoodMaterialTsfer>list= Service.GetList();
-           if (list.Count == 0)
-               return OutputHelper.GetOutputResponse(ResultCode.NoData);
-           return OutputHelper.GetOutputResponse(ResultCode.OK,list);
+            return  service.GetList(cookBookId);
         }
     }
 }

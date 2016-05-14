@@ -35,6 +35,7 @@
       <HintPath>..\lib\Newtonsoft.Json.dll</HintPath>
     </Reference>
     <Reference Include="System" />
+    <Reference Include="System.ComponentModel.DataAnnotations" />
     <Reference Include="System.Core" />
     <Reference Include="System.Xml.Linq" />
     <Reference Include="System.Data.DataSetExtensions" />
@@ -43,12 +44,15 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="AdminUserTsfer.cs" />
     <Compile Include="CommentRecordTsfer.cs" />
     <Compile Include="CookBookTsfer.cs" />
+    <Compile Include="CookMaterialTsfer.cs" />
     <Compile Include="CookProcessTsfer.cs" />
     <Compile Include="FoodMaterialTsfer.cs" />
+    <Compile Include="FoodMaterial_CookBookTsfer.cs" />
     <Compile Include="FoodSortTsfer.cs" />
-    <Compile Include="LikeCookBookTsfer.cs" />
+    <Compile Include="CollectionTsfer.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="SubjectArticleTsfer.cs" />
     <Compile Include="SubjectSortTsfer.cs" />

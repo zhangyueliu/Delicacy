@@ -1,0 +1,340 @@
+﻿@using DataTransfer
+@{
+    ViewBag.Title = "上传菜谱-美食网";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+<link href="~/Content/PublishCookBook.css" rel="stylesheet" />
+<script src="~/Scripts/publishCookBook/hm.js"></script>
+<script src="~/Scripts/publishCookBook/ga.js"></script>
+<script>
+    $(document).ready(function () {
+        $("#daohang li:last").addClass("active");
+    });
+</script>
+
+<div class="mod_left">
+    <!--
+       个人中心首页左侧菜单;
+       给当前分类的a标签上添加 class="on";
+    -->
+    <div class="menu_wrap">
+        <ul>
+            <li>
+                <h2>食谱网</h2>
+            </li>
+            <li>
+                <a class="on" href="/UserInfo/UserCenter">菜谱</a>
+            </li>
+
+            <li>
+                <a href="/LikeCookBook/Index">收藏</a>
+            </li>
+        </ul>
+    </div>
+    <!-- 左侧分类导航结束 -->
+</div>
+<div class="mod_right">
+    <div class="ui_title mt20">
+        <div class="ui_title_wrap">
+            <a href="#" class="on">发布新菜谱</a>
+        </div>
+    </div>
+    <div class="content">
+
+        <h3>展示自己的厨艺，与上千万网友共同分享！</h3>
+        <form action="" id="formRecipe" method="post">
+            <input type="hidden" id="ifedit" value="0">
+            <dl class="cp_name">
+                <dt>
+                    <span class="x">*</span>
+                    <span class="lable">菜谱名称：</span>
+
+                </dt>
+                <dd><input type="text" class="btn37 J_Title color_5b" name="subject"></dd>
+            </dl>
+            <dl class="uploadImagel">
+                <dt>
+                    <span class="x">*</span>
+                    <span class="lable">成品图片：</span>
+
+                </dt>
+                <dd>
+                    <div class="left addicon J_fileImag" id="finalImg">
+                        <input type="hidden" value="" name="" class="J_imghidden" id="final" style="opacity: 0; display: inline-block;">
+                        <input type="file" name="file" id="userfile_0" value="" style="opacity: 0; display: block; left: -5.5px; top: -35px;">
+                        <p class="p1">点击上传成品图</p>
+                        <p class="p3">（必填）</p>
+
+                    </div>
+                    <div class="left">
+                        <textarea class="textAreaMain J_input J_swfDisc" id="message" name="message">请输入菜谱描述</textarea>
+                    </div>
+                </dd>
+            </dl>
+            <dl class="options">
+                <dt>
+                    <span class="x">*</span>
+                    <span class="lable">基本参数：</span>
+
+                </dt>
+
+
+                <dd>
+                    <div class="multiselect select_0" style="width: 103px;"><a tar="foodSort" href="javascript:;" check="false" class="multi_txt multi_1" title="口味">菜谱类别</a><ul class="" style="">
+                        @foreach(FoodSortTsfer foodSort in ViewBag.FoodSort)
+                        {
+                            <li><a href="javascript:;"><label class="J_radio"><input type="radio" name="foodSort" value="@foodSort.FoodSortId">@foodSort.Name</label></a></li>
+                        }
+                        </ul></div>
+
+                    <div class="multiselect select_1" style="width: 103px;"><a tar="cuisine" href="javascript:;" check="false" class="multi_txt multi_1" title="口味">口味</a><ul class="" style="">
+                        @foreach (TasteTsfer taste in ViewBag.Taste)
+                        {
+                            <li><a href="javascript:;"><label class="J_radio"><input type="radio" name="cuisine" value="@taste.TasteId">@taste.Name</label></a></li>
+                        }
+                        </ul></div>
+
+                    <div class="multiselect select_4" style="width: 103px;">
+                        <input type="hidden" name="foodMaterial" id="J_foodMaterial" value="">
+                        <a tar="foodMaterial" href="javascript:;" check="false" class="multi_txt multi_0" title="食材">食材</a>
+                        <ul class="" style="">
+                            @{
+                                List<FoodMaterialTsfer> list = ViewBag.FoodMaterial;
+                                for (int i = 0; i < list.Count;i++ )
+                                {
+                                    <li>
+                                        <a href="javascript:;">
+                                            <label class="J_checkbox"><input names="foodMaterial@(i+1)" type="checkbox" value="@list[i].FoodMaterialId">@list[i].Name</label>
+                                        </a>
+                                    </li>
+                                }
+                            }
+                        </ul>
+                    </div>
+
+                </dd>
+
+            </dl>
+            <dl class="ingredient">
+                <dt>
+                    <span class="x">*</span>
+                    <span class="lable">食材明细：</span>
+                </dt>
+                <dd>
+                    <blockquote class="Left">
+                        <div>
+                            <input type="text" name="food1[]" class="zhuliao btn37 J_input" placeholder="主料 (如：猪肉)" />
+                            <input type="text" name="food2[]" class="yongliang btn37 J_input" placeholder="用量（如100g）" />
+                        </div>
+                        <div>
+                            <input type="text" name="food1[]" class="zhuliao btn37 J_input" value="">
+                            <input type="text" name="food2[]" class="yongliang btn37 J_input" value="">
+                            <a href="javascript:;" class="delete J_delete"></a>
+                        </div>
+                        <div class="J_addDiv">
+                            <input type="text" name="food1[]" class="zhuliao btn37 J_input" value="">
+                            <input type="text" name="food2[]" class="yongliang btn37 J_input" value="">
+                            <a href="javascript:;" class="delete J_delete"></a>
+                        </div>
+                    </blockquote>
+                    <blockquote class="Right">
+                        <div>
+                            <input type="text" name="food3[]" class="zhuliao btn37 J_input" placeholder="调料 (如：盐)" />
+                            <input type="text" name="food4[]" class="yongliang btn37 J_input" placeholder="用量（如10g）" />
+                        </div>
+                        <div>
+                            <input type="text" name="food3[]" class="zhuliao btn37 J_input" value="">
+                            <input type="text" name="food4[]" class="yongliang btn37 J_input" value="">
+                            <a href="javascript:;" class="delete J_delete"></a>
+                        </div>
+                        <div class="J_addDiv">
+                            <input type="text" name="food3[]" class="zhuliao btn37 J_input" value="">
+                            <input type="text" name="food4[]" class="yongliang btn37 J_input" value="">
+                            <a href="javascript:;" class="delete J_delete"></a>
+                        </div>
+                    </blockquote>
+                </dd>
+
+
+
+            </dl>
+            <dl class="step">
+                <dt>
+                    <span class="x">*</span>
+                    <span class="lable">做法步骤：</span>
+
+                </dt>
+                <dd>
+
+
+                    <div id="dragsort" data-listidx="0">
+                        <blockquote class="cp_block J_blockQ clear" style="cursor: move;">
+                            <div class="left addicon J_fileImag" id="J_upload_0">
+                                <input type="hidden" value="" name="step_img[]" class="J_imghidden" style="opacity: 0; display: inline-block;">
+                                <input type="file" name="file" id="userfile_0" value="" style="opacity: 0; display: block; left: -5.5px; top: -35px;">
+                                <p class="p1">点击上传步骤图</p>
+                                <p class="p3">（可不填）</p>
+
+                            </div>
+
+                            <div class="left">
+                                <input type="hidden" value="" name="stepid[]">
+                                <textarea class="textArea J_input" name="note[]" placeholder="请输入做法说明菜谱描述"></textarea>
+                                <span class="J_step_num">1、</span>
+                                <a href="javascript:;" class="add J_addTextarea"></a>
+                                <a href="javascript:;" class="up J_upTextarea"></a>
+                                <a href="javascript:;" class="down J_downTextarea"></a>
+                                <a href="javascript:;" class="delete J_delTextarea"></a>
+                            </div>
+                        </blockquote>
+
+                        <blockquote class="cp_block J_blockQ clear" style="cursor: move;">
+                            <div class="left addicon J_fileImag" id="J_upload_1">
+                                <input type="hidden" value="" name="step_img[]" class="J_imghidden" style="opacity: 0; display: inline-block;">
+                                <input type="file" name="file" id="userfile_1" value="" style="opacity: 0; display: inline-block;">
+                                <p class="p1">点击上传步骤图</p>
+                                <p class="p3">（可不填）</p>
+
+                            </div>
+                            <div class="left">
+                                <input type="hidden" value="" name="stepid[]">
+                                <textarea class="textArea J_input" name="note[]" placeholder="请输入做法说明菜谱描述"></textarea>
+                                <span class="J_step_num">2、</span>
+                                <a href="javascript:;" class="add J_addTextarea"></a>
+                                <a href="javascript:;" class="up J_upTextarea"></a>
+                                <a href="javascript:;" class="down J_downTextarea"></a>
+                                <a href="javascript:;" class="delete J_delTextarea"></a>
+                            </div>
+                        </blockquote>
+                        <blockquote class="cp_block J_blockQ clear" style="cursor: move;">
+                            <div class="left addicon J_fileImag" id="J_upload_2">
+                                <input type="hidden" value="" name="step_img[]" class="J_imghidden" style="opacity: 0; display: inline-block;">
+                                <input type="file" name="file" id="userfile_2" value="" style="opacity: 0; display: inline-block;">
+
+                                <p class="p1">点击上传步骤图</p>
+                                <p class="p3">（可不填）</p>
+
+                            </div>
+                            <div class="left">
+                                <input type="hidden" value="" name="stepid[]">
+                                <textarea class="textArea J_input" name="note[]" placeholder="请输入做法说明菜谱描述"></textarea>
+                                <span class="J_step_num">3、</span>
+                                <a href="javascript:;" class="add J_addTextarea"></a>
+                                <a href="javascript:;" class="up J_upTextarea"></a>
+                                <a href="javascript:;" class="down J_downTextarea"></a>
+                                <a href="javascript:;" class="delete J_delTextarea"></a>
+                            </div>
+                        </blockquote>
+                    </div>
+                </dd>
+            </dl>
+            <dl class="tips">
+                <dt>
+                    <span class="lable">小窍门：</span>
+
+                </dt>
+                <dd><textarea class="area543 J_input" name="tips" id="tips"></textarea></dd>
+            </dl>
+            <dl class="addElem" style="display:none;"></dl>
+            <dl class="selectcheckBox">
+                <dt>
+                    &nbsp;
+
+                </dt>
+                <dd>
+                    <div class="submitdiv" style="text-align:center;">
+                        <input class="postbtn" id="postbtn" name="submit" type="button" value="发布菜谱">
+                    </div>
+                </dd>
+            </dl>
+        </form>
+    </div>
+</div>
+<div class="clear"></div>
+<script src="~/Scripts/publishCookBook/publishcook.js"></script>
+<script src="~/Scripts/publishCookBook/swfupload.js"></script>
+<script src="~/Scripts/publishCookBook/common.js"></script>
+<script src="~/Scripts/publishCookBook/ga.js"></script>
+<script src="~/Scripts/publishCookBook/hm.js"></script>
+<script src="~/Scripts/publishCookBook/jquery.dragsort.js"></script>
+<script src="~/Scripts/publishCookBook/msc-tools-multiselect.js"></script>
+<script src="~/Scripts/publishCookBook/msc-ui-select.js"></script>
+<script src="~/Scripts/publishCookBook/my_upload_recipe.js"></script>
+<script src="~/Scripts/publishCookBook/push.js"></script>
+<script src="~/Scripts/publishCookBook/cookBook.js"></script>
+<script type="text/javascript">
+    var ifbtn = 0;
+    msc.user.ready()
+    msc.tools.multiselect({ "radio": "level,cuisine,technics,during", "checkbox": "cookers" });
+    $("#level,#cuisine,#technics,#during,#cookers,#J_level,#J_cuisine,#J_technics,#J_during").remove();
+    // 炒锅默认$("input[names=cookers1]").click();
+    /*flashupload*/
+    msc.tools.upload(".J_swf");
+
+    $("#dragsort").dragsort({
+        dragSelector: "blockquote",
+        dragBetween: true,
+        dragEnd: saveOrder,
+        scrollSpeed: 5
+    });
+    function saveOrder() {
+        orderNumber();
+    };
+    msc.ui.select({ id: "#qiushou_id", width: 90, defaultValue: true });
+    $("#tougao").click(function () { if (!$("#tougao").is(':checked')) $("#tougao_sub").slideUp('600'); else $("#tougao_sub").slideDown('600'); });
+
+    function check_step() {
+        var istep = 0;
+        $('textarea[name="note[]"]').each(function () {
+            if (!/color_5b/.test($(this).attr("class")) || $(this).val() == "") {
+                istep = 1
+            }
+        });
+        return istep
+    }
+
+    function check_step_img() {
+        var istep_img = 0;
+        $(".div_file_img").each(function () {
+            if (/span/.test($(this).html())) {
+                istep_img = 1
+            }
+        });
+        return istep_img
+    }
+
+    $("#postbtn").click(function () {
+        //publishCookBook();
+
+        if ($("input[name=subject]").val() === "") {
+            msc.ui.dialog.error("请输入菜谱名称");
+            $("input[name=subject]").focus()
+        } else {
+            if ($("#final").val() == "") {
+                msc.ui.dialog.error("请上传至少一张成品图片");
+
+            } else {
+                if (!$("input[name=cuisine]:checked").val() || !$("input[name=foodSort]:checked").val() || !$("input[name=foodMaterial]").val()) {
+                    msc.ui.dialog.error("请完善基本参数(菜谱类别,口味或食材)");
+                } else {
+                    if (!/color_5b/.test($('input[name="food1[]"]:first').attr("class")) || $('input[name="food3[]"]:first').val() == "") {
+                        msc.ui.dialog.error("请输入食材明细")
+                    } else {
+                        if (check_step() == 1) {
+                            msc.ui.dialog.error("请完善菜谱步骤")
+                        } else {
+                            if (check_step_img() == 1) {
+                                msc.ui.dialog.error("步骤图正在上传中，请耐心等待...")
+                            } else {
+                                ifbtn = 1;
+                                $(this).val("提交中...");
+                                //$(this).attr("id", "");
+                                publishCookBook(0);//0待审核
+                            }
+                        }
+                    }
+                }
+            }
+        }
+    });
+</script>
