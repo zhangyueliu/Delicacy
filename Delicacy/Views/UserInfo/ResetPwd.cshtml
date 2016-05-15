@@ -25,6 +25,10 @@
         $(document).ajaxStop(function () {
             $.fancybox.hideLoading();
         })
+        $(document).keydown(function (event) {
+            if (event.keyCode == 13)
+                $('#btnresetpwd').click();
+        });
     </script>
 </head>
 <body>
@@ -36,7 +40,7 @@
                 <input type="password" id="pwd" value="" placeholder="输入新密码"/>
             </form>
             <div class="forgot">
-                <input type="submit" onclick="reset()" value="重置密码">
+                <input type="submit" onclick="reset()" id="btnresetpwd" value="重置密码">
             </div>
         </div>
         <div class="login-bottom">

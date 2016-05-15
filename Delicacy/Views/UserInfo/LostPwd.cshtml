@@ -25,6 +25,10 @@
         $(document).ajaxStop(function () {
             $.fancybox.hideLoading();
         })
+        $(document).keydown(function (event) {
+            if (event.keyCode == 13)
+                $('#btnYanzheng').click();
+        });
     </script>
 </head>
 <body>
@@ -35,7 +39,7 @@
                 <input type="text" id="email" placeholder="邮箱" />
             </form>
             <div class="forgot">
-                <input type="submit" onclick="LostPwd()" value="验证邮箱">
+                <input type="submit" onclick="LostPwd()" id="btnYanzheng" value="验证邮箱">
             </div>
         </div>
         <div class="login-bottom">
