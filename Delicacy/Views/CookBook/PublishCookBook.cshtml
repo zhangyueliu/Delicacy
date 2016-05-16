@@ -4,8 +4,8 @@
     Layout = "~/Views/Shared/_Layout.cshtml";
 }
 <link href="~/Content/PublishCookBook.css" rel="stylesheet" />
-<script src="~/Scripts/publishCookBook/hm.js"></script>
-<script src="~/Scripts/publishCookBook/ga.js"></script>
+@*<script src="~/Scripts/publishCookBook/hm.js"></script>
+<script src="~/Scripts/publishCookBook/ga.js"></script>*@
 <script>
     $(document).ready(function () {
         $("#daohang li:last").addClass("active");
@@ -254,8 +254,8 @@
 <script src="~/Scripts/publishCookBook/publishcook.js"></script>
 <script src="~/Scripts/publishCookBook/swfupload.js"></script>
 <script src="~/Scripts/publishCookBook/common.js"></script>
-<script src="~/Scripts/publishCookBook/ga.js"></script>
-<script src="~/Scripts/publishCookBook/hm.js"></script>
+@*<script src="~/Scripts/publishCookBook/ga.js"></script>
+<script src="~/Scripts/publishCookBook/hm.js"></script>*@
 <script src="~/Scripts/publishCookBook/jquery.dragsort.js"></script>
 <script src="~/Scripts/publishCookBook/msc-tools-multiselect.js"></script>
 <script src="~/Scripts/publishCookBook/msc-ui-select.js"></script>
@@ -314,7 +314,7 @@
                 msc.ui.dialog.error("请上传至少一张成品图片");
 
             } else {
-                if (!$("input[name=cuisine]:checked").val() || !$("input[name=foodSort]:checked").val() || !$("input[name=foodMaterial]").val()) {
+                if (!$("input[name=cuisine]:checked").val() || !$("input[name=foodSort]:checked").val()) {
                     msc.ui.dialog.error("请完善基本参数(菜谱类别,口味或食材)");
                 } else {
                     if (!/color_5b/.test($('input[name="food1[]"]:first').attr("class")) || $('input[name="food3[]"]:first').val() == "") {

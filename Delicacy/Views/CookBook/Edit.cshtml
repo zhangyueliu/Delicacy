@@ -7,7 +7,7 @@
 <link href="~/Content/PublishCookBook.css" rel="stylesheet" />
 <script src="~/Scripts/Tool.js"></script>
 @*<script src="~/Scripts/publishCookBook/hm.js"></script>
-<script src="~/Scripts/publishCookBook/ga.js"></script>*@
+    <script src="~/Scripts/publishCookBook/ga.js"></script>*@
 <script type="text/javascript">
     var sort = '@Model.FoodSortId';
     var foodSortName = '@Model.FoodSortName';
@@ -16,14 +16,16 @@
     @{
         string materialIds = "";
         string materialNames = "";
-        foreach (FoodMaterialTsfer materi in ViewBag.ListMaterial)
-        {
-            materialNames += materi.Name + ",";
-            materialIds += materi.FoodMaterialId.ToString() + ",";
+        if (ViewBag.ListMaterial.Count>0) {
+            foreach (FoodMaterialTsfer materi in ViewBag.ListMaterial)
+            {
+                materialNames += materi.Name + ",";
+                materialIds += materi.FoodMaterialId.ToString() + ",";
+            }
+            materialIds = materialIds.Substring(0, materialIds.Length - 1);
         }
-        materialIds = materialIds.Substring(0, materialIds.Length - 1);
     }
-    var materialNames='@materialNames';
+    var materialNames = '@materialNames';
     var material = '@materialIds';
     var arrMater = material.split(',');
     $(document).ready(function () {
@@ -39,7 +41,7 @@
         //$('input[type="checkbox"]').each(function myfunction() {
         for (var i = 0; i < arrMater.length; i++) {
             //$('input[type="checkbox"]').
-            $("input:checkbox[value='" + arrMater[i]+ "']").attr('checked', 'true');
+            $("input:checkbox[value='" + arrMater[i] + "']").attr('checked', 'true');
         }
         //});
     });
@@ -72,7 +74,7 @@
             <a href="#" class="on">发布新菜谱</a>
         </div>
     </div>
-   
+
     <div class="content">
 
         <h3>展示自己的厨艺，与上千万网友共同分享！</h3>
@@ -80,197 +82,197 @@
         @{
             if (Model == null)
             {
-                 <span>没有数据</span>
+                <span>没有数据</span>
             }
             else
-            { 
-             <form action="" id="formRecipe" method="post">
-            <input type="hidden" id="ifedit" value="0">
-            <dl class="cp_name">
-                <dt>
-                    <span class="x">*</span>
-                    <span class="lable">菜谱名称：</span>
+            {
+                <form action="" id="formRecipe" method="post">
+                    <input type="hidden" id="ifedit" value="0">
+                    <dl class="cp_name">
+                        <dt>
+                            <span class="x">*</span>
+                            <span class="lable">菜谱名称：</span>
 
-                </dt>
-                <dd><input type="text" class="btn37 J_Title color_5b" name="subject" value="@Model.Name"></dd>
-            </dl>
-            <dl class="uploadImagel">
-                <dt>
-                    <span class="x">*</span>
-                    <span class="lable">成品图片：</span>
+                        </dt>
+                        <dd><input type="text" class="btn37 J_Title color_5b" name="subject" value="@Model.Name"></dd>
+                    </dl>
+                    <dl class="uploadImagel">
+                        <dt>
+                            <span class="x">*</span>
+                            <span class="lable">成品图片：</span>
 
-                </dt>
-                <dd>
-                    <div class="left addicon J_fileImag" id="finalImg">
-                        <input type="hidden" value="@Model.ImgUrl" name="" class="J_imghidden" id="final" style="opacity: 0; display: inline-block;">
-                        <input type="file" name="file" id="userfile_0" value="" style="opacity: 0; display: block; left: -5.5px; top: -35px;">
-                        <p class="p1">点击上传成品图</p>
-                        <p class="p3">（必填）</p>
-                        <div class="div_file_img" style="background-image: none;"><img class="file_img" src="@Model.ImgUrl" width="100%"></div>
-                    </div>
-                    <div class="left">
-                        <textarea class="textAreaMain  J_swfDisc color_5b" id="message" name="message">@Model.Description</textarea>
-                    </div>
-                </dd>
-            </dl>
-            <dl class="options">
-                <dt>
-                    <span class="x">*</span>
-                    <span class="lable">基本参数：</span>
-
-                </dt>
-
-
-                <dd>
-                    <div class="multiselect select_0" style="width: 103px;">
-                        <a tar="foodSort" href="javascript:;" id="aSort" check="false" class="multi_txt multi_1" title="菜谱类别">菜谱类别</a><ul class="" style="">
-                            @foreach (FoodSortTsfer foodSort in ViewBag.FoodSort)
-                            {
-                                <li><a href="javascript:;"><label class="J_radio"><input type="radio" name="foodSort" value="@foodSort.FoodSortId" />@foodSort.Name</label></a></li>
-                            }
-                        </ul>
-                    </div>
-
-                    <div class="multiselect select_1" style="width:103px;">
-                        <a tar="cuisine" href="javascript:;" id="aTaste" check="false" class="multi_txt multi_1" title="口味">口味</a><ul class="" style="">
-                            @foreach (TasteTsfer taste in ViewBag.Taste)
-                            {
-                                <li><a href="javascript:;"><label class="J_radio"><input type="radio" name="cuisine" value="@taste.TasteId">@taste.Name</label></a></li>
-                            }
-                        </ul>
-                    </div>
-
-                    <div class="multiselect select_4" style="width: 103px;">
-                        <input type="hidden" name="foodMaterial" id="J_foodMaterial" value="@materialIds">
-                        <a tar="foodMaterial" href="javascript:;" id="aMaterial" check="false" class="multi_txt multi_0" title="食材">食材</a>
-                        <ul class="" style="">
-                            @{
-                                List<FoodMaterialTsfer> list = ViewBag.FoodMaterial;
-                                for (int i = 0; i < list.Count; i++)
-                                {
-                                    <li>
-                                        <a href="javascript:;">
-                                            <label class="J_checkbox"><input names="foodMaterial@(i+1)" type="checkbox" value="@list[i].FoodMaterialId">@list[i].Name</label>
-                                        </a>
-                                    </li>
-                                }
-                            }
-                        </ul>
-                    </div>
-
-                </dd>
-
-            </dl>
-            <dl class="ingredient">
-                <dt>
-                    <span class="x">*</span>
-                    <span class="lable">食材明细：</span>
-                </dt>
-                <dd>
-                    <blockquote class="Left">
-                        @foreach (CookMaterialTsfer cook in Model.ListMaterial.Where(o => o.Type == 1).ToList())
-                        {
-                        <div>
-                            <input type="text" name="food1[]" class="zhuliao btn37 color_5b" value="@cook.FoodMaterialName" placeholder="主料 (如：猪肉)" />
-                            <input type="text" name="food2[]" class="yongliang btn37 color_5b" value="@cook.Amount" placeholder="用量（如100g）" />
-                            
-                        </div>
-                        }
-                        <div>
-                            <input type="text" name="food1[]" class="zhuliao btn37 J_input" placeholder="主料 (如：猪肉)">
-                            <input type="text" name="food2[]" class="yongliang btn37 J_input" placeholder="用量（如100g）">
-                            <a href="javascript:;" class="delete J_delete"></a>
-                        </div>
-                        <div class="J_addDiv">
-                            <input type="text" name="food1[]" class="zhuliao btn37 J_input" value="">
-                            <input type="text" name="food2[]" class="yongliang btn37 J_input" value="">
-                            <a href="javascript:;" class="delete J_delete"></a>
-                        </div>
-                    </blockquote>
-                    <blockquote class="Right">
-                        @foreach (CookMaterialTsfer cook in Model.ListMaterial.Where(o => o.Type == 2).ToList())
-                        {
-                            <div>
-                                <input type="text" name="food3[]" class="zhuliao btn37 color_5b" value="@cook.FoodMaterialName" placeholder="调料 (如：盐)" />
-                                <input type="text" name="food4[]" class="yongliang btn37 color_5b" value="@cook.Amount" placeholder="用量（如10g）" />
-                            </div>
-                        }
-                        
-                        <div>
-                            <input type="text" name="food3[]" class="zhuliao btn37 J_input" placeholder="调料 (如：盐)">
-                            <input type="text" name="food4[]" class="yongliang btn37 J_input" placeholder="用量（如10g）">
-                            <a href="javascript:;" class="delete J_delete"></a>
-                        </div>
-                        <div class="J_addDiv">
-                            <input type="text" name="food3[]" class="zhuliao btn37 J_input" value="">
-                            <input type="text" name="food4[]" class="yongliang btn37 J_input" value="">
-                            <a href="javascript:;" class="delete J_delete"></a>
-                        </div>
-                    </blockquote>
-                </dd>
-
-
-
-            </dl>
-            <dl class="step">
-                <dt>
-                    <span class="x">*</span>
-                    <span class="lable">做法步骤：</span>
-
-                </dt>
-                <dd>
-
-
-                    <div id="dragsort" data-listidx="0">
-                        @foreach (CookProcessTsfer item in Model.ListProcess)
-                        {
-                            <blockquote class="cp_block J_blockQ clear" style="cursor: move;">
-                            <div class="left addicon J_fileImag" id="J_upload_0">
-                                <input type="hidden" value="@item.ImgUrl" name="step_img[]" class="J_imghidden" style="opacity: 0; display: inline-block;">
+                        </dt>
+                        <dd>
+                            <div class="left addicon J_fileImag" id="finalImg">
+                                <input type="hidden" value="@Model.ImgUrl" name="" class="J_imghidden" id="final" style="opacity: 0; display: inline-block;">
                                 <input type="file" name="file" id="userfile_0" value="" style="opacity: 0; display: block; left: -5.5px; top: -35px;">
-                                <p class="p1">点击上传步骤图</p>
-                                <p class="p3">（可不填）</p>
-                                <div class="div_file_img" style="background-image: none;"><img class="file_img" src="@item.ImgUrl" width="100%"></div>
+                                <p class="p1">点击上传成品图</p>
+                                <p class="p3">（必填）</p>
+                                <div class="div_file_img" style="background-image: none;"><img class="file_img" src="@Model.ImgUrl" width="100%"></div>
                             </div>
-
                             <div class="left">
-                                <input type="hidden" value="" name="stepid[]">
-                                <textarea class="textArea color_5b" name="note[]" placeholder="请输入做法说明菜谱描述">@item.Description</textarea>
-                                <span class="J_step_num">@item.Sort、</span>
-                                <a href="javascript:;" class="add J_addTextarea"></a>
-                                <a href="javascript:;" class="up J_upTextarea"></a>
-                                <a href="javascript:;" class="down J_downTextarea"></a>
-                                <a href="javascript:;" class="delete J_delTextarea"></a>
+                                <textarea class="textAreaMain  J_swfDisc color_5b" id="message" name="message">@Model.Description</textarea>
                             </div>
-                        </blockquote>
-                        }
-                    </div>
-                </dd>
-            </dl>
-            <dl class="tips">
-                <dt>
-                    <span class="lable">小窍门：</span>
+                        </dd>
+                    </dl>
+                    <dl class="options">
+                        <dt>
+                            <span class="x">*</span>
+                            <span class="lable">基本参数：</span>
 
-                </dt>
-                <dd><textarea class="area543 " name="tips" id="tips">@Model.Tips</textarea></dd>
-            </dl>
-            <dl class="addElem" style="display:none;"></dl>
-            <dl class="selectcheckBox">
-                <dt>
-                    &nbsp;
+                        </dt>
 
-                </dt>
-                <dd>
-                    <div class="submitdiv" style="text-align:center;">
-                        <input class="postbtn" id="postbtn" name="submit" type="button" value="确定修改">
-                    </div>
-                </dd>
-            </dl>
-        </form>
+
+                        <dd>
+                            <div class="multiselect select_0" style="width: 103px;">
+                                <a tar="foodSort" href="javascript:;" id="aSort" check="false" class="multi_txt multi_1" title="菜谱类别">菜谱类别</a><ul class="" style="">
+                                    @foreach (FoodSortTsfer foodSort in ViewBag.FoodSort)
+                                    {
+                                        <li><a href="javascript:;"><label class="J_radio"><input type="radio" name="foodSort" value="@foodSort.FoodSortId" />@foodSort.Name</label></a></li>
+                                    }
+                                </ul>
+                            </div>
+
+                            <div class="multiselect select_1" style="width:103px;">
+                                <a tar="cuisine" href="javascript:;" id="aTaste" check="false" class="multi_txt multi_1" title="口味">口味</a><ul class="" style="">
+                                    @foreach (TasteTsfer taste in ViewBag.Taste)
+                                    {
+                                        <li><a href="javascript:;"><label class="J_radio"><input type="radio" name="cuisine" value="@taste.TasteId">@taste.Name</label></a></li>
+                                    }
+                                </ul>
+                            </div>
+
+                            <div class="multiselect select_4" style="width: 103px;">
+                                <input type="hidden" name="foodMaterial" id="J_foodMaterial" value="@materialIds">
+                                <a tar="foodMaterial" href="javascript:;" id="aMaterial" check="false" class="multi_txt multi_0" title="食材">食材</a>
+                                <ul class="" style="">
+                                    @{
+                                    List<FoodMaterialTsfer> list = ViewBag.FoodMaterial;
+                                    for (int i = 0; i < list.Count; i++)
+                                    {
+                                        <li>
+                                            <a href="javascript:;">
+                                                <label class="J_checkbox"><input names="foodMaterial@(i+1)" type="checkbox" value="@list[i].FoodMaterialId">@list[i].Name</label>
+                                            </a>
+                                        </li>
+                                    }
+                                    }
+                                </ul>
+                            </div>
+
+                        </dd>
+
+                    </dl>
+                    <dl class="ingredient">
+                        <dt>
+                            <span class="x">*</span>
+                            <span class="lable">食材明细：</span>
+                        </dt>
+                        <dd>
+                            <blockquote class="Left">
+                                @foreach (CookMaterialTsfer cook in Model.ListMaterial.Where(o => o.Type == 1).ToList())
+                                {
+                                    <div>
+                                        <input type="text" name="food1[]" class="zhuliao btn37 color_5b" value="@cook.FoodMaterialName" placeholder="主料 (如：猪肉)" />
+                                        <input type="text" name="food2[]" class="yongliang btn37 color_5b" value="@cook.Amount" placeholder="用量（如100g）" />
+
+                                    </div>
+                                }
+                                <div>
+                                    <input type="text" name="food1[]" class="zhuliao btn37 J_input" placeholder="主料 (如：猪肉)">
+                                    <input type="text" name="food2[]" class="yongliang btn37 J_input" placeholder="用量（如100g）">
+                                    <a href="javascript:;" class="delete J_delete"></a>
+                                </div>
+                                <div class="J_addDiv">
+                                    <input type="text" name="food1[]" class="zhuliao btn37 J_input" value="">
+                                    <input type="text" name="food2[]" class="yongliang btn37 J_input" value="">
+                                    <a href="javascript:;" class="delete J_delete"></a>
+                                </div>
+                            </blockquote>
+                            <blockquote class="Right">
+                                @foreach (CookMaterialTsfer cook in Model.ListMaterial.Where(o => o.Type == 2).ToList())
+                                {
+                                    <div>
+                                        <input type="text" name="food3[]" class="zhuliao btn37 color_5b" value="@cook.FoodMaterialName" placeholder="调料 (如：盐)" />
+                                        <input type="text" name="food4[]" class="yongliang btn37 color_5b" value="@cook.Amount" placeholder="用量（如10g）" />
+                                    </div>
+                                }
+
+                                <div>
+                                    <input type="text" name="food3[]" class="zhuliao btn37 J_input" placeholder="调料 (如：盐)">
+                                    <input type="text" name="food4[]" class="yongliang btn37 J_input" placeholder="用量（如10g）">
+                                    <a href="javascript:;" class="delete J_delete"></a>
+                                </div>
+                                <div class="J_addDiv">
+                                    <input type="text" name="food3[]" class="zhuliao btn37 J_input" value="">
+                                    <input type="text" name="food4[]" class="yongliang btn37 J_input" value="">
+                                    <a href="javascript:;" class="delete J_delete"></a>
+                                </div>
+                            </blockquote>
+                        </dd>
+
+
+
+                    </dl>
+                    <dl class="step">
+                        <dt>
+                            <span class="x">*</span>
+                            <span class="lable">做法步骤：</span>
+
+                        </dt>
+                        <dd>
+
+
+                            <div id="dragsort" data-listidx="0">
+                                @foreach (CookProcessTsfer item in Model.ListProcess)
+                                {
+                                    <blockquote class="cp_block J_blockQ clear" style="cursor: move;">
+                                        <div class="left addicon J_fileImag" id="J_upload_0">
+                                            <input type="hidden" value="@item.ImgUrl" name="step_img[]" class="J_imghidden" style="opacity: 0; display: inline-block;">
+                                            <input type="file" name="file" id="userfile_0" value="" style="opacity: 0; display: block; left: -5.5px; top: -35px;">
+                                            <p class="p1">点击上传步骤图</p>
+                                            <p class="p3">（可不填）</p>
+                                            <div class="div_file_img" style="background-image: none;"><img class="file_img" src="@item.ImgUrl" width="100%"></div>
+                                        </div>
+
+                                        <div class="left">
+                                            <input type="hidden" value="" name="stepid[]">
+                                            <textarea class="textArea color_5b" name="note[]" placeholder="请输入做法说明菜谱描述">@item.Description</textarea>
+                                            <span class="J_step_num">@item.Sort、</span>
+                                            <a href="javascript:;" class="add J_addTextarea"></a>
+                                            <a href="javascript:;" class="up J_upTextarea"></a>
+                                            <a href="javascript:;" class="down J_downTextarea"></a>
+                                            <a href="javascript:;" class="delete J_delTextarea"></a>
+                                        </div>
+                                    </blockquote>
+                                }
+                            </div>
+                        </dd>
+                    </dl>
+                    <dl class="tips">
+                        <dt>
+                            <span class="lable">小窍门：</span>
+
+                        </dt>
+                        <dd><textarea class="area543 " name="tips" id="tips">@Model.Tips</textarea></dd>
+                    </dl>
+                    <dl class="addElem" style="display:none;"></dl>
+                    <dl class="selectcheckBox">
+                        <dt>
+                            &nbsp;
+
+                        </dt>
+                        <dd>
+                            <div class="submitdiv" style="text-align:center;">
+                                <input class="postbtn" id="postbtn" name="submit" type="button" value="确定修改">
+                            </div>
+                        </dd>
+                    </dl>
+                </form>
             }
         }
 
-       
+
     </div>
 </div>
 <div class="clear"></div>
@@ -336,7 +338,7 @@
                 msc.ui.dialog.error("请上传至少一张成品图片");
 
             } else {
-                if (!$("input[name=cuisine]:checked").val() || !$("input[name=foodSort]:checked").val() || !$("input[name=foodMaterial]").val()) {
+                if (!$("input[name=cuisine]:checked").val() || !$("input[name=foodSort]:checked").val()) {
                     msc.ui.dialog.error("请完善基本参数(菜谱类别,口味或食材)");
                 } else {
                     if (!/color_5b/.test($('input[name="food1[]"]:first').attr("class")) || $('input[name="food3[]"]:first').val() == "") {
@@ -361,6 +363,6 @@
         }
     });
 
-   
-    
+
+
 </script>

@@ -43,24 +43,27 @@ namespace Manager
             if (!foodService.IsExist(iFoodSort))
                 return OutputHelper.GetOutputResponse(ResultCode.ErrorParameter, "类别选择错误");
             //判断食材foodMaterial
-            string[] arrMaterial = foodMaterial.Split(new[] { "," }, StringSplitOptions.RemoveEmptyEntries);
-            int temp;
-            FoodMaterialService materialService = new FoodMaterialService();
             List<FoodMaterial_CookBookTsfer> listMaterCook = new List<FoodMaterial_CookBookTsfer>();
-            foreach (string material in arrMaterial)
+            if (!string.IsNullOrEmpty(foodMaterial))
             {
-                if (!int.TryParse(material, out temp))
+                string[] arrMaterial = foodMaterial.Split(new[] { "," }, StringSplitOptions.RemoveEmptyEntries);
+                int temp;
+                FoodMaterialService materialService = new FoodMaterialService();
+                foreach (string material in arrMaterial)
                 {
-                    return OutputHelper.GetOutputResponse(ResultCode.ErrorParameter, "食材选择错误");
+                    if (!int.TryParse(material, out temp))
+                    {
+                        return OutputHelper.GetOutputResponse(ResultCode.ErrorParameter, "食材选择错误");
+                    }
+                    if (!materialService.IsExist(temp))
+                        return OutputHelper.GetOutputResponse(ResultCode.ErrorParameter, "食材选择错误");
+                    FoodMaterial_CookBookTsfer materCook = new FoodMaterial_CookBookTsfer
+                    {
+                        CookBookId = cookBookId,
+                        FoodMaterialId = temp
+                    };
+                    listMaterCook.Add(materCook);
                 }
-                if (!materialService.IsExist(temp))
-                    return OutputHelper.GetOutputResponse(ResultCode.ErrorParameter, "食材选择错误");
-                FoodMaterial_CookBookTsfer materCook = new FoodMaterial_CookBookTsfer
-                {
-                    CookBookId = cookBookId,
-                    FoodMaterialId = temp
-                };
-                listMaterCook.Add(materCook);
             }
             //进行插入
             CookBookTsfer bookTsfer = new CookBookTsfer()
@@ -132,25 +135,31 @@ namespace Manager
             if (!foodService.IsExist(iFoodSort))
                 return OutputHelper.GetOutputResponse(ResultCode.ErrorParameter, "类别选择错误");
             //判断食材foodMaterial
-            string[] arrMaterial = foodMaterial.Split(new[] { "," }, StringSplitOptions.RemoveEmptyEntries);
-            int temp;
-            FoodMaterialService materialService = new FoodMaterialService();
             List<FoodMaterial_CookBookTsfer> listMaterCook = new List<FoodMaterial_CookBookTsfer>();
-            foreach (string material in arrMaterial)
+
+            if(!string.IsNullOrEmpty(foodMaterial))
             {
-                if (!int.TryParse(material, out temp))
+                string[] arrMaterial = foodMaterial.Split(new[] { "," }, StringSplitOptions.RemoveEmptyEntries);
+                int temp;
+                FoodMaterialService materialService = new FoodMaterialService();
+
+                foreach (string material in arrMaterial)
                 {
-                    return OutputHelper.GetOutputResponse(ResultCode.ErrorParameter, "食材选择错误");
+                    if (!int.TryParse(material, out temp))
+                    {
+                        return OutputHelper.GetOutputResponse(ResultCode.ErrorParameter, "食材选择错误");
+                    }
+                    if (!materialService.IsExist(temp))
+                        return OutputHelper.GetOutputResponse(ResultCode.ErrorParameter, "食材选择错误");
+                    FoodMaterial_CookBookTsfer materCook = new FoodMaterial_CookBookTsfer
+                    {
+                        CookBookId = cookBookId,
+                        FoodMaterialId = temp
+                    };
+                    listMaterCook.Add(materCook);
                 }
-                if (!materialService.IsExist(temp))
-                    return OutputHelper.GetOutputResponse(ResultCode.ErrorParameter, "食材选择错误");
-                FoodMaterial_CookBookTsfer materCook = new FoodMaterial_CookBookTsfer
-                {
-                    CookBookId = cookBookId,
-                    FoodMaterialId = temp
-                };
-                listMaterCook.Add(materCook);
             }
+           
             //进行插入
             CookBookTsfer bookTsfer = new CookBookTsfer()
             {

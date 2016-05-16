@@ -24,6 +24,10 @@
         $(document).ajaxStop(function () {
             $.fancybox.hideLoading();
         })
+        $(document).keydown(function (event) {
+            if (event.keyCode == 13)
+                $('#btnLogin').click();
+        });
     </script>
 </head>
 <body>
@@ -36,7 +40,7 @@
             </form>
             <div class="forgot">
                 <a href="/UserInfo/LostPwd">忘记密码</a>
-                <input type="submit" onclick="login()" value="登录">
+                <input type="submit" onclick="login()" id="btnLogin" value="登录">
             </div>
         </div>
         <div class="login-bottom">
