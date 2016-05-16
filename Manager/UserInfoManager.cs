@@ -12,7 +12,7 @@ namespace Manager
 {
     public class UserInfoManager
     {
-        public static string IPAddress = ConfigurationManager.AppSettings["IPAddress"];
+        private static string IPAddress = ConfigurationManager.AppSettings["IPAddress"];
         private UserInfoService service = ObjectContainer.GetInstance<UserInfoService>();
         private VerifyRegisterServer verifyService = ObjectContainer.GetInstance<VerifyRegisterServer>();
         /// <summary>
