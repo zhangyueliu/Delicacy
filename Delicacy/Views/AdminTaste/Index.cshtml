@@ -126,9 +126,9 @@
         <td>
             @Html.DisplayFor(modelItem => item.Name)
         </td>
-        <td>
-            <a href="javacript:;" onclick="edit(@item.TasteId,'@item.Name')">Edit</a>|
-            <a href="javascript:;" onclick="deleteSort(@item.TasteId)">Delete</a>
+        <td style="width:50px;">
+            <a href="javacript:;" onclick="edit(@item.TasteId,'@item.Name')">编辑</a>
+            <a href="javascript:;" onclick="deleteSort(@item.TasteId)">删除</a>
         </td>
     </tr>
 }
