@@ -317,7 +317,7 @@ var upUrl = 'http://localhost:53565/';
                 th.after(ele);
                 var _tpl = "";
                 var win = th.closest(".J_fileImag").find("iframe:eq(0)")[0];
-                var $win_b = $(win.contentWindow.document.body);;
+                var $win_b = $(win.contentWindow.document.body);
                 $win_b.find("form").append(th);
                 $win_b.find("form").submit();
                 ele.parent().find(".file_img").remove().end().find(".div_file_img").remove().end().append("<div class='div_file_img'><span>正在上传中...</span></div>");
