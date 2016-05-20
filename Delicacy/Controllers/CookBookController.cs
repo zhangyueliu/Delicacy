@@ -62,6 +62,7 @@ namespace Delicacy.Controllers
             return View();
         }
 
+        
         public ActionResult GetPageBySort(string sortId, string pageIndex, string pageSize)
         {
             return Content(new CookBookManager().GetCookBookBySort(sortId, pageIndex, pageSize));
@@ -118,8 +119,6 @@ namespace Delicacy.Controllers
             //获取菜谱详情
             return View(new CookBookManager().GetCookbookById(id));
         }
-
-        
 
         public ActionResult SearchList(string name)
         {

@@ -5,6 +5,17 @@
     Layout = "~/Views/Shared/_Layout.cshtml";
 }
 <link href="~/Content/bootstrap.css" rel="stylesheet" />
+<style>
+    body, button, input, select, textarea {
+        font: 12px/1.6 "Hiragino Sans GB","STHeiti","΢���ź�","Microsoft YaHei",Helvetica,Arial,serif;
+    }
+    ul, ol {
+        margin:0;
+    }
+    input{
+        line-height:normal;
+    }
+</style>
 <script>
     var pId = 0;
     $(document).ready(function () {
@@ -57,11 +68,11 @@
     function initComment(json) {
         var comment = '';
         $.each(json, function (index, value) {
-            comment += '<div class="media mainborder"><a class="pull-left" href="#"><img class="media-object" src="/images/touxiang.png" style="width:50px;height:50px;" alt="作者"></a><div class="media-body"><h4 class="media-heading"><lable>' + value.User.Name + '</lable><a style="position: relative; float: right; font-size: 10px; cursor: pointer;" onclick="reply(' + value.CommentId + ',' + value.CommentId + ',&quot;' + value.User.Name + '&quot;)">回复</a></h4><p>' + value.Content + '</p> ';
+            comment += '<div class="media mainborder"><a class="pull-left" href="javascript:;"><img class="media-object" src="/images/touxiang.png" style="width:50px;height:50px;border-radius: 50%;" alt="作者"></a><div class="media-body"><h4 class="media-heading"><lable>' + value.User.Name + '</lable><a style="position: relative; float: right; font-size: 10px; cursor: pointer;" onclick="reply(' + value.CommentId + ',' + value.CommentId + ',&quot;' + value.User.Name + '&quot;)">回复</a></h4><p>' + value.Content + '</p> ';
             //判断有没有二级评论
             if (value.SonComment.length > 0) {
                 $.each(value.SonComment, function (key, item) {
-                    comment += '<div class="media mainborder"><a class="pull-left" href="#"><img class="media-object" src="/images/touxiang.png" style="width:50px;height:50px;" alt="作者"></a><div class="media-body"><h4 class="media-heading"><lable>' + item.User.Name + '</lable><a style="position: relative; float: right; font-size: 10px; cursor: pointer;" onclick="reply(' + value.CommentId + ',' + item.CommentId + ',&quot;' + item.User.Name + '&quot;)" >回复</a></h4><p>' + item.Content + '</p></div></div>';
+                    comment += '<div class="media mainborder"><a class="pull-left" href="javascript:;"><img class="media-object" src="/images/touxiang.png" style="width:50px;height:50px;border-radius: 50%;" alt="作者"></a><div class="media-body"><h4 class="media-heading"><lable>' + item.User.Name + '</lable><a style="position: relative; float: right; font-size: 10px; cursor: pointer;" onclick="reply(' + value.CommentId + ',' + item.CommentId + ',&quot;' + item.User.Name + '&quot;)" >回复</a></h4><p>' + item.Content + '</p></div></div>';
                 })
             }
             comment += '<div class="mainborder showhidden" id="' + value.CommentId + '" style="display:none" ><textarea id="' + value.CommentId + '1" class="mainborder"  style="margin:auto;width:100%;" rows="3"></textarea><input type="button" onclick="submit(' + value.CommentId + '1,' + value.CommentId + ')" value="评论" class="btn btn-default" style="position:relative;float:right;" /><div class="clear"></div></div></div></div>';
@@ -84,7 +95,6 @@
         $('#' + temp + '1').focus();
     }
 </script>
-
 <div class="main" style="width:80%;margin:auto;margin-bottom:1%;">
     <div style="width: 90%; margin: auto; margin-top:2%;text-align: center;">
         <h2 style="font-size:30px;">@Model.Title</h2>
@@ -97,7 +107,6 @@
     <textarea class="mainborder" id="content" style="margin:auto;width:100%;" rows="3"></textarea>
     <input type="button" onclick="submit('content',0,0)" value="评论" class="btn btn-default" style="position:relative;float:right;" />
     <div class="clear"></div>
-
 </div>
 </div>
 

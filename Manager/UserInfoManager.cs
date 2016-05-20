@@ -6,11 +6,13 @@ using System.Threading.Tasks;
 using Service;
 using DataTransfer;
 using Tool;
+using System.Configuration;
 
 namespace Manager
 {
     public class UserInfoManager
     {
+        private static string IPAddress = ConfigurationManager.AppSettings["IPAddress"];
         private UserInfoService service = ObjectContainer.GetInstance<UserInfoService>();
         private VerifyRegisterServer verifyService = ObjectContainer.GetInstance<VerifyRegisterServer>();
         /// <summary>
@@ -51,7 +53,7 @@ namespace Manager
                     VerifyRegisterServer verifyServer = new VerifyRegisterServer();
                     if (verifyServer.Add(verifyDt))
                     {
-                        EmailHelper.SendEmail("[食谱网]感谢注册食谱网,请验证邮箱" + loginId, loginId.Substring(0, loginId.IndexOf('@')) + "：您好，感谢您注册食谱网，请点击下面的链接验证您的邮箱：<a href='http://121.42.58.78:8888/UserInfo/VerifyEmail?guid=" + verifyDt.GUID + "'>http://121.42.58.78:8888/UserInfo/VerifyEmail?guid=" + verifyDt.GUID + "</a>该链接7天后失效。", loginId);
+                        EmailHelper.SendEmail("[食谱网]感谢注册食谱网,请验证邮箱" + loginId, loginId.Substring(0, loginId.IndexOf('@')) + "：您好，感谢您注册食谱网，请点击下面的链接验证您的邮箱：<a href='" + IPAddress + "/UserInfo/VerifyEmail?guid=" + verifyDt.GUID + "'>" + IPAddress + "/UserInfo/VerifyEmail?guid=" + verifyDt.GUID + "</a>该链接7天后失效。", loginId);
                         return OutputHelper.GetOutputResponse(ResultCode.OK);
                     }else
                         return OutputHelper.GetOutputResponse(ResultCode.Error);
@@ -70,7 +72,7 @@ namespace Manager
             if (service.Add(newUser, verifyDt))
             {
                 //发邮件
-                EmailHelper.SendEmail("[食谱网]感谢注册食谱网,请验证邮箱" + loginId, loginId.Substring(0, loginId.IndexOf('@')) + "：您好，感谢您注册食谱网，请点击下面的链接验证您的邮箱：<a href='http://121.42.58.78:8888/UserInfo/VerifyEmail?guid=" + verifyDt.GUID + "'>http://121.42.58.78:8888/UserInfo/VerifyEmail?guid=" + verifyDt.GUID + "</a>该链接7天后失效。", loginId);
+                EmailHelper.SendEmail("[食谱网]感谢注册食谱网,请验证邮箱" + loginId, loginId.Substring(0, loginId.IndexOf('@')) + "：您好，感谢您注册食谱网，请点击下面的链接验证您的邮箱：<a href='" + IPAddress + "/UserInfo/VerifyEmail?guid=" + verifyDt.GUID + "'>" + IPAddress + "/UserInfo/VerifyEmail?guid=" + verifyDt.GUID + "</a>该链接7天后失效。", loginId);
                 return OutputHelper.GetOutputResponse(ResultCode.OK);
             }
             else
@@ -132,7 +134,7 @@ namespace Manager
             if(verifyService.Add(verifyDt))
             {
                 //发邮件
-                EmailHelper.SendEmail("[食谱网]请点击链接重置密码" + loginId, loginId.Substring(0, loginId.IndexOf('@')) + "：您好，欢迎来到食谱网，请点击下面的链接重置密码：<a href='http://121.42.58.78:8888/UserInfo/LostPwdVerifyEmail?guid=" + verifyDt.GUID +"'>http://121.42.58.78:8888/UserInfo/LostPwdVerifyEmail?guid=" + verifyDt.GUID + "</a>该链接7天后失效。", loginId);
+                EmailHelper.SendEmail("[食谱网]请点击链接重置密码" + loginId, loginId.Substring(0, loginId.IndexOf('@')) + "：您好，欢迎来到食谱网，请点击下面的链接重置密码：<a href='" + IPAddress + "/UserInfo/LostPwdVerifyEmail?guid=" + verifyDt.GUID + "'>" + IPAddress + "/UserInfo/LostPwdVerifyEmail?guid=" + verifyDt.GUID + "</a>该链接7天后失效。", loginId);
                 return OutputHelper.GetOutputResponse(ResultCode.OK);
             }
             return OutputHelper.GetOutputResponse(ResultCode.Error);

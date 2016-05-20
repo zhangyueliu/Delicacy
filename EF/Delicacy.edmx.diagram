@@ -6,21 +6,21 @@
     <edmx:Diagrams>
       <Diagram DiagramId="471de8a3afb148daa67d53e23f810cba" Name="Diagram1">
         <EntityTypeShape EntityType="DelicacyModel.AdminUser" Width="1.5" PointX="0.75" PointY="0.75" />
-        <EntityTypeShape EntityType="DelicacyModel.Collection" Width="1.5" PointX="3" PointY="11.625" />
-        <EntityTypeShape EntityType="DelicacyModel.CommentRecord" Width="1.5" PointX="3" PointY="14.375" />
-        <EntityTypeShape EntityType="DelicacyModel.CookBook" Width="1.5" PointX="3" PointY="6" />
-        <EntityTypeShape EntityType="DelicacyModel.CookMaterial" Width="1.5" PointX="5.25" PointY="5.5" />
-        <EntityTypeShape EntityType="DelicacyModel.CookProcess" Width="1.5" PointX="5.25" PointY="11.125" />
-        <EntityTypeShape EntityType="DelicacyModel.FoodMaterial" Width="1.5" PointX="6" PointY="2.125" />
-        <EntityTypeShape EntityType="DelicacyModel.FoodMaterial_CookBook" Width="1.5" PointX="8.25" PointY="7.125" />
-        <EntityTypeShape EntityType="DelicacyModel.FoodSort" Width="1.5" PointX="0.75" PointY="6" />
+        <EntityTypeShape EntityType="DelicacyModel.Collection" Width="1.5" PointX="3" PointY="15" />
+        <EntityTypeShape EntityType="DelicacyModel.CommentRecord" Width="1.5" PointX="3" PointY="5.875" />
+        <EntityTypeShape EntityType="DelicacyModel.CookBook" Width="1.5" PointX="3" PointY="10" />
+        <EntityTypeShape EntityType="DelicacyModel.CookMaterial" Width="1.5" PointX="5.25" PointY="15.125" />
+        <EntityTypeShape EntityType="DelicacyModel.CookProcess" Width="1.5" PointX="5.25" PointY="9.5" />
+        <EntityTypeShape EntityType="DelicacyModel.FoodMaterial" Width="1.5" PointX="6" PointY="6.125" />
+        <EntityTypeShape EntityType="DelicacyModel.FoodMaterial_CookBook" Width="1.5" PointX="8.25" PointY="11.125" />
+        <EntityTypeShape EntityType="DelicacyModel.FoodSort" Width="1.5" PointX="0.75" PointY="15.5" />
         <EntityTypeShape EntityType="DelicacyModel.SubjectArticle" Width="1.5" PointX="2.75" PointY="0.75" />
-        <EntityTypeShape EntityType="DelicacyModel.SubjectSort" Width="1.5" PointX="7.75" PointY="4.75" />
+        <EntityTypeShape EntityType="DelicacyModel.SubjectSort" Width="1.5" PointX="4.75" PointY="0.75" />
         <EntityTypeShape EntityType="DelicacyModel.SupportScanRecord" Width="1.5" PointX="3" PointY="17.875" />
-        <EntityTypeShape EntityType="DelicacyModel.sysdiagrams" Width="1.5" PointX="8.75" PointY="0.75" />
-        <EntityTypeShape EntityType="DelicacyModel.Taste" Width="1.5" PointX="0.75" PointY="12.375" />
+        <EntityTypeShape EntityType="DelicacyModel.sysdiagrams" Width="1.5" PointX="6.75" PointY="0.75" />
+        <EntityTypeShape EntityType="DelicacyModel.Taste" Width="1.5" PointX="0.75" PointY="13" />
         <EntityTypeShape EntityType="DelicacyModel.UserInfo" Width="1.5" PointX="0.75" PointY="8.625" />
-        <EntityTypeShape EntityType="DelicacyModel.VerifyRegister" Width="1.5" PointX="9.75" PointY="3.75" />
+        <EntityTypeShape EntityType="DelicacyModel.VerifyRegister" Width="1.5" PointX="8.75" PointY="0.75" />
         <AssociationConnector Association="DelicacyModel.FK_LIKECOOK_REFERENCE_USERINFO" />
         <AssociationConnector Association="DelicacyModel.FK_COMMENTR_REFERENCE_USERINFO" />
         <AssociationConnector Association="DelicacyModel.FK_COOKBOOK_REFERENCE_FOODSORT" />

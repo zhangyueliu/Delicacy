@@ -47,7 +47,7 @@
           <Property Name="Name" Type="nvarchar" MaxLength="50" Nullable="false" />
           <Property Name="ImgUrl" Type="varchar" MaxLength="400" Nullable="false" />
           <Property Name="Description" Type="nvarchar" MaxLength="2000" />
-          <Property Name="Tips" Type="nvarchar" MaxLength="100" />
+          <Property Name="Tips" Type="nvarchar(max)" />
           <Property Name="Status" Type="int" Nullable="false" />
           <Property Name="DateTime" Type="datetime" Nullable="false" />
         </EntityType>
@@ -466,7 +466,7 @@
           <Property Name="Name" Type="String" Nullable="false" MaxLength="50" FixedLength="false" Unicode="true" />
           <Property Name="ImgUrl" Type="String" Nullable="false" MaxLength="400" FixedLength="false" Unicode="false" />
           <Property Name="Description" Type="String" MaxLength="2000" FixedLength="false" Unicode="true" />
-          <Property Name="Tips" Type="String" MaxLength="100" FixedLength="false" Unicode="true" />
+          <Property Name="Tips" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
           <Property Name="Status" Type="Int32" Nullable="false" />
           <Property Name="DateTime" Type="DateTime" Nullable="false" Precision="3" />
           <NavigationProperty Name="FoodSort" Relationship="DelicacyModel.FK_COOKBOOK_REFERENCE_FOODSORT" FromRole="CookBook" ToRole="FoodSort" />

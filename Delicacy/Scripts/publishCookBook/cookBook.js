@@ -81,7 +81,7 @@ function editCookBook(cookBookId) {
         data: { Name: Name, Taste: Taste, FoodSort: FoodSort, Description: Description, Tips: Tips, FinalImg: FinalImg, ProcessImgDes: ProcessImgDes, MainMaterial: MainMaterial, AssistMaterial: AssistMaterial, status: 0, foodMaterial: foodMaterial,CookBookId:cookBookId },
         dataType: 'json',
         success: function (data) {
-            $('#postbtn').val("发布菜谱");
+            $('#postbtn').val("确定修改");
             if (data.StatusCode == 1) {
                 $("input[name=subject]").val('');
                 //信息框-例2
