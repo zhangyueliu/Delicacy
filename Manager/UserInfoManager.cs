@@ -134,7 +134,7 @@ namespace Manager
             if(verifyService.Add(verifyDt))
             {
                 //发邮件
-                EmailHelper.SendEmail("[食谱网]请点击链接重置密码" + loginId, loginId.Substring(0, loginId.IndexOf('@')) + "：您好，欢迎来到食谱网，请点击下面的链接重置密码：<a href='http://121.42.58.78:8888/UserInfo/LostPwdVerifyEmail?guid=" + verifyDt.GUID +"'>http://121.42.58.78:8888/UserInfo/LostPwdVerifyEmail?guid=" + verifyDt.GUID + "</a>该链接7天后失效。", loginId);
+                EmailHelper.SendEmail("[食谱网]请点击链接重置密码" + loginId, loginId.Substring(0, loginId.IndexOf('@')) + "：您好，欢迎来到食谱网，请点击下面的链接重置密码：<a href='" + IPAddress + "/UserInfo/LostPwdVerifyEmail?guid=" + verifyDt.GUID + "'>" + IPAddress + "/UserInfo/LostPwdVerifyEmail?guid=" + verifyDt.GUID + "</a>该链接7天后失效。", loginId);
                 return OutputHelper.GetOutputResponse(ResultCode.OK);
             }
             return OutputHelper.GetOutputResponse(ResultCode.Error);

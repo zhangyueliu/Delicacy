@@ -69,6 +69,8 @@ namespace Delicacy.Controllers
 
         public ActionResult UserCenter()
         {
+            if (!IsLogin())
+                return Redirect("/UserInfo/Login");
             return View();
         }
         [HttpGet]
